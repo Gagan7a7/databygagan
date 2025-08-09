@@ -192,7 +192,7 @@
 let projects = [];
 function loadProjects() {
     // Fetch projects from backend API instead of static file
-    fetch('https://databygagan.onrender.com/api/projects')
+    fetch('/api/projects')
         .then(res => {
             if (!res.ok) throw new Error('Failed to fetch projects from server');
             return res.json();
@@ -228,7 +228,7 @@ function loadProjects() {
                 description: document.getElementById('description').value,
                 tech: document.getElementById('tech').value.split(',').map(t => t.trim())
             };
-            const backendUrl = 'https://databygagan.onrender.com/api/projects';
+            const backendUrl = '/api/projects';
             if (idx === '') {
                 // New project: send to backend
                 fetch(backendUrl, {
@@ -289,7 +289,7 @@ function loadProjects() {
 function deleteProjectByTitle(title) {
     if (confirm('Delete this project?')) {
         // Send DELETE request to backend by title
-        const backendUrl = 'https://databygagan.onrender.com/api/projects/title/' + title;
+        const backendUrl = '/api/projects/title/' + title;
         fetch(backendUrl, {
             method: 'DELETE'
         })
