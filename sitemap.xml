@@ -1,0 +1,105 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://databygagan.com/</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+    <image:loc>https://databygagan.com/images/Hranalytics.png</image:loc>
+      <image:title>HR Analytics Dashboard</image:title>
+      <image:caption>Professional HR Analytics Dashboard built with Power BI</image:caption>
+    </image:image>
+    <image:image>
+    <image:loc>https://databygagan.com/images/AmazonSales.png</image:loc>
+      <image:title>Amazon Sales Analytics Dashboard</image:title>
+      <image:caption>Comprehensive Amazon Sales Analytics built with Power BI</image:caption>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://databygagan.com/about.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Skills Page -->
+  <url>
+    <loc>https://databygagan.com/skills.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://databygagan.com/projects.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+    <image:loc>https://databygagan.com/images/Hranalytics.png</image:loc>
+      <image:title>HR Analytics Dashboard Project</image:title>
+      <image:caption>HR Analytics Dashboard showcasing employee attrition metrics</image:caption>
+    </image:image>
+    <image:image>
+    <image:loc>https://databygagan.com/images/AmazonSales.png</image:loc>
+      <image:title>Amazon Sales Analytics Project</image:title>
+      <image:caption>Amazon Sales Dashboard showing regional sales performance</image:caption>
+    </image:image>
+    <image:image>
+    <image:loc>https://databygagan.com/images/heartdisease.png</image:loc>
+      <image:title>Heart Disease Prediction Project</image:title>
+      <image:caption>Machine Learning model for heart disease prediction</image:caption>
+    </image:image>
+    <image:image>
+    <image:loc>https://databygagan.com/images/Suicide.png</image:loc>
+      <image:title>Suicide Trends Analysis Project</image:title>
+      <image:caption>Data analysis of suicide trends across Indian states</image:caption>
+    </image:image>
+    <image:image>
+    <image:loc>https://databygagan.com/images/Netflix.png</image:loc>
+      <image:title>Netflix Movie Analysis Project</image:title>
+      <image:caption>Comprehensive analysis of Netflix movie dataset</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://databygagan.com/services.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- FAQ Page -->
+  <url>
+    <loc>https://databygagan.com/faq.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Resume Page -->
+  <url>
+    <loc>https://databygagan.com/resume.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://databygagan.com/contact.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
