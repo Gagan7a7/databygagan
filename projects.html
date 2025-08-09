@@ -318,7 +318,7 @@
         <script>
         // Dynamically render projects grouped by category from projects.json
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://databygagan.com/projects.json')
+            fetch('/api/projects')
                 .then(res => res.json())
                 .then(projects => {
                     const list = document.getElementById('projects-list');
