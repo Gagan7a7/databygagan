@@ -122,25 +122,46 @@ function closeResumeModal(){const resumeModal=document.getElementById("resume-mo
 if(typeof module!=="undefined"&&module.exports){module.exports={validateField,validateForm,showNotification,debounce,throttle,}}
 const phrases=["Freelance Data Analyst","Power BI Developer","Excel Dashboard Specialist","Data Cleaning Expert","Python + AI Analyst",];let currentPhrase=0;let currentChar=0;let isDeleting=!1;const typeSpeed=100;const eraseSpeed=50;const delayBetween=1500;function initTypewriter(){const el=document.querySelector(".typewriter-text");if(!el){return}
 function type(){const phrase=phrases[currentPhrase];if(!isDeleting){el.textContent=phrase.slice(0,currentChar+1);currentChar++;if(currentChar===phrase.length){isDeleting=!0;setTimeout(type,delayBetween)}else{setTimeout(type,typeSpeed)}}else{el.textContent=phrase.slice(0,currentChar);currentChar--;if(currentChar===0){isDeleting=!1;currentPhrase=(currentPhrase+1)%phrases.length;setTimeout(type,typeSpeed)}else{setTimeout(type,eraseSpeed)}}}
-type()}(function(){const list=document.getElementById('projects-list');const btns=document.getElementById('category-buttons');if(!list||!btns)return;fetch('/api/projects').then(res=>res.json()).then(projects=>{list.innerHTML='';btns.innerHTML='';const grouped={};projects.forEach(proj=>{const cat=proj.category||'Other';if(!grouped[cat])grouped[cat]=[];grouped[cat].push(proj)});const categories=Object.keys(grouped);categories.forEach(category=>{const btn=document.createElement('button');btn.textContent=category;btn.className='category-scroll-btn';btn.onclick=function(){const heading=document.getElementById('cat-'+category.replace(/\s+/g,'-').toLowerCase());if(heading){heading.scrollIntoView({behavior:'smooth',block:'start'})}};btns.appendChild(btn)});categories.forEach(category=>{list.innerHTML+=`<h2 class="project-category-heading" id="cat-${category.replace(/\s+/g, '-').toLowerCase()}">${category}</h2>`;grouped[category].slice().reverse().forEach(proj=>{const techTags=proj.tech.map(tag=>`<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n');const card=`
-<article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
-  <div class="project-image">
-    <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
-    <div class="project-overlay">
-      <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
-        <i class="${proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
-      </a>
-    </div>
-  </div>
-  <div class="project-content">
-    <h3 itemprop="headline">${proj.title}</h3>
-    <p itemprop="description">${proj.description}</p>
-    <div class="project-tech">${techTags}</div>
-    <div class="project-actions">
-      <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
-        <i class="fab fa-github"></i>View Code
-      </a>
-    </div>
-  </div>
-</article>
-`;list.innerHTML+=card})})})})()
+type()}(function(){const list=document.getElementById('projects-list');const btns=document.getElementById('category-buttons');if(!list||!btns)return;fetch('/api/projects')
+    .then(res=>res.json())
+    .then(projects=>{
+      console.log('Fetched projects:', projects); // Debug log
+      list.innerHTML='';
+      btns.innerHTML='';
+      if (!Array.isArray(projects) || projects.length === 0) {
+        list.innerHTML = '<p>No projects found.</p>';
+        return;
+      }
+      const grouped={};
+      projects.forEach(proj=>{
+        const cat=proj.category||'Other';
+        if(!grouped[cat])grouped[cat]=[];
+        grouped[cat].push(proj)
+      });
+      const categories=Object.keys(grouped);
+      categories.forEach(category=>{
+        const btn=document.createElement('button');
+        btn.textContent=category;
+        btn.className='category-scroll-btn';
+        btn.onclick=function(){
+          const heading=document.getElementById('cat-'+category.replace(/\s+/g,'-').toLowerCase());
+          if(heading){
+            heading.scrollIntoView({behavior:'smooth',block:'start'})
+          }
+        };
+        btns.appendChild(btn)
+      });
+      categories.forEach(category=>{
+        list.innerHTML+=`<h2 class="project-category-heading" id="cat-${category.replace(/\s+/g, '-').toLowerCase()}">${category}</h2>`;
+        grouped[category].slice().reverse().forEach(proj=>{
+          const techTags=Array.isArray(proj.tech) ? proj.tech.map(tag=>`<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n') : '';
+          const card=`\n<article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">\n  <div class="project-image">\n    <img src="${proj.image||''}" alt="${proj.alt||''}" loading="lazy" itemprop="image" />\n    <div class="project-overlay">\n      <a href="${proj.dashboardUrl||'#'}" target="_blank" class="btn btn-primary" itemprop="url">\n        <i class="${proj.dashboardUrl&&proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl&&proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}\n      </a>\n    </div>\n  </div>\n  <div class="project-content">\n    <h3 itemprop="headline">${proj.title||''}</h3>\n    <p itemprop="description">${proj.description||''}</p>\n    <div class="project-tech">${techTags}</div>\n    <div class="project-actions">\n      <a href="${proj.codeUrl||'#'}" target="_blank" class="btn btn-outline" itemprop="codeRepository">\n        <i class="fab fa-github"></i>View Code\n      </a>\n    </div>\n  </div>\n</article>\n`;
+          list.innerHTML+=card
+        })
+      })
+    })
+    .catch(err => {
+      console.error('Error fetching projects:', err);
+      list.innerHTML = '<p style="color:red">Failed to load projects.</p>';
+    });
+})();
