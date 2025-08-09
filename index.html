@@ -762,9 +762,7 @@
                     // Use correct API URL for local and deployed environments
                     let apiUrl = '/api/projects';
                     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                        apiUrl = 'projects.json'; // fallback to local file for Live Server
-                    } else if (window.location.hostname.endsWith('onrender.com')) {
-                        apiUrl = '/api/projects'; // Render backend
+                        apiUrl = 'http://localhost:5000/api/projects'; // local dev server
                     }
                     fetch(apiUrl)
                         .then(res => res.json())
