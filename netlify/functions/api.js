@@ -12,9 +12,8 @@ app.use(cors());
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// In a serverless environment, the __dirname will be the function's folder.
-// We need to construct the path to projects.json from the project root.
-const projectsPath = path.resolve(process.cwd(), 'projects.json');
+// In a serverless environment, use __dirname to reliably find projects.json in the repo root.
+const projectsPath = path.join(__dirname, '../../projects.json');
 
 // API endpoint to delete a project by unique title
 app.delete("/api/projects/title/:title", (req, res) => {
