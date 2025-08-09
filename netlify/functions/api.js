@@ -1,119 +1,97 @@
-const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const cors = require('cors');
-const serverless = require('serverless-http');
+
+import express from "express";
+import cors from "cors";
+import serverless from "serverless-http";
+import { neon } from '@netlify/neon';
 
 const app = express();
-
-// Enable CORS for all origins
 app.use(cors());
-
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-// In a serverless environment, use __dirname to reliably find projects.json in the repo root.
-const projectsPath = path.join(__dirname, '../../projects.json');
+const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
-// API endpoint to delete a project by unique title
-app.delete("/api/projects/title/:title", (req, res) => {
+// Ensure the projects table exists (run once per cold start)
+async function ensureTable() {
+    await sql`CREATE TABLE IF NOT EXISTS projects (
+        title TEXT PRIMARY KEY,
+        category TEXT,
+        image TEXT,
+        alt TEXT,
+        dashboardUrl TEXT,
+        codeUrl TEXT,
+        description TEXT,
+        tech JSONB
+    )`;
+}
+
+// Helper to run ensureTable before each request
+app.use(async (req, res, next) => {
+    try { await ensureTable(); } catch (e) { return res.status(500).json({ error: "DB setup failed" }); }
+    next();
+});
+
+// Delete a project by title
+app.delete("/api/projects/title/:title", async (req, res) => {
     const title = decodeURIComponent(req.params.title);
-    fs.readFile(projectsPath, "utf8", (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: "Failed to read projects.json" });
-        }
-        let projects = [];
-        try {
-            projects = JSON.parse(data);
-        } catch (e) {
-            return res.status(500).json({ error: "Invalid projects.json format" });
-        }
-        const idx = projects.findIndex(p => p.title === title);
-        if (idx === -1) {
-            return res.status(404).json({ error: "Project not found" });
-        }
-        projects.splice(idx, 1);
-        fs.writeFile(projectsPath, JSON.stringify(projects, null, 2), (err) => {
-            if (err) {
-                return res.status(500).json({ error: "Failed to update projects.json" });
-            }
-            res.json({ success: true });
-        });
-    });
+    try {
+        const result = await sql`DELETE FROM projects WHERE title = ${title} RETURNING *`;
+        if (result.length === 0) return res.status(404).json({ error: "Project not found" });
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to delete project" });
+    }
 });
 
-// API endpoint to get all projects
-app.get("/api/projects", (req, res) => {
-    fs.readFile(projectsPath, "utf8", (err, data) => {
-        if (err) {
-            // If the file doesn't exist, it's not an error, just return an empty array.
-            if (err.code === 'ENOENT') {
-                return res.json([]);
-            }
-            return res.status(500).json({ error: "Failed to read projects.json" });
-        }
-        let projects = [];
-        try {
-            projects = JSON.parse(data);
-        } catch (e) {
-            // If file is empty or invalid, return empty array
-        }
-        res.json(projects);
-    });
+// Get all projects
+app.get("/api/projects", async (req, res) => {
+    try {
+        const projects = await sql`SELECT * FROM projects`;
+        // Convert tech from JSONB to array
+        const result = projects.map(p => ({ ...p, tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []) }));
+        res.json(result);
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch projects" });
+    }
 });
 
-// API endpoint to add a new project
-app.post("/api/projects", (req, res) => {
-    const newProject = req.body;
-    fs.readFile(projectsPath, "utf8", (err, data) => {
-        if (err && err.code !== 'ENOENT') {
-            return res.status(500).json({ error: "Failed to read projects.json" });
-        }
-        let projects = [];
-        try {
-            if (data) {
-                projects = JSON.parse(data);
-            }
-        } catch (e) {
-            // If file is empty or invalid, start with empty array
-        }
-        projects.push(newProject);
-        fs.writeFile(projectsPath, JSON.stringify(projects, null, 2), (err) => {
-            if (err) {
-                return res.status(500).json({ error: "Failed to update projects.json" });
-            }
-            res.json({ success: true, project: newProject });
-        });
-    });
+// Add a new project
+app.post("/api/projects", async (req, res) => {
+    const p = req.body;
+    try {
+        await sql`
+            INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech)
+            VALUES (${p.title}, ${p.category}, ${p.image}, ${p.alt}, ${p.dashboardUrl}, ${p.codeUrl}, ${p.description}, ${JSON.stringify(p.tech)})
+            ON CONFLICT (title) DO NOTHING
+        `;
+        res.json({ success: true, project: p });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to add project" });
+    }
 });
 
-// API endpoint to update a project by unique title
-app.put("/api/projects/title/:title", (req, res) => {
+// Update a project by title
+app.put("/api/projects/title/:title", async (req, res) => {
     const title = decodeURIComponent(req.params.title);
-    const updatedProject = req.body;
-    fs.readFile(projectsPath, "utf8", (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: "Failed to read projects.json" });
-        }
-        let projects = [];
-        try {
-            projects = JSON.parse(data);
-        } catch (e) {
-            return res.status(500).json({ error: "Invalid projects.json format" });
-        }
-        const idx = projects.findIndex(p => p.title === title);
-        if (idx === -1) {
-            return res.status(404).json({ error: "Project not found" });
-        }
-        projects[idx] = updatedProject;
-        fs.writeFile(projectsPath, JSON.stringify(projects, null, 2), (err) => {
-            if (err) {
-                return res.status(500).json({ error: "Failed to update projects.json" });
-            }
-            res.json({ success: true, project: updatedProject });
-        });
-    });
+    const p = req.body;
+    try {
+        const result = await sql`
+            UPDATE projects SET
+                category = ${p.category},
+                image = ${p.image},
+                alt = ${p.alt},
+                dashboardUrl = ${p.dashboardUrl},
+                codeUrl = ${p.codeUrl},
+                description = ${p.description},
+                tech = ${JSON.stringify(p.tech)}
+            WHERE title = ${title}
+            RETURNING *
+        `;
+        if (result.length === 0) return res.status(404).json({ error: "Project not found" });
+        res.json({ success: true, project: p });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to update project" });
+    }
 });
 
 // The serverless handler
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
