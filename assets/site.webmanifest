@@ -1,0 +1,21 @@
+{
+  "name": "Gagan Data Analyst Portfolio",
+  "short_name": "GaganBP",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a1120",
+  "theme_color": "#6c63ff",
+  "description": "Portfolio of Gagan BP, Data Analyst: Power BI, Python, SQL, Excel, dashboards, business insights.",
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
