@@ -756,48 +756,58 @@
                     Featured Projects
                 </h2>
                 <div id="featured-projects-list"></div>
-                <script>
-                // Dynamically render all projects from backend API for homepage featured section
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Use correct API URL for local and deployed environments
-                    let apiUrl = '/api/projects';
-                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                        apiUrl = 'http://localhost:5000/api/projects'; // local dev server
-                    }
-                    fetch(apiUrl)
-                        .then(res => res.json())
-                        .then(projects => {
-                            const list = document.getElementById('featured-projects-list');
-                            list.innerHTML = '';
-                            projects.slice().reverse().forEach(proj => {
-                                const techTags = proj.tech.map(tag => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n');
-                                const card = `
+                                <script>
+                                // Show only the four selected featured projects in the correct order
+                                document.addEventListener('DOMContentLoaded', function() {
+                                        let apiUrl = '/api/projects';
+                                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                                                apiUrl = 'http://localhost:5000/api/projects';
+                                        }
+                                        // The four featured project titles in the desired order
+                                        const featuredOrder = [
+                                                "HR Analytics Dashboard",
+                                                "Amazon Sales Dashboard",
+                                                "Netflix Data Analysis",
+                                                "Heart Disease Prediction"
+                                        ];
+                                        fetch(apiUrl)
+                                                .then(res => res.json())
+                                                .then(projects => {
+                                                        // Filter to only featured projects with the specified titles
+                                                        const featured = featuredOrder
+                                                                .map(title => projects.find(p => p.title === title && p.featured))
+                                                                .filter(Boolean);
+                                                        const list = document.getElementById('featured-projects-list');
+                                                        list.innerHTML = '';
+                                                        featured.forEach(proj => {
+                                                                const techTags = proj.tech.map(tag => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n');
+                                                                const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
-  <div class="project-image">
-    <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
-    <div class="project-overlay">
-      <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
-        <i class="${proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
-      </a>
+    <div class="project-image">
+        <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
+        <div class="project-overlay">
+            <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
+                <i class="${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="project-content">
-    <h3 itemprop="headline">${proj.title}</h3>
-    <p itemprop="description">${proj.description}</p>
-    <div class="project-tech">${techTags}</div>
-    <div class="project-actions">
-      <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
-        <i class="fab fa-github"></i>View Code
-      </a>
+    <div class="project-content">
+        <h3 itemprop="headline">${proj.title}</h3>
+        <p itemprop="description">${proj.description}</p>
+        <div class="project-tech">${techTags}</div>
+        <div class="project-actions">
+            <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
+                <i class="fab fa-github"></i>View Code
+            </a>
+        </div>
     </div>
-  </div>
 </article>
 `;
-                                list.innerHTML += card;
-                            });
-                        });
-                });
-                </script>
+                                                                list.innerHTML += card;
+                                                        });
+                                                });
+                                });
+                                </script>
             </div>
         </section>
 
