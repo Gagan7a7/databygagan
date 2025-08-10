@@ -59,27 +59,83 @@ function initializePortfolio() {
                 });
             }
         }
+        // Initialize performance optimizations
+        initializePerformanceOptimizations();
     } catch (error) {
         console.warn("Portfolio initialization error:", error);
     }
 }
 function handleLoading() {
     const loader = document.getElementById("loader");
+    
     let hasLoaded = sessionStorage.getItem("portfolioLoaded");
     if (hasLoaded) {
-        if (loader) loader.style.display = "none";
+        if (loader) {
+            loader.style.display = "none";
+            loader.classList.add("hidden");
+        }
+        // Ensure body can scroll when already loaded
+        document.body.style.cssText = "";
+        document.documentElement.style.cssText = "";
         setupPageSpecificAnimations();
         return;
     }
+    
+    // Completely prevent all scrolling during loading
+    document.body.style.cssText = "overflow: hidden !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100vh !important; margin: 0 !important; padding: 0 !important;";
+    document.documentElement.style.cssText = "overflow: hidden !important; height: 100% !important;";
+    
+    // Force immediate style application
+    document.body.offsetHeight;
+    
+    // Prevent all scroll events
+    document.addEventListener('touchmove', preventAllScrolling, { passive: false });
+    document.addEventListener('wheel', preventAllScrolling, { passive: false });
+    document.addEventListener('scroll', preventAllScrolling, { passive: false });
+    document.addEventListener('keydown', preventScrollKeys, { passive: false });
+    
     window.addEventListener("load", function () {
         setTimeout(function () {
             if (loader) {
                 loader.classList.add("hidden");
                 sessionStorage.setItem("portfolioLoaded", "true");
             }
+            // Remove all scroll locks
+            document.body.style.cssText = "";
+            document.documentElement.style.cssText = "";
+            
+            // Remove all event listeners
+            document.removeEventListener('touchmove', preventAllScrolling);
+            document.removeEventListener('wheel', preventAllScrolling);
+            document.removeEventListener('scroll', preventAllScrolling);
+            document.removeEventListener('keydown', preventScrollKeys);
+            
             setupPageSpecificAnimations();
         }, 1200);
     });
+}
+
+function preventAllScrolling(e) {
+    const loader = document.getElementById("loader");
+    if (loader && !loader.classList.contains("hidden")) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        return false;
+    }
+}
+
+function preventScrollKeys(e) {
+    const loader = document.getElementById("loader");
+    if (loader && !loader.classList.contains("hidden")) {
+        // Prevent arrow keys, spacebar, page up/down, home, end
+        const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
+        if (scrollKeys.includes(e.keyCode)) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }
 }
 function setupNavigation() {
     const mobileMenu = document.getElementById("mobile-menu");
@@ -879,6 +935,88 @@ function initTypewriter() {
         }
     }
     type();
+}
+
+function initializePerformanceOptimizations() {
+    preventForcedReflows();
+    optimizeNetworkRequests();
+    enableResourceHints();
+    optimizeThirdPartyScripts();
+    setupPerformanceMonitoring();
+}
+
+function preventForcedReflows() {
+    const elementCache = new Map();
+    const performanceMetrics = { scrollEvents: 0, cacheHits: 0, cacheMisses: 0 };
+    const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+    Element.prototype.getBoundingClientRect = function () {
+        const cacheKey = this.tagName + (this.id || "") + (this.className || "");
+        if (elementCache.has(cacheKey)) {
+            performanceMetrics.cacheHits++;
+            return elementCache.get(cacheKey);
+        }
+        performanceMetrics.cacheMisses++;
+        const rect = originalGetBoundingClientRect.call(this);
+        if (rect.width > 0 && rect.height > 0) {
+            elementCache.set(cacheKey, rect);
+        }
+        return rect;
+    };
+    let cacheCleanupTimer;
+    function scheduleCacheCleanup() {
+        clearTimeout(cacheCleanupTimer);
+        cacheCleanupTimer = setTimeout(() => {
+            elementCache.clear();
+            if (window.location.hostname === "localhost" || window.location.hostname.includes("replit")) {
+                console.log("Performance metrics:", performanceMetrics);
+            }
+        }, 3000);
+    }
+    window.addEventListener("resize", scheduleCacheCleanup, { passive: !0 });
+    window.addEventListener("scroll", scheduleCacheCleanup, { passive: !0 });
+    scheduleCacheCleanup();
+}
+
+function enableResourceHints() {
+    const hints = [
+        { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+    ];
+    hints.forEach((hint) => {
+        const link = document.createElement("link");
+        link.rel = hint.rel;
+        link.href = hint.href;
+        if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin;
+        document.head.appendChild(link);
+    });
+}
+
+function optimizeThirdPartyScripts() {
+    const scripts = document.querySelectorAll("script[src]");
+    scripts.forEach((script) => {
+        if (script.src.includes("googletagmanager") || script.src.includes("gtag")) {
+            script.async = !0;
+            script.defer = !0;
+            script.setAttribute("importance", "low");
+        }
+    });
+}
+
+function setupPerformanceMonitoring() {
+    if ("web-vital" in window || typeof webVitals !== "undefined") {
+        return;
+    }
+    window.addEventListener("load", () => {
+        if (performance.timing) {
+            const loadEnd = performance.timing.loadEventEnd;
+            const navStart = performance.timing.navigationStart;
+            if (loadEnd > 0 && navStart > 0 && loadEnd > navStart) {
+                const loadTime = loadEnd - navStart;
+                console.log(`Page load time: ${loadTime}ms`);
+            }
+        }
+    });
 }
 
 (function () {
