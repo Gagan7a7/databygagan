@@ -57,8 +57,12 @@
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://databygagan.com/projects.html" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://databygagan.com/projects.html" />
+    <link rel="apple-touch-icon" sizes="180x180" href="databygagan/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="databygagan/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="databygagan/assets/favicon-16x16.png" />
+    <link rel="manifest" href="databygagan/assets/site.webmanifest" />
 
         <!-- JSON-LD Structured Data -->
         <script type="application/ld+json">
@@ -196,7 +200,7 @@
         </style>
         
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="databygagan/styles.css" />
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
@@ -314,89 +318,6 @@
 
 
         <!-- Script -->
-        <script src="script.js"></script>
-        <script>
-        // Dynamically render projects grouped by category from projects.json
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/projects')
-                .then(res => res.json())
-                .then(projects => {
-                    const list = document.getElementById('projects-list');
-                    const btns = document.getElementById('category-buttons');
-                    list.innerHTML = '';
-                    btns.innerHTML = '';
-                    // Group projects by category
-                    const grouped = {};
-                    projects.forEach(proj => {
-                        const cat = proj.category || 'Other';
-                        if (!grouped[cat]) grouped[cat] = [];
-                        grouped[cat].push(proj);
-                    });
-                    // Create buttons for each category
-                    const categories = Object.keys(grouped);
-                    categories.forEach(category => {
-                        const btn = document.createElement('button');
-                        btn.textContent = category;
-                        btn.className = 'category-scroll-btn';
-                        btn.onclick = function() {
-                            const heading = document.getElementById('cat-' + category.replace(/\s+/g, '-').toLowerCase());
-                            if (heading) {
-                                heading.scrollIntoView({behavior:'smooth',block:'start'});
-                            }
-                        };
-                        btns.appendChild(btn);
-                    });
-                    // Render each group
-                    categories.forEach(category => {
-                        list.innerHTML += `<h2 class=\"project-category-heading\" id=\"cat-${category.replace(/\s+/g, '-').toLowerCase()}\">${category}</h2>`;
-                        grouped[category].slice().reverse().forEach(proj => {
-                            const techTags = proj.tech.map(tag => `<span class=\"tech-tag\" itemprop=\"keywords\">${tag}</span>`).join('\n');
-                            const card = `
-<article class=\"project-card\" itemscope itemtype=\"https://schema.org/CreativeWork\">
-
-  <div class=\"project-image\">
-
-    <img src=\"${proj.image}\" alt=\"${proj.alt}\" loading=\"lazy\" itemprop=\"image\" />
-
-    <div class=\"project-overlay\">
-
-      <a href=\"${proj.dashboardUrl}\" target=\"_blank\" class=\"btn btn-primary\" itemprop=\"url\">
-
-        <i class=\"${proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}\"></i>${proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
-
-      </a>
-
-    </div>
-
-  </div>
-
-  <div class=\"project-content\">
-
-    <h3 itemprop=\"headline\">${proj.title}</h3>
-
-    <p itemprop=\"description\">${proj.description}</p>
-
-    <div class=\"project-tech\">${techTags}</div>
-
-    <div class=\"project-actions\">
-
-      <a href=\"${proj.codeUrl}\" target=\"_blank\" class=\"btn btn-outline\" itemprop=\"codeRepository\">
-
-        <i class=\"fab fa-github\"></i>View Code
-
-      </a>
-
-    </div>
-
-  </div>
-
-</article>
-`;
-                            list.innerHTML += card;
-                        });
-                    });
-                });
-        });
-        </script>
+    <script src="databygagan/script.js"></script>
     </body>
 </html>
