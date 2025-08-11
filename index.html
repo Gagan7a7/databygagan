@@ -973,12 +973,11 @@
                                 <strong>Location</strong>
                                 <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                 <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                                <meta
-                                    itemprop="addressRegion"
-                                    content="Karnataka"
-                                />
-                                <meta itemprop="addressCountry" content="IN" />
                             </div>
+                        </div>
+                        <!-- Move meta tags outside of div for HTML5 compliance -->
+                        <meta itemprop="addressRegion" content="Karnataka">
+                        <meta itemprop="addressCountry" content="IN">
                         </div>
 
                         <div class="contact-item">
@@ -990,30 +989,9 @@
                         </div>
 
                         <div class="social-links">
-                            <a
-                                href="https://www.linkedin.com/in/gagan-b-p-0a9635243/"
-                                target="_blank"
-                                class="social-link"
-                                itemprop="sameAs"
-                            >
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a
-                                href="https://github.com/GaganBP"
-                                target="_blank"
-                                class="social-link"
-                                itemprop="sameAs"
-                            >
-                                <i class="fab fa-github"></i>
-                            </a>
-                             <a
-                                    href="https://www.instagram.com/databygagan/"
-                                    target="_blank"
-                                    class="social-link"
-                                    itemprop="sameAs"
-                                >
-                                    <i class="fab fa-instagram"></i>
-                                </a>
+                            <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank" class="social-link" itemprop="sameAs" aria-label="LinkedIn"><i class="fab fa-linkedin"></i>LinkedIn</a>
+                            <a href="https://github.com/GaganBP" target="_blank" class="social-link" itemprop="sameAs" aria-label="GitHub"><i class="fab fa-github"></i>GitHub</a>
+                            <a href="https://www.instagram.com/databygagan/" target="_blank" class="social-link" itemprop="sameAs" aria-label="Instagram"><i class="fab fa-instagram"></i>Instagram</a>
                         </div>
                     </div>
 
@@ -1021,8 +999,7 @@
                     class="contact-form"
                     id="contact-form"
                     action="https://formspree.io/f/xkgbjblo"
-                    method="POST"
-                    role="form"
+                    method="post"
                     itemscope
                     itemtype="https://schema.org/ContactPage"
                 >
@@ -1032,8 +1009,7 @@
                         name="_gotcha"
                         style="display: none"
                         tabindex="-1"
-                        autocomplete="off"
-                    />
+                        autocomplete="off">
 
                     <div class="form-group">
                         <label for="index-name">Your Name <span class="required">*</span></label>
@@ -1044,8 +1020,7 @@
                             required
                             pattern="[A-Za-z\s]+"
                             title="Enter a valid name (letters only)"
-                            itemprop="name"
-                        />
+                            itemprop="name">
                     </div>
 
                     <div class="form-group">
@@ -1056,8 +1031,7 @@
                             name="email"
                             required
                             title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
-                            itemprop="email"
-                        />
+                            itemprop="email">
                         <span
                             id="index-email-warning"
                             style="color: #f44336; display: none; font-size: 0.8rem; margin-top: 5px;"
@@ -1130,8 +1104,7 @@
                             id="index-subject"
                             name="subject"
                             placeholder="Brief description of your project"
-                            itemprop="description"
-                        />
+                            itemprop="description">
                     </div>
 
                     <div class="form-group">
@@ -1155,7 +1128,7 @@
         </section>
 <!--Contact section end -->
         <!-- Footer -->
-        <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
@@ -1201,6 +1174,7 @@
         <script src="scripts.js"></script>
         <!-- Skip link for accessibility -->
         <a class="skip-link" href="#main">Skip to main content</a>
+    </main>
     </body>
 </html>
 

@@ -191,11 +191,11 @@
                                     <strong>Location</strong>
                                     <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                     <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                                    <meta
-                                        itemprop="addressRegion"
-                                        content="Karnataka"
-                                    />
-                                    <meta itemprop="addressCountry" content="IN" />
+                                </div>
+                            </div>
+                            <!-- Move meta tags outside of div for HTML5 compliance -->
+                            <meta itemprop="addressRegion" content="Karnataka">
+                            <meta itemprop="addressCountry" content="IN">
                                 </div>
                             </div>
 
@@ -208,30 +208,9 @@
                             </div>
 
                             <div class="social-links">
-                                <a
-                                    href="https://www.linkedin.com/in/gagan-b-p-0a9635243/"
-                                    target="_blank"
-                                    class="social-link"
-                                    itemprop="sameAs"
-                                >
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a
-                                    href="https://github.com/GaganBP"
-                                    target="_blank"
-                                    class="social-link"
-                                    itemprop="sameAs"
-                                >
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                 <a
-                                    href="https://www.instagram.com/databygagan/"
-                                    target="_blank"
-                                    class="social-link"
-                                    itemprop="sameAs"
-                                >
-                                    <i class="fab fa-instagram"></i>
-                                </a>
+                                <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank" class="social-link" itemprop="sameAs" aria-label="LinkedIn"><i class="fab fa-linkedin"></i>LinkedIn</a>
+                                <a href="https://github.com/GaganBP" target="_blank" class="social-link" itemprop="sameAs" aria-label="GitHub"><i class="fab fa-github"></i>GitHub</a>
+                                <a href="https://www.instagram.com/databygagan/" target="_blank" class="social-link" itemprop="sameAs" aria-label="Instagram"><i class="fab fa-instagram"></i>Instagram</a>
                             </div>
                         </div>
 
@@ -239,8 +218,7 @@
                         class="contact-form"
                         id="contact-form"
                         action="https://formspree.io/f/xkgbjblo"
-                        method="POST"
-                        role="form"
+                        method="post"
                         itemscope
                         itemtype="https://schema.org/ContactPage"
                     >
