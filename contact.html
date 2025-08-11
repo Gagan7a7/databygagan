@@ -152,6 +152,7 @@
   <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
             <!-- Contact Section -->
+        <!-- Contact Section -->
             <section id="contact" class="section" aria-labelledby="contact-heading">
                 <div class="container">
                     <h1 id="contact-heading" class="section-title">
@@ -192,9 +193,11 @@
                                     <strong>Location</strong>
                                     <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                     <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                                </div>
-                                <meta itemprop="addressRegion" content="Karnataka">
-                                <meta itemprop="addressCountry" content="IN">
+                                    <meta
+                                        itemprop="addressRegion"
+                                        content="Karnataka"
+                                    />
+                                    <meta itemprop="addressCountry" content="IN" />
                                 </div>
                             </div>
 
@@ -212,7 +215,6 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
-                                    aria-label="Visit Gagan BP's LinkedIn profile"
                                 >
                                     <i class="fab fa-linkedin"></i>
                                 </a>
@@ -221,7 +223,6 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
-                                    aria-label="Visit Gagan BP's GitHub profile"
                                 >
                                     <i class="fab fa-github"></i>
                                 </a>
@@ -230,7 +231,6 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
-                                    aria-label="Visit Gagan BP's Instagram profile"
                                 >
                                     <i class="fab fa-instagram"></i>
                                 </a>
@@ -241,7 +241,8 @@
                         class="contact-form"
                         id="contact-form"
                         action="https://formspree.io/f/xkgbjblo"
-                        method="post"
+                        method="POST"
+                        role="form"
                         itemscope
                         itemtype="https://schema.org/ContactPage"
                     >
@@ -252,7 +253,7 @@
                             style="display: none"
                             tabindex="-1"
                             autocomplete="off"
-                        >
+                        />
 
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
@@ -264,7 +265,7 @@
                                 pattern="[A-Za-z\s]+"
                                 title="Enter a valid name (letters only)"
                                 itemprop="name"
-                            >
+                            />
                         </div>
 
                         <div class="form-group">
@@ -276,7 +277,7 @@
                                 required
                                 title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
                                 itemprop="email"
-                            >
+                            />
                             <span
                                 id="email-warning"
                                 style="
@@ -302,7 +303,7 @@
                                 <option value="">Select a service...</option>
                                 <option value="power-bi-dashboard">Power BI Dashboard</option>
                                 <option value="excel-dashboard">Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
+                                <option value="data-cleaning-analysis">Data Cleaning & Analysis</option>
                                 <option value="sql-database-queries">SQL Database Queries</option>
                                 <option value="data-visualization-python">Data Visualization (Python)</option>
                                 <option value="machine-learning-models">Machine Learning Models</option>
@@ -355,7 +356,7 @@
                                 name="subject"
                                 placeholder="Brief description of your project"
                                 itemprop="description"
-                            >
+                            />
                         </div>
 
                         <div class="form-group">
