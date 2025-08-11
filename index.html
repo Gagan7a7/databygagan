@@ -929,7 +929,7 @@
                 </div>
             </div>
         </section>
-  
+
             <!-- Contact Section -->
           <section id="contact" class="section" aria-labelledby="contact-heading">
                 <div class="container">
@@ -974,8 +974,8 @@
                                     <meta
                                         itemprop="addressRegion"
                                         content="Karnataka"
-                                    />
-                                    <meta itemprop="addressCountry" content="IN" />
+                                    >
+                                    <meta itemprop="addressCountry" content="IN">
                                 </div>
                             </div>
 
@@ -993,6 +993,7 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
+                                    aria-label="LinkedIn Profile"
                                 >
                                     <i class="fab fa-linkedin"></i>
                                 </a>
@@ -1001,6 +1002,7 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
+                                    aria-label="GitHub Profile"
                                 >
                                     <i class="fab fa-github"></i>
                                 </a>
@@ -1009,6 +1011,7 @@
                                     target="_blank"
                                     class="social-link"
                                     itemprop="sameAs"
+                                    aria-label="Instagram Profile"
                                 >
                                     <i class="fab fa-instagram"></i>
                                 </a>
@@ -1019,8 +1022,7 @@
                         class="contact-form"
                         id="contact-form"
                         action="https://formspree.io/f/xkgbjblo"
-                        method="POST"
-                        role="form"
+                        method="post"
                         itemscope
                         itemtype="https://schema.org/ContactPage"
                     >
@@ -1031,7 +1033,7 @@
                             style="display: none"
                             tabindex="-1"
                             autocomplete="off"
-                        />
+                        >
 
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
@@ -1043,7 +1045,7 @@
                                 pattern="[A-Za-z\s]+"
                                 title="Enter a valid name (letters only)"
                                 itemprop="name"
-                            />
+                            >
                         </div>
 
                         <div class="form-group">
@@ -1055,7 +1057,7 @@
                                 required
                                 title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
                                 itemprop="email"
-                            />
+                            >
                             <span
                                 id="email-warning"
                                 style="
@@ -1081,7 +1083,7 @@
                                 <option value="">Select a service...</option>
                                 <option value="power-bi-dashboard">Power BI Dashboard</option>
                                 <option value="excel-dashboard">Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">Data Cleaning & Analysis</option>
+                                <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
                                 <option value="sql-database-queries">SQL Database Queries</option>
                                 <option value="data-visualization-python">Data Visualization (Python)</option>
                                 <option value="machine-learning-models">Machine Learning Models</option>
@@ -1134,7 +1136,7 @@
                                 name="subject"
                                 placeholder="Brief description of your project"
                                 itemprop="description"
-                            />
+                            >
                         </div>
 
                         <div class="form-group">
@@ -1204,7 +1206,7 @@
 
         <!-- Script -->
         <script src="scripts.js"></script>
-        
+
         <!-- Skip link for accessibility -->
         <a class="skip-link" href="#main">Skip to main content</a>
         </main>
