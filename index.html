@@ -930,7 +930,7 @@
             </div>
         </section>
 
-            <!-- Contact Section -->
+       <!-- Contact Section -->
         <section id="contact" class="section" aria-labelledby="contact-heading">
             <div class="container">
                 <h2 id="contact-heading" class="section-title">
@@ -971,11 +971,11 @@
                                 <strong>Location</strong>
                                 <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                 <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                            </div>
-                        </div>
-                        <!-- Move meta tags outside of div for HTML5 compliance -->
-                        <meta itemprop="addressRegion" content="Karnataka">
-                        <meta itemprop="addressCountry" content="IN">
+                                <meta
+                                    itemprop="addressRegion"
+                                    content="Karnataka"
+                                />
+                                <meta itemprop="addressCountry" content="IN" />
                             </div>
                         </div>
 
@@ -988,9 +988,30 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank" class="social-link" itemprop="sameAs" aria-label="LinkedIn"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                            <a href="https://github.com/GaganBP" target="_blank" class="social-link" itemprop="sameAs" aria-label="GitHub"><i class="fab fa-github"></i>GitHub</a>
-                            <a href="https://www.instagram.com/databygagan/" target="_blank" class="social-link" itemprop="sameAs" aria-label="Instagram"><i class="fab fa-instagram"></i>Instagram</a>
+                            <a
+                                href="https://www.linkedin.com/in/gagan-b-p-0a9635243/"
+                                target="_blank"
+                                class="social-link"
+                                itemprop="sameAs"
+                            >
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a
+                                href="https://github.com/GaganBP"
+                                target="_blank"
+                                class="social-link"
+                                itemprop="sameAs"
+                            >
+                                <i class="fab fa-github"></i>
+                            </a>
+                             <a
+                                    href="https://www.instagram.com/databygagan/"
+                                    target="_blank"
+                                    class="social-link"
+                                    itemprop="sameAs"
+                                >
+                                    <i class="fab fa-instagram"></i>
+                                </a>
                         </div>
                     </div>
 
@@ -998,7 +1019,8 @@
                     class="contact-form"
                     id="contact-form"
                     action="https://formspree.io/f/xkgbjblo"
-                    method="post"
+                    method="POST"
+                    role="form"
                     itemscope
                     itemtype="https://schema.org/ContactPage"
                 >
@@ -1008,7 +1030,8 @@
                         name="_gotcha"
                         style="display: none"
                         tabindex="-1"
-                        autocomplete="off">
+                        autocomplete="off"
+                    />
 
                     <div class="form-group">
                         <label for="index-name">Your Name <span class="required">*</span></label>
@@ -1019,7 +1042,8 @@
                             required
                             pattern="[A-Za-z\s]+"
                             title="Enter a valid name (letters only)"
-                            itemprop="name">
+                            itemprop="name"
+                        />
                     </div>
 
                     <div class="form-group">
@@ -1030,10 +1054,16 @@
                             name="email"
                             required
                             title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
-                            itemprop="email">
+                            itemprop="email"
+                        />
                         <span
                             id="index-email-warning"
-                            style="color: #f44336; display: none; font-size: 0.8rem; margin-top: 5px;"
+                            style="
+                                color: #f44336;
+                                display: none;
+                                font-size: 0.8rem;
+                                margin-top: 5px;
+                            "
                         >
                             Only trusted domains like Gmail, Yahoo, Outlook,
                             etc. are allowed.
@@ -1051,7 +1081,7 @@
                             <option value="">Select a service...</option>
                             <option value="power-bi-dashboard">Power BI Dashboard</option>
                             <option value="excel-dashboard">Excel Dashboard</option>
-                            <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
+                            <option value="data-cleaning-analysis">Data Cleaning & Analysis</option>
                             <option value="sql-database-queries">SQL Database Queries</option>
                             <option value="data-visualization-python">Data Visualization (Python)</option>
                             <option value="machine-learning-models">Machine Learning Models</option>
@@ -1103,7 +1133,8 @@
                             id="index-subject"
                             name="subject"
                             placeholder="Brief description of your project"
-                            itemprop="description">
+                            itemprop="description"
+                        />
                     </div>
 
                     <div class="form-group">
@@ -1118,14 +1149,14 @@
                         ></textarea>
                     </div>
 
-                <button type="submit" class="btn btn-primary btn-full">
+                    <button type="submit" class="btn btn-primary btn-full">
                         <i class="fas fa-paper-plane"></i>Send Message
                     </button>
                 </form>
                 </div>
             </div>
         </section>
-
+<!--Contact section end -->
         <!-- Footer -->
     <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
             <div class="container">

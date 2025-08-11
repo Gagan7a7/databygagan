@@ -149,6 +149,7 @@
         </header>
 
         <!-- Main Content -->
+  <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
             <!-- Contact Section -->
             <section id="contact" class="section" aria-labelledby="contact-heading">
@@ -191,13 +192,13 @@
                                     <strong>Location</strong>
                                     <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                     <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
+                                    <meta
+                                        itemprop="addressRegion"
+                                        content="Karnataka"
+                                    />
+                                    <meta itemprop="addressCountry" content="IN" />
                                 </div>
                             </div>
-                        </div>
-                        <!-- End contact-info -->
-    <!-- Move meta tags outside of div for HTML5 compliance -->
-    <meta itemprop="addressRegion" content="Karnataka">
-    <meta itemprop="addressCountry" content="IN">
 
                             <div class="contact-item">
                                 <i class="fas fa-phone"></i>
@@ -208,9 +209,30 @@
                             </div>
 
                             <div class="social-links">
-                                <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank" class="social-link" itemprop="sameAs" aria-label="LinkedIn"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                                <a href="https://github.com/GaganBP" target="_blank" class="social-link" itemprop="sameAs" aria-label="GitHub"><i class="fab fa-github"></i>GitHub</a>
-                                <a href="https://www.instagram.com/databygagan/" target="_blank" class="social-link" itemprop="sameAs" aria-label="Instagram"><i class="fab fa-instagram"></i>Instagram</a>
+                                <a
+                                    href="https://www.linkedin.com/in/gagan-b-p-0a9635243/"
+                                    target="_blank"
+                                    class="social-link"
+                                    itemprop="sameAs"
+                                >
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a
+                                    href="https://github.com/GaganBP"
+                                    target="_blank"
+                                    class="social-link"
+                                    itemprop="sameAs"
+                                >
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                 <a
+                                    href="https://www.instagram.com/databygagan/"
+                                    target="_blank"
+                                    class="social-link"
+                                    itemprop="sameAs"
+                                >
+                                    <i class="fab fa-instagram"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -218,24 +240,51 @@
                         class="contact-form"
                         id="contact-form"
                         action="https://formspree.io/f/xkgbjblo"
-                        method="post"
+                        method="POST"
+                        role="form"
                         itemscope
                         itemtype="https://schema.org/ContactPage"
                     >
                         <!-- Honeypot trap for bots -->
-                        <input type="text" name="_gotcha" style="display: none" tabindex="-1" autocomplete="off">
+                        <input
+                            type="text"
+                            name="_gotcha"
+                            style="display: none"
+                            tabindex="-1"
+                            autocomplete="off"
+                        />
 
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+" title="Enter a valid name (letters only)" itemprop="name">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                pattern="[A-Za-z\s]+"
+                                title="Enter a valid name (letters only)"
+                                itemprop="name"
+                            />
                         </div>
 
                         <div class="form-group">
                             <label for="email">Your Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed." itemprop="email">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
+                                itemprop="email"
+                            />
                             <span
                                 id="email-warning"
-                                style="color: #f44336; display: none; font-size: 0.8rem; margin-top: 5px;"
+                                style="
+                                    color: #f44336;
+                                    display: none;
+                                    font-size: 0.8rem;
+                                    margin-top: 5px;
+                                "
                             >
                                 Only trusted domains like Gmail, Yahoo, Outlook,
                                 etc. are allowed.
@@ -253,7 +302,7 @@
                                 <option value="">Select a service...</option>
                                 <option value="power-bi-dashboard">Power BI Dashboard</option>
                                 <option value="excel-dashboard">Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
+                                <option value="data-cleaning-analysis">Data Cleaning & Analysis</option>
                                 <option value="sql-database-queries">SQL Database Queries</option>
                                 <option value="data-visualization-python">Data Visualization (Python)</option>
                                 <option value="machine-learning-models">Machine Learning Models</option>
@@ -293,14 +342,20 @@
                                     <option value="5000-15000">₹5,000-₹15,000</option>
                                     <option value="15000-30000">₹15,000-₹30,000</option>
                                     <option value="30000-plus">₹30,000+</option>
-                                    <option value="lets-discuss">Let&apos;s discuss</option>
+                                    <option value="lets-discuss">Let's discuss</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Brief description of your project" itemprop="description">
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                placeholder="Brief description of your project"
+                                itemprop="description"
+                            />
                         </div>
 
                         <div class="form-group">
@@ -321,8 +376,6 @@
                     </form>
                     </div>
                 </div>
-            </section>
-
             </section>
         </main>
         <!-- Footer -->
