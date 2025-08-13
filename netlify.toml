@@ -9,5 +9,3 @@
   status = 200
 
 # Add updated Netlify Image Optim plugin
-[[plugins]]
-  package = "netlify-plugin-image-optim"
