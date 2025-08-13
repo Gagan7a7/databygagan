@@ -7,7 +7,8 @@
     "dashboardUrl": "https://app.fabric.microsoft.com/view?r=eyJrIjoiNzViZTNjZTYtYTU4MS00NjViLTg2ODktZjAxNWZhODMyYzRiIiwidCI6IjY3OWY5YTYyLTIwODQtNGI0Yy1iNzk2LWI1NGFkZTM5ZmUxYiJ9",
     "codeUrl": "https://github.com/GaganBP/PowerBI-HR-Analytics",
     "description": "Created a comprehensive Power BI dashboard analyzing employee attrition and workforce trends. Delivered actionable insights that helped HR teams improve retention strategies and optimize compensation structures.",
-    "tech": ["Power BI", "Data Visualization", "HR Analytics", "Dashboard Design"]
+    "tech": ["Power BI", "Data Visualization", "HR Analytics", "Dashboard Design"],
+    "featured": true
   },
   {
     "title": "Amazon Sales Analytics Using Power BI",
@@ -17,7 +18,8 @@
     "dashboardUrl": "https://app.fabric.microsoft.com/view?r=eyJrIjoiMTJiZGI1N2QtMDBmMy00NDI1LThiMDAtZDc3MWM0YzhiODZiIiwidCI6IjY3OWY5YTYyLTIwODQtNGI0Yy1iNzk2LWI1NGFkZTM5ZmUxYiJ9",
     "codeUrl": "https://github.com/GaganBP/Amazon-Sale-Analytics",
     "description": "Developed an interactive Power BI dashboard analyzing Amazon sales trends, product performance, and state-wise profits. Enabled data-driven decision making through comprehensive sales analytics and regional performance insights.",
-    "tech": ["Power BI", "E-commerce", "Sales Analysis", "Business Intelligence"]
+    "tech": ["Power BI", "E-commerce", "Sales Analysis", "Business Intelligence"],
+    "featured": true
   },
   {
     "title": "Heart Disease Prediction Using Machine Learning",
@@ -27,7 +29,8 @@
     "dashboardUrl": "https://colab.research.google.com/drive/1-6aOqYnfhZzMK1vHv6WtGH-i1r5Cj4LO",
     "codeUrl": "https://github.com/GaganBP/Heart-Disease-Prediction-Comprehensive-ML-Algorithm-Comparison",
     "description": "Compared multiple machine learning, deep learning, and ensemble models for heart disease prediction. Achieved 93% ROC-AUC with a stacked ensemble model, demonstrating strong evaluation and model optimization skills.",
-    "tech": ["Machine Learning", "Python", "Healthcare", "Scikit-learn"]
+    "tech": ["Machine Learning", "Python", "Healthcare", "Scikit-learn"],
+    "featured": true
   },
   {
     "title": "Analysis of Suicide Trends in India",
@@ -47,7 +50,8 @@
     "dashboardUrl": "https://colab.research.google.com/drive/1sW9Z8xRmcpbB_UrwSRDPXrnNVaGZ0xZb",
     "codeUrl": "https://github.com/GaganBP/Netflix_Movie_Analysis",
     "description": "Analyzed Netflix movie dataset to explore trends in popularity, genres, ratings, and release years. Performed data cleaning, visualization, and statistical analysis to uncover key insights about factors influencing movie success on the platform.",
-    "tech": ["Data Analysis", "Python", "Entertainment", "Seaborn"]
+    "tech": ["Data Analysis", "Python", "Entertainment", "Seaborn"],
+    "featured": true
   },
   {
     "title": "Automated Multi-City Weather Dashboard",
