@@ -6,3 +6,7 @@ build/
 .cache/
 .vscode/
 .env
+
+# Ignore specific images not needed in GitHub
+images/DatabyGagan.png
+images/DatabyGagan32.png
