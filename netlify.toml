@@ -11,9 +11,3 @@
 # Add updated Netlify Image Optim plugin
 [[plugins]]
   package = "netlify-plugin-image-optim"
-  # Use latest stable version; update if needed
-  [plugins.inputs]
-    # Example config: optimize PNG, JPEG, SVG
-    png = true
-    jpeg = true
-    svg = true
