@@ -284,7 +284,7 @@ function loadProjects() {
                 // Upload image first
                 const formData = new FormData();
                 formData.append('image', imageFile);
-                fetch('/api/upload-image', {
+                fetch('/.netlify/functions/upload-image', {
                     method: 'POST',
                     body: formData
                 })
