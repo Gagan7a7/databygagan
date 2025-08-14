@@ -62,8 +62,18 @@ app.delete("/api/projects/title/:title", async (req, res) => {
 app.get("/api/projects", async (req, res) => {
     try {
         const projects = await sql`SELECT * FROM projects`;
-        // Convert tech from JSONB to array
-        const result = projects.map(p => ({ ...p, tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []), featured: p.featured }));
+        // Convert tech from JSONB to array and fix property names for frontend
+        const result = projects.map(p => ({
+            title: p.title,
+            category: p.category,
+            image: p.image,
+            alt: p.alt,
+            dashboardUrl: p.dashboardurl || p.dashboardUrl,
+            codeUrl: p.codeurl || p.codeUrl,
+            description: p.description,
+            tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []),
+            featured: p.featured
+        }));
         res.json(result);
     } catch (e) {
         res.status(500).json({ error: "Failed to fetch projects" });
