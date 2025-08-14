@@ -730,32 +730,31 @@
                     Featured Projects
                 </h2>
                 <div id="featured-projects-list"></div>
-                                <script>
-                                // Show only the four selected featured projects in the correct order
-                                document.addEventListener('DOMContentLoaded', function() {
-                                        let apiUrl = '/api/projects';
-                                        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                                                apiUrl = 'http://localhost:5000/api/projects';
-                                        }
-                                        // The four featured project titles in the desired order
+                <script>
+                // Show only the four selected projects by title, regardless of 'featured' property
+                document.addEventListener('DOMContentLoaded', function() {
+                    let apiUrl = '/api/projects';
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                        apiUrl = 'http://localhost:5000/api/projects';
+                    }
                     const featuredOrder = [
                         "Automated Multi-City Weather Dashboard",
                         "HR Analytics Using Power BI",
                         "Analysis of Suicide Trends in India",
                         "Netflix Movie Analysis"
                     ];
-                                        fetch(apiUrl)
-                                                .then(res => res.json())
-                                                .then(projects => {
-                                                        // Filter to only featured projects with the specified titles
-                                                        const featured = featuredOrder
-                                                                .map(title => projects.find(p => p.title === title && p.featured))
-                                                                .filter(Boolean);
-                                                        const list = document.getElementById('featured-projects-list');
-                                                        list.innerHTML = '';
-                                                        featured.forEach(proj => {
-                                                                const techTags = proj.tech.map(tag => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n');
-                                                                const card = `
+                    fetch(apiUrl)
+                        .then(res => res.json())
+                        .then(projects => {
+                            // Find the four projects by title
+                            const featured = featuredOrder
+                                .map(title => projects.find(p => p.title === title))
+                                .filter(Boolean);
+                            const list = document.getElementById('featured-projects-list');
+                            list.innerHTML = '';
+                            featured.forEach(proj => {
+                                const techTags = proj.tech.map(tag => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n');
+                                const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="project-image">
         <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
@@ -777,11 +776,11 @@
     </div>
 </article>
 `;
-                                                                list.innerHTML += card;
-                                                        });
-                                                });
-                                });
-                                </script>
+                                list.innerHTML += card;
+                            });
+                        });
+                });
+                </script>
             </div>
         </section>
 
