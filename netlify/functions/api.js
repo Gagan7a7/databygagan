@@ -1,3 +1,14 @@
+import express from "express";
+import cors from "cors";
+import serverless from "serverless-http";
+import { neon } from '@netlify/neon';
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
+
 // Permanently set featured projects via API
 app.post("/api/projects/set-featured", async (req, res) => {
     const featuredTitles = req.body.titles;
@@ -12,17 +23,6 @@ app.post("/api/projects/set-featured", async (req, res) => {
         res.status(500).json({ error: "Failed to set featured projects" });
     }
 });
-
-import express from "express";
-import cors from "cors";
-import serverless from "serverless-http";
-import { neon } from '@netlify/neon';
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
 // Ensure the projects table exists (run once per cold start)
 async function ensureTable() {
