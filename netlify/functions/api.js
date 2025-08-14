@@ -20,6 +20,7 @@ app.post("/api/projects/set-featured", async (req, res) => {
     // If Buffer, convert to string
     if (rawBody && rawBody.type === 'Buffer' && Array.isArray(rawBody.data)) {
         rawBody = Buffer.from(rawBody.data).toString('utf8');
+        console.log('Converted Buffer to string:', rawBody);
     }
     // Try to get titles from rawBody.titles (JSON)
     if (rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
@@ -60,6 +61,19 @@ app.post("/api/projects/set-featured", async (req, res) => {
                 parsed = true;
             }
         } catch (e) {}
+    }
+    // Final fallback: try to parse Buffer as JSON
+    if (!parsed && typeof req.body === 'object' && req.body.type === 'Buffer' && Array.isArray(req.body.data)) {
+        try {
+            const str = Buffer.from(req.body.data).toString('utf8');
+            const json = JSON.parse(str);
+            if (json && Array.isArray(json.titles)) {
+                featuredTitles = json.titles;
+                parsed = true;
+            }
+        } catch (e) {
+            console.log('Final fallback failed:', e);
+        }
     }
     if (!featuredTitles || featuredTitles.length === 0) {
         return res.status(400).json({ error: "No titles provided", debug: { rawBody, bodyType: typeof rawBody } });
