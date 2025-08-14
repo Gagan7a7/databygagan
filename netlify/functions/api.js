@@ -5,7 +5,28 @@ import { neon } from '@netlify/neon';
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Additional body parsing middleware for Netlify edge cases
+app.use((req, res, next) => {
+    if (req.body === undefined || req.body === null) {
+        let rawBody = '';
+        req.on('data', chunk => {
+            rawBody += chunk.toString();
+        });
+        req.on('end', () => {
+            try {
+                req.body = JSON.parse(rawBody);
+            } catch (e) {
+                req.body = {};
+            }
+            next();
+        });
+    } else {
+        next();
+    }
+});
 
 const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
@@ -136,10 +157,29 @@ app.get("/api/projects", async (req, res) => {
 
 // Add a new project
 app.post("/api/projects", async (req, res) => {
-    const p = req.body;
-    // Validate required fields
+    // Enhanced debugging
+    console.log('=== POST /api/projects DEBUG ===');
+    console.log('Content-Type:', req.headers['content-type']);
+    console.log('Raw body:', req.body);
+    console.log('Body type:', typeof req.body);
+    console.log('Body keys:', req.body ? Object.keys(req.body) : 'null');
+    console.log('Title value:', req.body?.title);
+    console.log('Title type:', typeof req.body?.title);
+    console.log('================================');
+
+    const p = req.body || {};
+    // Validate required fields with better error messages
     if (!p.title || typeof p.title !== 'string' || p.title.trim() === '') {
-        return res.status(400).json({ error: "Project title is required" });
+        console.log('Validation failed - title missing or invalid');
+        return res.status(400).json({ 
+            error: "Project title is required",
+            debug: {
+                receivedTitle: p.title,
+                titleType: typeof p.title,
+                bodyKeys: Object.keys(p),
+                fullBody: p
+            }
+        });
     }
     try {
         await sql`
