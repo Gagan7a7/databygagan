@@ -9,35 +9,29 @@ app.use(express.json());
 
 const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
-// Netlify only exposes /.netlify/functions/api, so route manually for POST
-app.post("/", async (req, res) => {
-    // Check if this is a set-featured request
-    // Debug: log headers and raw body for troubleshooting
+// Explicit handler for Netlify POST /api/projects/set-featured
+app.post("/api/projects/set-featured", async (req, res) => {
     console.log('Headers:', req.headers);
     console.log('Raw body:', req.body);
-    if (req.body && (req.body.path === "/api/projects/set-featured" || req.body.action === "set-featured" || req.path === "/api/projects/set-featured")) {
-        let featuredTitles = req.body.titles;
-        if (!featuredTitles && typeof req.body === 'string') {
-            try {
-                const parsed = JSON.parse(req.body);
-                featuredTitles = parsed.titles;
-            } catch (e) {
-                return res.status(400).json({ error: "Invalid JSON body" });
-            }
-        }
-        if (!Array.isArray(featuredTitles) || featuredTitles.length === 0) {
-            return res.status(400).json({ error: "No titles provided" });
-        }
+    let featuredTitles = req.body.titles;
+    if (!featuredTitles && typeof req.body === 'string') {
         try {
-            await sql`UPDATE projects SET featured = false`;
-            await sql`UPDATE projects SET featured = true WHERE title IN (${featuredTitles})`;
-            return res.json({ success: true, featured: featuredTitles });
+            const parsed = JSON.parse(req.body);
+            featuredTitles = parsed.titles;
         } catch (e) {
-            return res.status(500).json({ error: "Failed to set featured projects" });
+            return res.status(400).json({ error: "Invalid JSON body" });
         }
     }
-    // ...existing code...
-    return res.status(404).json({ error: "Unknown POST action" });
+    if (!Array.isArray(featuredTitles) || featuredTitles.length === 0) {
+        return res.status(400).json({ error: "No titles provided" });
+    }
+    try {
+        await sql`UPDATE projects SET featured = false`;
+        await sql`UPDATE projects SET featured = true WHERE title IN (${featuredTitles})`;
+        return res.json({ success: true, featured: featuredTitles });
+    } catch (e) {
+        return res.status(500).json({ error: "Failed to set featured projects" });
+    }
 });
 
 // Ensure the projects table exists (run once per cold start)
