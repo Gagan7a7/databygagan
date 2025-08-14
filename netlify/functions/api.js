@@ -13,17 +13,40 @@ const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 app.post("/api/projects/set-featured", async (req, res) => {
     console.log('Headers:', req.headers);
     console.log('Raw body:', req.body);
-    let featuredTitles = req.body.titles;
-    if (!featuredTitles && typeof req.body === 'string') {
+    let featuredTitles = [];
+    let parsed = false;
+    // Try to get titles from req.body.titles (JSON)
+    if (req.body && Array.isArray(req.body.titles)) {
+        featuredTitles = req.body.titles;
+        parsed = true;
+    }
+    // If not, try to parse as JSON string
+    if (!parsed && typeof req.body === 'string') {
         try {
-            const parsed = JSON.parse(req.body);
-            featuredTitles = parsed.titles;
+            const json = JSON.parse(req.body);
+            if (json && Array.isArray(json.titles)) {
+                featuredTitles = json.titles;
+                parsed = true;
+            }
         } catch (e) {
-            return res.status(400).json({ error: "Invalid JSON body" });
+            // Not JSON, try form-urlencoded
+            const params = new URLSearchParams(req.body);
+            if (params.has('titles[]')) {
+                featuredTitles = params.getAll('titles[]');
+                parsed = true;
+            } else if (params.has('titles')) {
+                featuredTitles = params.getAll('titles');
+                parsed = true;
+            }
         }
     }
-    if (!Array.isArray(featuredTitles) || featuredTitles.length === 0) {
-        return res.status(400).json({ error: "No titles provided" });
+    // If still not parsed, try to get from req.body directly (object)
+    if (!parsed && req.body && typeof req.body === 'object' && Array.isArray(req.body.titles)) {
+        featuredTitles = req.body.titles;
+        parsed = true;
+    }
+    if (!featuredTitles || featuredTitles.length === 0) {
+        return res.status(400).json({ error: "No titles provided", debug: { rawBody: req.body } });
     }
     try {
         await sql`UPDATE projects SET featured = false`;
