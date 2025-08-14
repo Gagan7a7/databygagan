@@ -13,6 +13,7 @@ const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 app.post("/api/projects/set-featured", async (req, res) => {
     console.log('Headers:', req.headers);
     console.log('Raw body:', req.body);
+    console.log('Body type:', typeof req.body);
     let featuredTitles = [];
     let parsed = false;
     // Try to get titles from req.body.titles (JSON)
@@ -45,8 +46,18 @@ app.post("/api/projects/set-featured", async (req, res) => {
         featuredTitles = req.body.titles;
         parsed = true;
     }
+    // Edge case: Netlify may parse body as object with stringified array
+    if (!parsed && req.body && typeof req.body === 'object' && typeof req.body.titles === 'string') {
+        try {
+            const arr = JSON.parse(req.body.titles);
+            if (Array.isArray(arr)) {
+                featuredTitles = arr;
+                parsed = true;
+            }
+        } catch (e) {}
+    }
     if (!featuredTitles || featuredTitles.length === 0) {
-        return res.status(400).json({ error: "No titles provided", debug: { rawBody: req.body } });
+        return res.status(400).json({ error: "No titles provided", debug: { rawBody: req.body, bodyType: typeof req.body } });
     }
     try {
         await sql`UPDATE projects SET featured = false`;
