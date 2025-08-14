@@ -11,7 +11,16 @@ const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
 // Permanently set featured projects via API
 app.post("/api/projects/set-featured", async (req, res) => {
-    const featuredTitles = req.body.titles;
+    let featuredTitles = req.body.titles;
+    // Support stringified JSON bodies (curl, PowerShell, etc.)
+    if (!featuredTitles && typeof req.body === 'string') {
+        try {
+            const parsed = JSON.parse(req.body);
+            featuredTitles = parsed.titles;
+        } catch (e) {
+            return res.status(400).json({ error: "Invalid JSON body" });
+        }
+    }
     if (!Array.isArray(featuredTitles) || featuredTitles.length === 0) {
         return res.status(400).json({ error: "No titles provided" });
     }
