@@ -16,22 +16,27 @@ app.post("/api/projects/set-featured", async (req, res) => {
     console.log('Body type:', typeof req.body);
     let featuredTitles = [];
     let parsed = false;
-    // Try to get titles from req.body.titles (JSON)
-    if (req.body && Array.isArray(req.body.titles)) {
-        featuredTitles = req.body.titles;
+    let rawBody = req.body;
+    // If Buffer, convert to string
+    if (rawBody && rawBody.type === 'Buffer' && Array.isArray(rawBody.data)) {
+        rawBody = Buffer.from(rawBody.data).toString('utf8');
+    }
+    // Try to get titles from rawBody.titles (JSON)
+    if (rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
+        featuredTitles = rawBody.titles;
         parsed = true;
     }
     // If not, try to parse as JSON string
-    if (!parsed && typeof req.body === 'string') {
+    if (!parsed && typeof rawBody === 'string') {
         try {
-            const json = JSON.parse(req.body);
+            const json = JSON.parse(rawBody);
             if (json && Array.isArray(json.titles)) {
                 featuredTitles = json.titles;
                 parsed = true;
             }
         } catch (e) {
             // Not JSON, try form-urlencoded
-            const params = new URLSearchParams(req.body);
+            const params = new URLSearchParams(rawBody);
             if (params.has('titles[]')) {
                 featuredTitles = params.getAll('titles[]');
                 parsed = true;
@@ -41,15 +46,15 @@ app.post("/api/projects/set-featured", async (req, res) => {
             }
         }
     }
-    // If still not parsed, try to get from req.body directly (object)
-    if (!parsed && req.body && typeof req.body === 'object' && Array.isArray(req.body.titles)) {
-        featuredTitles = req.body.titles;
+    // If still not parsed, try to get from rawBody directly (object)
+    if (!parsed && rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
+        featuredTitles = rawBody.titles;
         parsed = true;
     }
     // Edge case: Netlify may parse body as object with stringified array
-    if (!parsed && req.body && typeof req.body === 'object' && typeof req.body.titles === 'string') {
+    if (!parsed && rawBody && typeof rawBody === 'object' && typeof rawBody.titles === 'string') {
         try {
-            const arr = JSON.parse(req.body.titles);
+            const arr = JSON.parse(rawBody.titles);
             if (Array.isArray(arr)) {
                 featuredTitles = arr;
                 parsed = true;
@@ -57,7 +62,7 @@ app.post("/api/projects/set-featured", async (req, res) => {
         } catch (e) {}
     }
     if (!featuredTitles || featuredTitles.length === 0) {
-        return res.status(400).json({ error: "No titles provided", debug: { rawBody: req.body, bodyType: typeof req.body } });
+        return res.status(400).json({ error: "No titles provided", debug: { rawBody, bodyType: typeof rawBody } });
     }
     try {
         await sql`UPDATE projects SET featured = false`;
