@@ -23,13 +23,26 @@ async function main() {
     dashboardUrl TEXT,
     codeUrl TEXT,
     description TEXT,
-    tech JSONB
+    tech JSONB,
+    featured BOOLEAN
   )`;
+  // Ensure 'featured' column exists (safe to run even if already present)
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN;`;
 
   for (const p of projects) {
     await sql`
-      INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech)
-      VALUES (${p.title}, ${p.category}, ${p.image}, ${p.alt}, ${p.dashboardUrl}, ${p.codeUrl}, ${p.description}, ${JSON.stringify(p.tech)})
+      INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech, featured)
+      VALUES (
+        ${p.title},
+        ${p.category},
+        ${p.image},
+        ${p.alt},
+        ${p.dashboardUrl},
+        ${p.codeUrl},
+        ${p.description},
+        ${JSON.stringify(p.tech)},
+        ${typeof p.featured === 'boolean' ? p.featured : false}
+      )
       ON CONFLICT (title) DO NOTHING
     `;
     console.log(`Imported: ${p.title}`);
