@@ -155,7 +155,8 @@ app.post("/api/projects", async (req, res) => {
         `;
         res.json({ success: true, project: p });
     } catch (e) {
-        res.status(500).json({ error: "Failed to add project" });
+        console.error('Database error:', e);
+        res.status(500).json({ error: "Failed to add project", details: e.message });
     }
 });
 
