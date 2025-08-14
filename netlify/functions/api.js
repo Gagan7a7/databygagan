@@ -17,13 +17,22 @@ app.post("/api/projects/set-featured", async (req, res) => {
     let featuredTitles = [];
     let parsed = false;
     let rawBody = req.body;
-    // If Buffer, convert to string
+    // If Buffer, convert to string and parse as JSON
     if (rawBody && rawBody.type === 'Buffer' && Array.isArray(rawBody.data)) {
-        rawBody = Buffer.from(rawBody.data).toString('utf8');
-        console.log('Converted Buffer to string:', rawBody);
+        try {
+            const str = Buffer.from(rawBody.data).toString('utf8');
+            console.log('Converted Buffer to string:', str);
+            const json = JSON.parse(str);
+            if (json && Array.isArray(json.titles)) {
+                featuredTitles = json.titles;
+                parsed = true;
+            }
+        } catch (e) {
+            console.log('Buffer parse failed:', e);
+        }
     }
     // Try to get titles from rawBody.titles (JSON)
-    if (rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
+    if (!parsed && rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
         featuredTitles = rawBody.titles;
         parsed = true;
     }
@@ -47,11 +56,6 @@ app.post("/api/projects/set-featured", async (req, res) => {
             }
         }
     }
-    // If still not parsed, try to get from rawBody directly (object)
-    if (!parsed && rawBody && typeof rawBody === 'object' && Array.isArray(rawBody.titles)) {
-        featuredTitles = rawBody.titles;
-        parsed = true;
-    }
     // Edge case: Netlify may parse body as object with stringified array
     if (!parsed && rawBody && typeof rawBody === 'object' && typeof rawBody.titles === 'string') {
         try {
@@ -61,19 +65,6 @@ app.post("/api/projects/set-featured", async (req, res) => {
                 parsed = true;
             }
         } catch (e) {}
-    }
-    // Final fallback: try to parse Buffer as JSON
-    if (!parsed && typeof req.body === 'object' && req.body.type === 'Buffer' && Array.isArray(req.body.data)) {
-        try {
-            const str = Buffer.from(req.body.data).toString('utf8');
-            const json = JSON.parse(str);
-            if (json && Array.isArray(json.titles)) {
-                featuredTitles = json.titles;
-                parsed = true;
-            }
-        } catch (e) {
-            console.log('Final fallback failed:', e);
-        }
     }
     if (!featuredTitles || featuredTitles.length === 0) {
         return res.status(400).json({ error: "No titles provided", debug: { rawBody, bodyType: typeof rawBody } });
