@@ -20,8 +20,10 @@ async function ensureTable() {
         dashboardUrl TEXT,
         codeUrl TEXT,
         description TEXT,
-        tech JSONB
+        tech JSONB,
+        featured BOOLEAN
     )`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN;`;
 }
 
 // Helper to run ensureTable before each request
@@ -47,7 +49,7 @@ app.get("/api/projects", async (req, res) => {
     try {
         const projects = await sql`SELECT * FROM projects`;
         // Convert tech from JSONB to array
-        const result = projects.map(p => ({ ...p, tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []) }));
+        const result = projects.map(p => ({ ...p, tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []), featured: p.featured }));
         res.json(result);
     } catch (e) {
         res.status(500).json({ error: "Failed to fetch projects" });
@@ -59,8 +61,18 @@ app.post("/api/projects", async (req, res) => {
     const p = req.body;
     try {
         await sql`
-            INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech)
-            VALUES (${p.title}, ${p.category}, ${p.image}, ${p.alt}, ${p.dashboardUrl}, ${p.codeUrl}, ${p.description}, ${JSON.stringify(p.tech)})
+            INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech, featured)
+            VALUES (
+                ${p.title},
+                ${p.category},
+                ${p.image},
+                ${p.alt},
+                ${p.dashboardUrl},
+                ${p.codeUrl},
+                ${p.description},
+                ${JSON.stringify(p.tech)},
+                ${typeof p.featured === 'boolean' ? p.featured : false}
+            )
             ON CONFLICT (title) DO NOTHING
         `;
         res.json({ success: true, project: p });
@@ -82,7 +94,8 @@ app.put("/api/projects/title/:title", async (req, res) => {
                 dashboardUrl = ${p.dashboardUrl},
                 codeUrl = ${p.codeUrl},
                 description = ${p.description},
-                tech = ${JSON.stringify(p.tech)}
+                tech = ${JSON.stringify(p.tech)},
+                featured = ${typeof p.featured === 'boolean' ? p.featured : false}
             WHERE title = ${title}
             RETURNING *
         `;
