@@ -216,7 +216,13 @@ function loadProjects() {
             projects.forEach((proj, idx) => {
                 const div = document.createElement('div');
                 div.className = 'project-item';
-                div.innerHTML = `<b>${proj.title}</b> <button onclick="editProject(${idx})">Edit</button> <button onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')">Delete</button>`;
+                let imgHtml = '';
+                if (proj.image) {
+                    // If image path is a Cloudinary URL, use it directly; otherwise, prefix with assets/
+                    let imgSrc = proj.image.startsWith('http') ? proj.image : proj.image;
+                    imgHtml = `<img src="${imgSrc}" alt="${proj.alt || ''}" style="max-width:60px;max-height:60px;margin-right:12px;border-radius:6px;vertical-align:middle;">`;
+                }
+                div.innerHTML = `${imgHtml}<b>${proj.title}</b> <button onclick="editProject(${idx})">Edit</button> <button onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')">Delete</button>`;
                 list.appendChild(div);
             });
         }
