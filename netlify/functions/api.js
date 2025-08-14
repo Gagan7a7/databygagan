@@ -142,9 +142,37 @@ app.use(async (req, res, next) => {
 app.delete("/api/projects/title/:title", async (req, res) => {
     const title = decodeURIComponent(req.params.title);
     try {
+        // Get project first to find image URL
+        const project = await sql`SELECT image FROM projects WHERE title = ${title}`;
+        let imageUrl = project[0]?.image;
+
+        // Delete project from DB
         const result = await sql`DELETE FROM projects WHERE title = ${title} RETURNING *`;
         if (result.length === 0) return res.status(404).json({ error: "Project not found" });
-        res.json({ success: true });
+
+        // Delete image from Cloudinary if present and is a Cloudinary URL
+        let cloudinaryResult = null;
+        if (imageUrl && imageUrl.startsWith('http') && imageUrl.includes('cloudinary.com')) {
+            try {
+                // Extract public ID from URL
+                // Example: https://res.cloudinary.com/dfndnhnvg/image/upload/v1234567890/portfolio_uploads/filename.png
+                const matches = imageUrl.match(/\/portfolio_uploads\/([^\.]+)\.[a-zA-Z0-9]+$/);
+                let publicId = matches ? `portfolio_uploads/${matches[1]}` : null;
+                if (publicId) {
+                    const cloudinary = require('cloudinary').v2;
+                    cloudinary.config({
+                        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+                        api_key: process.env.CLOUDINARY_API_KEY,
+                        api_secret: process.env.CLOUDINARY_API_SECRET
+                    });
+                    cloudinaryResult = await cloudinary.uploader.destroy(publicId);
+                }
+            } catch (err) {
+                // Log error but don't block project deletion
+                console.error('Cloudinary image delete error:', err);
+            }
+        }
+        res.json({ success: true, cloudinary: cloudinaryResult });
     } catch (e) {
         res.status(500).json({ error: "Failed to delete project" });
     }
