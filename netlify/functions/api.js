@@ -1,3 +1,17 @@
+// Permanently set featured projects via API
+app.post("/api/projects/set-featured", async (req, res) => {
+    const featuredTitles = req.body.titles;
+    if (!Array.isArray(featuredTitles) || featuredTitles.length === 0) {
+        return res.status(400).json({ error: "No titles provided" });
+    }
+    try {
+        await sql`UPDATE projects SET featured = false`;
+        await sql`UPDATE projects SET featured = true WHERE title IN (${featuredTitles})`;
+        res.json({ success: true, featured: featuredTitles });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to set featured projects" });
+    }
+});
 
 import express from "express";
 import cors from "cors";
