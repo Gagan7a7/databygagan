@@ -167,7 +167,18 @@ app.post("/api/projects", async (req, res) => {
     console.log('Title type:', typeof req.body?.title);
     console.log('================================');
 
-    const p = req.body || {};
+    let p = req.body || {};
+    // If body is a Buffer, parse it as JSON
+    if (p && p.type === 'Buffer' && Array.isArray(p.data)) {
+        try {
+            const str = Buffer.from(p.data).toString('utf8');
+            p = JSON.parse(str);
+            console.log('Parsed Buffer body:', p);
+        } catch (e) {
+            console.log('Failed to parse Buffer body:', e);
+            p = {};
+        }
+    }
     // Validate required fields with better error messages
     if (!p.title || typeof p.title !== 'string' || p.title.trim() === '') {
         console.log('Validation failed - title missing or invalid');
