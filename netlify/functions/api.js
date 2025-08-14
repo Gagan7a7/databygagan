@@ -137,6 +137,10 @@ app.get("/api/projects", async (req, res) => {
 // Add a new project
 app.post("/api/projects", async (req, res) => {
     const p = req.body;
+    // Validate required fields
+    if (!p.title || typeof p.title !== 'string' || p.title.trim() === '') {
+        return res.status(400).json({ error: "Project title is required" });
+    }
     try {
         await sql`
             INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech, featured)
