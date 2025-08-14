@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "script.js",
   "dependencies": {
+  "busboy": "^1.6.0",
     "@netlify/neon": "^0.1.0",
     "accepts": "^2.0.0",
     "body-parser": "^2.2.0",
