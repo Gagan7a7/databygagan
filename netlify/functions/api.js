@@ -155,7 +155,7 @@ app.delete("/api/projects/title/:title", async (req, res) => {
         if (imageUrl && imageUrl.startsWith('http') && imageUrl.includes('cloudinary.com')) {
             try {
                 // Extract public ID from URL
-                // Example: https://res.cloudinary.com/dfndnhnvg/image/upload/v1234567890/portfolio_uploads/filename.png
+                // Example: https://res.cloudinary.com/<cloud_name>/image/upload/v1234567890/portfolio_uploads/filename.png
                 const matches = imageUrl.match(/\/portfolio_uploads\/([^\.]+)\.[a-zA-Z0-9]+$/);
                 let publicId = matches ? `portfolio_uploads/${matches[1]}` : null;
                 if (publicId) {
