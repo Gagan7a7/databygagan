@@ -23,6 +23,28 @@ app.use((req, res, next) => {
     next();
 });
 
+// Fallback raw body parser for POST/PUT requests
+app.use((req, res, next) => {
+    if ((req.method === 'POST' || req.method === 'PUT') && req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
+        let rawBody = '';
+        req.on('data', chunk => {
+            rawBody += chunk.toString();
+        });
+        req.on('end', () => {
+            try {
+                req.body = JSON.parse(rawBody);
+                console.log('Fallback middleware: Parsed raw body:', req.body);
+            } catch (e) {
+                console.log('Fallback middleware: Failed to parse raw body:', e);
+                req.body = {};
+            }
+            next();
+        });
+    } else {
+        next();
+    }
+});
+
 const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
 
 // Explicit handler for Netlify POST /api/projects/set-featured
