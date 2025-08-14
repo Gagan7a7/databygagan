@@ -234,6 +234,7 @@ function loadProjects() {
                 description: document.getElementById('description').value,
                 tech: document.getElementById('tech').value.split(',').map(t => t.trim())
             };
+            console.log('Project object being sent:', proj);
             const backendUrl = '/api/projects';
             function saveProjectWithImage(imagePath) {
                 proj.image = imagePath;
