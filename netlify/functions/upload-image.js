@@ -14,7 +14,7 @@ exports.handler = async function(event, context) {
   const Busboy = require('busboy');
 
   return new Promise((resolve, reject) => {
-    const busboy = new Busboy({ headers: event.headers });
+    const busboy = Busboy({ headers: event.headers });
     let uploadPath = '';
     let fileName = '';
     let fileBuffer = Buffer.alloc(0);
