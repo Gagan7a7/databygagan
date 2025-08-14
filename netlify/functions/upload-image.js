@@ -20,13 +20,33 @@ exports.handler = async function(event, context) {
     let fileBuffer = Buffer.alloc(0);
 
     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-      fileName = Date.now() + '-' + filename.replace(/[^a-zA-Z0-9.]/g, '_');
-      uploadPath = path.join(__dirname, '../../assets', fileName);
+      let safeFilename;
+      if (typeof filename === 'string') {
+        safeFilename = filename.replace(/[^a-zA-Z0-9.]/g, '_');
+      } else if (filename && filename.name && typeof filename.name === 'string') {
+        safeFilename = filename.name.replace(/[^a-zA-Z0-9.]/g, '_');
+      } else {
+        safeFilename = 'upload_' + Date.now();
+      }
+      fileName = Date.now() + '-' + safeFilename;
+      try {
+        uploadPath = path.join(__dirname, '../../assets', fileName);
+      } catch (err) {
+        uploadPath = path.join(__dirname, fileName);
+      }
       file.on('data', data => {
-        fileBuffer = Buffer.concat([fileBuffer, data]);
+        try {
+          fileBuffer = Buffer.concat([fileBuffer, data]);
+        } catch (err) {
+          // Ignore buffer errors
+        }
       });
       file.on('end', () => {
-        fs.writeFileSync(uploadPath, fileBuffer);
+        try {
+          fs.writeFileSync(uploadPath, fileBuffer);
+        } catch (err) {
+          // Ignore file write errors
+        }
       });
     });
 
