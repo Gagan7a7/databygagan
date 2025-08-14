@@ -168,7 +168,7 @@
                 <input type="hidden" id="edit-index">
                 <label>Title: <input type="text" id="title" required></label>
                 <label>Category: <input type="text" id="category" required placeholder="e.g. PowerBI, Colab, Other"></label>
-                <label>Image Path: <input type="text" id="imagePath" required></label>
+                <label>Image Upload: <input type="file" id="imageUpload" accept="image/*"></label>
                 <label>Alt Text: <input type="text" id="alt" required></label>
                 <label>Dashboard URL: <input type="url" id="dashboardUrl" required></label>
                 <label>Code URL: <input type="url" id="codeUrl" required></label>
@@ -223,10 +223,11 @@ function loadProjects() {
         document.getElementById('project-form').onsubmit = function(e) {
             e.preventDefault();
             const idx = document.getElementById('edit-index').value;
+            const imageFile = document.getElementById('imageUpload').files[0];
             const proj = {
                 title: document.getElementById('title').value,
                 category: document.getElementById('category').value,
-                image: document.getElementById('imagePath').value,
+                image: '', // will be set after upload
                 alt: document.getElementById('alt').value,
                 dashboardUrl: document.getElementById('dashboardUrl').value,
                 codeUrl: document.getElementById('codeUrl').value,
@@ -234,49 +235,77 @@ function loadProjects() {
                 tech: document.getElementById('tech').value.split(',').map(t => t.trim())
             };
             const backendUrl = '/api/projects';
-            if (idx === '') {
-                // New project: send to backend
-                fetch(backendUrl, {
+            function saveProjectWithImage(imagePath) {
+                proj.image = imagePath;
+                if (idx === '') {
+                    fetch(backendUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(proj)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            projects.push(proj);
+                            renderProjects();
+                            resetForm();
+                            alert('Project added and saved to server!');
+                        } else {
+                            alert('Error saving project: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(err => {
+                        alert('Error saving project: ' + err);
+                    });
+                } else {
+                    const editTitle = encodeURIComponent(projects[idx].title);
+                    fetch(`${backendUrl}/title/${editTitle}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(proj)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            projects[idx] = proj;
+                            renderProjects();
+                            resetForm();
+                            alert('Project updated on server!');
+                        } else {
+                            alert('Error updating project: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(err => {
+                        alert('Error updating project: ' + err);
+                    });
+                }
+            }
+            if (imageFile) {
+                // Upload image first
+                const formData = new FormData();
+                formData.append('image', imageFile);
+                fetch('/api/upload-image', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(proj)
+                    body: formData
                 })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.success) {
-                        projects.push(proj);
-                        renderProjects();
-                        resetForm();
-                        alert('Project added and saved to server!');
+                    if (data.success && data.imagePath) {
+                        saveProjectWithImage(data.imagePath);
                     } else {
-                        alert('Error saving project: ' + (data.error || 'Unknown error'));
+                        alert('Image upload failed: ' + (data.error || 'Unknown error'));
                     }
                 })
                 .catch(err => {
-                    alert('Error saving project: ' + err);
+                    alert('Image upload error: ' + err);
                 });
             } else {
-                // Editing existing project: send PUT request to backend
-                const editTitle = encodeURIComponent(projects[idx].title);
-                fetch(`${backendUrl}/title/${editTitle}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(proj)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        projects[idx] = proj;
-                        renderProjects();
-                        resetForm();
-                        alert('Project updated on server!');
-                    } else {
-                        alert('Error updating project: ' + (data.error || 'Unknown error'));
-                    }
-                })
-                .catch(err => {
-                    alert('Error updating project: ' + err);
-                });
+                // No new image uploaded, use previous value if editing
+                let imagePath = '';
+                if (idx !== '') {
+                    imagePath = projects[idx].image;
+                }
+                saveProjectWithImage(imagePath);
             }
         };
         function editProject(idx) {
@@ -284,12 +313,16 @@ function loadProjects() {
             document.getElementById('edit-index').value = idx;
             document.getElementById('title').value = proj.title;
             document.getElementById('category').value = proj.category || '';
-            document.getElementById('image').value = proj.image;
             document.getElementById('alt').value = proj.alt;
             document.getElementById('dashboardUrl').value = proj.dashboardUrl;
             document.getElementById('codeUrl').value = proj.codeUrl;
             document.getElementById('description').value = proj.description;
             document.getElementById('tech').value = proj.tech.join(', ');
+            // Show previous image path (optional)
+            if (proj.image) {
+                document.getElementById('imageUpload').value = '';
+                document.getElementById('imageUpload').setAttribute('data-prev', proj.image);
+            }
         }
 function deleteProjectByTitle(title) {
     if (confirm('Delete this project?')) {
