@@ -8,24 +8,19 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Additional body parsing middleware for Netlify edge cases
+// Global Buffer body parsing middleware for Netlify edge case
 app.use((req, res, next) => {
-    if (req.body === undefined || req.body === null) {
-        let rawBody = '';
-        req.on('data', chunk => {
-            rawBody += chunk.toString();
-        });
-        req.on('end', () => {
-            try {
-                req.body = JSON.parse(rawBody);
-            } catch (e) {
-                req.body = {};
-            }
-            next();
-        });
-    } else {
-        next();
+    if (req.body && req.body.type === 'Buffer' && Array.isArray(req.body.data)) {
+        try {
+            const str = Buffer.from(req.body.data).toString('utf8');
+            req.body = JSON.parse(str);
+            console.log('Global middleware: Parsed Buffer body:', req.body);
+        } catch (e) {
+            console.log('Global middleware: Failed to parse Buffer body:', e);
+            req.body = {};
+        }
     }
+    next();
 });
 
 const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
