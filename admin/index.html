@@ -319,7 +319,7 @@
     // Dashboard stats, analytics, and recent projects
     let allProjects = [];
     async function loadDashboardStats() {
-        const res = await fetch('/.netlify/functions/api/api/projects');
+    const res = await fetch('/api/projects');
         allProjects = await res.json();
         document.getElementById('total-projects').textContent = allProjects.length;
         document.getElementById('featured-projects').textContent = allProjects.filter(p => p.featured).length;
