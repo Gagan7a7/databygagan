@@ -311,9 +311,9 @@
     <script src="js/main.js"></script>
     <script>
     // Restrict dashboard unless signed in
-    // if (localStorage.getItem('admin_signed_in') !== 'true') {
-    //     window.location.href = 'signin.html';
-    // }
+    if (localStorage.getItem('admin_signed_in') !== 'true') {
+        window.location.href = 'signin.html';
+    }
     </script>
     <script>
     // Dashboard stats, analytics, and recent projects
