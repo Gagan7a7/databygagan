@@ -145,7 +145,7 @@
 
     // Load all projects
     async function loadProjects() {
-        const res = await fetch('/.netlify/functions/api/api/projects');
+    const res = await fetch('/api/projects');
         const projects = await res.json();
         const tbody = document.getElementById('project-list');
         tbody.innerHTML = '';
