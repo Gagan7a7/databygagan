@@ -318,8 +318,9 @@
     <script>
     // Dashboard stats, analytics, and recent projects
     let allProjects = [];
+    let charts = {};
     async function loadDashboardStats() {
-    const res = await fetch('/api/projects');
+        const res = await fetch('/api/projects');
         allProjects = await res.json();
         document.getElementById('total-projects').textContent = allProjects.length;
         document.getElementById('featured-projects').textContent = allProjects.filter(p => p.featured).length;
@@ -340,10 +341,18 @@
         });
         document.getElementById('most-clicked').textContent = mostClicked ? `${mostClicked} (${mostClicks})` : 'None';
 
-        // Bar chart for top 5 projects
-        const topProjects = [...allProjects].sort((a, b) => ((b.clicks_dashboardUrl || 0) + (b.clicks_codeUrl || 0)) - ((a.clicks_dashboardUrl || 0) + (a.clicks_codeUrl || 0))).slice(0, 5);
-        const ctx = document.getElementById('clicks-bar-chart').getContext('2d');
-        new Chart(ctx, {
+        renderCharts(allProjects);
+        renderRecentProjects(allProjects);
+    }
+
+    function renderCharts(projects) {
+        // Destroy previous charts if they exist
+        ['clicks-bar-chart','featured-pie-chart','category-bar-chart','time-trends-chart'].forEach(id => {
+            if (charts[id]) { charts[id].destroy(); charts[id] = null; }
+        });
+        // Top 5 Projects by Clicks
+        const topProjects = [...projects].sort((a, b) => ((b.clicks_dashboardUrl || 0) + (b.clicks_codeUrl || 0)) - ((a.clicks_dashboardUrl || 0) + (a.clicks_codeUrl || 0))).slice(0, 5);
+        charts['clicks-bar-chart'] = new Chart(document.getElementById('clicks-bar-chart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: topProjects.map(p => p.title),
@@ -353,15 +362,57 @@
                     backgroundColor: 'rgba(54, 162, 235, 0.7)'
                 }]
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false }
-                }
-            }
+            options: { responsive: true, plugins: { legend: { display: false } } }
         });
-
-        renderRecentProjects(allProjects);
+        // Featured vs Non-Featured Pie Chart
+        const featuredCount = projects.filter(p => p.featured).length;
+        const nonFeaturedCount = projects.length - featuredCount;
+        charts['featured-pie-chart'] = new Chart(document.getElementById('featured-pie-chart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ['Featured', 'Non-Featured'],
+                datasets: [{
+                    data: [featuredCount, nonFeaturedCount],
+                    backgroundColor: ['#28a745', '#6c757d']
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+        });
+        // Projects by Category Bar Chart
+        const categories = {};
+        projects.forEach(p => { categories[p.category] = (categories[p.category] || 0) + 1; });
+        charts['category-bar-chart'] = new Chart(document.getElementById('category-bar-chart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(categories),
+                datasets: [{
+                    label: 'Projects by Category',
+                    data: Object.values(categories),
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+        // Clicks Over Time Line Chart (replace with real time data if available)
+        // For now, use dummy monthly aggregation from project clicks
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+        const clicks = months.map((m, i) => {
+            // If you have real time data, replace this logic
+            return projects.reduce((sum, p) => sum + ((p.clicksByMonth && p.clicksByMonth[i]) || 0), 0);
+        });
+        charts['time-trends-chart'] = new Chart(document.getElementById('time-trends-chart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Clicks Over Time',
+                    data: clicks,
+                    borderColor: 'rgba(54, 162, 235, 0.7)',
+                    fill: false
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+        });
     }
 
     function renderRecentProjects(projects) {
@@ -400,8 +451,7 @@
         });
     }
 
-    // Edit/Delete stubs
-    // Edit project modal logic
+    // Edit/Delete logic
     let editingIdx = null;
     function openEditProject(idx) {
         editingIdx = idx;
@@ -415,16 +465,6 @@
         document.getElementById('project-featured').checked = !!p.featured;
         document.getElementById('project-description').value = p.description || '';
         new bootstrap.Modal(document.getElementById('projectModal')).show();
-    }
-    // Check if add-project-btn exists before adding event listener
-    const addProjectBtn = document.getElementById('add-project-btn');
-    if (addProjectBtn) {
-        addProjectBtn.addEventListener('click', function() {
-            editingIdx = null;
-            document.getElementById('project-form').reset();
-            document.getElementById('project-image-preview').style.display = 'none';
-            new bootstrap.Modal(document.getElementById('projectModal')).show();
-        });
     }
     document.getElementById('project-image').addEventListener('input', function() {
         const url = this.value;
@@ -445,10 +485,10 @@
         const featured = document.getElementById('project-featured').checked;
         const description = document.getElementById('project-description').value.trim();
         const payload = { title, category, tags, image, featured, description };
-        let url = '/.netlify/functions/api/api/projects';
+        let url = '/api/projects';
         let method = 'POST';
         if (editingIdx !== null) {
-            url = `/.netlify/functions/api/api/projects/title/${encodeURIComponent(title)}`;
+            url = `/api/projects/title/${encodeURIComponent(title)}`;
             method = 'PUT';
         }
         const res = await fetch(url, {
@@ -466,7 +506,7 @@
     async function deleteProject(idx) {
         const p = allProjects[idx];
         if (confirm(`Are you sure you want to delete project "${p.title}"?`)) {
-            const res = await fetch(`/.netlify/functions/api/api/projects/title/${encodeURIComponent(p.title)}`, { method: 'DELETE' });
+            const res = await fetch(`/api/projects/title/${encodeURIComponent(p.title)}`, { method: 'DELETE' });
             if (res.ok) {
                 await loadDashboardStats();
             } else {
@@ -474,60 +514,6 @@
             }
         }
     }
-    // Category breakdown chart
-    function renderCategoryChart(projects) {
-        const ctx = document.getElementById('category-bar-chart').getContext('2d');
-        const categories = {};
-        projects.forEach(p => {
-            categories[p.category] = (categories[p.category] || 0) + 1;
-        });
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: Object.keys(categories),
-                datasets: [{
-                    label: 'Projects by Category',
-                    data: Object.values(categories),
-                    backgroundColor: 'rgba(255, 99, 132, 0.7)'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } }
-            }
-        });
-    }
-    // Time trends chart (dummy data for now)
-    function renderTimeTrendsChart(projects) {
-        const ctx = document.getElementById('time-trends-chart').getContext('2d');
-        // Example: clicks per month (replace with real data if available)
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-        const clicks = months.map(m => Math.floor(Math.random() * 100));
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: months,
-                datasets: [{
-                    label: 'Clicks Over Time',
-                    data: clicks,
-                    borderColor: 'rgba(54, 162, 235, 0.7)',
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { position: 'bottom' } }
-            }
-        });
-    }
-    // Render new charts after loading stats
-    window.addEventListener('DOMContentLoaded', function() {
-        loadDashboardStats().then(() => {
-            renderFeaturedPieChart(allProjects);
-            renderCategoryChart(allProjects);
-            renderTimeTrendsChart(allProjects);
-        });
-    });
 
     // Notes persistence (localStorage)
     const notesEl = document.getElementById('admin-notes');
@@ -553,32 +539,6 @@
             recentProjectsEl.style.display = this.checked ? '' : 'none';
         });
     }
-
-    // Additional analytics chart: Featured vs Non-Featured Pie Chart
-    function renderFeaturedPieChart(projects) {
-        const featuredCount = projects.filter(p => p.featured).length;
-        const nonFeaturedCount = projects.length - featuredCount;
-        const ctx = document.getElementById('featured-pie-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Featured', 'Non-Featured'],
-                datasets: [{
-                    data: [featuredCount, nonFeaturedCount],
-                    backgroundColor: ['#28a745', '#6c757d']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
-    }
-
-    // Call pie chart after loading stats
-    // Already handled above with all charts
 
     document.getElementById('dashboard-search').addEventListener('input', function(e) {
         const query = e.target.value.toLowerCase();

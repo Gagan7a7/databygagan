@@ -99,31 +99,48 @@
         const codeUrl = document.getElementById('codeUrl').value;
         const description = document.getElementById('description').value;
         const tech = document.getElementById('tech').value.split(',').map(t => t.trim());
-        let image = null;
         const fileInput = document.getElementById('imageUpload');
+        let image = '';
+        async function saveProjectWithImage(imagePath) {
+            const payload = { title, category, alt, dashboardUrl, codeUrl, description, tech, image: imagePath };
+            try {
+                const res = await fetch('/api/projects', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('notification').textContent = 'Project added successfully!';
+                    document.getElementById('add-project-form').reset();
+                } else {
+                    document.getElementById('notification').textContent = 'Error: ' + (data.error || 'Failed to add project.');
+                }
+            } catch (err) {
+                document.getElementById('notification').textContent = 'Error: ' + err;
+            }
+        }
         if (fileInput.files.length > 0) {
+            // Upload image to serverless function first
             const formData = new FormData();
             formData.append('image', fileInput.files[0]);
-            const uploadRes = await fetch('/.netlify/functions/api/upload-image', {
-                method: 'POST',
-                body: formData
-            });
-            const uploadData = await uploadRes.json();
-            image = uploadData.url;
-        }
-        const payload = { title, category, alt, dashboardUrl, codeUrl, description, tech };
-        if (image) payload.image = image;
-        const res = await fetch('/.netlify/functions/api/api/projects', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        const data = await res.json();
-        if (data.success) {
-            document.getElementById('notification').textContent = 'Project added successfully!';
-            document.getElementById('add-project-form').reset();
+            try {
+                const res = await fetch('/.netlify/functions/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if (data.success && data.imagePath) {
+                    saveProjectWithImage(data.imagePath);
+                } else {
+                    document.getElementById('notification').textContent = 'Image upload failed: ' + (data.error || 'Unknown error');
+                }
+            } catch (err) {
+                document.getElementById('notification').textContent = 'Image upload error: ' + err;
+            }
         } else {
-            document.getElementById('notification').textContent = 'Error: ' + (data.error || 'Failed to add project.');
+            // No image uploaded
+            saveProjectWithImage('');
         }
     });
     </script>
