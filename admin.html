@@ -155,61 +155,63 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-wrapper">
-        <aside class="sidebar">
-            <div class="sidebar-title">Admin Dashboard</div>
-            <nav>
-                <ul>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#analytics">Analytics</a></li>
-                    <li><a href="#help">Help</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <header class="topbar">
-                <h2>Project Manager</h2>
-                <div id="project-stats" style="font-size:1rem;color:#fff;"></div>
-            </header>
-            <!-- Added missing projects section for anchor link -->
-            <section id="projects" class="hidden"></section>
-            <section id="login-section">
-                <label for="admin-password">Enter Admin Password:</label>
-                <input type="password" id="admin-password">
-                <button type="button" onclick="login()">Login</button>
-                <div id="login-error" class="error"></div>
-            </section>
-            <section id="admin-section" class="hidden">
-                <form class="admin-form" id="project-form">
-                    <input type="hidden" id="edit-index">
-                    <label>Title: <input type="text" id="title" required title="Project title"></label>
-                    <label>Category: <input type="text" id="category" required placeholder="e.g. PowerBI, Colab, Other" title="Project category"></label>
-                    <label>Image Upload: <input type="file" id="imageUpload" accept="image/*" title="Upload project image"></label>
-                    <label>Alt Text: <input type="text" id="alt" required title="Image alt text for accessibility"></label>
-                    <label>Dashboard URL: <input type="url" id="dashboardUrl" required title="Link to dashboard"></label>
-                    <label>Code URL: <input type="url" id="codeUrl" required title="Link to code repository"></label>
-                    <label>Description: <textarea id="description" required title="Project description"></textarea></label>
-                    <label>Tech Tags (comma separated): <input type="text" id="tech" required title="Comma separated tech tags"></label>
-                    <button type="submit">Save Project</button>
-                    <button type="button" onclick="resetForm()">Reset</button>
-                </form>
-                <div class="project-list" id="project-list"></div>
-                <div id="notification" class="hidden"></div>
-            </section>
-            <section id="analytics" class="hidden">
-                <h3>Analytics</h3>
-                <div id="analytics-content"></div>
-            </section>
-            <section id="help" class="hidden">
-                <h3>Help &amp; Tips</h3>
-                <ul>
-                    <li>Fill all required fields before saving a project.</li>
-                    <li>Use clear, descriptive titles and categories.</li>
-                    <li>Upload optimized images for faster loading.</li>
-                    <li>Tech tags help with search and filtering.</li>
-                </ul>
-            </section>
-        </main>
+    <section id="login-section" style="max-width:520px;margin:60px auto;padding:36px 32px 32px 32px;background:rgb(25 25 40 / 0.85);border-radius:var(--border-radius);box-shadow:var(--shadow-light);border:1px solid var(--border-color);">
+        <label for="admin-password">Enter Admin Password:</label>
+        <input type="password" id="admin-password">
+        <button type="button" onclick="login()">Login</button>
+        <div id="login-error" class="error"></div>
+    </section>
+    <div id="protected-content" class="hidden">
+        <div class="dashboard-wrapper">
+            <aside class="sidebar">
+                <div class="sidebar-title">Admin Dashboard</div>
+                <nav>
+                    <ul>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#analytics">Analytics</a></li>
+                        <li><a href="#help">Help</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="main-content">
+                <header class="topbar">
+                    <h2>Project Manager</h2>
+                    <div id="project-stats" style="font-size:1rem;color:#fff;"></div>
+                </header>
+                <!-- Added missing projects section for anchor link -->
+                <section id="projects" class="hidden"></section>
+                <section id="admin-section">
+                    <form class="admin-form" id="project-form">
+                        <input type="hidden" id="edit-index">
+                        <label>Title: <input type="text" id="title" required title="Project title"></label>
+                        <label>Category: <input type="text" id="category" required placeholder="e.g. PowerBI, Colab, Other" title="Project category"></label>
+                        <label>Image Upload: <input type="file" id="imageUpload" accept="image/*" title="Upload project image"></label>
+                        <label>Alt Text: <input type="text" id="alt" required title="Image alt text for accessibility"></label>
+                        <label>Dashboard URL: <input type="url" id="dashboardUrl" required title="Link to dashboard"></label>
+                        <label>Code URL: <input type="url" id="codeUrl" required title="Link to code repository"></label>
+                        <label>Description: <textarea id="description" required title="Project description"></textarea></label>
+                        <label>Tech Tags (comma separated): <input type="text" id="tech" required title="Comma separated tech tags"></label>
+                        <button type="submit">Save Project</button>
+                        <button type="button" onclick="resetForm()">Reset</button>
+                    </form>
+                    <div class="project-list" id="project-list"></div>
+                    <div id="notification" class="hidden"></div>
+                </section>
+                <section id="analytics" class="hidden">
+                    <h3>Analytics</h3>
+                    <div id="analytics-content"></div>
+                </section>
+                <section id="help" class="hidden">
+                    <h3>Help &amp; Tips</h3>
+                    <ul>
+                        <li>Fill all required fields before saving a project.</li>
+                        <li>Use clear, descriptive titles and categories.</li>
+                        <li>Upload optimized images for faster loading.</li>
+                        <li>Tech tags help with search and filtering.</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
     </div>
     <style>
         .dashboard-wrapper { display: flex; min-height: 100vh; }
@@ -238,6 +240,31 @@
             notif.classList.remove('hidden');
             setTimeout(() => notif.classList.add('hidden'), 3000);
         }
+
+        // Sidebar navigation logic
+        document.addEventListener('DOMContentLoaded', function() {
+            function showSection(sectionId) {
+                // Hide all main sections
+                document.getElementById('admin-section').classList.add('hidden');
+                document.getElementById('analytics').classList.add('hidden');
+                document.getElementById('help').classList.add('hidden');
+                // Show the selected section
+                document.getElementById(sectionId).classList.remove('hidden');
+            }
+            // Sidebar links
+            document.querySelector('a[href="#projects"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection('admin-section');
+            });
+            document.querySelector('a[href="#analytics"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection('analytics');
+            });
+            document.querySelector('a[href="#help"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection('help');
+            });
+        });
         // Secure backend password validation
         async function login() {
             const input = document.getElementById('admin-password').value;
@@ -251,7 +278,7 @@
                 const data = await res.json();
                 if (data.success) {
                     document.getElementById('login-section').classList.add('hidden');
-                    document.getElementById('admin-section').classList.remove('hidden');
+                    document.getElementById('protected-content').classList.remove('hidden');
                     loadProjects();
                 } else {
                     document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
