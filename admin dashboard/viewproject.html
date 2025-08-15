@@ -1,8 +1,3 @@
-    <script>
-    if (localStorage.getItem('admin_signed_in') !== 'true') {
-        window.location.href = 'signin.html';
-    }
-    </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +9,12 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <script>
+    if (localStorage.getItem('admin_signed_in') !== 'true') {
+        window.location.href = 'signin.html';
+    }
+    </script>
+    
     <div class="container-fluid position-relative d-flex p-0">
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
@@ -130,6 +131,7 @@
             </div>
         </div>
     </div>
+    
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script>
