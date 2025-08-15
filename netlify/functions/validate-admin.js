@@ -1,5 +1,6 @@
 // Netlify serverless function for admin password validation
 exports.handler = async function(event, context) {
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'databygagan@gmail.com';
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'MyPortfolio@P@ssword77';
   let body;
   try {
@@ -10,7 +11,9 @@ exports.handler = async function(event, context) {
       body: JSON.stringify({ success: false, error: 'Invalid request body' })
     };
   }
-  if (body.password === ADMIN_PASSWORD) {
+  // Accept either password-only or email+password
+  if ((body.password === ADMIN_PASSWORD && (!body.email || body.email === ADMIN_EMAIL)) ||
+      (body.email === ADMIN_EMAIL && body.password === ADMIN_PASSWORD)) {
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true })
@@ -18,7 +21,7 @@ exports.handler = async function(event, context) {
   } else {
     return {
       statusCode: 401,
-      body: JSON.stringify({ success: false, error: 'Incorrect password' })
+      body: JSON.stringify({ success: false, error: 'Incorrect email or password' })
     };
   }
 };

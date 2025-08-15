@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add Project - Admin Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Jhon Doe</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="addproject.html" class="nav-item nav-link active"><i class="fa fa-plus me-2"></i>Add Project</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                </div>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h3 class="mb-4 text-primary">Add New Project</h3>
+                            <form id="add-project-form">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="title" placeholder="Project Title" required>
+                                    <label for="title">Project Title</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="category" placeholder="Category" required>
+                                    <label for="category">Category</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imageUpload" class="form-label">Image Upload</label>
+                                    <input class="form-control" type="file" id="imageUpload" accept="image/*">
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="alt" placeholder="Image Alt Text" required>
+                                    <label for="alt">Image Alt Text</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="url" class="form-control" id="dashboardUrl" placeholder="Dashboard URL" required>
+                                    <label for="dashboardUrl">Dashboard URL</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="url" class="form-control" id="codeUrl" placeholder="Code URL" required>
+                                    <label for="codeUrl">Code URL</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="description" placeholder="Project Description" style="height: 100px" required></textarea>
+                                    <label for="description">Project Description</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="tech" placeholder="Tech Tags (comma separated)" required>
+                                    <label for="tech">Tech Tags (comma separated)</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Project</button>
+                                <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                            </form>
+                            <div id="notification" class="text-success mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    if (localStorage.getItem('admin_signed_in') !== 'true') {
+        window.location.href = 'signin.html';
+    }
+    </script>
+    <!-- Add JS logic for form submission here if needed -->
+    <script>
+    document.getElementById('add-project-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const alt = document.getElementById('alt').value;
+        const dashboardUrl = document.getElementById('dashboardUrl').value;
+        const codeUrl = document.getElementById('codeUrl').value;
+        const description = document.getElementById('description').value;
+        const tech = document.getElementById('tech').value.split(',').map(t => t.trim());
+        let image = null;
+        const fileInput = document.getElementById('imageUpload');
+        if (fileInput.files.length > 0) {
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]);
+            const uploadRes = await fetch('/.netlify/functions/api/upload-image', {
+                method: 'POST',
+                body: formData
+            });
+            const uploadData = await uploadRes.json();
+            image = uploadData.url;
+        }
+        const payload = { title, category, alt, dashboardUrl, codeUrl, description, tech };
+        if (image) payload.image = image;
+        const res = await fetch('/.netlify/functions/api/api/projects', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('notification').textContent = 'Project added successfully!';
+            document.getElementById('add-project-form').reset();
+        } else {
+            document.getElementById('notification').textContent = 'Error: ' + (data.error || 'Failed to add project.');
+        }
+    });
+    </script>
+</body>
+</html>

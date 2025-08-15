@@ -127,9 +127,13 @@ async function ensureTable() {
         codeUrl TEXT,
         description TEXT,
         tech JSONB,
-        featured BOOLEAN
+        featured BOOLEAN,
+        clicks_dashboardUrl INTEGER DEFAULT 0,
+        clicks_codeUrl INTEGER DEFAULT 0
     )`;
     await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN;`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS clicks_dashboardUrl INTEGER DEFAULT 0;`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS clicks_codeUrl INTEGER DEFAULT 0;`;
 }
 
 // Helper to run ensureTable before each request
@@ -192,11 +196,35 @@ app.get("/api/projects", async (req, res) => {
             codeUrl: p.codeurl || p.codeUrl,
             description: p.description,
             tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []),
-            featured: p.featured
+            featured: p.featured,
+            clicks_dashboardUrl: p.clicks_dashboardurl || p.clicks_dashboardUrl || 0,
+            clicks_codeUrl: p.clicks_codeurl || p.clicks_codeUrl || 0
         }));
         res.json(result);
     } catch (e) {
         res.status(500).json({ error: "Failed to fetch projects" });
+    }
+});
+
+// Increment click count for dashboardUrl
+app.post("/api/projects/click/dashboard/:title", async (req, res) => {
+    const title = decodeURIComponent(req.params.title);
+    try {
+        await sql`UPDATE projects SET clicks_dashboardUrl = COALESCE(clicks_dashboardUrl,0) + 1 WHERE title = ${title}`;
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to increment dashboardUrl clicks" });
+    }
+});
+
+// Increment click count for codeUrl
+app.post("/api/projects/click/code/:title", async (req, res) => {
+    const title = decodeURIComponent(req.params.title);
+    try {
+        await sql`UPDATE projects SET clicks_codeUrl = COALESCE(clicks_codeUrl,0) + 1 WHERE title = ${title}`;
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to increment codeUrl clicks" });
     }
 });
 
