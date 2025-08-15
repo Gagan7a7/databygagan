@@ -143,36 +143,50 @@
         return "";
     }
 
-    // Load all projects from backend
-    async function loadProjects() {
-        try {
-            const res = await fetch('/api/projects');
-            if (!res.ok) throw new Error('Failed to fetch projects');
-            const projects = await res.json();
-            const tbody = document.getElementById('project-list');
-            tbody.innerHTML = '';
-            projects.forEach((project, idx) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><img src="${project.image || ''}" alt="${project.alt || ''}" style="width:60px;height:60px;border-radius:6px;"></td>
-                    <td>${project.title}</td>
-                    <td>${project.category}</td>
-                    <td>${project.description}</td>
-                    <td><a href="${project.dashboardUrl || '#'}" target="_blank">Dashboard</a></td>
-                    <td><a href="${project.codeUrl || '#'}" target="_blank">Code</a></td>
-                    <td>${techToString(project.tech)}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#editProjectModal" onclick="openEditModal(${idx})"><i class="fa fa-edit me-1"></i>Edit</button>
-                        <button type="button" class="btn btn-danger m-2" onclick="deleteProjectByTitle('${encodeURIComponent(project.title)}')"><i class="fa fa-trash me-1"></i>Delete</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+    // Unified CRUD logic from admin.html
+    let projects = [];
+    function loadProjects() {
+        fetch('/api/projects')
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch projects from server');
+                return res.json();
+            })
+            .then(data => {
+                projects = data;
+                renderProjects();
+            })
+            .catch(err => {
+                alert('Error loading projects: ' + err);
             });
-            window.projects = projects;
-        } catch (err) {
-            alert('Error loading projects: ' + err);
-        }
     }
+    function renderProjects() {
+        const tbody = document.getElementById('project-list');
+        tbody.innerHTML = '';
+        projects.forEach((proj, idx) => {
+            let imgHtml = '';
+            if (proj.image) {
+                let imgSrc = proj.image.startsWith('http') ? proj.image : proj.image;
+                imgHtml = `<img src="${imgSrc}" alt="${proj.alt || ''}" style="width:60px;height:60px;border-radius:6px;">`;
+            }
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${imgHtml}</td>
+                <td>${proj.title}</td>
+                <td>${proj.category}</td>
+                <td>${proj.description}</td>
+                <td><a href="${proj.dashboardUrl || '#'}" target="_blank">Dashboard</a></td>
+                <td><a href="${proj.codeUrl || '#'}" target="_blank">Code</a></td>
+                <td>${techToString(proj.tech)}</td>
+                <td>
+                    <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#editProjectModal" onclick="openEditModal(${idx})"><i class="fa fa-edit me-1"></i>Edit</button>
+                    <button type="button" class="btn btn-danger m-2" onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')"><i class="fa fa-trash me-1"></i>Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+    // Initial load
+    window.addEventListener('DOMContentLoaded', loadProjects);
 
     // Open edit modal and fill form
     function openEditModal(idx) {

@@ -90,59 +90,163 @@
     </script>
     <!-- Add JS logic for form submission here if needed -->
     <script>
-    document.getElementById('add-project-form').addEventListener('submit', async function(e) {
+    // Exact admin.html logic for add/edit/delete
+    let projects = [];
+    function loadProjects() {
+        fetch('/api/projects')
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch projects from server');
+                return res.json();
+            })
+            .then(data => {
+                projects = data;
+                renderProjects();
+            })
+            .catch(err => {
+                document.getElementById('notification').textContent = 'Error loading projects: ' + err;
+            });
+    }
+    function renderProjects() {
+        const list = document.getElementById('project-list');
+        if (!list) return;
+        list.innerHTML = '';
+        projects.forEach((proj, idx) => {
+            const div = document.createElement('div');
+            div.className = 'project-item';
+            let imgHtml = '';
+            if (proj.image) {
+                let imgSrc = proj.image.startsWith('http') ? proj.image : proj.image;
+                imgHtml = `<img src="${imgSrc}" alt="${proj.alt || ''}" style="max-width:60px;max-height:60px;margin-right:12px;border-radius:6px;vertical-align:middle;">`;
+            }
+            div.innerHTML = `${imgHtml}<b>${proj.title}</b> <button onclick="editProject(${idx})">Edit</button> <button onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')">Delete</button>`;
+            list.appendChild(div);
+        });
+    }
+    document.getElementById('add-project-form').onsubmit = function(e) {
         e.preventDefault();
-        const title = document.getElementById('title').value;
-        const category = document.getElementById('category').value;
-        const alt = document.getElementById('alt').value;
-        const dashboardUrl = document.getElementById('dashboardUrl').value;
-        const codeUrl = document.getElementById('codeUrl').value;
-        const description = document.getElementById('description').value;
-        const tech = document.getElementById('tech').value.split(',').map(t => t.trim());
-        const fileInput = document.getElementById('imageUpload');
-        let image = '';
-        async function saveProjectWithImage(imagePath) {
-            const payload = { title, category, alt, dashboardUrl, codeUrl, description, tech, image: imagePath };
-            try {
-                const res = await fetch('/api/projects', {
+        const idx = document.getElementById('edit-index') ? document.getElementById('edit-index').value : '';
+        const imageFile = document.getElementById('imageUpload').files[0];
+        const proj = {
+            title: document.getElementById('title').value,
+            category: document.getElementById('category').value,
+            image: '',
+            alt: document.getElementById('alt').value,
+            dashboardUrl: document.getElementById('dashboardUrl').value,
+            codeUrl: document.getElementById('codeUrl').value,
+            description: document.getElementById('description').value,
+            tech: document.getElementById('tech').value.split(',').map(t => t.trim())
+        };
+        function saveProjectWithImage(imagePath) {
+            proj.image = imagePath;
+            if (idx === '') {
+                fetch('/api/projects', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(proj)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        projects.push(proj);
+                        renderProjects();
+                        resetForm();
+                        document.getElementById('notification').textContent = 'Project added and saved to server!';
+                    } else {
+                        document.getElementById('notification').textContent = 'Error saving project: ' + (data.error || 'Unknown error');
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('notification').textContent = 'Error saving project: ' + err;
                 });
-                const data = await res.json();
-                if (data.success) {
-                    document.getElementById('notification').textContent = 'Project added successfully!';
-                    document.getElementById('add-project-form').reset();
-                } else {
-                    document.getElementById('notification').textContent = 'Error: ' + (data.error || 'Failed to add project.');
-                }
-            } catch (err) {
-                document.getElementById('notification').textContent = 'Error: ' + err;
+            } else {
+                const editTitle = encodeURIComponent(projects[idx].title);
+                fetch(`/api/projects/title/${editTitle}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(proj)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        projects[idx] = proj;
+                        renderProjects();
+                        resetForm();
+                        document.getElementById('notification').textContent = 'Project updated on server!';
+                    } else {
+                        document.getElementById('notification').textContent = 'Error updating project: ' + (data.error || 'Unknown error');
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('notification').textContent = 'Error updating project: ' + err;
+                });
             }
         }
-        if (fileInput.files.length > 0) {
-            // Upload image to serverless function first
+        if (imageFile) {
             const formData = new FormData();
-            formData.append('image', fileInput.files[0]);
-            try {
-                const res = await fetch('/.netlify/functions/upload-image', {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await res.json();
+            formData.append('image', imageFile);
+            fetch('/.netlify/functions/upload-image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
                 if (data.success && data.imagePath) {
                     saveProjectWithImage(data.imagePath);
                 } else {
                     document.getElementById('notification').textContent = 'Image upload failed: ' + (data.error || 'Unknown error');
                 }
-            } catch (err) {
+            })
+            .catch(err => {
                 document.getElementById('notification').textContent = 'Image upload error: ' + err;
-            }
+            });
         } else {
-            // No image uploaded
-            saveProjectWithImage('');
+            let imagePath = '';
+            if (idx !== '') {
+                imagePath = projects[idx].image;
+            }
+            saveProjectWithImage(imagePath);
         }
-    });
+    };
+    function editProject(idx) {
+        const proj = projects[idx];
+        document.getElementById('edit-index').value = idx;
+        document.getElementById('title').value = proj.title;
+        document.getElementById('category').value = proj.category || '';
+        document.getElementById('alt').value = proj.alt;
+        document.getElementById('dashboardUrl').value = proj.dashboardUrl;
+        document.getElementById('codeUrl').value = proj.codeUrl;
+        document.getElementById('description').value = proj.description;
+        document.getElementById('tech').value = proj.tech.join(', ');
+        if (proj.image) {
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('imageUpload').setAttribute('data-prev', proj.image);
+        }
+    }
+    function deleteProjectByTitle(title) {
+        if (confirm('Delete this project?')) {
+            fetch(`/api/projects/title/${title}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    projects = projects.filter(p => encodeURIComponent(p.title) !== title);
+                    renderProjects();
+                    document.getElementById('notification').textContent = 'Project deleted from server!';
+                } else {
+                    document.getElementById('notification').textContent = 'Error deleting project: ' + (data.error || 'Unknown error');
+                }
+            })
+            .catch(err => {
+                document.getElementById('notification').textContent = 'Error deleting project: ' + err;
+            });
+        }
+    }
+    function resetForm() {
+        document.getElementById('edit-index').value = '';
+        document.getElementById('add-project-form').reset();
+    }
+    window.addEventListener('DOMContentLoaded', loadProjects);
     </script>
 </body>
 </html>
