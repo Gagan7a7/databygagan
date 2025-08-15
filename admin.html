@@ -181,16 +181,26 @@
         </div>
     </div>
     <script>
-        // Simple password (change this to your own secret)
-        const ADMIN_PASSWORD = 'MyPortfolio@P@ssword77';
-        function login() {
+        // Secure backend password validation
+        async function login() {
             const input = document.getElementById('admin-password').value;
-            if (input === ADMIN_PASSWORD) {
-                document.getElementById('login-section').classList.add('hidden');
-                document.getElementById('admin-section').classList.remove('hidden');
-                loadProjects();
-            } else {
-                document.getElementById('login-error').textContent = 'Incorrect password.';
+            document.getElementById('login-error').textContent = '';
+            try {
+                const res = await fetch('/.netlify/functions/validate-admin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: input })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('login-section').classList.add('hidden');
+                    document.getElementById('admin-section').classList.remove('hidden');
+                    loadProjects();
+                } else {
+                    document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
+                }
+            } catch (err) {
+                document.getElementById('login-error').textContent = 'Login error: ' + err;
             }
         }
         // Load projects from JSON
