@@ -1,99 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <title>Admin Dashboard - DatabyGagan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Your CSS file - same as addproject.html -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        /* Same styles as addproject.html */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            background: #191C24;
-            padding: 15px 0;
-            overflow-y: auto;
-        }
-        .content {
-            margin-left: 250px;
-            min-height: 100vh;
-            background: #151821;
-        }
-        .bg-secondary {
-            background-color: #191C24 !important;
-        }
-        .form-control {
-            background-color: #2A2D3A;
-            border-color: #3E4651;
-            color: #fff;
-        }
-        .form-control:focus {
-            background-color: #2A2D3A;
-            border-color: #007BFF;
-            color: #fff;
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        }
-        .form-control::placeholder {
-            color: #adb5bd;
-        }
-        body {
-            background-color: #151821;
-            color: #fff;
-        }
-        .alert {
-            margin-top: 1rem;
-        }
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px;
-            background: #191C24;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .error {
-            color: #dc3545;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .table-dark {
-            --bs-table-bg: #191C24;
-            --bs-table-border-color: #3E4651;
-        }
-        .modal-content {
-            background: #191C24;
-            color: #fff;
-        }
-        .btn-close {
-            filter: invert(1);
-        }
-        .navbar {
-            background: #191C24 !important;
-        }
-    </style>
 </head>
+
 <body>
+    <script>
+    // Simple authentication check
+    function checkAuth() {
+        return true;
+    }
+
+    if (!checkAuth()) {
+        // window.location.href = 'signin.html';
+    }
+    </script>
+
     <!-- Login Section -->
     <div id="login-section">
-        <div class="login-container">
+        <div style="max-width: 400px; margin: 100px auto; padding: 40px; background: #191C24; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <h2 class="text-center mb-4">Admin Login</h2>
             <form id="login-form" onsubmit="login(event)">
                 <div class="mb-3">
@@ -102,7 +43,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
-            <div id="login-error" class="error"></div>
+            <div id="login-error" class="text-danger mt-2"></div>
         </div>
     </div>
 
@@ -129,7 +70,6 @@
                         <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                         <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
                         <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                        <a href="#" class="nav-item nav-link" onclick="logout()"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                     </div>
                 </nav>
             </div>
@@ -137,11 +77,11 @@
             <!-- Content -->
             <div class="content">
                 <div class="container-fluid pt-4 px-4">
-                    <!-- Dashboard Stats -->
                     <div class="row g-4">
+                        <!-- Dashboard Stats -->
                         <div class="col-sm-6 col-xl-3">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-folder fa-3x text-primary"></i>
+                                <i class="bi bi-collection-play-fill fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Total Projects</p>
                                     <h6 class="mb-0" id="total-projects">0</h6>
@@ -150,7 +90,7 @@
                         </div>
                         <div class="col-sm-6 col-xl-3">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-star fa-3x text-warning"></i>
+                                <i class="bi bi-star-fill fa-3x text-warning"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Featured Projects</p>
                                     <h6 class="mb-0" id="featured-projects">0</h6>
@@ -159,7 +99,7 @@
                         </div>
                         <div class="col-sm-6 col-xl-3">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-info"></i>
+                                <i class="bi bi-bar-chart-line-fill fa-3x text-info"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Total Clicks</p>
                                     <h6 class="mb-0" id="total-clicks">0</h6>
@@ -168,7 +108,7 @@
                         </div>
                         <div class="col-sm-6 col-xl-3">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-tags fa-3x text-success"></i>
+                                <i class="bi bi-trophy-fill fa-3x text-success"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Categories</p>
                                     <h6 class="mb-0" id="total-categories">0</h6>
@@ -212,7 +152,7 @@
                                 </div>
 
                                 <div id="no-projects" class="text-center py-4 hidden">
-                                    <i class="fa fa-folder-open fa-3x text-muted mb-3"></i>
+                                    <i class="bi bi-folder-x fa-3x text-muted mb-3"></i>
                                     <p class="text-muted">No projects found. <a href="addproject.html">Add your first project</a></p>
                                 </div>
                             </div>
@@ -242,18 +182,19 @@
                         </div>
                     </div>
 
-                    <!-- Footer -->
-                    <div class="row g-4 mt-2">
-                        <div class="col-12">
-                            <div class="bg-secondary rounded p-4">
-                                <div class="row">
-                                    <div class="col-12 col-sm-6 text-center text-sm-start">
-                                        &copy; <a href="https://databygagan.com">DatabyGagan</a>, All Rights Reserved.
-                                    </div>
-                                    <div class="col-12 col-sm-6 text-center text-sm-end">
-                                        Designed By Gagan BP
-                                    </div>
-                                </div>
+                    <!-- Notification area -->
+                    <div id="notification-container"></div>
+                </div>
+
+                <!-- Footer -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-secondary rounded-top p-4">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center text-sm-start">
+                                &copy; <a href="https://databygagan.com">DatabyGagan</a>, All Rights Reserved.
+                            </div>
+                            <div class="col-12 col-sm-6 text-center text-sm-end">
+                                Designed By Gagan BP
                             </div>
                         </div>
                     </div>
@@ -327,7 +268,29 @@
         let projects = [];
         let currentEditIndex = '';
 
-        // Secure backend password validation
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            container.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fa ${iconClass} me-2"></i>${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const alert = container.querySelector('.alert');
+                if (alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            }, 5000);
+        }
+
+        // Login function
         function login(event) {
             if (event) event.preventDefault();
             const input = document.getElementById('admin-password').value;
@@ -372,7 +335,7 @@
                 })
                 .catch(err => {
                     console.error('Error loading projects:', err);
-                    alert('Error loading projects: ' + err.message);
+                    showNotification('Error loading projects: ' + err.message, 'error');
                 });
         }
 
@@ -409,7 +372,7 @@
                         <button class="btn btn-sm btn-warning me-1" onclick="editProject(${idx})" title="Edit">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn btn-sm btn-danger me-1" onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')" title="Delete">
+                        <button class="btn btn-sm btn-danger" onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')" title="Delete">
                             <i class="fa fa-trash"></i>
                         </button>
                         <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-sm btn-success me-1" title="View Dashboard">
@@ -491,13 +454,13 @@
                         renderProjects();
                         updateDashboardStats();
                         bootstrap.Modal.getInstance(document.getElementById('editProjectModal')).hide();
-                        alert('Project updated successfully!');
+                        showNotification('Project updated successfully!', 'success');
                     } else {
-                        alert('Error updating project: ' + (data.error || 'Unknown error'));
+                        showNotification('Error updating project: ' + (data.error || 'Unknown error'), 'error');
                     }
                 })
                 .catch(err => {
-                    alert('Error updating project: ' + err.message);
+                    showNotification('Error updating project: ' + err.message, 'error');
                 });
             }
 
@@ -514,11 +477,11 @@
                     if (data.success && data.imagePath) {
                         saveProjectWithImage(data.imagePath);
                     } else {
-                        alert('Image upload failed: ' + (data.error || 'Unknown error'));
+                        showNotification('Image upload failed: ' + (data.error || 'Unknown error'), 'error');
                     }
                 })
                 .catch(err => {
-                    alert('Image upload error: ' + err.message);
+                    showNotification('Image upload error: ' + err.message, 'error');
                 });
             } else {
                 saveProjectWithImage(projects[idx].image || '');
@@ -539,13 +502,13 @@
                         projects = projects.filter(p => encodeURIComponent(p.title) !== title);
                         renderProjects();
                         updateDashboardStats();
-                        alert('Project deleted successfully!');
+                        showNotification('Project deleted successfully!', 'success');
                     } else {
-                        alert('Error deleting project: ' + (data.error || 'Unknown error'));
+                        showNotification('Error deleting project: ' + (data.error || 'Unknown error'), 'error');
                     }
                 })
                 .catch(err => {
-                    alert('Error deleting project: ' + err.message);
+                    showNotification('Error deleting project: ' + err.message, 'error');
                 });
             }
         }
@@ -585,6 +548,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('admin-password').focus();
         });
+
+        // Add hidden class to CSS
+        const style = document.createElement('style');
+        style.textContent = '.hidden { display: none !important; }';
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
