@@ -16,8 +16,58 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
     <!-- Your CSS file - same as addproject.html -->
     <link href="css/style.css" rel="stylesheet">
+    
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: #191C24;
+            padding: 15px 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 250px;
+            min-height: 100vh;
+            background: #151821;
+        }
+        .bg-secondary {
+            background-color: #191C24 !important;
+        }
+        .form-control {
+            background-color: #2A2D3A;
+            border-color: #3E4651;
+            color: #fff;
+        }
+        .form-control:focus {
+            background-color: #2A2D3A;
+            border-color: #007BFF;
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+        body {
+            background-color: #151821;
+            color: #fff;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .hidden { 
+            display: none !important; 
+        }
+    </style>
 </head>
 
 <body>
@@ -117,6 +167,26 @@
                         </div>
                     </div>
 
+                    <!-- Charts Section -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-xl-6">
+                            <div class="bg-secondary rounded p-4">
+                                <h6 class="mb-3"><i class="fa fa-chart-pie me-2"></i>Projects by Category</h6>
+                                <div class="chart-container">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="bg-secondary rounded p-4">
+                                <h6 class="mb-3"><i class="fa fa-chart-bar me-2"></i>Tech Stack Usage</h6>
+                                <div class="chart-container">
+                                    <canvas id="techChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Project Management Section -->
                     <div class="row g-4 mt-2">
                         <div class="col-12">
@@ -124,6 +194,13 @@
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h6 class="mb-0">Project Management</h6>
                                     <div>
+                                        <!-- Search Bar -->
+                                        <div class="input-group me-3" style="width: 300px; display: inline-flex;">
+                                            <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search projects..." onkeyup="searchProjects()">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
                                         <button type="button" class="btn btn-sm btn-primary me-2" onclick="loadProjects()">
                                             <i class="fa fa-refresh me-1"></i>Refresh
                                         </button>
@@ -267,6 +344,8 @@
         // Global variables
         let projects = [];
         let currentEditIndex = '';
+        let categoryChart = null;
+        let techChart = null;
 
         // Show notification function
         function showNotification(message, type = 'success') {
@@ -288,6 +367,126 @@
                     bsAlert.close();
                 }
             }, 5000);
+        }
+
+        // Search projects function
+        function searchProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tbody = document.getElementById('projects-table-body');
+            const rows = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const title = rows[i].cells[2].textContent.toLowerCase();
+                const category = rows[i].cells[3].textContent.toLowerCase();
+                const tech = rows[i].cells[4].textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || category.includes(searchTerm) || tech.includes(searchTerm)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Create charts
+        function createCharts() {
+            // Category Chart
+            const categoryData = {};
+            projects.forEach(proj => {
+                const category = proj.category || 'Other';
+                categoryData[category] = (categoryData[category] || 0) + 1;
+            });
+
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(categoryData),
+                    datasets: [{
+                        data: Object.values(categoryData),
+                        backgroundColor: [
+                            '#0d6efd',
+                            '#6f42c1',
+                            '#d63384',
+                            '#dc3545',
+                            '#fd7e14',
+                            '#ffc107',
+                            '#198754',
+                            '#20c997'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Tech Chart
+            const techData = {};
+            projects.forEach(proj => {
+                if (Array.isArray(proj.tech)) {
+                    proj.tech.forEach(tech => {
+                        const cleanTech = tech.trim();
+                        if (cleanTech) {
+                            techData[cleanTech] = (techData[cleanTech] || 0) + 1;
+                        }
+                    });
+                }
+            });
+
+            const techCtx = document.getElementById('techChart').getContext('2d');
+            if (techChart) techChart.destroy();
+            techChart = new Chart(techCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(techData).slice(0, 8), // Top 8 technologies
+                    datasets: [{
+                        label: 'Usage Count',
+                        data: Object.values(techData).slice(0, 8),
+                        backgroundColor: '#0d6efd',
+                        borderColor: '#0d6efd',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: '#3E4651'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: '#3E4651'
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         // Login function
@@ -332,6 +531,7 @@
                     projects = data || [];
                     renderProjects();
                     updateDashboardStats();
+                    createCharts();
                 })
                 .catch(err => {
                     console.error('Error loading projects:', err);
@@ -453,6 +653,7 @@
                         projects[idx] = proj;
                         renderProjects();
                         updateDashboardStats();
+                        createCharts();
                         bootstrap.Modal.getInstance(document.getElementById('editProjectModal')).hide();
                         showNotification('Project updated successfully!', 'success');
                     } else {
@@ -502,6 +703,7 @@
                         projects = projects.filter(p => encodeURIComponent(p.title) !== title);
                         renderProjects();
                         updateDashboardStats();
+                        createCharts();
                         showNotification('Project deleted successfully!', 'success');
                     } else {
                         showNotification('Error deleting project: ' + (data.error || 'Unknown error'), 'error');
@@ -548,11 +750,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('admin-password').focus();
         });
-
-        // Add hidden class to CSS
-        const style = document.createElement('style');
-        style.textContent = '.hidden { display: none !important; }';
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
