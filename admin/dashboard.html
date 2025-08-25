@@ -37,13 +37,13 @@
             --text-light: #ECF0F1;
             --border-color: #34495E;
         }
-        
+
         body {
             background: var(--darker-bg);
             color: var(--text-light);
             font-family: 'Open Sans', sans-serif;
         }
-        
+
         .sidebar {
             width: 250px;
             height: 100vh;
@@ -53,44 +53,44 @@
             left: 0;
             overflow-y: auto;
         }
-        
+
         .content {
             margin-left: 250px;
             min-height: 100vh;
             background: var(--dark-bg);
         }
-        
+
         .navbar {
             background: var(--sidebar-bg) !important;
         }
-        
+
         .bg-secondary {
             background: var(--card-bg) !important;
         }
-        
+
         .form-control {
             background: var(--dark-bg);
             border: 1px solid var(--border-color);
             color: var(--text-light);
         }
-        
+
         .form-control:focus {
             background: var(--dark-bg);
             border-color: var(--primary-color);
             color: var(--text-light);
             box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
         }
-        
+
         .btn-primary {
             background: var(--primary-color);
             border-color: var(--primary-color);
         }
-        
+
         .btn-primary:hover {
             background: #357ABD;
             border-color: #357ABD;
         }
-        
+
         .login-container {
             max-width: 400px;
             margin: 100px auto;
@@ -99,45 +99,45 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        
+
         .error {
             color: var(--accent-color);
             margin-top: 10px;
             font-size: 0.9rem;
         }
-        
+
         .hidden {
             display: none !important;
         }
-        
+
         .table-dark {
             --bs-table-bg: var(--card-bg);
             --bs-table-border-color: var(--border-color);
         }
-        
+
         .modal-content {
             background: var(--card-bg);
             color: var(--text-light);
         }
-        
+
         .btn-close {
             filter: invert(1);
         }
-        
+
         #spinner {
             background: rgba(26, 35, 50, 0.9);
         }
-        
+
         @media (max-width: 768px) {
             .sidebar {
                 margin-left: -250px;
                 transition: margin-left 0.3s;
             }
-            
+
             .content {
                 margin-left: 0;
             }
-            
+
             .sidebar.show {
                 margin-left: 0;
             }
@@ -203,7 +203,7 @@
                     <a href="#" class="navbar-brand d-flex d-lg-none me-4">
                         <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                     </a>
-                    <button type="button" class="sidebar-toggler flex-shrink-0" onclick="toggleSidebar()">
+                    <button type="button" class="sidebar-toggler flex-shrink-0" onclick="toggleSidebar()" aria-label="Toggle Sidebar">
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class="d-flex w-100 align-items-center">
@@ -280,17 +280,17 @@
                                         </button>
                                     </div>
                                 </div>
-                                
+
                                 <div class="table-responsive">
                                     <table class="table table-dark table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Image</th>
-                                                <th>Title</th>
-                                                <th>Category</th>
-                                                <th>Tech</th>
-                                                <th>Actions</th>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Tech</th>
+                                                <th scope="col">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody id="projects-table-body">
@@ -427,21 +427,21 @@
         async function login() {
             const input = document.getElementById('admin-password').value;
             document.getElementById('login-error').textContent = '';
-            
+
             if (!input.trim()) {
                 document.getElementById('login-error').textContent = 'Please enter password';
                 return;
             }
-            
+
             try {
                 const res = await fetch('/.netlify/functions/validate-admin', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password: input })
                 });
-                
+
                 const data = await res.json();
-                
+
                 if (data.success) {
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
@@ -476,25 +476,25 @@
         function renderProjects() {
             const tbody = document.getElementById('projects-table-body');
             const noProjects = document.getElementById('no-projects');
-            
+
             tbody.innerHTML = '';
-            
+
             if (projects.length === 0) {
                 noProjects.classList.remove('hidden');
                 return;
             }
-            
+
             noProjects.classList.add('hidden');
-            
+
             projects.forEach((proj, idx) => {
                 const tr = document.createElement('tr');
-                
+
                 let imgHtml = '<span class="text-muted">No Image</span>';
                 if (proj.image) {
                     let imgSrc = proj.image.startsWith('http') ? proj.image : proj.image;
                     imgHtml = `<img src="${imgSrc}" alt="${proj.alt || ''}" style="max-width:50px;max-height:40px;border-radius:6px;">`;
                 }
-                
+
                 tr.innerHTML = `
                     <td>${idx + 1}</td>
                     <td>${imgHtml}</td>
@@ -516,7 +516,7 @@
                         </a>
                     </td>
                 `;
-                
+
                 tbody.appendChild(tr);
             });
         }
@@ -524,14 +524,14 @@
         // Update dashboard statistics
         function updateDashboardStats() {
             document.getElementById('total-projects').textContent = projects.length;
-            
+
             const categories = [...new Set(projects.map(p => p.category).filter(Boolean))];
             document.getElementById('total-categories').textContent = categories.length;
-            
+
             // Calculate featured projects (if you have this field)
             const featured = projects.filter(p => p.featured).length;
             document.getElementById('featured-projects').textContent = featured;
-            
+
             // Calculate total clicks (if you have click tracking)
             const totalClicks = projects.reduce((sum, p) => {
                 return sum + (p.clicks_dashboardUrl || 0) + (p.clicks_codeUrl || 0);
@@ -543,7 +543,7 @@
         function editProject(idx) {
             currentEditIndex = idx;
             const proj = projects[idx];
-            
+
             document.getElementById('edit-index').value = idx;
             document.getElementById('edit-title').value = proj.title;
             document.getElementById('edit-category').value = proj.category || '';
@@ -552,7 +552,7 @@
             document.getElementById('edit-codeUrl').value = proj.codeUrl || '';
             document.getElementById('edit-description').value = proj.description || '';
             document.getElementById('edit-tech').value = Array.isArray(proj.tech) ? proj.tech.join(', ') : '';
-            
+
             new bootstrap.Modal(document.getElementById('editProjectModal')).show();
         }
 
@@ -560,7 +560,7 @@
         function saveEditedProject() {
             const idx = currentEditIndex;
             const imageFile = document.getElementById('edit-imageUpload').files[0];
-            
+
             const proj = {
                 title: document.getElementById('edit-title').value,
                 category: document.getElementById('edit-category').value,
@@ -575,7 +575,7 @@
             function saveProjectWithImage(imagePath) {
                 proj.image = imagePath;
                 const editTitle = encodeURIComponent(projects[idx].title);
-                
+
                 fetch(`/api/projects/title/${editTitle}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -601,7 +601,7 @@
             if (imageFile) {
                 const formData = new FormData();
                 formData.append('image', imageFile);
-                
+
                 fetch('/.netlify/functions/upload-image', {
                     method: 'POST',
                     body: formData
@@ -626,7 +626,7 @@
         function deleteProjectByTitle(title) {
             if (confirm('Are you sure you want to delete this project?')) {
                 const backendUrl = '/api/projects/title/' + title;
-                
+
                 fetch(backendUrl, {
                     method: 'DELETE'
                 })
@@ -665,12 +665,12 @@
         document.getElementById('dashboard-search').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
             const rows = document.querySelectorAll('#projects-table-body tr');
-            
+
             rows.forEach(row => {
                 const title = row.cells[2].textContent.toLowerCase();
                 const category = row.cells[3].textContent.toLowerCase();
                 const tech = row.cells[4].textContent.toLowerCase();
-                
+
                 if (title.includes(query) || category.includes(query) || tech.includes(query)) {
                     row.style.display = '';
                 } else {
@@ -702,3 +702,6 @@
         });
 
         // Focus password field on load
+    </script>
+</body>
+</html>

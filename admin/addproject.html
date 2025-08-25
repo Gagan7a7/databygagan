@@ -67,7 +67,7 @@
         // For now, we'll assume authenticated if they reach this page
         return true;
     }
-    
+
     if (!checkAuth()) {
         // window.location.href = 'signin.html';
     }
@@ -110,10 +110,10 @@
                                     <i class="fa fa-list me-1"></i>View All Projects
                                 </a>
                             </div>
-                            
+
                             <!-- Hidden field for edit index (from your original admin.html) -->
                             <input type="hidden" id="edit-index">
-                            
+
                             <form id="add-project-form">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="imageUpload" class="form-label">
                                         <i class="fa fa-image me-1"></i>Image Upload
@@ -137,12 +137,12 @@
                                     <input class="form-control" type="file" id="imageUpload" accept="image/*">
                                     <div class="form-text">Upload an image for your project (optional)</div>
                                 </div>
-                                
+
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="alt" placeholder="Image Alt Text" required>
                                     <label for="alt">Image Alt Text</label>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
@@ -157,17 +157,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" id="description" placeholder="Describe your project..." style="height: 120px" required></textarea>
                                     <label for="description">Project Description</label>
                                 </div>
-                                
+
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="tech" placeholder="React, Node.js, MongoDB" required>
                                     <label for="tech">Tech Tags (comma separated)</label>
                                 </div>
-                                
+
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-success px-4">
                                         <i class="fa fa-save me-1"></i>Save Project
@@ -177,7 +177,7 @@
                                     </button>
                                 </div>
                             </form>
-                            
+
                             <!-- Notification area -->
                             <div id="notification-container"></div>
                         </div>
@@ -189,24 +189,24 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
     // Your exact admin.html logic for add/edit/delete projects
     let projects = [];
-    
+
     // Show notification function
     function showNotification(message, type = 'success') {
         const container = document.getElementById('notification-container');
         const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
         const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-        
+
         container.innerHTML = `
             <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
                 <i class="fa ${iconClass} me-2"></i>${message}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         `;
-        
+
         // Auto-dismiss after 5 seconds
         setTimeout(() => {
             const alert = container.querySelector('.alert');
@@ -236,17 +236,17 @@
     // Form submission handler (your exact logic from admin.html)
     document.getElementById('add-project-form').onsubmit = function(e) {
         e.preventDefault();
-        
+
         const submitBtn = e.target.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
-        
+
         // Show loading state
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving...';
-        
+
         const idx = document.getElementById('edit-index').value;
         const imageFile = document.getElementById('imageUpload').files[0];
-        
+
         const proj = {
             title: document.getElementById('title').value,
             category: document.getElementById('category').value,
@@ -257,13 +257,13 @@
             description: document.getElementById('description').value,
             tech: document.getElementById('tech').value.split(',').map(t => t.trim())
         };
-        
+
         console.log('Project object being sent:', proj);
         const backendUrl = '/api/projects';
-        
+
         function saveProjectWithImage(imagePath) {
             proj.image = imagePath;
-            
+
             if (idx === '') {
                 // Add new project
                 fetch(backendUrl, {
@@ -317,12 +317,12 @@
                 });
             }
         }
-        
+
         if (imageFile) {
             // Upload image first
             const formData = new FormData();
             formData.append('image', imageFile);
-            
+
             fetch('/.netlify/functions/upload-image', {
                 method: 'POST',
                 body: formData
@@ -356,7 +356,7 @@
     function editProject(idx) {
         const proj = projects[idx];
         if (!proj) return;
-        
+
         document.getElementById('edit-index').value = idx;
         document.getElementById('title').value = proj.title;
         document.getElementById('category').value = proj.category || '';
@@ -365,13 +365,13 @@
         document.getElementById('codeUrl').value = proj.codeUrl;
         document.getElementById('description').value = proj.description;
         document.getElementById('tech').value = proj.tech.join(', ');
-        
+
         // Show previous image path (optional)
         if (proj.image) {
             document.getElementById('imageUpload').value = '';
             document.getElementById('imageUpload').setAttribute('data-prev', proj.image);
         }
-        
+
         // Update form title and button text
         document.querySelector('h3').textContent = 'Edit Project';
         document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Update Project';
@@ -381,11 +381,11 @@
     function resetForm() {
         document.getElementById('edit-index').value = '';
         document.getElementById('add-project-form').reset();
-        
+
         // Reset form title and button text
         document.querySelector('h3').textContent = 'Add New Project';
         document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Save Project';
-        
+
         // Clear any previous image data
         document.getElementById('imageUpload').removeAttribute('data-prev');
     }
