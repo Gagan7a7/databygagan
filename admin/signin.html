@@ -56,10 +56,6 @@
                             </a>
                             <h3>Sign In</h3>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="signin-email" placeholder="name@example.com" required>
-                            <label for="signin-email">Email address</label>
-                        </div>
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="signin-password" placeholder="Password" required>
                             <label for="signin-password">Password</label>
@@ -115,56 +111,43 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-    // Password reset modal logic
-    document.getElementById('reset-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const email = document.getElementById('reset-email').value;
-        const msg = document.getElementById('reset-message');
-        msg.textContent = '';
-        if (!email) {
-            msg.textContent = 'Please enter your email.';
-            return;
-        }
-        try {
-            const res = await fetch('/.netlify/functions/request-password-reset', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            const data = await res.json();
-            if (data.success) {
-                msg.textContent = 'A reset link has been sent to your email.';
-            } else {
-                msg.textContent = data.error || 'Unable to send reset link.';
-            }
-        } catch (err) {
-            msg.textContent = 'Error: ' + err;
-        }
-    });
+    // Check if already logged in
+    if (localStorage.getItem('admin_auth')) {
+        window.location.href = 'dashboard.html';
+    }
+
     document.querySelector('.btn.btn-primary').addEventListener('click', async function(e) {
         e.preventDefault();
-        const email = document.getElementById('signin-email').value;
         const password = document.getElementById('signin-password').value;
         document.getElementById('login-error').textContent = '';
-        if (!email || !password) {
-            document.getElementById('login-error').textContent = 'Email and password required.';
+        
+        if (!password) {
+            document.getElementById('login-error').textContent = 'Password required.';
             return;
         }
+        
         try {
             const res = await fetch('/.netlify/functions/validate-admin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, signin: true })
+                body: JSON.stringify({ password })
             });
             const data = await res.json();
             if (data.success) {
-                localStorage.setItem('admin_signed_in', 'true');
+                localStorage.setItem('admin_auth', 'true');
                 window.location.href = 'dashboard.html';
             } else {
-                document.getElementById('login-error').textContent = data.error || 'Incorrect email or password.';
+                document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
             }
         } catch (err) {
             document.getElementById('login-error').textContent = 'Login error: ' + err;
+        }
+    });
+
+    // Handle enter key in password field
+    document.getElementById('signin-password').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.querySelector('.btn.btn-primary').click();
         }
     });
     </script>

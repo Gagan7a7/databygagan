@@ -61,15 +61,19 @@
 </head>
 <body>
     <script>
-    // Simple authentication check - modify as needed
+    // Authentication check
     function checkAuth() {
-        // You can implement your authentication logic here
-        // For now, we'll assume authenticated if they reach this page
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            window.location.href = 'signin.html';
+            return false;
+        }
         return true;
     }
 
+    // Check authentication on page load
     if (!checkAuth()) {
-        // window.location.href = 'signin.html';
+        window.location.href = 'signin.html';
     }
     </script>
 
@@ -94,6 +98,7 @@
                     <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link active"><i class="fa fa-plus me-2"></i>Add Project</a>
                     <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                    <a href="javascript:void(0)" onclick="logout()" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -388,6 +393,12 @@
 
         // Clear any previous image data
         document.getElementById('imageUpload').removeAttribute('data-prev');
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('adminToken');
+        window.location.href = 'signin.html';
     }
 
     // Initialize page

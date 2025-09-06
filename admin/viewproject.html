@@ -67,15 +67,19 @@
 </head>
 <body>
     <script>
-    // Simple authentication check - you can modify this based on your needs
+    // Authentication check
     function checkAuth() {
-        // You can implement your own authentication logic here
-        // For now, we'll assume user is authenticated if they reach this page
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            window.location.href = 'signin.html';
+            return false;
+        }
         return true;
     }
 
+    // Check authentication on page load
     if (!checkAuth()) {
-        // window.location.href = 'signin.html';
+        window.location.href = 'signin.html';
     }
     </script>
 
@@ -100,6 +104,7 @@
                     <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
                     <a href="viewproject.html" class="nav-item nav-link active"><i class="fa fa-list me-2"></i>View Projects</a>
+                    <a href="javascript:void(0)" onclick="logout()" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -456,6 +461,12 @@
         } catch (err) {
             alert('Error deleting project: ' + err);
         }
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('adminToken');
+        window.location.href = 'signin.html';
     }
 
     // Initialize page

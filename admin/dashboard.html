@@ -71,13 +71,14 @@
 
 <body>
     <script>
-    // Simple authentication check
+    // Check if user is authenticated
     function checkAuth() {
-        return true;
+        return localStorage.getItem('admin_auth') === 'true';
     }
 
+    // Redirect to signin if not authenticated
     if (!checkAuth()) {
-        // window.location.href = 'signin.html';
+        window.location.href = 'signin.html';
     }
     </script>
 
@@ -119,6 +120,7 @@
                         <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                         <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
                         <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                        <a href="#" onclick="logout()" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                     </div>
                 </nav>
             </div>
@@ -507,6 +509,7 @@
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
+                    localStorage.setItem('admin_auth', 'true');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
                     loadProjects();
@@ -731,10 +734,8 @@
         // Logout function
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
-                document.getElementById('dashboard-section').classList.add('hidden');
-                document.getElementById('login-section').classList.remove('hidden');
-                document.getElementById('admin-password').value = '';
-                projects = [];
+                localStorage.removeItem('admin_auth');
+                window.location.href = 'signin.html';
             }
         }
 
