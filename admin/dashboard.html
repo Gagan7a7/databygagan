@@ -75,15 +75,20 @@
     function checkAuth() {
         const token = localStorage.getItem('adminToken');
         if (!token) {
-            window.location.href = 'signin.html';
+            // Don't redirect to signin.html, just show login section
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('dashboard-section').classList.add('hidden');
             return false;
         }
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
         return true;
     }
 
     // Check authentication on page load
-    if (!checkAuth()) {
-        window.location.href = 'signin.html';
+    if (checkAuth()) {
+        // If authenticated, load the projects
+        loadProjects();
     }
     </script>
 
@@ -498,6 +503,16 @@
         // Login function
         function login(event) {
             if (event) event.preventDefault();
+
+            const currentToken = localStorage.getItem('adminToken');
+            if (currentToken) {
+                // Already logged in, just show dashboard
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                loadProjects();
+                return;
+            }
+
             const input = document.getElementById('admin-password').value;
             document.getElementById('login-error').textContent = '';
 
