@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8">
+    <title>Admin Dashboard - DatabyGagan</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <!-- Your CSS file - same as addproject.html -->
+    <link href="css/style.css" rel="stylesheet">
+        <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: #191C24;
+            padding: 15px 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 250px;
+            min-height: 100vh;
+            background: #151821;
+        }
+        .bg-secondary {
+            background-color: #191C24 !important;
+        }
+        .form-control {
+            background-color: #2A2D3A;
+            border-color: #3E4651;
+            color: #fff;
+        }
+        .form-control:focus {
+            background-color: #2A2D3A;
+            border-color: #007BFF;
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+        body {
+            background-color: #151821;
+            color: #fff;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .hidden { 
+            display: none !important; 
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+    // Simple authentication check
+    function checkAuth() {
+        return true;
+    }
+
+    if (!checkAuth()) {
+        // window.location.href = 'signin.html';
+    }
+    </script>
+
+    <!-- Login Section -->
+    <div id="login-section">
+        <div style="max-width: 400px; margin: 100px auto; padding: 40px; background: #191C24; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <h2 class="text-center mb-4">Admin Login</h2>
+            <form id="login-form" onsubmit="login(event)">
+                <div class="mb-3">
+                    <label for="admin-password" class="form-label">Enter Admin Password:</label>
+                    <input type="password" class="form-control" id="admin-password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <div id="login-error" class="text-danger mt-2"></div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard-section" class="hidden">
+        <div class="container-fluid position-relative d-flex p-0">
+            <!-- Sidebar -->
+            <div class="sidebar pe-4 pb-3">
+                <nav class="navbar bg-secondary navbar-dark">
+                    <a href="dashboard.html" class="navbar-brand mx-4 mb-3">
+                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DatabyGagan</h3>
+                    </a>
+                    <div class="d-flex align-items-center ms-4 mb-4">
+                        <div class="position-relative">
+                            <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo" style="width: 40px; height: 40px;">
+                            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">Gagan</h6>
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                    <div class="navbar-nav w-100">
+                        <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                        <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
+                        <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="container-fluid pt-4 px-4">
+                    <div class="row g-4">
+                        <!-- Dashboard Stats -->
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                                <i class="bi bi-collection-play-fill fa-3x text-primary"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Total Projects</p>
+                                    <h6 class="mb-0" id="total-projects">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                                <i class="bi bi-star-fill fa-3x text-warning"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Featured Projects</p>
+                                    <h6 class="mb-0" id="featured-projects">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                                <i class="bi bi-bar-chart-line-fill fa-3x text-info"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Total Clicks</p>
+                                    <h6 class="mb-0" id="total-clicks">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                                <i class="bi bi-trophy-fill fa-3x text-success"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Categories</p>
+                                    <h6 class="mb-0" id="total-categories">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-xl-6">
+                            <div class="bg-secondary rounded p-4">
+                                <h6 class="mb-3"><i class="fa fa-chart-pie me-2"></i>Projects by Category</h6>
+                                <div class="chart-container">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="bg-secondary rounded p-4">
+                                <h6 class="mb-3"><i class="fa fa-chart-bar me-2"></i>Tech Stack Usage</h6>
+                                <div class="chart-container">
+                                    <canvas id="techChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Management Section -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-12">
+                            <div class="bg-secondary rounded p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">Project Management</h6>
+                                    <div>
+                                        <!-- Search Bar -->
+                                        <div class="input-group me-3" style="width: 300px; display: inline-flex;">
+                                            <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search projects..." onkeyup="searchProjects()">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-primary me-2" onclick="loadProjects()">
+                                            <i class="fa fa-refresh me-1"></i>Refresh
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info" onclick="exportProjects()">
+                                            <i class="fa fa-download me-1"></i>Export JSON
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-dark table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Tech</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="projects-table-body">
+                                            <!-- Projects will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="no-projects" class="text-center py-4 hidden">
+                                    <i class="bi bi-folder-x fa-3x text-muted mb-3"></i>
+                                    <p class="text-muted">No projects found. <a href="addproject.html">Add your first project</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-12">
+                            <div class="bg-secondary rounded p-4">
+                                <h6 class="mb-3">Quick Actions</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="addproject.html" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-plus me-1"></i>Add New Project
+                                    </a>
+                                    <a href="viewproject.html" class="btn btn-info btn-sm">
+                                        <i class="fa fa-list me-1"></i>View All Projects
+                                    </a>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="loadProjects()">
+                                        <i class="fa fa-refresh me-1"></i>Refresh Data
+                                    </button>
+                                    <a href="https://databygagan.com" target="_blank" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-external-link-alt me-1"></i>View Website
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification area -->
+                    <div id="notification-container"></div>
+                </div>
+
+                <!-- Footer -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-secondary rounded-top p-4">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center text-sm-start">
+                                &copy; <a href="https://databygagan.com">DatabyGagan</a>, All Rights Reserved.
+                            </div>
+                            <div class="col-12 col-sm-6 text-center text-sm-end">
+                                Designed By Gagan BP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Project Modal -->
+    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProjectModalLabel">Edit Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-project-form" onsubmit="saveEditedProject(event)">
+                        <input type="hidden" id="edit-index">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="edit-title" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="edit-category" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-imageUpload" class="form-label">Image Upload</label>
+                            <input type="file" class="form-control" id="edit-imageUpload" accept="image/*">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-alt" class="form-label">Alt Text</label>
+                                <input type="text" class="form-control" id="edit-alt" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-dashboardUrl" class="form-label">Dashboard URL</label>
+                                <input type="url" class="form-control" id="edit-dashboardUrl" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-codeUrl" class="form-label">Code URL</label>
+                                <input type="url" class="form-control" id="edit-codeUrl" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-tech" class="form-label">Tech Tags</label>
+                                <input type="text" class="form-control" id="edit-tech" placeholder="comma separated" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-description" class="form-label">Description</label>
+                            <textarea class="form-control" id="edit-description" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Global variables
+        let projects = [];
+        let currentEditIndex = '';
+        let categoryChart = null;
+        let techChart = null;
+
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            container.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fa ${iconClass} me-2"></i>${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const alert = container.querySelector('.alert');
+                if (alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            }, 5000);
+        }
+
+        // Search projects function
+        function searchProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tbody = document.getElementById('projects-table-body');
+            const rows = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const title = rows[i].cells[2].textContent.toLowerCase();
+                const category = rows[i].cells[3].textContent.toLowerCase();
+                const tech = rows[i].cells[4].textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || category.includes(searchTerm) || tech.includes(searchTerm)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Create charts
+        function createCharts() {
+            // Category Chart
+            const categoryData = {};
+            projects.forEach(proj => {
+                const category = proj.category || 'Other';
+                categoryData[category] = (categoryData[category] || 0) + 1;
+            });
+
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(categoryData),
+                    datasets: [{
+                        data: Object.values(categoryData),
+                        backgroundColor: [
+                            '#0d6efd',
+                            '#6f42c1',
+                            '#d63384',
+                            '#dc3545',
+                            '#fd7e14',
+                            '#ffc107',
+                            '#198754',
+                            '#20c997'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Tech Chart
+            const techData = {};
+            projects.forEach(proj => {
+                if (Array.isArray(proj.tech)) {
+                    proj.tech.forEach(tech => {
+                        const cleanTech = tech.trim();
+                        if (cleanTech) {
+                            techData[cleanTech] = (techData[cleanTech] || 0) + 1;
+                        }
+                    });
+                }
+            });
+
+            const techCtx = document.getElementById('techChart').getContext('2d');
+            if (techChart) techChart.destroy();
+            techChart = new Chart(techCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(techData).slice(0, 8), // Top 8 technologies
+                    datasets: [{
+                        label: 'Usage Count',
+                        data: Object.values(techData).slice(0, 8),
+                        backgroundColor: '#0d6efd',
+                        borderColor: '#0d6efd',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: '#3E4651'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#fff'
+                            },
+                            grid: {
+                                color: '#3E4651'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Login function
+        function login(event) {
+            if (event) event.preventDefault();
+            const input = document.getElementById('admin-password').value;
+            document.getElementById('login-error').textContent = '';
+
+            if (!input.trim()) {
+                document.getElementById('login-error').textContent = 'Please enter password';
+                return;
+            }
+
+            fetch('/.netlify/functions/validate-admin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: input })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('login-section').classList.add('hidden');
+                    document.getElementById('dashboard-section').classList.remove('hidden');
+                    loadProjects();
+                } else {
+                    document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
+                }
+            })
+            .catch(err => {
+                document.getElementById('login-error').textContent = 'Login error: ' + err.message;
+            });
+        }
+
+        // Load projects from backend API
+        function loadProjects() {
+            fetch('/api/projects')
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to fetch projects from server');
+                    return res.json();
+                })
+                .then(data => {
+                    projects = data || [];
+                    renderProjects();
+                    updateDashboardStats();
+                    createCharts();
+                })
+                .catch(err => {
+                    console.error('Error loading projects:', err);
+                    showNotification('Error loading projects: ' + err.message, 'error');
+                });
+        }
+
+        // Render projects in table
+        function renderProjects() {
+            const tbody = document.getElementById('projects-table-body');
+            const noProjects = document.getElementById('no-projects');
+
+            tbody.innerHTML = '';
+
+            if (projects.length === 0) {
+                noProjects.classList.remove('hidden');
+                return;
+            }
+
+            noProjects.classList.add('hidden');
+
+            projects.forEach((proj, idx) => {
+                const tr = document.createElement('tr');
+
+                let imgHtml = '<span class="text-muted">No Image</span>';
+                if (proj.image) {
+                    let imgSrc = proj.image.startsWith('http') ? proj.image : proj.image;
+                    imgHtml = `<img src="${imgSrc}" alt="${proj.alt || ''}" style="max-width:50px;max-height:40px;border-radius:6px;">`;
+                }
+
+                tr.innerHTML = `
+                    <td>${idx + 1}</td>
+                    <td>${imgHtml}</td>
+                    <td><strong>${proj.title}</strong></td>
+                    <td><span class="badge bg-info">${proj.category || 'N/A'}</span></td>
+                    <td><small>${Array.isArray(proj.tech) ? proj.tech.join(', ') : 'N/A'}</small></td>
+                    <td>
+                        <button class="btn btn-sm btn-warning me-1" onclick="editProject(${idx})" title="Edit">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteProjectByTitle('${encodeURIComponent(proj.title)}')" title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-sm btn-success me-1" title="View Dashboard">
+                            <i class="fa fa-external-link-alt"></i>
+                        </a>
+                        <a href="${proj.codeUrl}" target="_blank" class="btn btn-sm btn-primary" title="View Code">
+                            <i class="fa fa-code"></i>
+                        </a>
+                    </td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Update dashboard statistics
+        function updateDashboardStats() {
+            document.getElementById('total-projects').textContent = projects.length;
+
+            const categories = [...new Set(projects.map(p => p.category).filter(Boolean))];
+            document.getElementById('total-categories').textContent = categories.length;
+
+            const featured = projects.filter(p => p.featured).length;
+            document.getElementById('featured-projects').textContent = featured;
+
+            const totalClicks = projects.reduce((sum, p) => {
+                return sum + (p.clicks_dashboardUrl || 0) + (p.clicks_codeUrl || 0);
+            }, 0);
+            document.getElementById('total-clicks').textContent = totalClicks;
+        }
+
+        // Edit project function
+        function editProject(idx) {
+            currentEditIndex = idx;
+            const proj = projects[idx];
+
+            document.getElementById('edit-index').value = idx;
+            document.getElementById('edit-title').value = proj.title;
+            document.getElementById('edit-category').value = proj.category || '';
+            document.getElementById('edit-alt').value = proj.alt || '';
+            document.getElementById('edit-dashboardUrl').value = proj.dashboardUrl || '';
+            document.getElementById('edit-codeUrl').value = proj.codeUrl || '';
+            document.getElementById('edit-description').value = proj.description || '';
+            document.getElementById('edit-tech').value = Array.isArray(proj.tech) ? proj.tech.join(', ') : '';
+
+            new bootstrap.Modal(document.getElementById('editProjectModal')).show();
+        }
+
+        // Save edited project
+        function saveEditedProject(event) {
+            if (event) event.preventDefault();
+            const idx = currentEditIndex;
+            const imageFile = document.getElementById('edit-imageUpload').files[0];
+
+            const proj = {
+                title: document.getElementById('edit-title').value,
+                category: document.getElementById('edit-category').value,
+                image: '',
+                alt: document.getElementById('edit-alt').value,
+                dashboardUrl: document.getElementById('edit-dashboardUrl').value,
+                codeUrl: document.getElementById('edit-codeUrl').value,
+                description: document.getElementById('edit-description').value,
+                tech: document.getElementById('edit-tech').value.split(',').map(t => t.trim())
+            };
+
+            function saveProjectWithImage(imagePath) {
+                proj.image = imagePath;
+                const editTitle = encodeURIComponent(projects[idx].title);
+
+                fetch(`/api/projects/title/${editTitle}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(proj)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        projects[idx] = proj;
+                        renderProjects();
+                        updateDashboardStats();
+                        createCharts();
+                        bootstrap.Modal.getInstance(document.getElementById('editProjectModal')).hide();
+                        showNotification('Project updated successfully!', 'success');
+                    } else {
+                        showNotification('Error updating project: ' + (data.error || 'Unknown error'), 'error');
+                    }
+                })
+                .catch(err => {
+                    showNotification('Error updating project: ' + err.message, 'error');
+                });
+            }
+
+            if (imageFile) {
+                const formData = new FormData();
+                formData.append('image', imageFile);
+
+                fetch('/.netlify/functions/upload-image', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.imagePath) {
+                        saveProjectWithImage(data.imagePath);
+                    } else {
+                        showNotification('Image upload failed: ' + (data.error || 'Unknown error'), 'error');
+                    }
+                })
+                .catch(err => {
+                    showNotification('Image upload error: ' + err.message, 'error');
+                });
+            } else {
+                saveProjectWithImage(projects[idx].image || '');
+            }
+        }
+
+        // Delete project function
+        function deleteProjectByTitle(title) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                const backendUrl = '/api/projects/title/' + title;
+
+                fetch(backendUrl, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        projects = projects.filter(p => encodeURIComponent(p.title) !== title);
+                        renderProjects();
+                        updateDashboardStats();
+                        createCharts();
+                        showNotification('Project deleted successfully!', 'success');
+                    } else {
+                        showNotification('Error deleting project: ' + (data.error || 'Unknown error'), 'error');
+                    }
+                })
+                .catch(err => {
+                    showNotification('Error deleting project: ' + err.message, 'error');
+                });
+            }
+        }
+
+        // Export projects as JSON
+        function exportProjects() {
+            const dataStr = JSON.stringify(projects, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'projects_' + new Date().toISOString().split('T')[0] + '.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                document.getElementById('dashboard-section').classList.add('hidden');
+                document.getElementById('login-section').classList.remove('hidden');
+                document.getElementById('admin-password').value = '';
+                projects = [];
+            }
+        }
+
+        // Enter key login
+        document.getElementById('admin-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+
+        // Focus password field on load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('admin-password').focus();
+        });
+    </script>
+</body>
+</html>
