@@ -112,7 +112,7 @@
     <script src="js/main.js"></script>
     <script>
     // Check if already logged in
-    if (localStorage.getItem('admin_auth')) {
+    if (localStorage.getItem('adminToken')) {
         window.location.href = 'dashboard.html';
     }
 
@@ -134,7 +134,7 @@
             });
             const data = await res.json();
             if (data.success) {
-                localStorage.setItem('admin_auth', 'true');
+                localStorage.setItem('adminToken', 'true');
                 window.location.href = 'dashboard.html';
             } else {
                 document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
