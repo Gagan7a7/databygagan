@@ -73,10 +73,15 @@
     <script>
     // Check if user is authenticated
     function checkAuth() {
-        return localStorage.getItem('admin_auth') === 'true';
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            window.location.href = 'signin.html';
+            return false;
+        }
+        return true;
     }
 
-    // Redirect to signin if not authenticated
+    // Check authentication on page load
     if (!checkAuth()) {
         window.location.href = 'signin.html';
     }
@@ -509,7 +514,7 @@
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    localStorage.setItem('admin_auth', 'true');
+                    localStorage.setItem('adminToken', 'true');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
                     loadProjects();
@@ -734,7 +739,7 @@
         // Logout function
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('admin_auth');
+                localStorage.removeItem('adminToken');
                 window.location.href = 'signin.html';
             }
         }
