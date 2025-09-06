@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="    <script>
+    // Check if user is logged in by verifying admin token
+    if (!localStorage.getItem('admin_token')) {
+        window.location.href = 'signin.html';
+    }
+    </script>
+
+    <div class="container-fluid position-relative d-flex p-0">
     <title>Add Project - Admin Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="img/favicon.ico" rel="icon">
@@ -61,18 +68,8 @@
 </head>
 <body>
     <script>
-    // Authentication check
-    function checkAuth() {
-        const token = localStorage.getItem('adminToken');
-        if (!token) {
-            window.location.href = 'signin.html';
-            return false;
-        }
-        return true;
-    }
-
-    // Check authentication on page load
-    if (!checkAuth()) {
+    // Check if user is logged in
+    if (!localStorage.getItem('admin_token')) {
         window.location.href = 'signin.html';
     }
     </script>
@@ -98,7 +95,7 @@
                     <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link active"><i class="fa fa-plus me-2"></i>Add Project</a>
                     <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                    <a href="javascript:void(0)" onclick="logout()" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -196,6 +193,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('admin_token');
+                window.location.href = 'signin.html';
+            }
+        }
+    
     // Your exact admin.html logic for add/edit/delete projects
     let projects = [];
 
@@ -393,12 +398,6 @@
 
         // Clear any previous image data
         document.getElementById('imageUpload').removeAttribute('data-prev');
-    }
-
-    // Logout function
-    function logout() {
-        localStorage.removeItem('adminToken');
-        window.location.href = 'signin.html';
     }
 
     // Initialize page

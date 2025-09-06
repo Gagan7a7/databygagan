@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin Sign In - DatabyGagan</title>
+    <title>DarkPan - Bootstrap 5 Admin Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -55,6 +55,10 @@
                                 </h3>
                             </a>
                             <h3>Sign In</h3>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="signin-email" placeholder="name@example.com" required>
+                            <label for="signin-email">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="signin-password" placeholder="Password" required>
@@ -111,43 +115,56 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-    // Check if already logged in
-    if (localStorage.getItem('adminToken')) {
-        window.location.href = 'dashboard.html';
-    }
-
-    document.querySelector('.btn.btn-primary').addEventListener('click', async function(e) {
+    // Password reset modal logic
+    document.getElementById('reset-form').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const password = document.getElementById('signin-password').value;
-        document.getElementById('login-error').textContent = '';
-        
-        if (!password) {
-            document.getElementById('login-error').textContent = 'Password required.';
+        const email = document.getElementById('reset-email').value;
+        const msg = document.getElementById('reset-message');
+        msg.textContent = '';
+        if (!email) {
+            msg.textContent = 'Please enter your email.';
             return;
         }
-        
+        try {
+            const res = await fetch('/.netlify/functions/request-password-reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (data.success) {
+                msg.textContent = 'A reset link has been sent to your email.';
+            } else {
+                msg.textContent = data.error || 'Unable to send reset link.';
+            }
+        } catch (err) {
+            msg.textContent = 'Error: ' + err;
+        }
+    });
+    document.querySelector('.btn.btn-primary').addEventListener('click', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('signin-email').value;
+        const password = document.getElementById('signin-password').value;
+        document.getElementById('login-error').textContent = '';
+        if (!email || !password) {
+            document.getElementById('login-error').textContent = 'Email and password required.';
+            return;
+        }
         try {
             const res = await fetch('/.netlify/functions/validate-admin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password })
+                body: JSON.stringify({ email, password, signin: true })
             });
             const data = await res.json();
             if (data.success) {
-                localStorage.setItem('adminToken', 'true');
+                localStorage.setItem('admin_signed_in', 'true');
                 window.location.href = 'dashboard.html';
             } else {
-                document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
+                document.getElementById('login-error').textContent = data.error || 'Incorrect email or password.';
             }
         } catch (err) {
             document.getElementById('login-error').textContent = 'Login error: ' + err;
-        }
-    });
-
-    // Handle enter key in password field
-    document.getElementById('signin-password').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            document.querySelector('.btn.btn-primary').click();
         }
     });
     </script>

@@ -71,19 +71,14 @@
 
 <body>
     <script>
-    // Check if user is authenticated
-    function checkAuth() {
-        const token = localStorage.getItem('adminToken');
-        if (!token) {
-            window.location.href = 'signin.html';
-            return false;
-        }
-        return true;
-    }
-
-    // Check authentication on page load
-    if (!checkAuth()) {
-        window.location.href = 'signin.html';
+    // Check login status when page loads
+    if (!localStorage.getItem('admin_token')) {
+        document.getElementById('dashboard-section').classList.add('hidden');
+        document.getElementById('login-section').classList.remove('hidden');
+    } else {
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
+        // Will load projects after DOM content loaded
     }
     </script>
 
@@ -109,7 +104,7 @@
             <div class="sidebar pe-4 pb-3">
                 <nav class="navbar bg-secondary navbar-dark">
                     <a href="dashboard.html" class="navbar-brand mx-4 mb-3">
-                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DatabyGagan - Admin</h3>
+                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DatabyGagan</h3>
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
@@ -125,7 +120,6 @@
                         <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                         <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
                         <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                        <a href="#" onclick="logout()" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                     </div>
                 </nav>
             </div>
@@ -495,6 +489,18 @@
             });
         }
 
+        // Check if user is already logged in
+        function checkLoginStatus() {
+            const token = localStorage.getItem('admin_token');
+            if (token) {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                loadProjects();
+                return true;
+            }
+            return false;
+        }
+
         // Login function
         function login(event) {
             if (event) event.preventDefault();
@@ -514,7 +520,8 @@
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    localStorage.setItem('adminToken', 'true');
+                    // Store auth token
+                    localStorage.setItem('admin_token', data.token || 'authenticated');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
                     loadProjects();
@@ -739,8 +746,11 @@
         // Logout function
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('adminToken');
-                window.location.href = 'signin.html';
+                localStorage.removeItem('admin_token');
+                document.getElementById('dashboard-section').classList.add('hidden');
+                document.getElementById('login-section').classList.remove('hidden');
+                document.getElementById('admin-password').value = '';
+                projects = [];
             }
         }
 
