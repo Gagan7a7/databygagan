@@ -98,6 +98,19 @@
     <link href="styles.css" rel="stylesheet">
 
     <style>
+        .section {
+            padding: 1rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .section-title {
+            margin-bottom: 2rem;
+            color: var(--light-text);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
         :root {
             --primary-color: #4a90e2;
             --secondary-color: #6bb6ff;
@@ -139,32 +152,19 @@
             transform: translateY(0);
         }
 
-        /* Add connecting lines */
-        .testimonial-card::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: var(--primary-color);
-            opacity: 0.3;
-            transition: height 0.6s ease-out;
+        /* Smooth scroll for the whole page */
+        html {
+            scroll-behavior: smooth;
         }
-
-        .testimonial-card:nth-child(4n+1)::before {
-            height: calc(100% + 4rem);
-            top: 100%;
-            left: 50%;
+        
+        /* Hide scrollbar but keep functionality */
+        ::-webkit-scrollbar {
+            display: none;
         }
-
-        .testimonial-card:nth-child(4n+2)::before {
-            height: calc(100% + 4rem);
-            top: 100%;
-            left: 25%;
-        }
-
-        .testimonial-card:nth-child(4n+3)::before {
-            height: calc(100% + 4rem);
-            top: 100%;
-            left: 50%;
+        
+        /* For Firefox */
+        * {
+            scrollbar-width: none;
         }
 
         .client-info {
@@ -330,10 +330,10 @@
         </nav>
     </header>
 
-    <main id="main">
+    <main id="main" style="padding-top: 100px;">
         <section class="section" aria-labelledby="testimonials-heading">
             <div class="container">
-                <h1 id="testimonials-heading" class="section-title">Client Testimonials</h1>
+                <h1 id="testimonials-heading" class="section-title" style="margin-top: 20px;">Client Testimonials</h1>
 
                 <!-- Loading State -->
                 <div id="loading" class="loading">
@@ -354,10 +354,138 @@
         </section>
     </main>
 
-    <!-- Footer from your index.html -->
-    <footer class="footer">
-        <!-- Your existing footer content -->
-    </footer>
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Gagan | Data Analyst</h4>
+                        <p>Transforming data into actionable insights for businesses worldwide.</p>
+                    </div>
+                    <div class="footer-section">
+                        <strong>Quick Links</strong>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <strong>Services</strong>
+                        <ul>
+                            <li>Power BI Dashboards</li>
+                            <li>Excel Dashboards</li>
+                            <li>Data Cleaning (Excel / Python)</li>
+                            <li>SQL &amp; Python Analytics</li>
+                            <li>Excel Automation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; <span itemprop="copyrightYear">2025</span> <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+    <style>
+        .footer {
+            background-color: var(--dark-secondary);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h4 {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--muted-text);
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        .footer-section strong {
+            color: var(--light-text);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--muted-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted-text);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(100px);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+        }
+    </style>
 
     <script>
         // Intersection Observer for scroll animations
@@ -441,7 +569,30 @@
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', loadTestimonials);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTestimonials();
+            initBackToTop();
+        });
+
+        // Back to top functionality
+        function initBackToTop() {
+            const backToTop = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 </body>
 </html>
