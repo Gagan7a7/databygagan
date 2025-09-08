@@ -240,7 +240,7 @@
             }
         }
 
-        // Initialize delete modal
+        // Initialize delete modal and restore filters
         document.addEventListener('DOMContentLoaded', () => {
             deleteModalInstance = new bootstrap.Modal(document.getElementById('deleteModal'));
             
@@ -248,6 +248,16 @@
             document.getElementById('searchInput').addEventListener('input', filterTestimonials);
             document.getElementById('categoryFilter').addEventListener('change', filterTestimonials);
             document.getElementById('sortFilter').addEventListener('change', filterTestimonials);
+            
+            // Restore filters if coming back from edit
+            const savedFilters = sessionStorage.getItem('testimonialFilters');
+            if (savedFilters) {
+                const { searchTerm, category, sortBy } = JSON.parse(savedFilters);
+                document.getElementById('searchInput').value = searchTerm;
+                document.getElementById('categoryFilter').value = category;
+                document.getElementById('sortFilter').value = sortBy;
+                sessionStorage.removeItem('testimonialFilters');
+            }
             
             // Load testimonials
             loadTestimonials();
@@ -383,6 +393,19 @@
 
         // Edit testimonial
         function editTestimonial(id) {
+            // Save current filters state
+            const searchTerm = document.getElementById('searchInput').value;
+            const category = document.getElementById('categoryFilter').value;
+            const sortBy = document.getElementById('sortFilter').value;
+            
+            // Store filters in sessionStorage
+            sessionStorage.setItem('testimonialFilters', JSON.stringify({
+                searchTerm,
+                category,
+                sortBy
+            }));
+            
+            // Navigate to edit page
             window.location.href = `addtestimonial.html?id=${id}`;
         }
 

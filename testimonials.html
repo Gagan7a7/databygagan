@@ -110,12 +110,12 @@
         }
 
         .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
         }
 
         .testimonial-card {
@@ -127,26 +127,68 @@
             border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.6s ease-out;
+            transition: all 0.8s ease-out;
+            width: 48%;
+            margin: 0;
+            position: relative;
+        }
+
+        /* First testimonial - Left */
+        .testimonial-card:nth-child(4n+1) {
+            align-self: flex-start;
+            transform: translateX(-100px);
+        }
+
+        /* Second testimonial - Full width */
+        .testimonial-card:nth-child(4n+2) {
+            width: 100%;
+            transform: translateY(100px);
+            background: linear-gradient(to right, var(--dark-secondary), var(--dark-tertiary));
+        }
+
+        /* Third testimonial - Left */
+        .testimonial-card:nth-child(4n+3) {
+            align-self: flex-start;
+            transform: translateX(-100px);
+        }
+
+        /* Fourth testimonial - Right */
+        .testimonial-card:nth-child(4n+4) {
+            align-self: flex-end;
+            transform: translateX(100px);
         }
 
         .testimonial-card.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0) translateY(0);
         }
 
-        .testimonial-card:nth-child(odd) {
-            transform: translateX(-50px);
+        /* Add connecting lines */
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary-color);
+            opacity: 0.3;
+            transition: height 0.6s ease-out;
         }
 
-        .testimonial-card:nth-child(even) {
-            transform: translateX(50px);
-            margin-top: 3rem;
+        .testimonial-card:nth-child(4n+1)::before {
+            height: calc(100% + 4rem);
+            top: 100%;
+            left: 50%;
         }
 
-        .testimonial-card.visible:nth-child(odd),
-        .testimonial-card.visible:nth-child(even) {
-            transform: translateX(0);
+        .testimonial-card:nth-child(4n+2)::before {
+            height: calc(100% + 4rem);
+            top: 100%;
+            left: 25%;
+        }
+
+        .testimonial-card:nth-child(4n+3)::before {
+            height: calc(100% + 4rem);
+            top: 100%;
+            left: 50%;
         }
 
         .client-info {
@@ -348,14 +390,18 @@
         // Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
-            rootMargin: '0px',
+            rootMargin: '50px',
             threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    // Add visible class with a delay based on the card's position
+                    const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200); // 200ms delay between each card
                 }
             });
         }, observerOptions);

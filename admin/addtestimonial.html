@@ -326,6 +326,42 @@
                 (text.length > 200 ? '...' : '');
         }
 
+        // Check for edit mode when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editId = urlParams.get('id');
+            
+            if (editId) {
+                // Change title and button text for edit mode
+                document.querySelector('h3.text-primary').textContent = 'Edit Testimonial';
+                document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Update Testimonial';
+                
+                // Fetch the testimonial data
+                fetch(`/api/testimonials/${editId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        // Populate the form with existing data
+                        document.getElementById('edit-index').value = data.id;
+                        document.getElementById('clientName').value = data.clientName || '';
+                        document.getElementById('clientRole').value = data.clientRole || '';
+                        document.getElementById('clientCompany').value = data.clientCompany || '';
+                        document.getElementById('clientLocation').value = data.clientLocation || '';
+                        document.getElementById('testimonialText').value = data.testimonialText || '';
+                        document.getElementById('shortQuote').value = data.shortQuote || '';
+                        document.getElementById('category').value = data.category || 'General';
+                        document.getElementById('featured').value = data.featured ? 'true' : 'false';
+                        document.getElementById('projectRelated').value = data.projectRelated || '';
+                        document.getElementById('keyHighlights').value = (data.keyHighlights || []).join(', ');
+                        
+                        // Update the preview
+                        updatePreview();
+                    })
+                    .catch(err => {
+                        showNotification('Error loading testimonial: ' + err.message, 'error');
+                    });
+            }
+        });
+
         // Form submission handler
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -336,8 +372,10 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving...';
 
+            const editId = document.getElementById('edit-index').value;
+            
             const testimonialData = {
-                id: Date.now().toString(),
+                id: editId || Date.now().toString(),
                 clientName: document.getElementById('clientName').value,
                 clientRole: document.getElementById('clientRole').value || null,
                 clientCompany: document.getElementById('clientCompany').value || null,
@@ -348,20 +386,29 @@
                 featured: document.getElementById('featured').value === 'true',
                 projectRelated: document.getElementById('projectRelated').value || null,
                 keyHighlights: document.getElementById('keyHighlights').value.split(',').map(s => s.trim()).filter(s => s),
-                dateAdded: new Date().toISOString().split('T')[0]
+                dateAdded: editId ? undefined : new Date().toISOString().split('T')[0]
             };
 
             // API endpoint for testimonials
-            fetch('/api/testimonials', {
-                method: 'POST',
+            const isEdit = !!testimonialData.id;
+            const url = isEdit ? `/api/testimonials/${testimonialData.id}` : '/api/testimonials';
+            const method = isEdit ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(testimonialData)
             })
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    resetForm();
-                    showNotification('Testimonial added successfully!', 'success');
+                    const message = isEdit ? 'Testimonial updated successfully!' : 'Testimonial added successfully!';
+                    showNotification(message, 'success');
+                    if (!isEdit) {
+                        resetForm();
+                    } else {
+                        window.location.href = 'viewtestimonial.html';
+                    }
                 } else {
                     showNotification('Error saving testimonial: ' + (data.error || 'Unknown error'), 'error');
                 }
