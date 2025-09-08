@@ -401,7 +401,6 @@
             const today = new Date().toISOString().split('T')[0];
             
             const testimonialData = {
-                id: editId || Date.now().toString(),
                 clientName: document.getElementById('clientName').value,
                 clientRole: document.getElementById('clientRole').value || null,
                 clientCompany: document.getElementById('clientCompany').value || null,
@@ -413,17 +412,17 @@
                 projectRelated: document.getElementById('projectRelated').value || null,
                 keyHighlights: document.getElementById('keyHighlights').value.split(',').map(s => s.trim()).filter(s => s),
                 showDate: document.getElementById('showDate').value === 'true',
-                dateAdded: editId ? undefined : (customDate || today)
+                dateAdded: customDate || today
             };
 
             // Update testimonial data to include show_date field
             testimonialData.show_date = document.getElementById('showDate').value === 'true';
             
             // API endpoint for testimonials with full environment support
-            const isEdit = !!testimonialData.id;
+            const isEdit = !!editId;
             const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
             const baseUrl = isLocalhost ? "http://localhost:5000/api" : "/api";
-            const url = `${baseUrl}/testimonials${isEdit ? `/${testimonialData.id}` : ''}`;
+            const url = `${baseUrl}/testimonials${isEdit ? `/${editId}` : ''}`;
             const method = isEdit ? 'PUT' : 'POST';
             
             console.log('Submitting testimonial to:', url);
