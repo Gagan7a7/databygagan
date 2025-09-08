@@ -428,10 +428,12 @@
                         </div>
                         <blockquote class="testimonial-text">${t.testimonialText}</blockquote>
                         <div class="testimonial-meta">
+                            ${t.show_date === true ? `
                             <div class="testimonial-date">
                                 <i class="far fa-calendar me-2"></i>
                                 ${new Date(t.dateAdded).toLocaleDateString()}
                             </div>
+                            ` : ''}
                             <div class="testimonial-category">${t.category}</div>
                         </div>
                         ${t.keyHighlights && t.keyHighlights.length > 0 ? `

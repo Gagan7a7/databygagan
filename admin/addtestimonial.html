@@ -211,6 +211,24 @@
                                             <label for="featured">Feature on Homepage?</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="showDate" required>
+                                                <option value="false">No</option>
+                                                <option value="true">Yes</option>
+                                            </select>
+                                            <label for="showDate">Display Date Publicly?</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="customDate">
+                                            <label for="customDate">Custom Date (Optional)</label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-floating mb-3">
@@ -350,8 +368,13 @@
                         document.getElementById('shortQuote').value = data.shortQuote || '';
                         document.getElementById('category').value = data.category || 'General';
                         document.getElementById('featured').value = data.featured ? 'true' : 'false';
+                        document.getElementById('showDate').value = data.show_date ? 'true' : 'false';
                         document.getElementById('projectRelated').value = data.projectRelated || '';
                         document.getElementById('keyHighlights').value = (data.keyHighlights || []).join(', ');
+                        document.getElementById('showDate').value = data.showDate ? 'true' : 'false';
+                        if (data.dateAdded) {
+                            document.getElementById('customDate').value = data.dateAdded;
+                        }
                         
                         // Update the preview
                         updatePreview();
@@ -374,6 +397,9 @@
 
             const editId = document.getElementById('edit-index').value;
             
+            const customDate = document.getElementById('customDate').value;
+            const today = new Date().toISOString().split('T')[0];
+            
             const testimonialData = {
                 id: editId || Date.now().toString(),
                 clientName: document.getElementById('clientName').value,
@@ -386,20 +412,42 @@
                 featured: document.getElementById('featured').value === 'true',
                 projectRelated: document.getElementById('projectRelated').value || null,
                 keyHighlights: document.getElementById('keyHighlights').value.split(',').map(s => s.trim()).filter(s => s),
-                dateAdded: editId ? undefined : new Date().toISOString().split('T')[0]
+                showDate: document.getElementById('showDate').value === 'true',
+                dateAdded: editId ? undefined : (customDate || today)
             };
 
-            // API endpoint for testimonials
+            // Update testimonial data to include show_date field
+            testimonialData.show_date = document.getElementById('showDate').value === 'true';
+            
+            // API endpoint for testimonials with full environment support
             const isEdit = !!testimonialData.id;
-            const url = isEdit ? `/api/testimonials/${testimonialData.id}` : '/api/testimonials';
+            const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            const baseUrl = isLocalhost ? "http://localhost:5000/api" : "/api";
+            const url = `${baseUrl}/testimonials${isEdit ? `/${testimonialData.id}` : ''}`;
             const method = isEdit ? 'PUT' : 'POST';
+            
+            console.log('Submitting testimonial to:', url);
 
             fetch(url, {
                 method: method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(testimonialData)
             })
-            .then(res => res.json())
+            .then(async res => {
+                if (!res.ok) {
+                    // Try to get error details from response
+                    const errorText = await res.text();
+                    let errorDetail;
+                    try {
+                        const errorJson = JSON.parse(errorText);
+                        errorDetail = errorJson.error || errorJson.message || errorText;
+                    } catch {
+                        errorDetail = errorText;
+                    }
+                    throw new Error(`HTTP ${res.status}: ${errorDetail}`);
+                }
+                return res.json();
+            })
             .then(data => {
                 if (data.success) {
                     const message = isEdit ? 'Testimonial updated successfully!' : 'Testimonial added successfully!';
@@ -414,6 +462,7 @@
                 }
             })
             .catch(err => {
+                console.error('API Error:', err);
                 showNotification('Error saving testimonial: ' + err.message, 'error');
             })
             .finally(() => {
@@ -425,6 +474,8 @@
         // Reset form function
         function resetForm() {
             document.getElementById('edit-index').value = '';
+            document.getElementById('showDate').value = 'true'; // Default to showing date
+            document.getElementById('customDate').value = ''; // Clear custom date
             form.reset();
             updatePreview();
         }

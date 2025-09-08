@@ -144,7 +144,8 @@ async function ensureTable() {
         featured BOOLEAN DEFAULT false,
         project_related TEXT,
         key_highlights JSONB,
-        date_added DATE NOT NULL
+        date_added DATE NOT NULL,
+        show_date BOOLEAN DEFAULT false
     )`;
 }
 
@@ -378,7 +379,8 @@ app.post("/api/testimonials", async (req, res) => {
                 featured,
                 project_related,
                 key_highlights,
-                date_added
+                date_added,
+                show_date
             ) VALUES (
                 ${t.id || Date.now().toString()},
                 ${t.clientName},
@@ -391,7 +393,8 @@ app.post("/api/testimonials", async (req, res) => {
                 ${t.featured || false},
                 ${t.projectRelated || null},
                 ${JSON.stringify(t.keyHighlights || [])},
-                ${t.dateAdded || new Date().toISOString().split('T')[0]}
+                ${t.dateAdded || new Date().toISOString().split('T')[0]},
+                ${t.showDate !== undefined ? t.showDate : true}
             )
             RETURNING *
         `;
