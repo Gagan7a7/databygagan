@@ -296,7 +296,7 @@
                 <i class="fas fa-chart-line" aria-hidden="true"></i>
                 <span>GaganBP</span>
             </a>
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="nav-links">
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -319,7 +319,7 @@
         <section class="section" aria-labelledby="testimonials-heading">
             <div class="container">
                 <h1 id="testimonials-heading" class="section-title">Client Testimonials</h1>
-                
+
                 <!-- Loading State -->
                 <div id="loading" class="loading">
                     <div class="loading-spinner"></div>
@@ -383,7 +383,7 @@
                     if (t.featured) {
                         card.innerHTML = '<span class="featured-badge"><i class="fas fa-star"></i> Featured</span>';
                     }
-                    
+
                     let roleText = [t.clientRole, t.clientCompany, t.clientLocation]
                         .filter(Boolean)
                         .join(' • ');
