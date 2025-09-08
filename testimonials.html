@@ -113,9 +113,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
+            position: relative;
         }
 
         .testimonial-card {
@@ -126,37 +124,33 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             opacity: 0;
-            transform: translateY(50px);
+            width: 400px; /* Fixed width for all cards */
+            margin: 2rem 0;
+            position: absolute;
             transition: all 0.8s ease-out;
-            width: 48%;
-            margin: 0;
-            position: relative;
         }
 
-        /* First testimonial - Left */
-        .testimonial-card:nth-child(4n+1) {
-            align-self: flex-start;
-            transform: translateX(-100px);
+        /* First card - Left */
+        .testimonial-card:nth-child(2n+1) {
+            left: 0;
         }
 
-        /* Second testimonial - Full width */
-        .testimonial-card:nth-child(4n+2) {
-            width: 100%;
-            transform: translateY(100px);
-            background: linear-gradient(to right, var(--dark-secondary), var(--dark-tertiary));
+        /* Second card - Right */
+        .testimonial-card:nth-child(2n+2) {
+            right: 0;
         }
 
-        /* Third testimonial - Left */
-        .testimonial-card:nth-child(4n+3) {
-            align-self: flex-start;
-            transform: translateX(-100px);
-        }
-
-        /* Fourth testimonial - Right */
-        .testimonial-card:nth-child(4n+4) {
-            align-self: flex-end;
-            transform: translateX(100px);
-        }
+        /* Position cards vertically */
+        .testimonial-card:nth-child(1) { top: 0; transform: translateX(-100px); }
+        .testimonial-card:nth-child(2) { top: 200px; transform: translateX(100px); }
+        .testimonial-card:nth-child(3) { top: 400px; transform: translateX(-100px); }
+        .testimonial-card:nth-child(4) { top: 600px; transform: translateX(100px); }
+        .testimonial-card:nth-child(5) { top: 800px; transform: translateX(-100px); }
+        .testimonial-card:nth-child(6) { top: 1000px; transform: translateX(100px); }
+        .testimonial-card:nth-child(7) { top: 1200px; transform: translateX(-100px); }
+        .testimonial-card:nth-child(8) { top: 1400px; transform: translateX(100px); }
+        .testimonial-card:nth-child(9) { top: 1600px; transform: translateX(-100px); }
+        .testimonial-card:nth-child(10) { top: 1800px; transform: translateX(100px); }
 
         .testimonial-card.visible {
             opacity: 1;
@@ -284,14 +278,33 @@
             font-weight: 600;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .testimonials-grid {
-                grid-template-columns: 1fr;
                 padding: 1rem;
             }
 
-            .testimonial-card:nth-child(even) {
-                margin-top: 0;
+            .testimonial-card {
+                width: 300px; /* Slightly smaller on tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                padding: 1rem;
+            }
+
+            .testimonial-card {
+                position: relative !important;
+                width: 100% !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                margin: 1rem 0 !important;
+                transform: translateY(50px) !important;
+            }
+
+            .testimonial-card.visible {
+                transform: translateY(0) !important;
             }
         }
 
@@ -422,6 +435,10 @@
                     emptyState.style.display = 'block';
                     return;
                 }
+
+                // Set container height based on number of testimonials
+                const containerHeight = Math.ceil(testimonials.length / 2) * 400;
+                grid.style.height = containerHeight + 'px';
 
                 testimonials.forEach(t => {
                     const card = document.createElement('div');
