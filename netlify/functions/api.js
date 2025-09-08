@@ -144,9 +144,18 @@ async function ensureTable() {
         featured BOOLEAN DEFAULT false,
         project_related TEXT,
         key_highlights JSONB,
-        date_added DATE NOT NULL,
-        show_date BOOLEAN DEFAULT false
+        date_added DATE NOT NULL
     )`;
+    
+    // Add show_date column if it doesn't exist
+    try {
+        await sql`ALTER TABLE testimonials ADD COLUMN show_date BOOLEAN DEFAULT false`;
+    } catch (e) {
+        // Column might already exist, which is fine
+        if (!e.message.includes('already exists')) {
+            console.error('Error adding show_date column:', e);
+        }
+    }
 }
 
 // Helper to run ensureTable before each request
@@ -394,7 +403,7 @@ app.post("/api/testimonials", async (req, res) => {
                 ${t.projectRelated || null},
                 ${JSON.stringify(t.keyHighlights || [])},
                 ${t.dateAdded || new Date().toISOString().split('T')[0]},
-                ${t.showDate !== undefined ? t.showDate : true}
+                ${t.show_date !== undefined ? t.show_date : false}
             )
             RETURNING *
         `;
@@ -427,7 +436,8 @@ app.put("/api/testimonials/:id", async (req, res) => {
                 category = ${t.category},
                 featured = ${t.featured || false},
                 project_related = ${t.projectRelated || null},
-                key_highlights = ${JSON.stringify(t.keyHighlights || [])}
+                key_highlights = ${JSON.stringify(t.keyHighlights || [])},
+                show_date = ${t.show_date !== undefined ? t.show_date : false}
             WHERE id = ${id}
             RETURNING *
         `;

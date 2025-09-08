@@ -411,12 +411,9 @@
                 featured: document.getElementById('featured').value === 'true',
                 projectRelated: document.getElementById('projectRelated').value || null,
                 keyHighlights: document.getElementById('keyHighlights').value.split(',').map(s => s.trim()).filter(s => s),
-                showDate: document.getElementById('showDate').value === 'true',
+                show_date: document.getElementById('showDate').value === 'true',
                 dateAdded: customDate || today
             };
-
-            // Update testimonial data to include show_date field
-            testimonialData.show_date = document.getElementById('showDate').value === 'true';
             
             // API endpoint for testimonials with full environment support
             const isEdit = !!editId;
