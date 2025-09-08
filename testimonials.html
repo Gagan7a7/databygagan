@@ -115,7 +115,7 @@
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 20rem; /* Large gap to ensure cards are far apart vertically */
         }
 
         .testimonial-card {
@@ -126,45 +126,29 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
+            transform: translateY(100px);
+            transition: all 0.6s ease-out;
             width: 100%;
             max-width: 700px;
-            margin: 0;
             position: relative;
+            margin-bottom: 10rem; /* Additional spacing between cards */
         }
 
-        /* First card - Full left */
-        .testimonial-card:nth-child(4n+1) {
+        /* Odd numbered cards (1st, 3rd, 5th, etc.) - Full left */
+        .testimonial-card:nth-child(odd) {
             margin-right: auto;
             margin-left: 0;
-            transform: translateX(-100px);
         }
 
-        /* Second card - Full right */
-        .testimonial-card:nth-child(4n+2) {
+        /* Even numbered cards (2nd, 4th, 6th, etc.) - Full right */
+        .testimonial-card:nth-child(even) {
             margin-left: auto;
             margin-right: 0;
-            transform: translateX(100px);
-        }
-
-        /* Third card - Full left (same as first) */
-        .testimonial-card:nth-child(4n+3) {
-            margin-right: auto;
-            margin-left: 0;
-            transform: translateX(-100px);
-        }
-
-        /* Fourth card - Full right (same as second) */
-        .testimonial-card:nth-child(4n+4) {
-            margin-left: auto;
-            margin-right: 0;
-            transform: translateX(100px);
         }
 
         .testimonial-card.visible {
             opacity: 1;
-            transform: translateX(0) !important;
+            transform: translateY(0);
         }
 
         /* Add connecting lines */
@@ -394,18 +378,14 @@
         // Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
-            rootMargin: '-50px',
-            threshold: 0.15
+            rootMargin: '-100px', // Only trigger when card is well into view
+            threshold: 0.2 // Require 20% of the card to be visible
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add visible class with a longer delay for a smoother appearance
-                    const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 400); // 400ms delay between each card for smoother animation
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
