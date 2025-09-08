@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E1LMYP9DMX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-E1LMYP9DMX');
-    </script>
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E1LMYP9DMX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-E1LMYP9DMX');
+        </script>
 
-    <!-- Primary Meta Tags -->
+        <!-- Primary Meta Tags -->
     <meta charset="utf-8">
     <title>Client Testimonials - Gagan BP | Data Analytics Success Stories</title>
     <meta name="description" content="Read authentic testimonials from satisfied clients about their data analytics journey with Gagan BP. Real success stories from businesses I've helped with Power BI dashboards, Excel automation, Python analysis, and SQL solutions.">
@@ -430,10 +430,65 @@
     </style>
 </head>
 <body>
-    <main>
-        <section class="section">
+    <!-- Header -->
+    <header id="header" role="banner">
+        <nav id="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Home">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                <span itemprop="name">GaganBP</span>
+            </a>
+            <button
+                class="menu-toggle"
+                id="mobile-menu"
+                aria-expanded="false"
+                aria-controls="nav-links"
+                aria-label="Toggle menu"
+                type="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i>Home</a>
+                </li>
+                <li>
+                    <a href="about.html"><i class="fas fa-user"></i>About</a>
+                </li>
+                <li>
+                    <a href="skills.html"><i class="fas fa-cogs"></i>Skills</a>
+                </li>
+                <li>
+                    <a href="projects.html"><i class="fas fa-project-diagram"></i>Projects</a>
+                </li>
+                <li>
+                    <a href="services.html"><i class="fas fa-briefcase"></i>Services</a>
+                </li>
+                <li>
+                    <a href="testimonials.html" class="active"><i class="fas fa-quote-right"></i>Testimonials</a>
+                </li>
+                <li>
+                    <a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a>
+                </li>
+                <li>
+                    <a href="resume.html"><i class="fas fa-file-alt"></i>Resume</a>
+                </li>
+                <li>
+                    <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main" style="padding-top: 100px;">
+        <!-- Testimonials Section -->
+        <section 
+            id="testimonials"
+            class="section section-dark"
+            aria-labelledby="testimonials-heading">
             <div class="container">
-                <h1 class="section-title">Client Testimonials</h1>
+                <h1 id="testimonials-heading" class="section-title">Client Testimonials</h1>
 
                 <!-- Loading State -->
                 <div id="loading" class="loading">
@@ -534,5 +589,56 @@
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', loadTestimonials);
     </script>
+
+    <!-- Footer -->
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Gagan | Data Analyst</h4>
+                    <p>
+                        Transforming data into actionable insights for
+                        businesses worldwide.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <strong>Quick Links</strong>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <strong>Services</strong>
+                    <ul>
+                        <li>Power BI Dashboards</li>
+                        <li>Excel Dashboards</li>
+                        <li>Data Cleaning (Excel / Python)</li>
+                        <li>SQL &amp; Python Analytics</li>
+                        <li>Excel Automation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span itemprop="copyrightYear">2025</span>
+                    <span itemprop="copyrightHolder">Gagan BP</span>. All
+                    rights reserved. | Freelance Data Analyst
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Script -->
+    <script src="scripts.js"></script>
+
+    <!-- Skip link for accessibility -->
+    <a class="skip-link" href="#main">Skip to main content</a>
 </body>
 </html>
