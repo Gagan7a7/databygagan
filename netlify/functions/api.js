@@ -116,7 +116,7 @@ app.post("/api/projects/set-featured", async (req, res) => {
     }
 });
 
-// Ensure the projects table exists (run once per cold start)
+// Ensure the projects and testimonials tables exist (run once per cold start)
 async function ensureTable() {
     await sql`CREATE TABLE IF NOT EXISTS projects (
         title TEXT PRIMARY KEY,
@@ -130,6 +130,22 @@ async function ensureTable() {
         featured BOOLEAN
     )`;
     await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN;`;
+
+    // Create testimonials table
+    await sql`CREATE TABLE IF NOT EXISTS testimonials (
+        id TEXT PRIMARY KEY,
+        client_name TEXT NOT NULL,
+        client_role TEXT,
+        client_company TEXT,
+        client_location TEXT,
+        testimonial_text TEXT NOT NULL,
+        short_quote TEXT,
+        category TEXT NOT NULL,
+        featured BOOLEAN DEFAULT false,
+        project_related TEXT,
+        key_highlights JSONB,
+        date_added DATE NOT NULL
+    )`;
 }
 
 // Helper to run ensureTable before each request
@@ -282,6 +298,173 @@ app.put("/api/projects/title/:title", async (req, res) => {
         res.json({ success: true, project: p });
     } catch (e) {
         res.status(500).json({ error: "Failed to update project" });
+    }
+});
+
+// Testimonial CRUD Operations
+
+// Get all testimonials
+app.get("/api/testimonials", async (req, res) => {
+    try {
+        const testimonials = await sql`SELECT * FROM testimonials ORDER BY date_added DESC`;
+        const result = testimonials.map(t => ({
+            id: t.id,
+            clientName: t.client_name,
+            clientRole: t.client_role,
+            clientCompany: t.client_company,
+            clientLocation: t.client_location,
+            testimonialText: t.testimonial_text,
+            shortQuote: t.short_quote,
+            category: t.category,
+            featured: t.featured,
+            projectRelated: t.project_related,
+            keyHighlights: t.key_highlights || [],
+            dateAdded: t.date_added
+        }));
+        res.json(result);
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch testimonials" });
+    }
+});
+
+// Get a single testimonial
+app.get("/api/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const testimonial = await sql`SELECT * FROM testimonials WHERE id = ${id}`;
+        if (testimonial.length === 0) {
+            return res.status(404).json({ error: "Testimonial not found" });
+        }
+        const t = testimonial[0];
+        res.json({
+            id: t.id,
+            clientName: t.client_name,
+            clientRole: t.client_role,
+            clientCompany: t.client_company,
+            clientLocation: t.client_location,
+            testimonialText: t.testimonial_text,
+            shortQuote: t.short_quote,
+            category: t.category,
+            featured: t.featured,
+            projectRelated: t.project_related,
+            keyHighlights: t.key_highlights || [],
+            dateAdded: t.date_added
+        });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch testimonial" });
+    }
+});
+
+// Add a new testimonial
+app.post("/api/testimonials", async (req, res) => {
+    let t = req.body;
+    
+    // Validate required fields
+    if (!t.clientName || !t.testimonialText || !t.category) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    try {
+        const result = await sql`
+            INSERT INTO testimonials (
+                id,
+                client_name,
+                client_role,
+                client_company,
+                client_location,
+                testimonial_text,
+                short_quote,
+                category,
+                featured,
+                project_related,
+                key_highlights,
+                date_added
+            ) VALUES (
+                ${t.id || Date.now().toString()},
+                ${t.clientName},
+                ${t.clientRole || null},
+                ${t.clientCompany || null},
+                ${t.clientLocation || null},
+                ${t.testimonialText},
+                ${t.shortQuote || null},
+                ${t.category},
+                ${t.featured || false},
+                ${t.projectRelated || null},
+                ${JSON.stringify(t.keyHighlights || [])},
+                ${t.dateAdded || new Date().toISOString().split('T')[0]}
+            )
+            RETURNING *
+        `;
+        res.json({ success: true, testimonial: result[0] });
+    } catch (e) {
+        console.error('Database error:', e);
+        res.status(500).json({ error: "Failed to add testimonial", details: e.message });
+    }
+});
+
+// Update a testimonial
+app.put("/api/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    const t = req.body;
+
+    // Validate required fields
+    if (!t.clientName || !t.testimonialText || !t.category) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    try {
+        const result = await sql`
+            UPDATE testimonials SET
+                client_name = ${t.clientName},
+                client_role = ${t.clientRole || null},
+                client_company = ${t.clientCompany || null},
+                client_location = ${t.clientLocation || null},
+                testimonial_text = ${t.testimonialText},
+                short_quote = ${t.shortQuote || null},
+                category = ${t.category},
+                featured = ${t.featured || false},
+                project_related = ${t.projectRelated || null},
+                key_highlights = ${JSON.stringify(t.keyHighlights || [])}
+            WHERE id = ${id}
+            RETURNING *
+        `;
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Testimonial not found" });
+        }
+        res.json({ success: true, testimonial: result[0] });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to update testimonial" });
+    }
+});
+
+// Delete a testimonial
+app.delete("/api/testimonials/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const result = await sql`DELETE FROM testimonials WHERE id = ${id} RETURNING *`;
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Testimonial not found" });
+        }
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to delete testimonial" });
+    }
+});
+
+// Set featured testimonials
+app.post("/api/testimonials/set-featured", async (req, res) => {
+    let { ids = [] } = req.body;
+    if (!Array.isArray(ids)) {
+        return res.status(400).json({ error: "IDs must be an array" });
+    }
+    try {
+        await sql`UPDATE testimonials SET featured = false`;
+        if (ids.length > 0) {
+            await sql`UPDATE testimonials SET featured = true WHERE id IN ${sql(ids)}`;
+        }
+        return res.json({ success: true, featured: ids });
+    } catch (e) {
+        return res.status(500).json({ error: "Failed to set featured testimonials" });
     }
 });
 
