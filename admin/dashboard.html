@@ -71,13 +71,14 @@
 
 <body>
     <script>
-    // Simple authentication check
-    function checkAuth() {
-        return true;
-    }
-
-    if (!checkAuth()) {
-        // window.location.href = 'signin.html';
+    // Check login status when page loads
+    if (!localStorage.getItem('admin_token')) {
+        document.getElementById('dashboard-section').classList.add('hidden');
+        document.getElementById('login-section').classList.remove('hidden');
+    } else {
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
+        // Will load projects after DOM content loaded
     }
     </script>
 
@@ -488,6 +489,18 @@
             });
         }
 
+        // Check if user is already logged in
+        function checkLoginStatus() {
+            const token = localStorage.getItem('admin_token');
+            if (token) {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                loadProjects();
+                return true;
+            }
+            return false;
+        }
+
         // Login function
         function login(event) {
             if (event) event.preventDefault();
@@ -507,6 +520,8 @@
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
+                    // Store auth token
+                    localStorage.setItem('admin_token', data.token || 'authenticated');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
                     loadProjects();
@@ -731,6 +746,7 @@
         // Logout function
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('admin_token');
                 document.getElementById('dashboard-section').classList.add('hidden');
                 document.getElementById('login-section').classList.remove('hidden');
                 document.getElementById('admin-password').value = '';

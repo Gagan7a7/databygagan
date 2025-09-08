@@ -3,6 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Add Project - Admin Dashboard</title>
+    <script>
+    // Check if user is logged in by verifying admin token
+    if (!localStorage.getItem('admin_token')) {
+        window.location.href = 'signin.html';
+    }
+    </script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="img/favicon.ico" rel="icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -61,15 +67,9 @@
 </head>
 <body>
     <script>
-    // Simple authentication check - modify as needed
-    function checkAuth() {
-        // You can implement your authentication logic here
-        // For now, we'll assume authenticated if they reach this page
-        return true;
-    }
-
-    if (!checkAuth()) {
-        // window.location.href = 'signin.html';
+    // Check if user is logged in
+    if (!localStorage.getItem('admin_token')) {
+        window.location.href = 'signin.html';
     }
     </script>
 
@@ -94,6 +94,7 @@
                     <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link active"><i class="fa fa-plus me-2"></i>Add Project</a>
                     <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -191,6 +192,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('admin_token');
+                window.location.href = 'signin.html';
+            }
+        }
+    
     // Your exact admin.html logic for add/edit/delete projects
     let projects = [];
 
