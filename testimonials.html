@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E1LMYP9DMX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E1LMYP9DMX');
+    </script>
+
+    <!-- Primary Meta Tags -->
     <meta charset="utf-8">
     <title>Client Testimonials - Gagan BP | Data Analytics Success Stories</title>
+    <meta name="description" content="Read authentic testimonials from satisfied clients about their data analytics journey with Gagan BP. Real success stories from businesses I've helped with Power BI dashboards, Excel automation, Python analysis, and SQL solutions.">
+    <meta name="keywords" content="data analyst testimonials, Power BI dashboard reviews, Excel automation feedback, Python data analysis reviews, SQL consulting testimonials, business intelligence reviews, data visualization feedback, analytics consulting testimonials, freelance data analyst reviews, Bengaluru data analyst, client success stories">
+    <meta name="author" content="Gagan BP">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="geo.region" content="IN-KA">
+    <meta name="geo.placename" content="Bengaluru">
+
+    <!-- Performance and SEO meta tags -->
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="msapplication-TileColor" content="#4a90e2">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Performance optimizations -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://databygagan.com/testimonials.html">
+    <meta property="og:title" content="Client Testimonials - Gagan BP | Data Analytics Success Stories">
+    <meta property="og:description" content="Read authentic testimonials from satisfied clients about their data analytics journey with Gagan BP. Success stories from businesses I've helped with Power BI, Excel, Python, and SQL solutions.">
+    <meta property="og:image" content="https://databygagan.com/images/Hranalytics.png">
+    <meta property="og:site_name" content="Gagan Data Analytics">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Client Testimonials - Gagan BP | Data Analytics Success Stories">
+    <meta name="twitter:description" content="Read authentic testimonials from clients about their data analytics journey with Gagan BP.">
+    <meta name="twitter:image" content="https://databygagan.com/images/Hranalytics.png">
+    <meta name="twitter:creator" content="@gagan_data">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Client Testimonials - Gagan BP",
+        "description": "Client testimonials and success stories for Gagan BP's data analytics services",
+        "url": "https://databygagan.com/testimonials.html",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [],
+            "description": "Collection of client testimonials about data analytics services"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Gagan BP"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Gagan Data Analytics",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://databygagan.com/assets/logo.png"
+            }
+        },
+        "datePublished": "2025-09-08",
+        "dateModified": "2025-09-08"
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://databygagan.com/testimonials.html">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="styles.css" as="style">
+
     <!-- Stylesheets -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -58,8 +145,9 @@
 
         .testimonials-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .testimonial-card {
@@ -69,27 +157,27 @@
             box-shadow: var(--shadow-heavy);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
-            width: 450px;
-            margin-bottom: 3rem;
+            width: 480px;
+            margin-bottom: 4rem;
             position: relative;
             
             /* Initial state - hidden */
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(60px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Zigzag positioning */
+        /* Zigzag positioning - proper left and right */
         .testimonial-card:nth-child(odd) {
             margin-left: 0;
             margin-right: auto;
-            transform: translateY(50px) translateX(-50px);
+            transform: translateY(60px) translateX(-30px);
         }
 
         .testimonial-card:nth-child(even) {
             margin-left: auto;
             margin-right: 0;
-            transform: translateY(50px) translateX(50px);
+            transform: translateY(60px) translateX(30px);
         }
 
         /* Visible state */
@@ -111,26 +199,27 @@
             z-index: 0;
         }
 
-        /* Connection dots */
+        /* Connection dots - positioned at center edge of cards */
         .testimonial-card::after {
             content: '';
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             background: var(--primary-color);
             border-radius: 50%;
             top: 50%;
-            z-index: 1;
+            transform: translateY(-50%);
+            z-index: 2;
             box-shadow: 0 0 0 4px var(--dark-bg);
             transition: all 0.3s ease;
         }
 
         .testimonial-card:nth-child(odd)::after {
-            right: -31px;
+            right: -36px;
         }
 
         .testimonial-card:nth-child(even)::after {
-            left: -31px;
+            left: -36px;
         }
 
         .testimonial-card.visible::after {
@@ -293,19 +382,23 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .testimonials-container {
+                padding: 0 1rem;
+            }
+            
             .testimonials-container::before {
-                left: 20px;
+                left: 30px;
             }
 
             .testimonial-card {
-                width: 100%;
-                margin-left: 0 !important;
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
                 margin-right: 0 !important;
-                padding-left: 3rem;
+                padding-left: 2rem;
             }
 
             .testimonial-card::after {
-                left: -31px !important;
+                left: -36px !important;
                 right: auto !important;
             }
 
@@ -362,67 +455,6 @@
     </main>
 
     <script>
-        // Sample testimonials data (replace with your API call)
-        const sampleTestimonials = [
-            {
-                id: 1,
-                clientName: "Sarah Johnson",
-                clientRole: "Marketing Director",
-                clientCompany: "TechCorp Inc",
-                clientLocation: "San Francisco, CA",
-                testimonialText: "Working with Gagan was an absolute game-changer for our business. The Power BI dashboard he created gave us insights we never knew we needed. Our decision-making process has become so much more data-driven and efficient.",
-                category: "Power BI Dashboard",
-                keyHighlights: ["Real-time Analytics", "Custom KPIs", "Interactive Reports"],
-                dateAdded: "2024-08-15",
-                featured: true
-            },
-            {
-                id: 2,
-                clientName: "Michael Chen",
-                clientRole: "Operations Manager",
-                clientCompany: "Global Logistics",
-                clientLocation: "Singapore",
-                testimonialText: "The Excel automation solution Gagan developed saved us 20+ hours per week. What used to take our team days now happens automatically. The ROI was evident within the first month of implementation.",
-                category: "Excel Automation",
-                keyHighlights: ["Process Automation", "Time Savings", "Error Reduction"],
-                dateAdded: "2024-07-22"
-            },
-            {
-                id: 3,
-                clientName: "Emma Rodriguez",
-                clientRole: "Data Analyst",
-                clientCompany: "FinanceFlow",
-                clientLocation: "Madrid, Spain",
-                testimonialText: "Gagan's Python analysis uncovered trends in our customer data that completely changed our marketing strategy. His attention to detail and ability to explain complex findings in simple terms is remarkable.",
-                category: "Python Analysis",
-                keyHighlights: ["Customer Insights", "Predictive Modeling", "Clear Communication"],
-                dateAdded: "2024-08-01"
-            },
-            {
-                id: 4,
-                clientName: "David Kumar",
-                clientRole: "CEO",
-                clientCompany: "StartupX",
-                clientLocation: "Bangalore, India",
-                testimonialText: "As a startup, we needed someone who could work with limited data and still provide valuable insights. Gagan exceeded our expectations and helped us make crucial business decisions with confidence.",
-                category: "Business Intelligence",
-                keyHighlights: ["Strategic Insights", "Cost-effective", "Fast Delivery"],
-                dateAdded: "2024-07-10",
-                featured: true
-            },
-            {
-                id: 5,
-                clientName: "Lisa Thompson",
-                clientRole: "HR Director",
-                clientCompany: "People First Corp",
-                clientLocation: "Toronto, Canada",
-                testimonialText: "The HR analytics dashboard Gagan created transformed how we understand our workforce. We can now predict turnover, identify high performers, and make data-driven HR decisions.",
-                category: "HR Analytics",
-                keyHighlights: ["Employee Insights", "Turnover Prediction", "Performance Metrics"],
-                dateAdded: "2024-06-28"
-            }
-        ];
-
         // Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
@@ -498,3 +530,9 @@
                 emptyState.style.display = 'block';
             }
         }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', loadTestimonials);
+    </script>
+</body>
+</html>
