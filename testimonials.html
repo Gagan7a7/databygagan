@@ -152,8 +152,8 @@
             transform: translateY(0);
         }
 
-        /* Blur only non-hovered cards */
-        .testimonial-card:not(:hover):not(.fullscreen-active) {
+        /* Only blur sibling cards when one card is hovered */
+        .testimonials-grid:hover .testimonial-card:not(:hover):not(.fullscreen-active) {
             filter: blur(2px) grayscale(30%);
             opacity: 0.7;
             z-index: 1;
