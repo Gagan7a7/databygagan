@@ -592,22 +592,8 @@
                         ` : ''}
                     `;
 
-                    // Add fullscreen effect on hover/click
-                    card.addEventListener('mouseenter', function() {
-                        card.classList.add('fullscreen-active');
-                    });
-                    card.addEventListener('mouseleave', function() {
-                        card.classList.remove('fullscreen-active');
-                    });
-
-                    // Optional: click to toggle fullscreen (for mobile)
-                    card.addEventListener('click', function(e) {
-                        if (!card.classList.contains('fullscreen-active')) {
-                            card.classList.add('fullscreen-active');
-                        } else {
-                            card.classList.remove('fullscreen-active');
-                        }
-                    });
+                    // Add fullscreen effect on hover only
+                    // Remove the JavaScript event listeners since we're using pure CSS hover
 
                     grid.appendChild(card);
                     observer.observe(card);
