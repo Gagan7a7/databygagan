@@ -140,7 +140,7 @@
             border: 1px solid var(--border-color);
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.3s ease-out;
+            transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s, filter 0.3s;
             position: relative;
             height: 100%;
             display: flex;
@@ -150,6 +150,20 @@
         .testimonial-card.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .testimonials-grid:hover .testimonial-card {
+            filter: blur(2px) grayscale(30%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.06);
+            filter: none;
+            opacity: 1;
+            box-shadow: 0 8px 32px rgba(74,144,226,0.25), 0 1.5px 8px rgba(0,0,0,0.15);
+            z-index: 2;
         }
 
         /* Smooth scroll for the whole page */
