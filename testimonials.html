@@ -152,10 +152,30 @@
             transform: translateY(0);
         }
 
-        .testimonials-grid:hover .testimonial-card {
+        /* Blur only non-hovered cards */
+        .testimonial-card:not(:hover):not(.fullscreen-active) {
             filter: blur(2px) grayscale(30%);
             opacity: 0.7;
             z-index: 1;
+        }
+
+        /* Enlarge hovered card to fullscreen */
+        .testimonial-card.fullscreen-active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            width: 90vw;
+            max-width: 600px;
+            height: auto;
+            max-height: 90vh;
+            background: var(--dark-secondary);
+            box-shadow: 0 16px 64px rgba(74,144,226,0.35), 0 3px 16px rgba(0,0,0,0.25);
+            z-index: 9999;
+            opacity: 1;
+            filter: none;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            overflow-y: auto;
         }
 
         .testimonial-card:hover {
@@ -505,8 +525,8 @@
         // Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
-            rootMargin: '-100px', // Only trigger when card is well into view
-            threshold: 0.2 // Require 20% of the card to be visible
+            rootMargin: '-100px',
+            threshold: 0.2
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -572,6 +592,23 @@
                         ` : ''}
                     `;
 
+                    // Add fullscreen effect on hover/click
+                    card.addEventListener('mouseenter', function() {
+                        card.classList.add('fullscreen-active');
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        card.classList.remove('fullscreen-active');
+                    });
+
+                    // Optional: click to toggle fullscreen (for mobile)
+                    card.addEventListener('click', function(e) {
+                        if (!card.classList.contains('fullscreen-active')) {
+                            card.classList.add('fullscreen-active');
+                        } else {
+                            card.classList.remove('fullscreen-active');
+                        }
+                    });
+
                     grid.appendChild(card);
                     observer.observe(card);
                 });
@@ -591,7 +628,7 @@
         // Back to top functionality
         function initBackToTop() {
             const backToTop = document.getElementById('back-to-top');
-            
+
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     backToTop.classList.add('visible');
