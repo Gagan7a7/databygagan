@@ -324,15 +324,6 @@
                 gap: 1.5rem;
                 padding: 1rem;
             }
-            
-            .testimonial-card:hover {
-                transform: scale(1.01) translateZ(0);
-            }
-            
-            .testimonials-grid:hover .testimonial-card:not(:hover) {
-                filter: none;
-                opacity: 1;
-            }
         }
 
         /* Loading animation */
@@ -666,9 +657,38 @@
             }
         }
 
+        // Optimized hover management for testimonial cards
+        function initTestimonialHover() {
+            const grid = document.getElementById('testimonials-grid');
+            if (!grid) return;
+
+            // Only add hover functionality for devices that can hover
+            if (window.matchMedia('(hover: hover)').matches) {
+                grid.addEventListener('mouseenter', (e) => {
+                    if (e.target.classList.contains('testimonial-card')) {
+                        grid.classList.add('has-hovered-card');
+                        e.target.classList.add('is-hovered');
+                    }
+                }, true);
+
+                grid.addEventListener('mouseleave', (e) => {
+                    if (e.target.classList.contains('testimonial-card')) {
+                        grid.classList.remove('has-hovered-card');
+                        e.target.classList.remove('is-hovered');
+                        
+                        // Remove is-hovered from all cards to reset state
+                        grid.querySelectorAll('.testimonial-card').forEach(card => {
+                            card.classList.remove('is-hovered');
+                        });
+                    }
+                }, true);
+            }
+        }
+
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             loadTestimonials();
+            initTestimonialHover();
             
             // Optimized scroll listener
             window.addEventListener('scroll', () => {
