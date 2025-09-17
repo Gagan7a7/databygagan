@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add Testimonial - Admin Dashboard</title>
+    <script>
+    // Check if user is logged in by verifying admin token
+    if (!localStorage.getItem('admin_token')) {
+        window.location.href = 'signin.html';
+    }
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Custom styles to match your admin theme */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: #191C24;
+            padding: 15px 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 250px;
+            min-height: 100vh;
+            background: #151821;
+        }
+        .bg-secondary {
+            background-color: #191C24 !important;
+        }
+        .form-control {
+            background-color: #2A2D3A;
+            border-color: #3E4651;
+            color: #fff;
+        }
+        .form-control:focus {
+            background-color: #2A2D3A;
+            border-color: #007BFF;
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+        body {
+            background-color: #151821;
+            color: #fff;
+        }
+        .alert {
+            margin-top: 1rem;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .preview-section {
+            background: #191C24;
+            border: 2px dashed #3E4651;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .testimonial-preview {
+            background: #2A2D3A;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #007BFF;
+        }
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+    // Check if user is logged in
+    if (!localStorage.getItem('admin_token')) {
+        window.location.href = 'signin.html';
+    }
+    </script>
+
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Sidebar -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="dashboard.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DatabyGagan</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Gagan</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
+                    <a href="addtestimonial.html" class="nav-item nav-link active"><i class="fa fa-quote-right me-2"></i>Add Testimonial</a>
+                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View Testimonials</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="text-primary mb-0">Add New Testimonial</h3>
+                                <a href="viewtestimonial.html" class="btn btn-info">
+                                    <i class="fa fa-comments me-1"></i>View All Testimonials
+                                </a>
+                            </div>
+
+                            <form id="testimonial-form">
+                                <input type="hidden" id="edit-index">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="clientName" placeholder="Client Name" required>
+                                            <label for="clientName">Client Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="clientRole" placeholder="Client Role">
+                                            <label for="clientRole">Role/Position (Optional)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="clientCompany" placeholder="Company Name">
+                                            <label for="clientCompany">Company/Organization (Optional)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="clientLocation" placeholder="Location">
+                                            <label for="clientLocation">Location (Optional)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="testimonialText" style="height: 120px" required></textarea>
+                                    <label for="testimonialText">Full Testimonial</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="shortQuote" style="height: 80px"></textarea>
+                                    <label for="shortQuote">Short Quote (For Homepage)</label>
+                                    <div class="form-text text-light">Keep it under 100 characters for best display</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="category" required>
+                                                <option value="General">General</option>
+                                                <option value="Power BI">Power BI</option>
+                                                <option value="Excel">Excel</option>
+                                                <option value="Python">Python</option>
+                                                <option value="Data Analysis">Data Analysis</option>
+                                                <option value="Dashboard">Dashboard</option>
+                                            </select>
+                                            <label for="category">Category</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="featured" required>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                            <label for="featured">Feature on Homepage?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="showDate" required>
+                                                <option value="false">No</option>
+                                                <option value="true">Yes</option>
+                                            </select>
+                                            <label for="showDate">Display Date Publicly?</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="customDate">
+                                            <label for="customDate">Custom Date (Optional)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="projectRelated" placeholder="Related Project">
+                                    <label for="projectRelated">Related Project (Optional)</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="keyHighlights" placeholder="Key Highlights">
+                                    <label for="keyHighlights">Key Highlights (comma separated)</label>
+                                    <div class="form-text text-light">E.g.: On-time delivery, Quality work, Technical expertise</div>
+                                </div>
+
+                                <!-- Preview Section -->
+                                <div class="preview-section">
+                                    <h5 class="text-light mb-3"><i class="fas fa-eye me-2"></i>Preview</h5>
+                                    <div class="testimonial-preview" id="testimonialPreview">
+                                        <div class="client-info">
+                                            <div class="client-avatar" id="previewAvatar">G</div>
+                                            <div>
+                                                <div class="fw-bold text-light" id="previewName">Client Name</div>
+                                                <div class="text-muted" id="previewRole">Client</div>
+                                            </div>
+                                        </div>
+                                        <p class="mb-0 text-light" id="previewText">Your testimonial will appear here...</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex gap-2 mt-4">
+                                    <button type="submit" class="btn btn-success px-4">
+                                        <i class="fa fa-save me-1"></i>Save Testimonial
+                                    </button>
+                                    <button type="button" class="btn btn-secondary px-4" onclick="resetForm()">
+                                        <i class="fa fa-refresh me-1"></i>Reset
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Notification area -->
+                            <div id="notification-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('admin_token');
+                window.location.href = 'signin.html';
+            }
+        }
+
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            container.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fa ${iconClass} me-2"></i>${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const alert = container.querySelector('.alert');
+                if (alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            }, 5000);
+        }
+
+        // Real-time preview updates
+        const form = document.getElementById('testimonial-form');
+        const inputs = form.querySelectorAll('input, textarea, select');
+        
+        inputs.forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
+
+        function updatePreview() {
+            const name = document.getElementById('clientName').value || 'Client Name';
+            const role = document.getElementById('clientRole').value;
+            const company = document.getElementById('clientCompany').value;
+            const location = document.getElementById('clientLocation').value;
+            const text = document.getElementById('shortQuote').value || 
+                        document.getElementById('testimonialText').value || 
+                        'Your testimonial will appear here...';
+
+            document.getElementById('previewName').textContent = name;
+            document.getElementById('previewAvatar').textContent = name.charAt(0).toUpperCase();
+            
+            let roleText = '';
+            const roleParts = [];
+            
+            if (role && role.trim()) roleParts.push(role.trim());
+            if (company && company.trim()) roleParts.push(company.trim());
+            if (location && location.trim()) roleParts.push(location.trim());
+            
+            roleText = roleParts.join(' • ') || 'Client';
+            
+            document.getElementById('previewRole').textContent = roleText;
+            document.getElementById('previewText').textContent = text.slice(0, 200) + 
+                (text.length > 200 ? '...' : '');
+        }
+
+        // Check for edit mode when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editId = urlParams.get('id');
+            
+            if (editId) {
+                // Change title and button text for edit mode
+                document.querySelector('h3.text-primary').textContent = 'Edit Testimonial';
+                document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Update Testimonial';
+                
+                // Fetch the testimonial data
+                fetch(`/api/testimonials/${editId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        // Populate the form with existing data
+                        document.getElementById('edit-index').value = data.id;
+                        document.getElementById('clientName').value = data.clientName || '';
+                        document.getElementById('clientRole').value = data.clientRole || '';
+                        document.getElementById('clientCompany').value = data.clientCompany || '';
+                        document.getElementById('clientLocation').value = data.clientLocation || '';
+                        document.getElementById('testimonialText').value = data.testimonialText || '';
+                        document.getElementById('shortQuote').value = data.shortQuote || '';
+                        document.getElementById('category').value = data.category || 'General';
+                        document.getElementById('featured').value = data.featured ? 'true' : 'false';
+                        document.getElementById('showDate').value = data.show_date ? 'true' : 'false';
+                        document.getElementById('projectRelated').value = data.projectRelated || '';
+                        document.getElementById('keyHighlights').value = (data.keyHighlights || []).join(', ');
+                        document.getElementById('showDate').value = data.showDate ? 'true' : 'false';
+                        if (data.dateAdded) {
+                            document.getElementById('customDate').value = data.dateAdded;
+                        }
+                        
+                        // Update the preview
+                        updatePreview();
+                    })
+                    .catch(err => {
+                        showNotification('Error loading testimonial: ' + err.message, 'error');
+                    });
+            }
+        });
+
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving...';
+
+            const editId = document.getElementById('edit-index').value;
+            
+            const customDate = document.getElementById('customDate').value;
+            const today = new Date().toISOString().split('T')[0];
+            
+            const testimonialData = {
+                clientName: document.getElementById('clientName').value,
+                clientRole: document.getElementById('clientRole').value || null,
+                clientCompany: document.getElementById('clientCompany').value || null,
+                clientLocation: document.getElementById('clientLocation').value || null,
+                testimonialText: document.getElementById('testimonialText').value,
+                shortQuote: document.getElementById('shortQuote').value || null,
+                category: document.getElementById('category').value,
+                featured: document.getElementById('featured').value === 'true',
+                projectRelated: document.getElementById('projectRelated').value || null,
+                keyHighlights: document.getElementById('keyHighlights').value.split(',').map(s => s.trim()).filter(s => s),
+                show_date: document.getElementById('showDate').value === 'true',
+                dateAdded: customDate || today
+            };
+            
+            // API endpoint for testimonials with full environment support
+            const isEdit = !!editId;
+            const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            const baseUrl = isLocalhost ? "http://localhost:5000/api" : "/api";
+            const url = `${baseUrl}/testimonials${isEdit ? `/${editId}` : ''}`;
+            const method = isEdit ? 'PUT' : 'POST';
+            
+            console.log('Submitting testimonial to:', url);
+
+            fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(testimonialData)
+            })
+            .then(async res => {
+                if (!res.ok) {
+                    // Try to get error details from response
+                    const errorText = await res.text();
+                    let errorDetail;
+                    try {
+                        const errorJson = JSON.parse(errorText);
+                        errorDetail = errorJson.error || errorJson.message || errorText;
+                    } catch {
+                        errorDetail = errorText;
+                    }
+                    throw new Error(`HTTP ${res.status}: ${errorDetail}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    const message = isEdit ? 'Testimonial updated successfully!' : 'Testimonial added successfully!';
+                    showNotification(message, 'success');
+                    if (!isEdit) {
+                        resetForm();
+                    } else {
+                        window.location.href = 'viewtestimonial.html';
+                    }
+                } else {
+                    showNotification('Error saving testimonial: ' + (data.error || 'Unknown error'), 'error');
+                }
+            })
+            .catch(err => {
+                console.error('API Error:', err);
+                showNotification('Error saving testimonial: ' + err.message, 'error');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
+        });
+
+        // Reset form function
+        function resetForm() {
+            document.getElementById('edit-index').value = '';
+            document.getElementById('showDate').value = 'true'; // Default to showing date
+            document.getElementById('customDate').value = ''; // Clear custom date
+            form.reset();
+            updatePreview();
+        }
+
+        // Initialize preview
+        document.addEventListener('DOMContentLoaded', updatePreview);
+    </script>
+</body>
+</html>
