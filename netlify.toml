@@ -8,4 +8,42 @@
   to = "/.netlify/functions/api/:splat"
   status = 200
 
-# Add updated Netlify Image Optim plugin
+# Force HTTPS
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
+
+# Protect all admin routes with authentication
+[[redirects]]
+  from = "/admin"
+  to = "/admin/signin.html"
+  status = 302
+  force = true
+  conditions = {Role = ["!admin"]}
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/signin.html"
+  status = 302
+  force = true
+  conditions = {Role = ["!admin"]}
+
+# Return 404 for any direct admin file access
+[[redirects]]
+  from = "*/admin/*"
+  to = "/404.html"
+  status = 404
+
+# Protect all admin routes
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; connect-src 'self' https:;"
+    Cache-Control = "no-store, no-cache, must-revalidate, private"
+    Referrer-Policy = "no-referrer"
