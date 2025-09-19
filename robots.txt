@@ -3,14 +3,24 @@ User-agent: *
 Allow: /
 
 # Priority pages for crawling
-Allow: /#about
-Allow: /#skills
-Allow: /#projects
-Allow: /#services
-Allow: /#contact
+Allow: /about.html
+Allow: /skills.html
+Allow: /projects.html
+Allow: /services.html
+Allow: /contact.html
+Allow: /resume.html
+Allow: /faq.html
+Allow: /testimonials.html
 
-# Block common bot traps
+# Block admin section completely
+Disallow: /admin
 Disallow: /admin/
+Disallow: /admin/*
+Disallow: */admin
+Disallow: */admin/
+Disallow: */admin/*
+
+# Block other sensitive directories
 Disallow: /private/
 Disallow: /.git/
 Disallow: /node_modules/
