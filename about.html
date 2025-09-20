@@ -403,6 +403,15 @@
                             }
                         }
 
+                        /* Button Styles for CTA */
+                        .about-text .btn.btn-primary,
+                        .about-text .btn.btn-primary:hover,
+                        .about-text .btn.btn-primary:focus,
+                        .about-text .btn.btn-primary:active {
+                            color: #fff !important;
+                            text-decoration: none !important;
+                        }
+
                         /* Mobile Responsiveness */
                         @media (max-width: 768px) {
                             .hover-zone:hover {
@@ -527,16 +536,6 @@
                                     Let's Unlock Your Data Story &rarr;
                                 </a>
                             </div>
-
-                            <style>
-                                .about-text .btn.btn-primary,
-                                .about-text .btn.btn-primary:hover,
-                                .about-text .btn.btn-primary:focus,
-                                .about-text .btn.btn-primary:active {
-                                    color: #fff !important;
-                                    text-decoration: none !important;
-                                }
-                            </style>
                         </div>
                     </div>
                 </div>
@@ -586,36 +585,36 @@
 
         <!-- Back to Top Button -->
         <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-        
+
         <script>
         // Modern Interactive About Me - Enhanced with Latest Trends
         document.addEventListener('DOMContentLoaded', function() {
             let scrollTimeout;
             let mouseX = 0, mouseY = 0;
-            
+
             // Reading progress removed
-            
+
             // Parallax Background Layers
             const layer1 = document.getElementById('parallax-layer-1');
             const layer2 = document.getElementById('parallax-layer-2');
-            
+
             function updateParallax() {
                 const scrolled = window.pageYOffset;
                 if (layer1) layer1.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
                 if (layer2) layer2.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
             }
-            
+
             // Intersection Observer for Reveal Animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
-                        
+
                         // Stagger paragraph animations
                         if (entry.target.tagName === 'P') {
                             setTimeout(() => {
@@ -625,21 +624,21 @@
                     }
                 });
             }, observerOptions);
-            
+
             // Observe all reveal elements
             document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-fade').forEach(el => {
                 observer.observe(el);
             });
-            
+
             document.querySelectorAll('.about-text p').forEach(el => {
                 observer.observe(el);
             });
-            
+
             // Magnetic Mouse Effect
             function updateMagnetic(e) {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
-                
+
                 document.querySelectorAll('.magnetic').forEach(el => {
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
@@ -647,7 +646,7 @@
                     const deltaX = (mouseX - centerX) * 0.15;
                     const deltaY = (mouseY - centerY) * 0.15;
                     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                    
+
                     if (distance < 100) {
                         el.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.05)`;
                     } else {
@@ -655,17 +654,17 @@
                     }
                 });
             }
-            
+
             // Skill Link Interactive Effects - Simplified for inline links
             document.querySelectorAll('.about-text a').forEach(link => {
                 link.addEventListener('mouseenter', function() {
                     this.style.color = 'var(--primary-color, #4a90e2)';
                 });
-                
+
                 link.addEventListener('mouseleave', function() {
                     this.style.color = '';
                 });
-                
+
                 // Remove complex ripple effect for inline links
                 link.addEventListener('click', function(e) {
                     // Simple highlight effect
@@ -675,14 +674,12 @@
                     }, 150);
                 });
             });
-            
 
-            
             // Particle System
             function createParticles() {
                 const particlesContainer = document.getElementById('particles');
                 const particleCount = window.innerWidth < 768 ? 15 : 30;
-                
+
                 const fragment = document.createDocumentFragment();
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
@@ -694,41 +691,39 @@
                 }
                 particlesContainer.appendChild(fragment);
             }
-            
 
-            
             // Hover Zone Effects with 3D Transform
             document.querySelectorAll('.hover-zone').forEach(zone => {
                 zone.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateX(15px) translateY(-5px) rotateY(2deg)';
                     this.style.zIndex = '10';
                 });
-                
+
                 zone.addEventListener('mouseleave', function() {
                     this.style.transform = '';
                     this.style.zIndex = '';
                 });
             });
-            
+
             // Performance-optimized scroll handler
             let lastScrollTime = 0;
             const scrollThrottleMs = 10;
-            
+
             function handleScroll() {
                 const now = performance.now();
                 if (now - lastScrollTime < scrollThrottleMs) return;
-                
+
                 lastScrollTime = now;
                 requestAnimationFrame(() => {
                     updateParallax();
                 });
             }
-            
+
             // Typewriter Effect for Lead Paragraph (if needed)
             function typewriterEffect(element, text, speed = 50) {
                 element.innerHTML = '';
                 let i = 0;
-                
+
                 function type() {
                     if (i < text.length) {
                         element.innerHTML += text.charAt(i);
@@ -736,22 +731,22 @@
                         setTimeout(type, speed);
                     }
                 }
-                
+
                 type();
             }
-            
+
             // Enhanced Page Load Animation
             function pageLoadAnimation() {
                 // Fade in body
                 document.body.style.opacity = '0';
                 document.body.style.transform = 'translateY(20px)';
                 document.body.style.transition = 'all 0.8s ease';
-                
+
                 setTimeout(() => {
                     document.body.style.opacity = '1';
                     document.body.style.transform = 'translateY(0)';
                 }, 100);
-                
+
                 // Cascade reveal content
                 const elements = document.querySelectorAll('.about-text p');
                 elements.forEach((el, index) => {
@@ -761,30 +756,29 @@
                     }, 200 + (index * 100));
                 });
             }
-            
+
             // Mouse Movement Parallax
             function handleMouseMove(e) {
                 updateMagnetic(e);
-                
+
                 // Parallax effect on floating elements
                 const floatingElements = document.querySelectorAll('.floating-element');
                 const mouseXPercent = (e.clientX / window.innerWidth) * 2 - 1;
                 const mouseYPercent = (e.clientY / window.innerHeight) * 2 - 1;
-                
+
                 floatingElements.forEach((el, index) => {
                     const speed = (index + 1) * 0.02;
                     el.style.transform += ` translate(${mouseXPercent * speed * 20}px, ${mouseYPercent * speed * 20}px)`;
                 });
             }
-            
 
+            window.addEventListener('scroll', handleScroll, { passive: true });
             window.addEventListener('mousemove', handleMouseMove, { passive: true });
-            
+
             // Initialize
             createParticles();
-            updateProgress();
             pageLoadAnimation();
-            
+
             // Ripple animation keyframes
             const style = document.createElement('style');
             style.textContent = `
@@ -796,10 +790,11 @@
                 }
             `;
             document.head.appendChild(style);
-            
+
             // Cleanup on page unload
             window.addEventListener('beforeunload', () => {
                 window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('scroll', handleScroll);
             });
         });
         </script>
