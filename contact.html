@@ -95,14 +95,168 @@
             }
             .form-row {
                 display: flex;
-                gap: 20px; /* Adjust the gap as needed */
+                gap: 20px;
             }
 
             .form-row .form-group {
-                width: 100%; /* Each form-group takes up half the width */
+                width: 100%;
             }
             .half-width {
                 width: 50%;
+            }
+
+            /* Clean Form Animations */
+            .contact-form {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: slideIn 0.6s ease forwards;
+            }
+
+            @keyframes slideIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .form-group {
+                opacity: 0;
+                animation: fadeIn 0.5s ease forwards;
+            }
+
+            .form-group:nth-child(1) { animation-delay: 0.1s; }
+            .form-group:nth-child(2) { animation-delay: 0.2s; }
+            .form-group:nth-child(3) { animation-delay: 0.3s; }
+            .form-group:nth-child(4) { animation-delay: 0.4s; }
+            .form-group:nth-child(5) { animation-delay: 0.5s; }
+            .form-group:nth-child(6) { animation-delay: 0.6s; }
+            .form-group:nth-child(7) { animation-delay: 0.7s; }
+
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+
+            /* Enhanced Input Focus */
+            .form-group input:focus,
+            .form-group select {
+                background-color: rgb(35, 40, 55);
+                color: var(--light-text);
+            }
+            .form-group select option {
+                background-color: rgb(35, 40, 55) !important;
+                color: var(--light-text);
+            }
+
+            .form-group select:focus,
+            .form-group textarea:focus {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(108, 99, 255, 0.15);
+                transition: all 0.3s ease;
+            }
+
+            /* Better CTA Button */
+            .btn-primary {
+                background: linear-gradient(135deg, #6c63ff 0%, #5a52d8 100%);
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+            }
+
+            .btn-primary:hover::before {
+                left: 100%;
+            }
+
+            /* Contact Items Hover */
+            .contact-item {
+                transition: transform 0.3s ease;
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .contact-item:hover {
+                transform: translateX(5px);
+                background: rgba(108, 99, 255, 0.05);
+            }
+
+            /* Success Message */
+            .success-message {
+                background: rgba(76, 175, 80, 0.1);
+                border: 1px solid #4caf50;
+                color: #4caf50;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                display: none;
+                opacity: 0;
+                animation: slideDown 0.3s ease forwards;
+            }
+
+            @keyframes slideDown {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .success-message.show {
+                display: block;
+            }
+
+            /* Loading State */
+            .btn-primary.loading {
+                pointer-events: none;
+                opacity: 0.7;
+            }
+
+            .btn-primary.loading::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 16px;
+                height: 16px;
+                margin: -8px 0 0 -8px;
+                border: 2px solid transparent;
+                border-top: 2px solid #fff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .form-row {
+                    flex-direction: column;
+                    gap: 0;
+                }
+                .half-width {
+                    width: 100%;
+                }
             }
         </style>
 
@@ -160,18 +314,16 @@
         </header>
 
         <!-- Main Content -->
-  <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
             <!-- Contact Section -->
-        <!-- Contact Section -->
             <section id="contact" class="section" aria-labelledby="contact-heading">
                 <div class="container">
                     <h1 id="contact-heading" class="section-title">
-                        Let's Work Together
+                        Let's Turn Your Data Into Growth
                     </h1>
                     <div class="contact-content">
                         <div class="contact-info">
-                            <h3>Get In Touch</h3>
+                            <h3>Ready to Scale Your Business?</h3>
                             <p>
                                 Ready to transform your data into insights? Let's
                                 discuss your project and how I can help you achieve
@@ -265,6 +417,11 @@
                             autocomplete="off"
                         >
 
+                        <!-- Success Message -->
+                        <div id="success-message" class="success-message">
+                            🎉 Awesome! Your message is on its way. I'll get back to you within 24 hours with a detailed proposal!
+                        </div>
+
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
                             <input
@@ -303,24 +460,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="service-type">Service Type <span class="required">*</span></label>
+                            <label for="service-type">What Do You Need? <span class="required">*</span></label>
                             <select
                                 id="service-type"
                                 name="service-type"
                                 required
                                 itemprop="serviceType"
                             >
-                                <option value="">Select a service...</option>
-                                <option value="power-bi-dashboard">Power BI Dashboard</option>
-                                <option value="excel-dashboard">Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
-                                <option value="sql-database-queries">SQL Database Queries</option>
-                                <option value="data-visualization-python">Data Visualization (Python)</option>
-                                <option value="machine-learning-models">Machine Learning Models</option>
-                                <option value="excel-automation">Excel Automation</option>
-                                <option value="website-development">Website Development</option>
-                                <option value="multiple-services">Multiple Services</option>
-                                <option value="consultation">Not Sure / Consultation</option>
+                                <option value="">Choose your growth solution...</option>
+                                <option value="power-bi-dashboard">📊 Power BI Dashboard</option>
+                                <option value="excel-dashboard">📈 Excel Dashboard</option>
+                                <option value="data-cleaning-analysis">🧹 Data Cleaning & Analysis</option>
+                                <option value="sql-database-queries">🗄️ SQL Database Queries</option>
+                                <option value="data-visualization-python">🐍 Data Visualization (Python)</option>
+                                <option value="machine-learning-models">🤖 Machine Learning Models</option>
+                                <option value="excel-automation">⚡ Excel Automation</option>
+                                <option value="website-development">🌐 Website Development</option>
+                                <option value="multiple-services">🚀 Multiple Services</option>
+                                <option value="consultation">🤔 Not Sure / Free Consultation</option>
                             </select>
                         </div>
 
@@ -333,11 +490,11 @@
                                     itemprop="timeline"
                                 >
                                     <option value="">Select timeline...</option>
-                                    <option value="within-1-week">Within 1 week</option>
-                                    <option value="2-4-weeks">2-4 weeks</option>
-                                    <option value="1-2-months">1-2 months</option>
-                                    <option value="3-plus-months">3+ months</option>
-                                    <option value="flexible">Flexible</option>
+                                    <option value="within-1-week">⚡ Within 1 week</option>
+                                    <option value="2-4-weeks">📅 2-4 weeks</option>
+                                    <option value="1-2-months">📆 1-2 months</option>
+                                    <option value="3-plus-months">🗓️ 3+ months</option>
+                                    <option value="flexible">🤷 Flexible</option>
                                 </select>
                             </div>
 
@@ -349,41 +506,45 @@
                                     itemprop="budget"
                                 >
                                     <option value="">Select budget...</option>
-                                    <option value="under-5000">Under ₹5,000</option>
-                                    <option value="5000-15000">₹5,000-₹15,000</option>
-                                    <option value="15000-30000">₹15,000-₹30,000</option>
-                                    <option value="30000-plus">₹30,000+</option>
-                                    <option value="lets-discuss">Let's discuss</option>
+                                    <option value="under-5000">💵 Under ₹5,000</option>
+                                    <option value="5000-15000">💰 ₹5,000-₹15,000</option>
+                                    <option value="15000-30000">💎 ₹15,000-₹30,000</option>
+                                    <option value="30000-plus">🏆 ₹30,000+</option>
+                                    <option value="lets-discuss">💬 Let's discuss</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Subject</label>
+                            <label for="subject">Project Title</label>
                             <input
                                 type="text"
                                 id="subject"
                                 name="subject"
-                                placeholder="Brief description of your project"
+                                placeholder="e.g., Sales Dashboard for Q4 Analysis"
                                 itemprop="description"
                             >
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Your Message <span class="required">*</span></label>
+                            <label for="message">Tell Me About Your Challenge <span class="required">*</span></label>
                             <textarea
                                 id="message"
                                 name="message"
                                 rows="5"
                                 required
-                                placeholder="Tell me about your project in detail... What data do you have? What insights are you looking for?"
+                                placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
                                 itemprop="text"
                             ></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-paper-plane"></i>Send Message
+                        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
                         </button>
+                        <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
+                            🔒 Your information is safe • ⚡ Response within 24 hours
+                        </p>
                     </form>
                     </div>
                 </div>
