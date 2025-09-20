@@ -95,14 +95,15 @@
 
             .service-card {
                 background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 20px;
                 padding: 2rem;
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
                 position: relative;
                 overflow: hidden;
+                will-change: transform, opacity;
                 cursor: pointer;
                 display: flex;
                 flex-direction: column;
@@ -130,9 +131,9 @@
             }
 
             .service-card:hover {
-                transform: translateY(-10px) scale(1.02);
+                transform: translateY(-8px);
                 border-color: rgba(255, 255, 255, 0.2);
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             }
 
             .service-icon {
@@ -202,10 +203,20 @@
                     grid-template-columns: 1fr;
                     gap: 1.5rem;
                     padding: 1rem;
+                    contain: content;
                 }
                 
                 .service-card {
                     padding: 1.5rem;
+                    transform: none !important;
+                    backdrop-filter: blur(6px);
+                    -webkit-backdrop-filter: blur(6px);
+                    transition: opacity 0.2s ease-out;
+                }
+                
+                .service-card:hover {
+                    transform: none !important;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
                 
                 .service-icon {
@@ -215,6 +226,10 @@
                 
                 .service-icon i {
                     font-size: 1.75rem;
+                }
+
+                .service-card::before {
+                    display: none;
                 }
             }
 
