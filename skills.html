@@ -76,6 +76,56 @@
           "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://databygagan.com/skills.html"
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Thing",
+                  "name": "Data Management",
+                  "description": "SQL, MySQL, Excel Functions, Data Cleaning, Pivot Tables, Conditional Formatting"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Thing",
+                  "name": "Programming & Tools",
+                  "description": "Python, Pandas, NumPy, Jupyter/Google Colab, VS Code, Git & GitHub, HTML & CSS"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Thing",
+                  "name": "Data Visualization",
+                  "description": "Power BI, DAX, Power Query, Excel Dashboards, Matplotlib, Seaborn"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "Thing",
+                  "name": "Machine Learning Basics",
+                  "description": "Scikit-learn, Train-Test Split, Accuracy/Confusion Matrix"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "Thing",
+                  "name": "Automation & AI Tools",
+                  "description": "Excel Automation (Python + GPT), AI-Driven Data Analysis"
+                }
+              }
+            ]
           }
         }
         </script>
@@ -88,7 +138,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
         <!-- Font Awesome -->
-        <!-- Font Awesome stylesheet already included below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
@@ -99,7 +149,98 @@
         </style>
 
         <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css">
+                <!-- Enhanced Styles for Glassmorphism and Interactions -->
+        <style>
+            /* Glassmorphism effect for skill categories */
+            .skill-category {
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .skill-category::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+            }
+            
+            .skill-category:hover::before {
+                opacity: 1;
+            }
+            
+            .skill-category:hover {
+                backdrop-filter: blur(15px);
+                border-color: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transform: translateY(-5px);
+            }
+            
+            /* Interactive skill tags */
+            .skill-tag {
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .skill-tag::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.6s ease;
+            }
+            
+            .skill-tag:hover::before {
+                left: 100%;
+            }
+            
+            .skill-tag:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            
+            /* Subtle icon animations */
+            .skill-category h3 i {
+                transition: transform 0.3s ease;
+            }
+            
+            .skill-category:hover h3 i {
+                transform: scale(1.1) rotate(5deg);
+            }
+            
+            /* Add floating particles for visual interest */
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .skill-category::after {
+                content: '';
+                position: absolute;
+                top: 20%;
+                right: 10%;
+                width: 3px;
+                height: 3px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                animation: float 3s ease-in-out infinite;
+            }
+        </style>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
@@ -315,5 +456,29 @@
 
         <!-- Script -->
     <script src="scripts.js"></script>
+        <!-- Enhanced JavaScript for interactions -->
+    <script>
+        // Simple hover interactions for skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Simple card interactions
+        document.querySelectorAll('.skill-category').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
     </body>
 </html>

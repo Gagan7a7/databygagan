@@ -158,20 +158,52 @@
         }
 
         .testimonial-card {
-            background: var(--dark-secondary);
+            background: rgba(15, 20, 25, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: var(--border-radius);
             padding: 2rem;
-            box-shadow: var(--shadow-heavy);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 1px 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.3s ease-out;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             height: 100%;
             display: flex;
             flex-direction: column;
             will-change: transform, opacity;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.02) 0%, rgba(107, 182, 255, 0.01) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .testimonial-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(107, 182, 255, 0.05));
+            border-radius: calc(var(--border-radius) + 2px);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .testimonial-card.visible {
@@ -179,12 +211,12 @@
             transform: translateY(0);
         }
 
-        /* Optimized hover effects with hardware acceleration */
+        /* Enhanced hover effects with glassy interaction */
         .testimonials-grid:hover .testimonial-card:not(:hover):not(.fullscreen-active) {
-            filter: blur(1px) grayscale(20%);
-            opacity: 0.8;
+            filter: blur(1px) grayscale(20%) brightness(0.8);
+            opacity: 0.7;
             z-index: 1;
-            transform: translateZ(0);
+            transform: translateZ(0) scale(0.98);
         }
 
         .testimonial-card.fullscreen-active {
@@ -196,22 +228,127 @@
             max-width: 600px;
             height: auto;
             max-height: 90vh;
-            background: var(--dark-secondary);
-            box-shadow: 0 16px 64px rgba(74,144,226,0.35), 0 3px 16px rgba(0,0,0,0.25);
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            box-shadow: 
+                0 25px 80px rgba(74,144,226,0.35), 
+                0 10px 32px rgba(0,0,0,0.4),
+                0 1px 1px rgba(255, 255, 255, 0.1) inset;
             z-index: 9999;
             opacity: 1;
             filter: none;
-            transition: all 0.3s ease-out;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
             will-change: transform;
         }
 
         .testimonial-card:hover {
-            transform: scale(1.03) translateZ(0);
+            transform: translateY(-8px) scale(1.02) translateZ(0);
             filter: none;
             opacity: 1;
-            box-shadow: 0 8px 32px rgba(74,144,226,0.25), 0 1.5px 8px rgba(0,0,0,0.15);
+            box-shadow: 
+                0 20px 60px rgba(74,144,226,0.15), 
+                0 8px 32px rgba(0,0,0,0.2),
+                0 1px 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 0 1px rgba(74, 144, 226, 0.1);
             z-index: 2;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+        }
+
+        .testimonial-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Enhanced glassy effect for client avatar */
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            margin-right: 1rem;
+            box-shadow: 
+                0 4px 20px rgba(74, 144, 226, 0.3),
+                0 1px 1px rgba(255, 255, 255, 0.2) inset;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .testimonial-card:hover .client-avatar {
+            transform: scale(1.05);
+            box-shadow: 
+                0 6px 25px rgba(74, 144, 226, 0.4),
+                0 1px 1px rgba(255, 255, 255, 0.3) inset;
+        }
+
+        /* Enhanced category and badge effects */
+        .testimonial-category {
+            background: rgba(74, 144, 226, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .testimonial-category {
+            background: rgba(74, 144, 226, 0.25);
+            border-color: rgba(74, 144, 226, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .testimonial-card:hover .featured-badge {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        /* Enhanced highlight tags */
+        .highlight-tag {
+            background: rgba(74, 144, 226, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--muted-text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .highlight-tag {
+            background: rgba(74, 144, 226, 0.12);
+            border-color: rgba(74, 144, 226, 0.15);
+            transform: translateY(-1px);
         }
         
         /* Hide scrollbar but keep functionality */
@@ -230,20 +367,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-            font-weight: bold;
-            margin-right: 1rem;
-        }
-
         .client-details {
             flex: 1;
         }
@@ -253,6 +376,11 @@
             font-weight: 600;
             margin: 0;
             color: var(--light-text);
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-card:hover .client-name {
+            color: var(--secondary-color);
         }
 
         .client-role {
@@ -280,14 +408,6 @@
             align-items: center;
         }
 
-        .testimonial-category {
-            background: rgba(74, 144, 226, 0.2);
-            color: var(--secondary-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-        }
-
         .key-highlights {
             display: flex;
             flex-wrap: wrap;
@@ -297,32 +417,16 @@
             border-top: 1px solid var(--border-color);
         }
 
-        .highlight-tag {
-            background: rgba(74, 144, 226, 0.1);
-            color: var(--muted-text);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient-primary);
-            color: var(--dark-bg);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .testimonials-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
                 padding: 1rem;
+            }
+
+            .testimonial-card:hover {
+                transform: translateY(-4px) scale(1.01) translateZ(0);
             }
         }
 
@@ -442,6 +546,9 @@
             transform: translateY(100px);
             z-index: 1000;
             will-change: transform, opacity;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
         }
 
         .back-to-top.visible {
@@ -451,6 +558,8 @@
 
         .back-to-top:hover {
             background: var(--secondary-color);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
         }
 
         /* Container class for consistency */

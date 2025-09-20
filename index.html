@@ -431,6 +431,168 @@
             *{transform:translateZ(0);backface-visibility:hidden}
             .container,.section,.hero{contain:layout style;will-change:transform}
             img{contain:layout;aspect-ratio:16/10;width:100%;height:auto}
+
+            /* Enhanced Service Cards Styles */
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .service-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 2rem;
+                transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                min-height: fit-content;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                will-change: transform, opacity;
+                contain: layout style;
+            }
+
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                border-radius: 20px;
+            }
+
+            .service-card:hover::before {
+                opacity: 1;
+            }
+
+            .service-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .service-icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                transition: all 0.4s ease;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .service-card:hover .service-icon {
+                background: rgba(255, 255, 255, 0.15);
+                transform: rotate(10deg) scale(1.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .service-icon i {
+                font-size: 2rem;
+                color: #e0e6ed;
+                transition: all 0.4s ease;
+            }
+
+            .service-card:hover .service-icon i {
+                color: #ffffff;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+
+            .service-card h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin: 0 0 1rem 0;
+                color: #e0e6ed;
+                transition: all 0.4s ease;
+                line-height: 1.4;
+            }
+
+            .service-card:hover h3 {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+
+            .service-card p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                color: rgba(224, 230, 237, 0.8);
+                margin: 0;
+                transition: all 0.4s ease;
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                text-align: center;
+            }
+
+            .service-card:hover p {
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .services-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                    padding: 1rem;
+                    contain: content;
+                    will-change: transform;
+                }
+                
+                .service-card {
+                    padding: 1.5rem;
+                    transform: none !important;
+                    backdrop-filter: blur(6px);
+                    -webkit-backdrop-filter: blur(6px);
+                    transition: opacity 0.2s ease-out;
+                    contain: layout style;
+                }
+                
+                .service-card:hover {
+                    transform: none !important;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                }
+                
+                .service-icon {
+                    width: 70px;
+                    height: 70px;
+                    will-change: transform;
+                }
+                
+                .service-icon i {
+                    font-size: 1.75rem;
+                }
+
+                .service-card::before {
+                    display: none;
+                }
+            }
+
+            /* Additional interactive effects */
+            .service-card:active {
+                transform: translateY(-5px) scale(0.98);
+            }
+
+            .service-card:focus {
+                outline: 2px solid rgba(255, 255, 255, 0.3);
+                outline-offset: 4px;
+            }
         </style>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
@@ -942,14 +1104,14 @@
         </section>
 
             <!-- Contact Section -->
-          <section id="contact" class="section" aria-labelledby="contact-heading">
+            <section id="contact" class="section" aria-labelledby="contact-heading">
                 <div class="container">
-                    <h1 id="contact-heading" class="section-title">
-                        Let's Work Together
-                    </h1>
+                    <h2 id="contact-heading" class="section-title">
+                        Let's Turn Your Data Into Growth
+                    </h2>
                     <div class="contact-content">
                         <div class="contact-info">
-                            <h3>Get In Touch</h3>
+                            <h3>Ready to Scale Your Business?</h3>
                             <p>
                                 Ready to transform your data into insights? Let's
                                 discuss your project and how I can help you achieve
@@ -982,9 +1144,9 @@
                                     <strong>Location</strong>
                                     <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
                                     <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                                     <span itemprop="addressRegion" content="Karnataka"></span>
-                                        <span itemprop="addressCountry" content="IN"></span>
-                                 </div>
+                                    <span itemprop="addressRegion">Karnataka</span>
+                                    <span itemprop="addressCountry">IN</span>
+                                </div>
                             </div>
 
                             <div class="contact-item">
@@ -1042,7 +1204,6 @@
                             tabindex="-1"
                             autocomplete="off"
                         >
-
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
                             <input
@@ -1081,24 +1242,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="service-type">Service Type <span class="required">*</span></label>
+                            <label for="service-type">What Do You Need? <span class="required">*</span></label>
                             <select
                                 id="service-type"
                                 name="service-type"
                                 required
                                 itemprop="serviceType"
                             >
-                                <option value="">Select a service...</option>
-                                <option value="power-bi-dashboard">Power BI Dashboard</option>
-                                <option value="excel-dashboard">Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">Data Cleaning &amp; Analysis</option>
-                                <option value="sql-database-queries">SQL Database Queries</option>
-                                <option value="data-visualization-python">Data Visualization (Python)</option>
-                                <option value="machine-learning-models">Machine Learning Models</option>
-                                <option value="excel-automation">Excel Automation</option>
-                                <option value="website-development">Website Development</option>
-                                <option value="multiple-services">Multiple Services</option>
-                                <option value="consultation">Not Sure / Consultation</option>
+                                <option value="">Choose your growth solution...</option>
+                                <option value="power-bi-dashboard">📊 Power BI Dashboard</option>
+                                <option value="excel-dashboard">📈 Excel Dashboard</option>
+                                <option value="data-cleaning-analysis">🧹 Data Cleaning &amp; Analysis</option>
+                                <option value="sql-database-queries">🗄️ SQL Database Queries</option>
+                                <option value="data-visualization-python">🐍 Data Visualization (Python)</option>
+                                <option value="machine-learning-models">🤖 Machine Learning Models</option>
+                                <option value="excel-automation">⚡ Excel Automation</option>
+                                <option value="website-development">🌐 Website Development</option>
+                                <option value="multiple-services">🚀 Multiple Services</option>
+                                <option value="consultation">🤔 Not Sure / Free Consultation</option>
                             </select>
                         </div>
 
@@ -1111,11 +1272,11 @@
                                     itemprop="timeline"
                                 >
                                     <option value="">Select timeline...</option>
-                                    <option value="within-1-week">Within 1 week</option>
-                                    <option value="2-4-weeks">2-4 weeks</option>
-                                    <option value="1-2-months">1-2 months</option>
-                                    <option value="3-plus-months">3+ months</option>
-                                    <option value="flexible">Flexible</option>
+                                    <option value="within-1-week">⚡ Within 1 week</option>
+                                    <option value="2-4-weeks">📅 2-4 weeks</option>
+                                    <option value="1-2-months">📆 1-2 months</option>
+                                    <option value="3-plus-months">🗓️ 3+ months</option>
+                                    <option value="flexible">🤷 Flexible</option>
                                 </select>
                             </div>
 
@@ -1127,41 +1288,45 @@
                                     itemprop="budget"
                                 >
                                     <option value="">Select budget...</option>
-                                    <option value="under-5000">Under ₹5,000</option>
-                                    <option value="5000-15000">₹5,000-₹15,000</option>
-                                    <option value="15000-30000">₹15,000-₹30,000</option>
-                                    <option value="30000-plus">₹30,000+</option>
-                                    <option value="lets-discuss">Let's discuss</option>
+                                    <option value="under-5000">💵 Under ₹5,000</option>
+                                    <option value="5000-15000">💰 ₹5,000-₹15,000</option>
+                                    <option value="15000-30000">💎 ₹15,000-₹30,000</option>
+                                    <option value="30000-plus">🏆 ₹30,000+</option>
+                                    <option value="lets-discuss">💬 Let's discuss</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Subject</label>
+                            <label for="subject">Project Title</label>
                             <input
                                 type="text"
                                 id="subject"
                                 name="subject"
-                                placeholder="Brief description of your project"
+                                placeholder="e.g., Sales Dashboard for Q4 Analysis"
                                 itemprop="description"
                             >
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Your Message <span class="required">*</span></label>
+                            <label for="message">Tell Me About Your Challenge <span class="required">*</span></label>
                             <textarea
                                 id="message"
                                 name="message"
                                 rows="5"
                                 required
-                                placeholder="Tell me about your project in detail... What data do you have? What insights are you looking for?"
+                                placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
                                 itemprop="text"
                             ></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fas fa-paper-plane"></i>Send Message
+                        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
                         </button>
+                        <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
+                            🔒 Your information is safe • ⚡ Response within 24 hours
+                        </p>
                     </form>
                     </div>
                 </div>
