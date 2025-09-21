@@ -10,16 +10,16 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://gaganbp.github.io/">
+<meta property="og:url" content="https://databygagan.com/">
 <meta property="og:title" content="Gagan BP | Data Analyst Portfolio">
 <meta property="og:description" content="Data Analyst specializing in SQL, Python, Power BI & Tableau. View my projects and skills.">
-<meta property="og:image" content="https://gaganbp.github.io/assets/img/me.png">
+<meta property="og:image" content="https://databygagan.com/assets/img/me.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gagan BP | Data Analyst Portfolio">
 <meta name="twitter:description" content="Data Analyst specializing in SQL, Python, Power BI & Tableau.">
-<meta name="twitter:image" content="https://gaganbp.github.io/assets/img/me.png">
+<meta name="twitter:image" content="https://databygagan.com/assets/img/me.png">
 
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Gagan BP",
-  "url": "https://gaganbp.github.io",
+  "url": "https://databygagan.com",
   "sameAs": [
     "https://www.linkedin.com/in/gagan-bp-1a3b55207/",
     "https://github.com/gaganbp"
@@ -1047,7 +1047,7 @@
                 </div>
                 
                 <div class="image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="url" content="https://gaganbp.github.io/images/Hranalytics.png">
+                    <meta itemprop="url" content="https://databygagan.com/images/Hranalytics.png">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="450">
                     <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiNzViZTNjZTYtYTU4MS00NjViLTg2ODktZjAxNWZhODMyYzRiIiwidCI6IjY3OWY5YTYyLTIwODQtNGI0Yy1iNzk2LWI1NGFkZTM5ZmUxYiJ9" target="_blank" aria-label="View HR Analytics Dashboard">
@@ -1099,7 +1099,7 @@
                 </div>
                 
                 <div class="image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="url" content="https://gaganbp.github.io/images/AmazonSales.png">
+                    <meta itemprop="url" content="https://databygagan.com/images/AmazonSales.png">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="450">
                     <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiMTJiZGI1N2QtMDBmMy00NDI1LThiMDAtZDc3MWM0YzhiODZiIiwidCI6IjY3OWY5YTYyLTIwODQtNGI0Yy1iNzk2LWI1NGFkZTM5ZmUxYiJ9" target="_blank" aria-label="View Amazon Sales Dashboard">
@@ -1150,7 +1150,7 @@
                 </div>
                 
                 <div class="image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="url" content="https://gaganbp.github.io/images/heartdisease.png">
+                    <meta itemprop="url" content="https://databygagan.com/images/heartdisease.png">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="450">
                     <a href="https://colab.research.google.com/drive/1aBL_nwgUIlFRxyo6BBzHXon88bi2qkTI" target="_blank" aria-label="Open Heart Disease Prediction in Google Colab">
@@ -1201,7 +1201,7 @@
                 </div>
                 
                 <div class="image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="url" content="https://gaganbp.github.io/images/Suicide.png">
+                    <meta itemprop="url" content="https://databygagan.com/images/Suicide.png">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="450">
                     <a href="https://colab.research.google.com/drive/1qD9ZWWSRSRL2LT2pmPRT0VBetrJ6T0Sw" target="_blank" aria-label="Open Suicide Trends Analysis in Google Colab">
@@ -1247,7 +1247,7 @@
                 </div>
                 
                 <div class="image-container" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <meta itemprop="url" content="https://gaganbp.github.io/images/Netflix.png">
+                    <meta itemprop="url" content="https://databygagan.com/images/Netflix.png">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="450">
                     <a href="https://colab.research.google.com/drive/1sW9Z8xRmcpbB_UrwSRDPXrnNVaGZ0xZb" target="_blank" aria-label="Open Netflix Movie Analysis in Google Colab">
