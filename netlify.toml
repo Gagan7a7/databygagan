@@ -3,6 +3,10 @@
   functions = "netlify/functions"
   publish = "."
 
+# Disable automatic sitemap generation
+[build.processing]
+  skip_processing = true
+
 # Redirect .html URLs to clean URLs
 [[redirects]]
   from = "/*.html"
