@@ -3,6 +3,13 @@
   functions = "netlify/functions"
   publish = "."
 
+# Redirect .html URLs to clean URLs
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
