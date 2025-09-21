@@ -37,6 +37,7 @@
         <!-- DNS prefetch for performance -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//databygagan.com">
+    <!-- Remove the above comment and use this line when your custom domain is live -->
     <meta property="og:title" content="Services - Gagan | Freelance Data Analyst">
         <meta
             property="og:description"
@@ -47,7 +48,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 
         <!-- Canonical URL -->
-    <link rel="canonical" href="https://databygagan.com/services">
+    <link rel="canonical" href="https://databygagan.com/services.html">
 
         <!-- JSON-LD Structured Data -->
         <script type="application/ld+json">
@@ -94,15 +95,14 @@
 
             .service-card {
                 background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 20px;
                 padding: 2rem;
-                transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
-                will-change: transform, opacity;
                 cursor: pointer;
                 display: flex;
                 flex-direction: column;
@@ -130,9 +130,9 @@
             }
 
             .service-card:hover {
-                transform: translateY(-8px);
+                transform: translateY(-10px) scale(1.02);
                 border-color: rgba(255, 255, 255, 0.2);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1);
             }
 
             .service-icon {
@@ -202,20 +202,10 @@
                     grid-template-columns: 1fr;
                     gap: 1.5rem;
                     padding: 1rem;
-                    contain: content;
                 }
                 
                 .service-card {
                     padding: 1.5rem;
-                    transform: none !important;
-                    backdrop-filter: blur(6px);
-                    -webkit-backdrop-filter: blur(6px);
-                    transition: opacity 0.2s ease-out;
-                }
-                
-                .service-card:hover {
-                    transform: none !important;
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
                 
                 .service-icon {
@@ -225,10 +215,6 @@
                 
                 .service-icon i {
                     font-size: 1.75rem;
-                }
-
-                .service-card::before {
-                    display: none;
                 }
             }
 
