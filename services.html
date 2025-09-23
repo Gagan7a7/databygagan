@@ -196,6 +196,42 @@
                 color: rgba(255, 255, 255, 0.9);
             }
 
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .services-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                    padding: 1rem;
+                    contain: content;
+                }
+                .service-card {
+                    padding: 1.5rem;
+                    transform: none !important;
+                    /* Reduce blur and shadow for better mobile performance, but keep effect */
+                    backdrop-filter: blur(3px);
+                    -webkit-backdrop-filter: blur(3px);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+                    transition: opacity 0.2s ease-out;
+                }
+                .service-card:hover {
+                    transform: none !important;
+                    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+                }
+                .service-icon {
+                    width: 70px;
+                    height: 70px;
+                    /* Reduce blur for icon background */
+                    backdrop-filter: blur(2px);
+                    -webkit-backdrop-filter: blur(2px);
+                }
+                .service-icon i {
+                    font-size: 1.75rem;
+                }
+                .service-card::before {
+                    display: none;
+                }
+            }
+
             /* Additional interactive effects */
             .service-card:active {
                 transform: translateY(-5px) scale(0.98);
@@ -204,118 +240,6 @@
             .service-card:focus {
                 outline: 2px solid rgba(255, 255, 255, 0.3);
                 outline-offset: 4px;
-            }
-
-            /* Mobile optimizations - performance focused */
-            @media (max-width: 768px) {
-                .services-grid {
-                    grid-template-columns: 1fr;
-                    gap: 1.5rem;
-                    padding: 1rem;
-                    contain: layout style paint;
-                }
-                
-                .service-card {
-                    padding: 1.5rem;
-                    /* Remove expensive backdrop-filter on mobile */
-                    backdrop-filter: none;
-                    -webkit-backdrop-filter: none;
-                    /* Use solid background instead for performance */
-                    background: rgba(255, 255, 255, 0.08);
-                    /* Remove will-change to reduce memory usage */
-                    will-change: auto;
-                    /* Disable transform on mobile */
-                    transform: none !important;
-                    /* Simplify transitions */
-                    transition: opacity 0.2s ease, background-color 0.2s ease;
-                }
-                
-                .service-card:hover {
-                    transform: none !important;
-                    background: rgba(255, 255, 255, 0.12);
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                }
-                
-                .service-card:active {
-                    transform: none !important;
-                }
-                
-                .service-icon {
-                    width: 70px;
-                    height: 70px;
-                    /* Remove backdrop-filter on mobile */
-                    backdrop-filter: none;
-                    -webkit-backdrop-filter: none;
-                    background: rgba(255, 255, 255, 0.15);
-                    /* Simplify transitions */
-                    transition: background-color 0.2s ease;
-                }
-                
-                .service-card:hover .service-icon {
-                    /* Remove transform animations on mobile */
-                    transform: none;
-                    background: rgba(255, 255, 255, 0.2);
-                    box-shadow: none;
-                }
-                
-                .service-icon i {
-                    font-size: 1.75rem;
-                    /* Simplify transitions */
-                    transition: color 0.2s ease;
-                }
-
-                .service-card:hover .service-icon i {
-                    /* Remove text-shadow on mobile */
-                    text-shadow: none;
-                }
-
-                .service-card h3 {
-                    /* Simplify transitions */
-                    transition: color 0.2s ease;
-                }
-
-                .service-card:hover h3 {
-                    /* Remove text-shadow on mobile */
-                    text-shadow: none;
-                }
-
-                .service-card p {
-                    /* Simplify transitions */
-                    transition: color 0.2s ease;
-                }
-
-                /* Remove pseudo-element on mobile for performance */
-                .service-card::before {
-                    display: none;
-                }
-
-                /* Disable focus outline animation on mobile */
-                .service-card:focus {
-                    outline: 1px solid rgba(255, 255, 255, 0.3);
-                }
-            }
-
-            /* Very small screens - further optimization */
-            @media (max-width: 480px) {
-                .service-card {
-                    padding: 1.25rem;
-                    /* Further simplify background */
-                    background: rgba(255, 255, 255, 0.1);
-                    /* Remove all transitions */
-                    transition: none;
-                }
-                
-                .service-card:hover {
-                    background: rgba(255, 255, 255, 0.1);
-                    box-shadow: none;
-                }
-                
-                .service-icon,
-                .service-icon i,
-                .service-card h3,
-                .service-card p {
-                    transition: none;
-                }
             }
         </style>
 
