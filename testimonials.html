@@ -12,15 +12,18 @@
 
     <!-- Primary Meta Tags -->
     <meta charset="utf-8">
-    <title>Client Testimonials - Gagan BP | Data Analytics Success Stories</title>
-    <meta name="description" content="Read authentic testimonials from satisfied clients about their data analytics journey with Gagan BP. Real success stories from businesses I've helped with Power BI dashboards, Excel automation, Python analysis, and SQL solutions.">
-    <meta name="keywords" content="data analyst testimonials, Power BI dashboard reviews, Excel automation feedback, Python data analysis reviews, SQL consulting testimonials, business intelligence reviews, data visualization feedback, analytics consulting testimonials, freelance data analyst reviews, Bengaluru data analyst, client success stories, data analytics testimonials">
+    <title>Client Testimonials - Gagan BP | Global Data Analytics Success Stories</title>
+    <meta name="description" content="Read authentic testimonials from global clients about their data analytics journey with Gagan BP. Success stories from businesses worldwide helped with Power BI dashboards, Excel automation, Python analysis, and SQL solutions.">
+    <meta name="keywords" content="global data analyst testimonials, remote analytics reviews, Power BI dashboard reviews, Excel automation feedback, Python data analysis reviews, SQL consulting testimonials, business intelligence reviews, data visualization feedback, analytics consulting testimonials, freelance data analyst reviews, worldwide data analyst, client success stories, data analytics testimonials">
     <meta name="author" content="Gagan BP">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
-    <meta name="geo.region" content="IN-KA">
-    <meta name="geo.placename" content="Bengaluru">
+
+    <!-- Internationalization & Language -->
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <link rel="alternate" href="https://databygagan.com/testimonials" hreflang="en" />
 
     <!-- Performance and SEO meta tags -->
     <meta name="theme-color" content="#0a1120">
@@ -35,12 +38,21 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
 
     <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://databygagan.com/testimonials">
-    <meta property="og:title" content="Client Testimonials - Gagan BP | Data Analytics Success Stories">
-    <meta property="og:description" content="Read authentic testimonials from satisfied clients about their data analytics journey with Gagan BP. Success stories from businesses I've helped with Power BI, Excel, Python, and SQL solutions.">
-    <meta property="og:image" content="https://databygagan.com/images/Hranalytics.png">
+    <meta property="og:title" content="Client Testimonials - Gagan BP | Global Data Analytics Success Stories">
+    <meta property="og:description" content="Read authentic testimonials from global clients about their data analytics journey with Gagan BP. Success stories from businesses worldwide helped with Power BI, Excel, Python, and SQL solutions.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://databygagan.com/assets/favicon-512x512.png">
     <meta property="og:site_name" content="Gagan Data Analytics">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Client Testimonials - Gagan BP | Global Data Analytics Success Stories">
+    <meta name="twitter:description" content="Read authentic testimonials from global clients about their data analytics journey with Gagan BP.">
+    <meta name="twitter:image" content="https://databygagan.com/assets/favicon-512x512.png">
+    <meta name="twitter:creator" content="@gagan_data">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -54,17 +66,28 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Client Testimonials - Gagan BP",
-        "description": "Client testimonials and success stories for Gagan BP's data analytics services",
-    "url": "https://databygagan.com/testimonials",
+        "name": "Client Testimonials - Gagan BP | Global Data Analytics Success Stories",
+        "description": "Read authentic testimonials from global clients about their data analytics journey with Gagan BP. Success stories from businesses worldwide helped with Power BI dashboards, Excel automation, Python analysis, and SQL solutions.",
+        "url": "https://databygagan.com/testimonials",
         "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [],
-            "description": "Collection of client testimonials about data analytics services"
+            "description": "Collection of client testimonials about global data analytics services"
         },
         "author": {
             "@type": "Person",
-            "name": "Gagan BP"
+            "name": "Gagan BP",
+            "url": "https://databygagan.com/",
+            "jobTitle": "Global Data Analyst",
+            "email": "databygagan@gmail.com",
+            "image": "https://databygagan.com/assets/favicon-512x512.png",
+            "sameAs": [
+              "https://www.linkedin.com/in/gagan-b-p-0a9635243/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN"
+            }
         },
         "publisher": {
             "@type": "Organization",
@@ -75,7 +98,8 @@
             }
         },
         "datePublished": "2025-09-08",
-        "dateModified": "2025-09-08"
+        "dateModified": "2025-09-23",
+        "inLanguage": "en"
     }
     </script>
 
@@ -177,6 +201,29 @@
             flex-direction: column;
             will-change: transform, opacity;
             overflow: hidden;
+        }
+
+        /* Mobile performance optimizations for testimonial cards */
+        @media (max-width: 768px) {
+            .testimonial-card {
+                backdrop-filter: blur(2px) saturate(120%);
+                -webkit-backdrop-filter: blur(2px) saturate(120%);
+                transition: opacity 0.2s linear;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+                padding: 1.2rem;
+            }
+            .testimonial-card.fullscreen-active {
+                backdrop-filter: blur(4px) saturate(120%);
+                -webkit-backdrop-filter: blur(4px) saturate(120%);
+            }
+            .testimonial-card:hover {
+                transform: none !important;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+            }
+            .testimonials-grid {
+                gap: 1rem;
+                padding: 0.5rem;
+            }
         }
 
         .testimonial-card::before {
