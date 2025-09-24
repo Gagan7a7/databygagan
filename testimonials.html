@@ -136,6 +136,13 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .testimonials-grid:hover .testimonial-card:not(:hover):not(.fullscreen-active) {
+    filter: none !important;
+    opacity: 1 !important;
   }
 }
     .loading{display:flex;justify-content:center;align-items:center;min-height:200px}.loading-spinner{width:50px;height:50px;border:3px solid var(--primary-color);border-radius:50%;border-top-color:#fff0;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted-text)}.empty-state i{font-size:4rem;margin-bottom:1rem;color:var(--primary-color)}.footer{background-color:var(--dark-secondary);padding:3rem 0 1rem;margin-top:4rem}.footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:2rem}.footer-section{flex:1;min-width:250px}.footer-section h4{color:var(--light-text);margin-bottom:1rem}.footer-section p{color:var(--muted-text);margin:.5rem 0;line-height:1.6}.footer-section strong{color:var(--light-text);display:block;margin-bottom:1rem}.footer-section ul{list-style:none;padding:0;margin:0}.footer-section ul li{margin-bottom:.5rem}.footer-section ul li a{color:var(--muted-text);text-decoration:none;transition:color 0.3s}.footer-section ul li a:hover{color:var(--primary-color)}.footer-bottom{text-align:center;padding-top:1rem;border-top:1px solid rgb(255 255 255 / .1);color:var(--muted-text)}.back-to-top{position:fixed;bottom:20px;right:20px;background:var(--primary-color);color:#fff;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.3s ease-out;transform:translateY(100px);z-index:1000;will-change:transform,opacity;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 20px rgb(74 144 226 / .3)}.back-to-top.visible{opacity:1;transform:translateY(0)}.back-to-top:hover{background:var(--secondary-color);transform:translateY(-2px) scale(1.05);box-shadow:0 6px 25px rgb(74 144 226 / .4)}.container{max-width:1200px;margin:0 auto;padding:0 1rem}
@@ -234,9 +241,25 @@
     <script>
         const observerOptions={root:null,rootMargin:'0px',threshold:0.1};const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},observerOptions);let ticking=!1;function updateScrollEffects(){const scrollY=window.scrollY;const backToTop=document.getElementById('back-to-top');if(scrollY>300){backToTop?.classList.add('visible')}else{backToTop?.classList.remove('visible')}
 ticking=!1}
-async function loadTestimonials(){const grid=document.getElementById('testimonials-grid');const loading=document.getElementById('loading');const emptyState=document.getElementById('empty-state');try{const response=await fetch('/api/testimonials');if(!response.ok)throw new Error('Network response was not ok');const testimonials=await response.json();loading.style.display='none';if(!testimonials||testimonials.length===0){emptyState.style.display='block';return}
-const fragment=document.createDocumentFragment();testimonials.forEach(t=>{const card=document.createElement('div');card.className='testimonial-card';let cardHTML='';if(t.featured){cardHTML+='<span class="featured-badge"><i class="fas fa-star"></i> Featured</span>'}
-let roleText=[t.clientRole,t.clientCompany,t.clientLocation].filter(Boolean).join(' • ');cardHTML+=`
+async function loadTestimonials(){
+  const grid=document.getElementById('testimonials-grid');
+  const loading=document.getElementById('loading');
+  const emptyState=document.getElementById('empty-state');
+  try{
+    const response=await fetch('/api/testimonials');
+    if(!response.ok)throw new Error('Network response was not ok');
+    const testimonials=await response.json();
+    loading.style.display='none';
+    if(!testimonials||testimonials.length===0){emptyState.style.display='block';return}
+    const fragment=document.createDocumentFragment();
+    const isMobile=window.innerWidth<=768;
+    testimonials.forEach(t=>{
+      const card=document.createElement('div');
+      card.className='testimonial-card';
+      let cardHTML='';
+      if(t.featured){cardHTML+='<span class="featured-badge"><i class="fas fa-star"></i> Featured</span>'}
+      let roleText=[t.clientRole,t.clientCompany,t.clientLocation].filter(Boolean).join(' • ');
+      cardHTML+=`
                         <div class="client-info">
                             <div class="client-avatar">${t.clientName?.charAt(0) || 'C'}</div>
                             <div class="client-details">
@@ -252,7 +275,22 @@ let roleText=[t.clientRole,t.clientCompany,t.clientLocation].filter(Boolean).joi
                         ${t.keyHighlights && t.keyHighlights.length > 0 ? `<div class="key-highlights">${t.keyHighlights.map(h=>`
                                     <span class="highlight-tag">${h}</span>
                                 `).join('')}</div>` : ''}
-                    `;card.innerHTML=cardHTML;fragment.appendChild(card);observer.observe(card)});grid.appendChild(fragment)}catch(error){console.error('Error loading testimonials:',error);loading.style.display='none';emptyState.style.display='block'}}
+                    `;
+      card.innerHTML=cardHTML;
+      fragment.appendChild(card);
+      if(isMobile){
+        card.classList.add('visible');
+      }else{
+        observer.observe(card);
+      }
+    });
+    grid.appendChild(fragment);
+  }catch(error){
+    console.error('Error loading testimonials:',error);
+    loading.style.display='none';
+    emptyState.style.display='block';
+  }
+}
 function initTestimonialHover(){const grid=document.getElementById('testimonials-grid');if(!grid)return;if(window.matchMedia('(hover: hover)').matches){grid.addEventListener('mouseenter',(e)=>{if(e.target.classList.contains('testimonial-card')){grid.classList.add('has-hovered-card');e.target.classList.add('is-hovered')}},!0);grid.addEventListener('mouseleave',(e)=>{if(e.target.classList.contains('testimonial-card')){grid.classList.remove('has-hovered-card');e.target.classList.remove('is-hovered');grid.querySelectorAll('.testimonial-card').forEach(card=>{card.classList.remove('is-hovered')})}},!0)}}
 document.addEventListener('DOMContentLoaded',()=>{loadTestimonials();initTestimonialHover();window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateScrollEffects);ticking=!0}},{passive:!0});const backToTop=document.getElementById('back-to-top');backToTop?.addEventListener('click',(e)=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})})});if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.style.scrollBehavior='auto'}
     </script>
