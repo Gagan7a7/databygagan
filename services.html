@@ -11,16 +11,19 @@
   gtag('config', 'G-5Z3EEE9EZZ');
 </script>
         <!-- Primary Meta Tags -->
-        <title>Services - Gagan BP | Data Analyst – Python, SQL, Excel, Power BI</title>
-    <meta name="description" content="Professional data analytics services by Gagan BP including Excel dashboards, Power BI reports, data cleaning, SQL development, Python analysis, and machine learning solutions.">
-    <meta name="keywords" content="data analytics services, Power BI dashboard development, Excel automation expert, Python data solutions, SQL query writing, business intelligence consulting, machine learning for business, analytics support Bengaluru, freelance data services">
+    <title>Services - Gagan BP | Global Data Analytics &amp; Remote Solutions</title>
+    <meta name="description" content="Global data analytics by Gagan BP: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, automation for remote clients worldwide.">
+    <meta name="keywords" content="global data analytics services, remote data analyst, Power BI dashboard development, Excel automation expert, Python data solutions, SQL query writing, business intelligence consulting, machine learning for business, analytics support worldwide, freelance data services, international data analytics">
     <meta name="author" content="Gagan BP">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta charset="UTF-8">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
-    <meta name="geo.region" content="IN-KA">
-    <meta name="geo.placename" content="Bengaluru">
+
+    <!-- Internationalization & Language -->
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <link rel="alternate" href="https://databygagan.com/services" hreflang="en">
 
         <!-- Performance and SEO meta tags -->
         <meta name="theme-color" content="#6c63ff">
@@ -37,11 +40,18 @@
         <!-- DNS prefetch for performance -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//databygagan.com">
-    <meta property="og:title" content="Services - Gagan | Freelance Data Analyst">
-        <meta
-            property="og:description"
-            content="Professional data analytics services including dashboard development, data cleaning, automation, and business intelligence solutions."
-        >
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Services - Gagan BP | Global Data Analytics & Remote Solutions">
+    <meta property="og:description" content="Global data analytics services: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, and automation for remote and worldwide clients.">
+    <meta property="og:url" content="https://databygagan.com/services">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://databygagan.com/assets/favicon-512x512.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Services - Gagan BP | Global Data Analytics & Remote Solutions">
+    <meta name="twitter:description" content="Global data analytics services by Gagan BP for remote and international clients. Excel, Power BI, SQL, Python, automation, and more.">
+    <meta name="twitter:image" content="https://databygagan.com/assets/favicon-512x512.png">
 
         <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -50,24 +60,37 @@
     <link rel="canonical" href="https://databygagan.com/services">
 
         <!-- JSON-LD Structured Data -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "url": "https://databygagan.com/services",
-          "name": "Services - Gagan BP | Data Analyst – Python, SQL, Excel, Power BI",
-          "description": "Professional data analytics services by Gagan BP including Excel dashboards, Power BI reports, data cleaning, SQL development, Python analysis, and machine learning solutions.",
-          "author": {
-            "@type": "Person",
-            "name": "Gagan BP",
-            "url": "https://databygagan.com/"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://databygagan.com/services"
-          }
-        }
-        </script>
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "url": "https://databygagan.com/services",
+                    "name": "Services - Gagan BP | Global Data Analytics & Remote Solutions",
+                    "description": "Global data analytics services by Gagan BP: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, and automation for remote and worldwide clients.",
+                    "datePublished": "2024-09-01",
+                    "dateModified": "2025-09-23",
+                    "inLanguage": "en",
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://databygagan.com/services"
+                    },
+                    "author": {
+                        "@type": "Person",
+                        "name": "Gagan BP",
+                        "url": "https://databygagan.com/",
+                        "jobTitle": "Global Data Analyst",
+                        "email": "databygagan@gmail.com",
+                        "image": "https://databygagan.com/assets/favicon-512x512.png",
+                        "sameAs": [
+                            "https://www.linkedin.com/in/gagan-b-p-0a9635243/"
+                        ],
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressCountry": "IN"
+                        }
+                    }
+                }
+                </script>
 
         <!-- Fonts -->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
@@ -204,29 +227,29 @@
                     padding: 1rem;
                     contain: content;
                 }
-                
                 .service-card {
                     padding: 1.5rem;
                     transform: none !important;
-                    backdrop-filter: blur(6px);
-                    -webkit-backdrop-filter: blur(6px);
+                    /* Reduce blur and shadow for better mobile performance, but keep effect */
+                    backdrop-filter: blur(3px);
+                    -webkit-backdrop-filter: blur(3px);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
                     transition: opacity 0.2s ease-out;
                 }
-                
                 .service-card:hover {
                     transform: none !important;
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
                 }
-                
                 .service-icon {
                     width: 70px;
                     height: 70px;
+                    /* Reduce blur for icon background */
+                    backdrop-filter: blur(2px);
+                    -webkit-backdrop-filter: blur(2px);
                 }
-                
                 .service-icon i {
                     font-size: 1.75rem;
                 }
-
                 .service-card::before {
                     display: none;
                 }
@@ -450,18 +473,18 @@
                 <div class="footer-content">
                     <div class="footer-section">
                         <h4>Gagan | Data Analyst</h4>
+                        <p>
+                            Transforming data into actionable insights for
+                            businesses worldwide.
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <strong>Quick Links</strong>
                         <ul>
                             <li><a href="index">Home</a></li>
                             <li><a href="about">About</a></li>
                             <li><a href="projects">Projects</a></li>
                             <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="/services">Services</a></li>
                             <li><a href="contact">Contact</a></li>
                         </ul>
                     </div>
