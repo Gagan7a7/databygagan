@@ -219,7 +219,7 @@
                 color: rgba(255, 255, 255, 0.9);
             }
 
-            /* Responsive adjustments */
+            /* Responsive adjustments - Mobile Performance Optimized */
             @media (max-width: 768px) {
                 .services-grid {
                     grid-template-columns: 1fr;
@@ -227,42 +227,89 @@
                     padding: 1rem;
                     contain: content;
                 }
+                
                 .service-card {
                     padding: 1.5rem;
-                    transform: none !important;
-                    /* Reduce blur and shadow for better mobile performance, but keep effect */
-                    backdrop-filter: blur(3px);
-                    -webkit-backdrop-filter: blur(3px);
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-                    transition: opacity 0.2s ease-out;
+                    /* Remove expensive backdrop-filter on mobile */
+                    backdrop-filter: none;
+                    -webkit-backdrop-filter: none;
+                    /* Use solid background for better mobile performance */
+                    background: rgba(255, 255, 255, 0.08);
+                    /* Simplified shadow */
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    /* Remove transform transitions on mobile */
+                    transition: none;
+                    /* Disable will-change on mobile */
+                    will-change: auto;
                 }
+                
                 .service-card:hover {
-                    transform: none !important;
-                    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+                    transform: none;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
                 }
+                
                 .service-icon {
                     width: 70px;
                     height: 70px;
-                    /* Reduce blur for icon background */
-                    backdrop-filter: blur(2px);
-                    -webkit-backdrop-filter: blur(2px);
+                    /* Remove backdrop-filter from icon */
+                    backdrop-filter: none;
+                    -webkit-backdrop-filter: none;
+                    background: rgba(255, 255, 255, 0.12);
+                    /* Remove transition on mobile */
+                    transition: none;
                 }
+                
+                .service-card:hover .service-icon {
+                    transform: none;
+                    background: rgba(255, 255, 255, 0.12);
+                    box-shadow: none;
+                }
+                
                 .service-icon i {
                     font-size: 1.75rem;
+                    /* Remove transition on mobile */
+                    transition: none;
                 }
+                
+                .service-card:hover .service-icon i {
+                    color: #e0e6ed;
+                    text-shadow: none;
+                }
+                
+                .service-card h3 {
+                    /* Remove transition on mobile */
+                    transition: none;
+                }
+                
+                .service-card:hover h3 {
+                    color: #e0e6ed;
+                    text-shadow: none;
+                }
+                
+                .service-card p {
+                    /* Remove transition on mobile */
+                    transition: none;
+                }
+                
+                .service-card:hover p {
+                    color: rgba(224, 230, 237, 0.8);
+                }
+                
                 .service-card::before {
                     display: none;
                 }
             }
 
-            /* Additional interactive effects */
-            .service-card:active {
-                transform: translateY(-5px) scale(0.98);
-            }
+            /* Additional interactive effects - Desktop only */
+            @media (min-width: 769px) {
+                .service-card:active {
+                    transform: translateY(-5px) scale(0.98);
+                }
 
-            .service-card:focus {
-                outline: 2px solid rgba(255, 255, 255, 0.3);
-                outline-offset: 4px;
+                .service-card:focus {
+                    outline: 2px solid rgba(255, 255, 255, 0.3);
+                    outline-offset: 4px;
+                }
             }
         </style>
 
