@@ -152,10 +152,12 @@
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"></noscript>
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
@@ -336,7 +338,7 @@
                     </h1>
                     <div class="skills-grid">
                         <div class="skill-category">
-                            <h2 class="skill-heading"><i class="fas fa-database"></i>Data Management</h2>
+                            <h2 class="skill-heading"><i class="fas fa-database" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Management</h2>
                             <div class="skill-list">
                                 <span class="skill-tag" itemprop="knowsAbout">SQL</span>
                                 <span class="skill-tag" itemprop="knowsAbout"><a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">MySQL</a></span>
@@ -354,7 +356,7 @@
                         </div>
                         <div class="skill-category">
                             <h2 class="skill-heading">
-                                <i class="fab fa-python"></i>Programming &amp; Tools
+                                <i class="fab fa-python" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Programming &amp; Tools
                             </h2>
                             <div class="skill-list">
                                 <span class="skill-tag" itemprop="knowsAbout"><a href="https://www.python.org/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">Python</a></span>
@@ -380,7 +382,7 @@
                         </div>
                         <div class="skill-category">
                             <h2 class="skill-heading">
-                                <i class="fas fa-chart-bar"></i>Data Visualization
+                                <i class="fas fa-chart-bar" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Visualization
                             </h2>
                             <div class="skill-list">
                                 <span class="skill-tag" itemprop="knowsAbout"><a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">Power BI</a></span>
@@ -403,7 +405,7 @@
                         </div>
                         <div class="skill-category">
                             <h2 class="skill-heading">
-                                <i class="fas fa-brain"></i>Machine Learning Basics
+                                <i class="fas fa-brain" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Machine Learning Basics
                             </h2>
                             <div class="skill-list">
                                 <span class="skill-tag" itemprop="knowsAbout"
@@ -419,7 +421,7 @@
                         </div>
                         <div class="skill-category">
                             <h2 class="skill-heading">
-                                <i class="fas fa-robot"></i>Automation &amp; AI Tools
+                                <i class="fas fa-robot" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Automation &amp; AI Tools
                             </h2>
                             <div class="skill-list">
                                 <span class="skill-tag" itemprop="knowsAbout"
