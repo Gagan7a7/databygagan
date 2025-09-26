@@ -105,7 +105,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
         <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Font Awesome async for mobile -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" media="(max-width: 768px)" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="(min-width: 769px)" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
@@ -119,6 +122,21 @@
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
         <header id="header">
+        <style>
+        @media (max-width: 768px) {
+            .logo span[itemprop="name"] {
+                font-family: 'Inter', Arial, sans-serif;
+                font-size: 1.2rem;
+                color: #007bff;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                text-shadow: none;
+            }
+            .logo .fa-chart-line {
+                color: #007bff !important;
+            }
+        }
+        </style>
             <nav id="nav" aria-label="Main navigation">
                 <a href="index" class="logo" aria-label="Home">
                     <i class="fas fa-chart-line" aria-hidden="true"></i>
@@ -183,7 +201,7 @@
 
                         <!-- Skills Section -->
                         <div class="resume-section">
-                            <h2><i class="fas fa-cogs"></i>SKILLS</h2>
+                            <h2 style="font-size:1.1em;font-weight:700;"><i class="fas fa-cogs"></i>SKILLS</h2>
                             <div class="skills-grid-resume">
                                 <div class="skill-column">
                                     <ul>
@@ -206,7 +224,7 @@
 
                         <!-- Projects Section -->
                         <div class="resume-section">
-                            <h2><i class="fas fa-project-diagram"></i>PROJECTS</h2>
+                            <h2 style="font-size:1.1em;font-weight:700;"><i class="fas fa-project-diagram"></i>PROJECTS</h2>
 
                             <div class="resume-project">
                                 <div class="project-header">
@@ -237,7 +255,7 @@
 
                         <!-- Experience Section -->
                         <div class="resume-section">
-                            <h2><i class="fas fa-briefcase"></i>INTERNSHIP EXPERIENCE</h2>
+                            <h2 style="font-size:1.1em;font-weight:700;"><i class="fas fa-briefcase"></i>INTERNSHIP EXPERIENCE</h2>
 
                             <div class="resume-experience">
                                 <div class="experience-header">
@@ -269,7 +287,7 @@
 
                         <!-- Education Section -->
                         <div class="resume-section">
-                            <h2><i class="fas fa-graduation-cap"></i>EDUCATION</h2>
+                            <h2 style="font-size:1.1em;font-weight:700;"><i class="fas fa-graduation-cap"></i>EDUCATION</h2>
 
                             <div class="resume-education">
                                 <div class="education-header">
