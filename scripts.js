@@ -141,12 +141,57 @@ function enableResourceHints(){const hints=[{rel:"dns-prefetch",href:"https://ww
 function optimizeThirdPartyScripts(){const scripts=document.querySelectorAll("script[src]");scripts.forEach((script)=>{if(script.src.includes("googletagmanager")||script.src.includes("gtag")){script.async=!0;script.defer=!0;script.setAttribute("importance","low")}})}
 function setupPerformanceMonitoring(){if("web-vital" in window||typeof webVitals!=="undefined"){return}
 window.addEventListener("load",()=>{if(performance.timing){const loadEnd=performance.timing.loadEventEnd;const navStart=performance.timing.navigationStart;if(loadEnd>0&&navStart>0&&loadEnd>navStart){const loadTime=loadEnd-navStart;console.log(`Page load time: ${loadTime}ms`)}}})}(function(){const list=document.getElementById("projects-list");const btns=document.getElementById("category-buttons");if(!list||!btns)return;let apiUrl="/api/projects";if(window.location.hostname==="localhost"||window.location.hostname==="127.0.0.1"){apiUrl="http://localhost:5000/api/projects"}
-fetch(apiUrl).then((res)=>res.json()).then((projects)=>{list.innerHTML="";btns.innerHTML="";const grouped={};projects.forEach((proj)=>{const cat=proj.category||"Other";if(!grouped[cat])grouped[cat]=[];grouped[cat].push(proj)});const categories=Object.keys(grouped);categories.forEach((category)=>{const btn=document.createElement("button");btn.textContent=category;btn.className="category-scroll-btn";btn.onclick=function(){const heading=document.getElementById("cat-"+category.replace(/\s+/g,"-").toLowerCase());if(heading){heading.scrollIntoView({behavior:"smooth",block:"start"})}};btns.appendChild(btn)});categories.forEach((category)=>{list.innerHTML+=`<h2 class="project-category-heading" id="cat-${category.replace(/\s+/g, "-").toLowerCase()}">${category}</h2>`;grouped[category].slice().reverse().forEach((proj)=>{const techTags=proj.tech.map((tag)=>`<span class="tech-tag" itemprop="keywords">${tag}</span>`).join("\n");const hasDashboard=proj.dashboardUrl&&typeof proj.dashboardUrl==="string";const isColab=hasDashboard&&proj.dashboardUrl.includes("colab");const dashboardIcon=isColab?"fab fa-google":"fas fa-external-link-alt";const dashboardText=isColab?"Open in Colab":"View Dashboard";const dashboardUrl=hasDashboard?proj.dashboardUrl:"#";const dashboardBtn=hasDashboard?`<a href="${dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
-        <i class="${dashboardIcon}"></i>${dashboardText}
-        </a>`:`<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`;const card=`
+fetch(apiUrl).then((res)=>res.json()).then((projects)=>{
+    list.innerHTML = "";
+    btns.innerHTML = "";
+    const grouped = {};
+    projects.forEach((proj) => {
+        const cat = proj.category || "Other";
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(proj);
+    });
+    const categories = Object.keys(grouped);
+    categories.forEach((category) => {
+        const btn = document.createElement("button");
+        btn.textContent = category;
+        btn.className = "category-scroll-btn";
+        btn.onclick = function () {
+            const heading = document.getElementById("cat-" + category.replace(/\s+/g, "-").toLowerCase());
+            if (heading) {
+                heading.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        };
+        btns.appendChild(btn);
+    });
+    let firstProjectRendered = false;
+    categories.forEach((category) => {
+        list.innerHTML += `<h2 class="project-category-heading" id="cat-${category.replace(/\s+/g, "-").toLowerCase()}">${category}</h2>`;
+        grouped[category].slice().reverse().forEach((proj) => {
+            const techTags = proj.tech.map((tag) => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join("\n");
+            const hasDashboard = proj.dashboardUrl && typeof proj.dashboardUrl === "string";
+            const isColab = hasDashboard && proj.dashboardUrl.includes("colab");
+            const dashboardIcon = isColab ? "fab fa-google" : "fas fa-external-link-alt";
+            const dashboardText = isColab ? "Open in Colab" : "View Dashboard";
+            const dashboardUrl = hasDashboard ? proj.dashboardUrl : "#";
+            const dashboardBtn = hasDashboard ? `<a href="${dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
+                <i class="${dashboardIcon}"></i>${dashboardText}
+                </a>` : `<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`;
+            let imgTag;
+            if (!firstProjectRendered && isMobileDevice()) {
+                // Use <picture> for next-gen formats on mobile
+                const webpSrc = proj.image.replace(/\.png$/i, ".webp");
+                imgTag = `<picture>
+  <source srcset="${webpSrc}" type="image/webp">
+  <img src="${proj.image}" alt="${proj.alt}" itemprop="image" />
+</picture>`;
+                firstProjectRendered = true;
+            } else {
+                imgTag = `<img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />`;
+            }
+            const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="project-image">
-    <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
+    ${imgTag}
     <div class="project-overlay">
         ${dashboardBtn}
     </div>
@@ -162,4 +207,9 @@ fetch(apiUrl).then((res)=>res.json()).then((projects)=>{list.innerHTML="";btns.i
     </div>
     </div>
 </article>
-`;list.innerHTML+=card})})})})()
+`;
+            list.innerHTML += card;
+        });
+    });
+});
+})()

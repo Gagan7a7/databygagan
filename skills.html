@@ -156,8 +156,10 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"></noscript>
 
         <!-- Font Awesome -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Load Font Awesome only for mobile -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="(max-width: 768px)">
+    <!-- Optionally, keep desktop loading for desktop only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="(min-width: 769px)">
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
@@ -524,5 +526,6 @@
             });
         });
     </script>
+    <style>@media (max-width:768px){.skill-heading{color:var(--secondary-color);font-size:1.2rem;margin-bottom:16px;font-weight:600;display:flex;align-items:center;gap:10px;min-height:32px;transition:none!important}.skill-category{min-height:60px;transition:none!important}}</style>
     </body>
 </html>
