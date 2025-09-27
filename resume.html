@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -131,6 +130,169 @@
         }
             html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
             .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
+            
+            /* Resume Structure Styles */
+            .resume-body {
+                max-width: 900px;
+                margin: 0 auto;
+                background: #1a1a1a;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+            
+            .resume-section {
+                margin-bottom: 35px;
+                border-bottom: 1px solid #333;
+                padding-bottom: 25px;
+            }
+            
+            .resume-section:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+            
+            .resume-intro h2 {
+                color: #6bb6ff;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+            
+            .resume-intro h2:first-child {
+                font-size: 2.2rem;
+                font-weight: 800;
+            }
+            
+            .contact-info {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+                align-items: center;
+            }
+            
+            .contact-item {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #e0e6ed;
+                white-space: nowrap;
+            }
+            
+            .contact-item i {
+                color: #6bb6ff;
+                width: 18px;
+            }
+            
+            .contact-item a {
+                color: #6bb6ff;
+                text-decoration: none;
+            }
+            
+            .contact-item a:hover {
+                text-decoration: underline;
+            }
+            
+            .skills-grid-resume {
+                display: block;
+            }
+            
+            .skill-category {
+                margin-bottom: 20px;
+            }
+            
+            .skill-category h4 {
+                color: #6bb6ff;
+                margin-bottom: 8px;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            
+            .skill-category p {
+                line-height: 1.6;
+                color: #e0e6ed;
+                margin-bottom: 0;
+                font-size: 0.95rem;
+            }
+            
+            .project-header, .experience-header, .education-header {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .project-meta, .duration, .graduation {
+                color: #9ca3af;
+                font-size: 0.9rem;
+                font-style: italic;
+            }
+            
+            .company, .institution {
+                color: #6bb6ff;
+                font-weight: 600;
+            }
+            
+            .project-details, .experience-details {
+                list-style: none;
+                padding: 0;
+            }
+            
+            .project-details li, .experience-details li {
+                position: relative;
+                padding-left: 20px;
+                margin-bottom: 10px;
+                line-height: 1.6;
+                color: #e0e6ed;
+            }
+            
+            .project-details li::before, .experience-details li::before {
+                content: "▸";
+                color: #6bb6ff;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            
+            .coursework {
+                color: #9ca3af;
+                font-style: italic;
+                margin-top: 10px;
+                line-height: 1.6;
+            }
+            
+            .certification-item {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .cert-details {
+                color: #9ca3af;
+                font-size: 0.9rem;
+            }
+            
+            @media (max-width: 768px) {
+                .resume-body {
+                    padding: 20px;
+                    margin: 10px;
+                }
+                
+                .contact-info {
+                    gap: 15px;
+                }
+                
+                .resume-intro h2:first-child {
+                    font-size: 1.8rem;
+                }
+                
+                .resume-intro h2 {
+                    font-size: 1.4rem;
+                }
+            }
         </style>
 
         <!-- Stylesheets -->
@@ -195,6 +357,7 @@
                                     <i class="fab fa-linkedin"></i>
                                     <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank">LinkedIn Profile</a>
                                 </div>
+
                                 <div class="contact-item">
                                     <i class="fas fa-map-marker-alt"></i>
                                     <span>Bangalore, Karnataka 560045</span>
@@ -202,25 +365,27 @@
                             </div>
                         </div>
 
+                        <!-- Professional Summary -->
+                        <div class="resume-section">
+                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-user-tie"></i>PROFESSIONAL SUMMARY</h2>
+                            <p>Data Analyst with practical experience in creating interactive Power BI dashboards, automated data workflows, and uncovering insights using Python and SQL to drive informed business decisions.</p>
+                        </div>
+
                         <!-- Skills Section -->
                         <div class="resume-section">
                             <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-cogs"></i>SKILLS</h2>
                             <div class="skills-grid-resume">
-                                <div class="skill-column">
-                                    <ul>
-                                        <li>SQL (MySQL)</li>
-                                        <li>Python (Pandas, NumPy, Matplotlib)</li>
-                                        <li>Tableau</li>
-                                        <li>Excel (VLOOKUP, HLOOKUP, Conditional Formatting, Pivot Tables)</li>
-                                    </ul>
+                                <div class="skill-category">
+                                    <h4>Tools & Platforms:</h4>
+                                    <p>Power BI, Excel (Pivot Tables, Power Query, XLOOKUP, VBA, Macros), Git, GitHub</p>
                                 </div>
-                                <div class="skill-column">
-                                    <ul>
-                                        <li>Data Visualization (Dashboards, Graphs)</li>
-                                        <li>Microsoft Power BI</li>
-                                        <li>ETL (Extract, Transform, Load)</li>
-                                        <li>Data Analysis</li>
-                                    </ul>
+                                <div class="skill-category">
+                                    <h4>Programming & Query Languages:</h4>
+                                    <p>Python (Pandas, NumPy, Matplotlib, Seaborn), SQL (MySQL)</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Data & Analytics:</h4>
+                                    <p>Data Cleaning, EDA, Data Modeling, DAX, Business Intelligence, Statistical Analysis, Predictive Modeling, Data Visualization</p>
                                 </div>
                             </div>
                         </div>
@@ -231,27 +396,27 @@
 
                             <div class="resume-project">
                                 <div class="project-header">
-                                    <h4>HR ANALYTICS DASHBOARD</h4>
-                                    <span class="project-meta">Personal Project - Mysore, KA | June 2024</span>
+                                    <h4 style="font-size: 1rem !important;">REAL-TIME WEATHER DASHBOARD</h4>
+                                    <span class="project-meta">Power BI, GitHub Actions, Weather API, Python | July 2025</span>
                                 </div>
                                 <ul class="project-details">
-                                    <li>Designed an HR Analytics Dashboard in Power BI to analyze employee attrition trends across 3 departments</li>
-                                    <li>Processed and visualized data on attrition by age, job role, education, and salary using Power BI, identifying attrition rates of 22.0% and 13.8%</li>
-                                    <li>Delivered actionable insights on key HR metrics, driving data-driven decisions that reduced attrition rates by 20%</li>
-                                    <li>Customized the dashboard to focus on attrition by years and salary brackets, improving analysis efficiency by 30%</li>
+                                    <li>Developed a responsive Power BI dashboard to monitor real-time weather and air quality across 9 Indian cities, integrating GitHub Actions and Weather API for continuous data updates</li>
+                                    <li>Designed a scheduled data pipeline with GitHub Actions fetching data every 3 hours and enabling 8x daily refresh in Power BI Service without manual intervention</li>
+                                    <li>Visualized 14-day forecasts, temperature trends, UV index, and pollutant levels (PM2.5, PM10, O₃, NO₂) through interactive visuals, enabling data-driven decisions for health, travel, and logistics</li>
                                 </ul>
                             </div>
 
                             <div class="resume-project">
                                 <div class="project-header">
-                                    <h4>ANALYSIS ON SUICIDE TRENDS IN INDIA</h4>
-                                    <span class="project-meta">Academic Project - Mysore, KA | April 2024</span>
+                                    <h4 style="font-size: 1rem !important;">ANALYSIS ON SUICIDE TRENDS IN INDIA</h4>
+                                    <span class="project-meta">Python, Pandas, Seaborn, Scikit-learn, Colab | April 2024</span>
                                 </div>
                                 <ul class="project-details">
-                                    <li>Conducted an in-depth analysis of 2021 suicide trends in India using the NCRB dataset, organizing data across 28 states, 8 UTs, and 53 cities</li>
-                                    <li>Identified regions with highest/lowest suicide rates and analyzed gender-specific trends across 28 states, UTs and 53 cities</li>
-                                    <li>Predicted future suicide rates for 2024 using linear regression with Python (Pandas, Matplotlib, Seaborn, Scikit-learn) with 85% accuracy</li>
-                                    <li>Generated insights and created 10 visualizations as a part of a collaborative team project, contributing to a 25% improvement in decision-making efficiency</li>
+                                    <li>Conducted comprehensive statistical analysis and implemented data processing workflows on 2021 suicide trends using NCRB dataset, organizing and standardizing data across 28 states, 8 Union Territories, and 53 cities</li>
+                                    <li>Pinpointed geographical clusters exhibiting the highest and lowest suicide incidence using NCRB data, charting gender-specific trends to devise a focused data collection blueprint for comparative inquiries</li>
+                                    <li>Executed predictive analytics using linear regression with Python libraries (Pandas, Matplotlib, Seaborn, Scikit-learn) to forecast suicide rates for 2024 with 85% accuracy</li>
+                                    <li>Generated actionable insights through data analysis, creating 10 detailed visualizations that clarified complex data sets, leading to a 25% increase in decision-making speed and a clearer understanding of market trends</li>
+                                    <li>Shared insights through peer-reviewed academic presentation, illustrating key findings via compelling charts and fostering 30% more audience engagement during review sessions</li>
                                 </ul>
                             </div>
                         </div>
@@ -262,28 +427,15 @@
 
                             <div class="resume-experience">
                                 <div class="experience-header">
-                                    <h4>POWER BI INTERN</h4>
+                                    <h4 style="font-size: 1rem !important;">POWER BI INTERN</h4>
                                     <span class="company">Cognifyz Technologies - Remote</span>
                                     <span class="duration">August 2024 - September 2024</span>
                                 </div>
                                 <ul class="experience-details">
-                                    <li>Leveraged Power BI to perform detailed data analysis and create visualizations, enhancing decision-making efficiency by 10%</li>
-                                    <li>Created and maintained interactive dashboards and reports, reducing manual reporting time by 25%</li>
-                                    <li>Developed data models and visualizations for 7 tasks, collaborating with cross-functional teams to align with business objectives and improve reporting</li>
-                                    <li>Conducted data quality checks and validation, improving data accuracy by 15% and ensuring reliable reporting</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-experience">
-                                <div class="experience-header">
-                                    <h4>PYTHON FULL-STACK INTERN</h4>
-                                    <span class="company">Orion Web Services Pvt Ltd - Mysore, KA</span>
-                                    <span class="duration">October 2023 - December 2023</span>
-                                </div>
-                                <ul class="experience-details">
-                                    <li>Applied Python full-stack development skills in academic projects, leading to a 15% increase in project efficiency</li>
-                                    <li>Strengthened proficiency in the Flask framework through hands-on practice, achieving a 50% improvement in skills, which contributed to more efficient coding</li>
-                                    <li>Practiced using the Flask framework by developing a basic web application, resulting in a 20% improvement in deployment time and a deeper understanding of web development concepts</li>
+                                    <li>Leveraged Power BI to perform data analysis and create visualizations, enhancing decision-making efficiency by 10%</li>
+                                    <li>Created interactive dashboards and self-updating reports, reducing manual reporting time by 25%</li>
+                                    <li>Conducted rigorous data quality checks and validation, improving data accuracy by 15%</li>
+                                    <li>Constructed data models for 7 tasks, collaborating with cross-functional teams to align with business objectives</li>
                                 </ul>
                             </div>
                         </div>
@@ -294,20 +446,40 @@
 
                             <div class="resume-education">
                                 <div class="education-header">
-                                    <h4>MASTER OF COMPUTER APPLICATIONS</h4>
-                                    <span class="institution">VVIET - Mysore, KA</span>
-                                    <span class="graduation">September 2024</span>
+                                    <h4 style="font-size: 1rem !important;">MASTER OF COMPUTER APPLICATIONS</h4>
+                                    <span class="institution">VVIET - Mysore, Karnataka</span>
+                                    <span class="graduation">February 2022 - September 2024</span>
                                 </div>
                                 <p class="coursework">Relevant Coursework: Data Analysis in Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Structures and Algorithms</p>
                             </div>
 
                             <div class="resume-education">
                                 <div class="education-header">
-                                    <h4>BACHELOR OF COMPUTER APPLICATIONS</h4>
-                                    <span class="institution">SDM College - Ujire, KA</span>
+                                    <h4 style="font-size: 1rem !important;">BACHELOR OF COMPUTER APPLICATIONS</h4>
+                                    <span class="institution">SDM College - Ujire, Karnataka</span>
                                     <span class="graduation">June 2019 - September 2022</span>
                                 </div>
                                 <p class="coursework">Relevant Coursework: Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Mining</p>
+                            </div>
+                        </div>
+
+                        <!-- Certifications Section -->
+                        <div class="resume-section">
+                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-certificate"></i>CERTIFICATIONS</h2>
+
+                            <div class="resume-certifications">
+                                <div class="certification-item">
+                                    <h4 style="font-size: 1rem !important;">Python Full Stack</h4>
+                                    <span class="cert-details">(Currently Pursuing at Pentagon Space) | August 2025</span>
+                                </div>
+                                <div class="certification-item">
+                                    <h4 style="font-size: 1rem !important;">YBI Foundation Data Analytics Internship Certificate</h4>
+                                    <span class="cert-details">September 2024</span>
+                                </div>
+                                <div class="certification-item">
+                                    <h4 style="font-size: 1rem !important;">Coursera - Foundations: Data, Data, Everywhere (Google)</h4>
+                                    <span class="cert-details">September 2024</span>
+                                </div>
                             </div>
                         </div>
                     </div>
