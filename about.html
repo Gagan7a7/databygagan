@@ -128,7 +128,14 @@
 
                         .floating-element {
                             position: absolute;
+                            width: 48px;
+                            height: 48px;
+                            top: 10px;
+                            left: 10px;
+                            contain: layout;
+                            will-change: transform;
                             opacity: 0.08;
+                            pointer-events: none;
                             transition: all 0.3s ease;
                             animation: float 25s infinite linear;
                         }
@@ -220,6 +227,7 @@
                         .about-text p.lead {
                             font-size: 1.3em;
                             line-height: 1.7;
+                            min-height: 80px;
                             position: relative;
                             padding: 2rem;
                             margin: 2.5rem 0;
@@ -227,6 +235,13 @@
                             border: 1px solid rgba(74, 144, 226, 0.1);
                             border-radius: 15px;
                             overflow: hidden;
+                        }
+
+                        @media (max-width: 768px) {
+                            .about-text p.lead {
+                                min-height: 60px;
+                                padding: 1.5rem;
+                            }
                         }
 
                         .about-text p.lead::before {
@@ -238,6 +253,9 @@
                             height: 100%;
                             background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
                             animation: shimmer 2s infinite;
+                            pointer-events: none;
+                            z-index: 0;
+                            /* Prevent layout shift by not affecting layout */
                         }
 
                         @keyframes shimmer {
@@ -431,7 +449,11 @@
                             }
                             
                             .floating-element {
+                                width: 32px;
+                                height: 32px;
                                 opacity: 0.05;
+                                animation: none !important;
+                                transition: none !important;
                             }
                             
                             .about-text p.lead {
@@ -439,6 +461,64 @@
                                 padding: 1.5rem;
                             }
                         }
+
+                        /* --- CLS Fixes for Floating Elements --- */
+.floating-element {
+    width: 48px;
+    height: 48px;
+    top: 10px;
+    left: 10px;
+    contain: layout;
+    will-change: transform;
+    opacity: 0.08;
+    pointer-events: none;
+    /* Prevent layout shift by fixing position and size */
+}
+@media (max-width: 768px) {
+    .floating-element {
+        width: 32px;
+        height: 32px;
+        opacity: 0.05;
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* --- CLS Fixes for Lead Paragraph --- */
+.about-text p.lead {
+    min-height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+@media (max-width: 768px) {
+    .about-text p.lead {
+        min-height: 60px;
+        padding: 1.5rem;
+    }
+}
+.about-text p.lead::before {
+    pointer-events: none;
+    z-index: 0;
+    /* Prevent layout shift by not affecting layout */
+}
+
+/* --- CLS Fixes for Container --- */
+.container {
+    min-height: 400px;
+    box-sizing: border-box;
+}
+@media (max-width: 768px) {
+    .container {
+        min-height: 300px;
+    }
+}
+
+/* --- Font Swap for CLS --- */
+@font-face {
+    font-family: 'Inter';
+    src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+    font-display: swap;
+}
                 </style>
                 <link rel="stylesheet" href="styles.css">
     </head>
