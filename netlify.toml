@@ -7,21 +7,6 @@
 [build.processing]
   skip_processing = true
 
-# Plugin configurations
-[[plugins]]
-  package = "netlify-plugin-checklinks"
-  [plugins.inputs]
-    # Skip checking external links that often timeout during builds
-    skipPatterns = [
-      "https://fonts.googleapis.com/*",
-      "https://www.googletagmanager.com/*",
-      "https://www.google-analytics.com/*",
-      "https://cdnjs.cloudflare.com/*",
-      "https://fonts.gstatic.com/*"
-    ]
-    # Only check internal links and allow specific external domains
-    checkExternal = false
-
 # Redirect .html URLs to clean URLs
 [[redirects]]
   from = "/*.html"
