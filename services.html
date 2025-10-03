@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
         <!-- Primary Meta Tags -->
     <title>Services - Gagan BP | Global Data Analytics &amp; Remote Solutions</title>
     <meta name="description" content="Global data analytics by Gagan BP: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, automation for remote clients worldwide.">
@@ -141,7 +132,9 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 2rem;
-                padding: 2rem 0;
+                padding: 2rem 1rem;
+                justify-items: center;
+                align-items: stretch;
             }
 
             .service-card {
@@ -248,86 +241,40 @@
                 color: rgba(255, 255, 255, 0.9);
             }
 
-            /* Responsive adjustments - Mobile Performance Optimized */
-            @media (max-width: 768px) {
-                .services-grid {
-                    grid-template-columns: 1fr;
-                    gap: 1.5rem;
-                    padding: 1rem;
-                    contain: content;
-                }
-                
-                .service-card {
-                    padding: 1.5rem;
-                    /* Remove expensive backdrop-filter on mobile */
-                    backdrop-filter: none;
-                    -webkit-backdrop-filter: none;
-                    /* Use solid background for better mobile performance */
-                    background: rgba(255, 255, 255, 0.08);
-                    /* Simplified shadow */
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                    /* Remove transform transitions on mobile */
-                    transition: none;
-                    /* Disable will-change on mobile */
-                    will-change: auto;
-                }
-                
-                .service-card:hover {
-                    transform: none;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                }
-                
-                .service-icon {
-                    width: 70px;
-                    height: 70px;
-                    /* Remove backdrop-filter from icon */
-                    backdrop-filter: none;
-                    -webkit-backdrop-filter: none;
-                    background: rgba(255, 255, 255, 0.12);
-                    /* Remove transition on mobile */
-                    transition: none;
-                }
-                
-                .service-card:hover .service-icon {
-                    transform: none;
-                    background: rgba(255, 255, 255, 0.12);
-                    box-shadow: none;
-                }
-                
-                .service-icon i {
-                    font-size: 1.75rem;
-                    /* Remove transition on mobile */
-                    transition: none;
-                }
-                
-                .service-card:hover .service-icon i {
-                    color: #e0e6ed;
-                    text-shadow: none;
-                }
-                
-                .service-card h3 {
-                    /* Remove transition on mobile */
-                    transition: none;
-                }
-                
-                .service-card:hover h3 {
-                    color: #e0e6ed;
-                    text-shadow: none;
-                }
-                
-                .service-card p {
-                    /* Remove transition on mobile */
-                    transition: none;
-                }
-                
-                .service-card:hover p {
-                    color: rgba(224, 230, 237, 0.8);
-                }
-                
-                .service-card::before {
-                    display: none;
-                }
-            }
+            /* Center-align explanation text in service cards */
+.service-card .card-text {
+    text-align: center !important;
+}
+
+/* Fix grid spacing so cards are not cut off and gaps are even */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem 1rem;
+    justify-items: center;
+    align-items: stretch;
+}
+@media (min-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+/* Remove old, duplicate, or unused CSS for service cards, icons, and grid, keeping only the latest and necessary styles for the current look and layout. */
+/* --- CLEANED: Removed old/duplicate/unneeded service card, icon, and grid CSS --- */
+/* All current styles for .service-card, .service-icon, .services-grid, .card-title, .card-text are preserved above. */
+/* Removed: old .service-card background, border, box-shadow, hover, .service-icon hover, .service-card h3, .service-card p, old responsive adjustments, and any duplicate rules. */
 
             /* Additional interactive effects - Desktop only */
             @media (min-width: 769px) {
@@ -339,49 +286,226 @@
                     outline: 2px solid rgba(255, 255, 255, 0.3);
                     outline-offset: 4px;
                 }
+
+                /* Make service cards perfect squares on desktop, responsive on mobile */
+                .service-card.card {
+                    width: 320px;
+                    height: 320px;
+                    min-width: 320px;
+                    min-height: 320px;
+                    max-width: 100%;
+                    max-height: 100%;
+                }
             }
+
+            /* Remove background color from navbar for transparency */
+.navbar, .navbar-scrolled {
+    background: transparent !important;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+/* Set a new background color for the services page */
+body {
+    background: #181c2a !important;
+    color: #e0e6ed;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Navbar transparent at top, blurred/dark on scroll (like FAQ) */
+.navbar {
+    background: transparent !important;
+    box-shadow: none;
+    backdrop-filter: none;
+    transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+}
+.navbar-scrolled {
+    background: rgba(10, 10, 32, 0.95) !important;
+    box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+    backdrop-filter: blur(12px);
+}
+
+/* Footer section headings and list items white like FAQ */
+.footer-section strong {
+    color: #e0e6ed !important;
+}
+.footer-section ul li,
+.footer-section ul li a {
+    color: #e0e6ed !important;
+}
+
+/* Override Bootstrap card defaults to preserve custom service card look */
+.service-card.card {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    color: #e0e6ed !important;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    /* All your custom styles remain */
+    min-width: 320px;
+    min-height: 340px;
+    max-width: 100%;
+    padding: 2rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* Guarantee all service icons are perfectly round and centered */
+.service-card .service-icon {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    background: rgba(255,255,255,0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 1.1rem !important;
+    margin-top: -0.5rem !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+}
+.service-card .service-icon i {
+    font-size: 1.4rem !important;
+    color: #e0e6ed !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+/* Smaller, lighter heading */
+.service-card .card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 0.7rem 0;
+    color: #e0e6ed;
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+}
+/* Even smaller, lighter explanation text */
+.service-card .card-text {
+    font-size: 0.89rem;
+    line-height: 1.5;
+    color: rgba(224, 230, 237, 0.7);
+    margin: 0;
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    display: block;
+}
+
+/* Navbar blur and background on scroll */
+        .navbar {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(8px);
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: none;
+        }
+        .navbar-scrolled {
+            background: rgba(10, 10, 32, 0.95) !important;
+            box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .offcanvas-header,
+        .offcanvas-body {
+            background: #0a1120;
+            color: #e0e6ed;
+        }
+        /* Ensure offcanvas overlays the page and hides background content */
+        .offcanvas-backdrop.show {
+            opacity: 0.95 !important;
+            background: #0a1120 !important;
+            z-index: 1050 !important;
+        }
+        .offcanvas {
+            box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
+            z-index: 1060 !important;
+        }
+        body.offcanvas-backdrop-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100vw;
+        }
+        @media (max-width: 991.98px) {
+            .offcanvas {
+                max-width: 80vw;
+            }
+            /* Force offcanvas to cover full viewport on mobile */
+            .offcanvas.offcanvas-end {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                height: 100vh !important;
+                top: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+                border-radius: 0 !important;
+            }
+            .offcanvas-header, .offcanvas-body {
+                min-height: 0;
+                max-height: none;
+                overflow-y: auto;
+            }
+            body.offcanvas-backdrop-open {
+                overflow: hidden !important;
+                position: fixed;
+                width: 100vw;
+            }
+        }
         </style>
 
         <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
         <header id="header">
-            <!-- Mobile logo style moved to main <style> block above -->
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu"
-                    type="button"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="about"><i class="fas fa-user"></i>About</a></li>
-                    <li><a href="skills"><i class="fas fa-cogs"></i>Skills</a></li>
-                    <li><a href="projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-                    <li><a href="/services" class="active"><i class="fas fa-briefcase"></i>Services</a></li>
-                    <li><a href="testimonials"><i class="fas fa-comments"></i>Testimonials</a></li>
-                    <li><a href="faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
-                    <li><a href="resume"><i class="fas fa-file-alt"></i>Resume</a></li>
-                    <li><a href="contact"><i class="fas fa-envelope"></i>Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Bootstrap 5 Offcanvas Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+        <div class="container-fluid py-1">
+            <a href="index" class="navbar-brand logo" aria-label="Home">
+                <!-- Logo content removed for layout, link remains -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                        <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
         <!-- Main Content -->
-        <main id="main" style="padding-top: 100px;">
+    <main id="main" style="padding-top: 70px;">
             <!-- Services Section -->
             <section
                 id="services"
@@ -393,151 +517,127 @@
                         Services I Offer
                     </h1>
                     <div class="services-grid">
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <h3 itemprop="name">Excel Dashboards</h3>
-                            <p itemprop="description">
-                                I create professional Excel dashboards using
-                                advanced formulas, pivot tables, conditional
-                                formatting, charts, and slicers. Ideal for tracking
-                                KPIs, business metrics, or custom reports based on
-                                your data.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">Excel Dashboards</h3>
+                                <p itemprop="description" class="card-text">
+                                    I create professional Excel dashboards using
+                                    advanced formulas, pivot tables, conditional
+                                    formatting, charts, and slicers. Ideal for tracking
+                                    KPIs, business metrics, or custom reports based on
+                                    your data.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-chart-line"></i>
                             </div>
-                            <h3 itemprop="name">Power BI Reports</h3>
-                            <p itemprop="description">
-                                I design interactive and visually compelling reports
-                                in Power BI using DAX and Power Query. Whether you
-                                need dashboards for sales, operations, or data
-                                monitoring, I can help you present your data
-                                effectively.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">Power BI Reports</h3>
+                                <p itemprop="description" class="card-text">
+                                    I design interactive and visually compelling reports
+                                    in Power BI using DAX and Power Query. Whether you
+                                    need dashboards for sales, operations, or data
+                                    monitoring, I can help you present your data
+                                    effectively.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-broom"></i>
                             </div>
-                            <h3 itemprop="name">
-                                Data Cleaning (Excel / Python / Power Query)
-                            </h3>
-                            <p itemprop="description">
-                                I clean messy or unstructured data using Excel
-                                functions, Power Query, or Python (Pandas). From
-                                handling missing values to formatting columns, I
-                                ensure your data is clean, consistent, and ready for
-                                analysis.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">
+                                    Data Cleaning (Excel / Python / Power Query)
+                                </h3>
+                                <p itemprop="description" class="card-text">
+                                    I clean messy or unstructured data using Excel
+                                    functions, Power Query, or Python (Pandas). From
+                                    handling missing values to formatting columns, I
+                                    ensure your data is clean, consistent, and ready for
+                                    analysis.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-database"></i>
                             </div>
-                            <h3 itemprop="name">SQL Query Writing</h3>
-                            <p itemprop="description">
-                                I write optimized SQL queries in MySQL for
-                                selecting, filtering, joining, and summarizing data.
-                                Whether it's simple reports or complex conditions, I
-                                can help you extract the right insights from your
-                                database.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">SQL Query Writing</h3>
+                                <p itemprop="description" class="card-text">
+                                    I write optimized SQL queries in MySQL for
+                                    selecting, filtering, joining, and summarizing data.
+                                    Whether it's simple reports or complex conditions, I
+                                    can help you extract the right insights from your
+                                    database.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-chart-bar"></i>
                             </div>
-                            <h3 itemprop="name">Python Data Visualization</h3>
-                            <p itemprop="description">
-                                I use Python (Matplotlib and Seaborn) to create clear and
-                                impactful charts like bar graphs, heatmaps, line
-                                plots, and more. These visuals help you explore and
-                                present your data effectively in reports or
-                                dashboards.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">Python Data Visualization</h3>
+                                <p itemprop="description" class="card-text">
+                                    I use Python (Matplotlib and Seaborn) to create clear and
+                                    impactful charts like bar graphs, heatmaps, line
+                                    plots, and more. These visuals help you explore and
+                                    present your data effectively in reports or
+                                    dashboards.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-brain"></i>
                             </div>
-                            <h3 itemprop="name">Machine Learning (Basic Models)</h3>
-                            <p itemprop="description">
-                                I build beginner-friendly machine learning models
-                                using scikit-learn. I can help you with data
-                                preparation, model training, accuracy evaluation,
-                                and visual insights — great for academic or
-                                prototype-level use.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">Machine Learning (Basic Models)</h3>
+                                <p itemprop="description" class="card-text">
+                                    I build beginner-friendly machine learning models
+                                    using scikit-learn. I can help you with data
+                                    preparation, model training, accuracy evaluation,
+                                    and visual insights — great for academic or
+                                    prototype-level use.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-robot"></i>
                             </div>
-                            <h3 itemprop="name">Excel Automation (Python + AI)</h3>
-                            <p itemprop="description">
-                                I automate Excel tasks like updating files,
-                                formatting data, or generating reports using Python
-                                scripts and AI (GPT). Save time by letting me handle
-                                repetitive Excel work with smart automation.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">Excel Automation (Python + AI)</h3>
+                                <p itemprop="description" class="card-text">
+                                    I automate Excel tasks like updating files,
+                                    formatting data, or generating reports using Python
+                                    scripts and AI (GPT). Save time by letting me handle
+                                    repetitive Excel work with smart automation.
+                                </p>
+                            </div>
                         </div>
-                        <div
-                            class="service-card"
-                            itemscope
-                            itemtype="https://schema.org/Service"
-                            tabindex="0"
-                        >
-                            <div class="service-icon">
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
                                 <i class="fas fa-code"></i>
                             </div>
-                            <h3 itemprop="name">
-                                Portfolio / Resume Website (HTML &amp; CSS)
-                            </h3>
-                            <p itemprop="description">
-                                I build simple, clean personal websites using HTML
-                                and CSS — ideal for portfolios, resumes, or
-                                freelancer profiles. I can also help you host it on
-                                GitHub Pages for free access online.
-                            </p>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title">
+                                    Portfolio / Resume Website (HTML &amp; CSS)
+                                </h3>
+                                <p itemprop="description" class="card-text">
+                                    I build simple, clean personal websites using HTML
+                                    and CSS — ideal for portfolios, resumes, or
+                                    freelancer profiles. I can also help you host it on
+                                    GitHub Pages for free access online.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -545,51 +645,78 @@
         </main>
 
         <!-- Footer -->
-    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
-                            Transforming data into actionable insights for
-                            businesses worldwide.
-                        </p>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>
-                        &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
-                        rights reserved. | Freelance Data Analyst
-                    </p>
-                </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                <p>
+                    Transforming data into actionable insights for
+                    businesses worldwide.
+                </p>
             </div>
-        </footer>
+            <div class="footer-section">
+                <strong>Quick Links</strong>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <strong>Services</strong>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Excel Dashboards</li>
+                    <li>Data Cleaning (Excel / Python)</li>
+                    <li>SQL &amp; Python Analytics</li>
+                    <li>Excel Automation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span>2025</span>
+                <span>Gagan BP</span>. All
+                rights reserved. | Freelance Data Analyst
+            </p>
+        </div>
+    </div>
+</footer>
 
         <!-- Back to Top Button -->
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
         <!-- Script -->
     <script src="scripts.js"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Navbar background toggle on scroll (like FAQ)
+document.addEventListener('DOMContentLoaded', function() {
+    var navbar = document.querySelector('.navbar');
+    function onScroll() {
+        if (window.scrollY > 40) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initial check
+});
+</script>
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </body>
 </html>

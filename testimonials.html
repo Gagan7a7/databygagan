@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-5Z3EEE9EZZ');
-    </script>
-
-    <!-- Primary Meta Tags -->
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (already present) -->
+        <!-- Primary Meta Tags -->
     <meta charset="utf-8">
     <title>Client Testimonials - Gagan BP | Global Data Analytics Success Stories</title>
     <meta name="description" content="Read authentic testimonials from global clients about their data analytics journey with Gagan BP—Power BI, Excel automation, Python, and SQL solutions.">
@@ -178,32 +172,106 @@
   }
 }
     .loading{display:flex;justify-content:center;align-items:center;min-height:200px}.loading-spinner{width:50px;height:50px;border:3px solid var(--primary-color);border-radius:50%;border-top-color:#fff0;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted-text)}.empty-state i{font-size:4rem;margin-bottom:1rem;color:var(--primary-color)}.footer{background-color:var(--dark-secondary);padding:3rem 0 1rem;margin-top:4rem}.footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:2rem}.footer-section{flex:1;min-width:250px}.footer-section h4{color:var(--light-text);margin-bottom:1rem}.footer-section p{color:var(--muted-text);margin:.5rem 0;line-height:1.6}.footer-section strong{color:var(--light-text);display:block;margin-bottom:1rem}.footer-section ul{list-style:none;padding:0;margin:0}.footer-section ul li{margin-bottom:.5rem}.footer-section ul li a{color:var(--muted-text);text-decoration:none;transition:color 0.3s}.footer-section ul li a:hover{color:var(--primary-color)}.footer-bottom{text-align:center;padding-top:1rem;border-top:1px solid rgb(255 255 255 / .1);color:var(--muted-text)}.back-to-top{position:fixed;bottom:20px;right:20px;background:var(--primary-color);color:#fff;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.3s ease-out;transform:translateY(100px);z-index:1000;will-change:transform,opacity;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 20px rgb(74 144 226 / .3)}.back-to-top.visible{opacity:1;transform:translateY(0)}.back-to-top:hover{background:var(--secondary-color);transform:translateY(-2px) scale(1.05);box-shadow:0 6px 25px rgb(74 144 226 / .4)}.container{max-width:1200px;margin:0 auto;padding:0 1rem}
+     @media (max-width: 768px) {
+        .logo span[itemprop="name"] {
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: none;
+        }
+        .logo .fa-chart-line {
+            color: #007bff !important;
+        }
+    }
+    .navbar {
+        background: rgba(10, 10, 20, 0.7);
+        backdrop-filter: blur(8px);
+        transition: background 0.3s, box-shadow 0.3s;
+        box-shadow: none;
+    }
+    .navbar-scrolled {
+        background: rgba(10, 10, 32, 0.95) !important;
+        box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+        backdrop-filter: blur(12px);
+    }
+    .offcanvas-header,
+    .offcanvas-body {
+        background: #0a1120;
+        color: #e0e6ed;
+    }
+    .offcanvas-backdrop.show {
+        opacity: 0.95 !important;
+        background: #0a1120 !important;
+        z-index: 1050 !important;
+    }
+    .offcanvas {
+        box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
+        z-index: 1060 !important;
+    }
+    body.offcanvas-backdrop-open {
+        overflow: hidden !important;
+        position: fixed;
+        width: 100vw;
+    }
+    @media (max-width: 991.98px) {
+        .offcanvas {
+            max-width: 80vw;
+        }
+        .offcanvas.offcanvas-end {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            height: 100vh !important;
+            top: 0 !important;
+            right: 0 !important;
+            left: 0 !important;
+            border-radius: 0 !important;
+        }
+        .offcanvas-header, .offcanvas-body {
+            min-height: 0;
+            max-height: none;
+            overflow-y: auto;
+        }
+        body.offcanvas-backdrop-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100vw;
+        }
+    }
     </style>
 </head>
 <body>
-    <!-- Header from your index -->
+    <!-- Header: Bootstrap Offcanvas Navbar from resume.html -->
     <header id="header">
-        <nav id="nav" aria-label="Main navigation">
-            <a href="index" class="logo" aria-label="Home">
-                <i class="fas fa-chart-line" aria-hidden="true"></i>
-                <span>GaganBP</span>
-            </a>
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="about"><i class="fas fa-user"></i>About</a></li>
-                <li><a href="skills"><i class="fas fa-cogs"></i>Skills</a></li>
-                <li><a href="projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-                <li><a href="services"><i class="fas fa-briefcase"></i>Services</a></li>
-                <li><a href="testimonials" class="active"><i class="fas fa-quote-right"></i>Testimonials</a></li>
-                <li><a href="faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
-                <li><a href="resume"><i class="fas fa-file-alt"></i>Resume</a></li>
-                <li><a href="contact"><i class="fas fa-envelope"></i>Contact</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" aria-label="Main navigation">
+            <div class="container-fluid py-1">
+                <a href="index" class="navbar-brand logo" aria-label="Home">
+                    <!-- Logo content removed for layout, link remains -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                    <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                        <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                            <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -232,43 +300,54 @@
     </main>
 
     <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>Transforming data into actionable insights for businesses worldwide.</p>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; <span itemprop="copyrightYear">2025</span> <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst</p>
-                </div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                <p>
+                    Transforming data into actionable insights for
+                    businesses worldwide.
+                </p>
             </div>
+            <div class="footer-section">
+                <strong>Quick Links</strong>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <strong>Services</strong>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Excel Dashboards</li>
+                    <li>Data Cleaning (Excel / Python)</li>
+                    <li>SQL &amp; Python Analytics</li>
+                    <li>Excel Automation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span>2025</span>
+                <span>Gagan BP</span>. All
+                rights reserved. | Freelance Data Analyst
+            </p>
+        </div>
+    </div>
         </footer>
 
         <!-- Back to Top Button -->
         <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
         </button>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const observerOptions={root:null,rootMargin:'0px',threshold:0.1};const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},observerOptions);let ticking=!1;function updateScrollEffects(){const scrollY=window.scrollY;const backToTop=document.getElementById('back-to-top');if(scrollY>300){backToTop?.classList.add('visible')}else{backToTop?.classList.remove('visible')}
@@ -328,5 +407,13 @@ document.addEventListener('DOMContentLoaded',()=>{loadTestimonials();initTestimo
     </script>
 
     <script src="scripts.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5Z3EEE9EZZ');
+    </script>
 </body>
 </html>

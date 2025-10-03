@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
+        <head>
+                <!-- Bootstrap 5 CSS -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Primary Meta Tags -->
         <title>Contact - Gagan BP | Remote Data Analyst &amp; Global BI Expert</title>
     <meta name="description" content="Contact Gagan BP: Remote freelance data analyst serving global clients. Reach out for Power BI, Python, SQL, Excel, and BI solutions.">
@@ -29,8 +22,8 @@
     <meta name="language" content="English">
     <meta name="content-language" content="en">
 
-    <!-- Content Security Policy to allow Formspree contact form -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+    <!-- Content Security Policy to allow Bootstrap JS and Formspree contact form -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
         <!-- Performance and SEO meta tags -->
         <meta name="theme-color" content="#6c63ff">
         <meta name="msapplication-TileColor" content="#6c63ff">
@@ -94,171 +87,23 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
         <!-- Font Awesome (async for mobile) -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
-            @media (max-width: 768px) {
-                .logo .fa-chart-line {
-                    color: #007bff !important;
-                }
-            }
-            /* Inline minimal CSS for logo to improve LCP on mobile */
-            @media (max-width: 768px) {
-                .logo span[itemprop="name"] {
-                    font-family: 'Inter', Arial, sans-serif;
-                    font-size: 1.2rem;
-                    color: #007bff;
-                    font-weight: 700;
-                    letter-spacing: 0.5px;
-                    text-shadow: none;
-                }
-            }
-            /* Inline critical CSS for header and main title for mobile FCP */
-            @media (max-width: 768px) {
-                #header {
-                    background: #0a0a0a;
-                    position: fixed;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    z-index: 1000;
-                }
-                #header .logo {
-                    font-family: 'Inter', Arial, sans-serif;
-                    font-size: 1.2rem;
-                    color: #6c63ff;
-                    text-decoration: none;
-                }
-                .section-title {
-                    font-family: 'Inter', Arial, sans-serif !important;
-                    font-size: 2rem !important;
-                    color: #e0e6ed;
-                    text-align: center;
-                    margin-bottom: 1.5rem;
-                }
-            }
             html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
-            .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
-            .required {
-                color: red;
-            }
-            .form-row {
-                display: flex;
-                gap: 20px;
-            }
-
-            .form-row .form-group {
-                width: 100%;
-            }
-            .half-width {
-                width: 50%;
-            }
-
-            /* Clean Form Animations */
-            .contact-form {
-                opacity: 0;
-                transform: translateY(20px);
-                animation: slideIn 0.6s ease forwards;
-            }
-            @media (max-width: 768px) {
-                .contact-form {
-                    animation-delay: 0.1s !important;
-                }
-            }
-
-            @keyframes slideIn {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            .form-group {
-                opacity: 0;
-                animation: fadeIn 0.5s ease forwards;
-            }
-            .form-group:nth-child(1) { animation-delay: 0.1s; }
-            .form-group:nth-child(2) { animation-delay: 0.2s; }
-            .form-group:nth-child(3) { animation-delay: 0.3s; }
-            .form-group:nth-child(4) { animation-delay: 0.4s; }
-            .form-group:nth-child(5) { animation-delay: 0.5s; }
-            .form-group:nth-child(6) { animation-delay: 0.6s; }
-            .form-group:nth-child(7) { animation-delay: 0.7s; }
-            @media (max-width: 768px) {
-                .form-group {
-                    animation-delay: 0.1s !important;
-                }
-            }
-
-            @keyframes fadeIn {
-                to { opacity: 1; }
-            }
-
-            /* Enhanced Input Focus */
-            .form-group input:focus,
-            .form-group select {
-                background-color: rgb(35, 40, 55);
-                color: var(--light-text);
-            }
-            .form-group select option {
-                background-color: rgb(35, 40, 55) !important;
-                color: var(--light-text);
-            }
-
-            .form-group select:focus,
-            .form-group textarea:focus {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(108, 99, 255, 0.15);
-                transition: all 0.3s ease;
-            }
-
-            /* Better CTA Button */
-            .btn-primary {
-                background: linear-gradient(135deg, #6c63ff 0%, #5a52d8 100%);
-                border: none;
-                border-radius: 8px;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .btn-primary::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-                transition: left 0.5s;
-            }
-
-            .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
-            }
-
-            .btn-primary:hover::before {
-                left: 100%;
-            }
-
+            .required { color: red; }
             /* Contact Items Hover */
             .contact-item {
                 transition: transform 0.3s ease;
                 padding: 15px;
                 border-radius: 8px;
             }
-
             .contact-item:hover {
                 transform: translateX(5px);
                 background: rgba(108, 99, 255, 0.05);
             }
-
             /* Success Message */
             .success-message {
                 background: rgba(76, 175, 80, 0.1);
@@ -271,110 +116,73 @@
                 opacity: 0;
                 animation: slideDown 0.3s ease forwards;
             }
-
             @keyframes slideDown {
                 to {
                     opacity: 1;
                     transform: translateY(0);
                 }
             }
-
             .success-message.show {
                 display: block;
             }
-
-            /* Loading State */
-            .btn-primary.loading {
-                pointer-events: none;
-                opacity: 0.7;
-            }
-
-            .btn-primary.loading::after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 16px;
-                height: 16px;
-                margin: -8px 0 0 -8px;
-                border: 2px solid transparent;
-                border-top: 2px solid #fff;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-
-            /* Responsive */
+            /* Responsive Offcanvas Fix */
             @media (max-width: 768px) {
-                .form-row {
-                    flex-direction: column;
-                    gap: 0;
+                .offcanvas {
+                    width: 100vw !important;
+                    max-width: 100vw !important;
+                    height: 100vh !important;
+                    top: 0 !important;
+                    right: 0 !important;
+                    left: 0 !important;
+                    border-radius: 0 !important;
+                    z-index: 1200 !important;
                 }
-                .half-width {
-                    width: 100%;
+                .offcanvas-backdrop.show {
+                    opacity: 0.95 !important;
+                    background: #0a1120 !important;
+                    z-index: 1190 !important;
                 }
-                .contact-form .btn-primary {
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
+                #header {
+                    z-index: 1000 !important;
                 }
             }
         </style>
 
         <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
         <header id="header">
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button type="button"
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="index"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects"><i class="fas fa-project-diagram"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="services"><i class="fas fa-briefcase"></i>Services</a>
-                    </li>
-                    <li>
-                        <a href="testimonials"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume"><i class="fas fa-file-alt"></i>Resume</a>
-                    </li>
-                    <li>
-                        <a href="contact" class="active"><i class="fas fa-envelope"></i>Contact</a>
-                    </li>
-                </ul>
+            <!-- Bootstrap 5 Offcanvas Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <a href="index" class="navbar-brand logo" aria-label="Home">
+                        <!-- Logo content removed for layout, link remains -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                                <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                                <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                                <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                                <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                                <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
         <!-- Main Content -->
@@ -388,11 +196,11 @@
                     <div class="contact-content">
                         <div class="contact-info">
                             <h2 style="font-size:1.2rem; color: #6bb6ff !important; font-family: 'Inter', Arial, sans-serif !important; font-weight: 700 !important;">Ready to Scale Your Business?</h2>
-                            <p style="font-size:1rem;">
+                            <p style="font-size:1.08rem;">
                                 Ready to transform your data into insights? Let's
                                 discuss your project and how I can help you achieve
                                 your goals.<br><br>
-                                <strong style="font-size:1rem;">Available for remote projects globally, with flexible hours for US, UK, EU, and APAC clients. All communication in English, with secure online delivery and support for international payments.</strong>
+                                Available for remote projects globally, with flexible hours for US, UK, EU, and APAC clients. All communication in English, with secure online delivery and support for international payments.
                             </p>
 
                             <div
@@ -466,161 +274,169 @@
                         </div>
 
                         <form
-                        class="contact-form"
-                        id="contact-form"
-                        action="https://formspree.io/f/xkgbjblo"
-                        method="post"
-                        itemscope
-                        itemtype="https://schema.org/ContactPage"
-                    >
-                        <!-- Honeypot trap for bots -->
-                        <input
-                            type="text"
-                            name="_gotcha"
-                            style="display: none"
-                            tabindex="-1"
-                            autocomplete="off"
+                            class="contact-form needs-validation"
+                            id="contact-form"
+                            action="https://formspree.io/f/xkgbjblo"
+                            method="post"
+                            itemscope
+                            itemtype="https://schema.org/ContactPage"
+                            novalidate
                         >
-
-                        <!-- Success Message -->
-                        <div id="success-message" class="success-message">
-                            🎉 Awesome! Your message is on its way. I'll get back to you within 24 hours with a detailed proposal!
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name">Your Name <span class="required">*</span></label>
+                            <!-- Honeypot trap for bots -->
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
-                                required
-                                pattern="[A-Za-z\s]+"
-                                title="Enter a valid name (letters only)"
-                                itemprop="name"
+                                name="_gotcha"
+                                style="display: none"
+                                tabindex="-1"
+                                autocomplete="off"
                             >
-                        </div>
 
-                        <div class="form-group">
-                            <label for="email">Your Email <span class="required">*</span></label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
-                                itemprop="email"
-                            >
-                            <span
-                                id="email-warning"
-                                style="
-                                    color: #f44336;
-                                    display: none;
-                                    font-size: 0.8rem;
-                                    margin-top: 5px;
-                                "
-                            >
-                                Only trusted domains like Gmail, Yahoo, Outlook,
-                                etc. are allowed.
-                            </span>
-                        </div>
+                            <!-- Success Message -->
+                            <div id="success-message" class="success-message">
+                                🎉 Awesome! Your message is on its way. I'll get back to you within 24 hours with a detailed proposal!
+                            </div>
 
-                        <div class="form-group">
-                            <label for="service-type">What Do You Need? <span class="required">*</span></label>
-                            <select
-                                id="service-type"
-                                name="service-type"
-                                required
-                                itemprop="serviceType"
-                            >
-                                <option value="">Choose your growth solution...</option>
-                                <option value="power-bi-dashboard">📊 Power BI Dashboard</option>
-                                <option value="excel-dashboard">📈 Excel Dashboard</option>
-                                <option value="data-cleaning-analysis">🧹 Data Cleaning &amp; Analysis</option>
-                                <option value="sql-database-queries">🗄️ SQL Database Queries</option>
-                                <option value="data-visualization-python">🐍 Data Visualization (Python)</option>
-                                <option value="machine-learning-models">🤖 Machine Learning Models</option>
-                                <option value="excel-automation">⚡ Excel Automation</option>
-                                <option value="website-development">🌐 Website Development</option>
-                                <option value="multiple-services">🚀 Multiple Services</option>
-                                <option value="consultation">🤔 Not Sure / Free Consultation</option>
-                            </select>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group half-width">
-                                <label for="timeline">Project Timeline</label>
-                                <select
-                                    id="timeline"
-                                    name="timeline"
-                                    itemprop="timeline"
+                            <div class="mb-3 form-group">
+                                <label for="name" class="form-label">Your Name <span class="required">*</span></label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    pattern="[A-Za-z\s]+"
+                                    title="Enter a valid name (letters only)"
+                                    itemprop="name"
+                                    class="form-control"
                                 >
-                                    <option value="">Select timeline...</option>
-                                    <option value="within-1-week">⚡ Within 1 week</option>
-                                    <option value="2-4-weeks">📅 2-4 weeks</option>
-                                    <option value="1-2-months">📆 1-2 months</option>
-                                    <option value="3-plus-months">🗓️ 3+ months</option>
-                                    <option value="flexible">🤷 Flexible</option>
+                            </div>
+
+                            <div class="mb-3 form-group">
+                                <label for="email" class="form-label">Your Email <span class="required">*</span></label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
+                                    itemprop="email"
+                                    class="form-control"
+                                >
+                                <span
+                                    id="email-warning"
+                                    style="
+                                        color: #f44336;
+                                        display: none;
+                                        font-size: 0.8rem;
+                                        margin-top: 5px;
+                                    "
+                                >
+                                    Only trusted domains like Gmail, Yahoo, Outlook,
+                                    etc. are allowed.
+                                </span>
+                            </div>
+
+                            <div class="mb-3 form-group">
+                                <label for="service-type" class="form-label">What Do You Need? <span class="required">*</span></label>
+                                <select
+                                    id="service-type"
+                                    name="service-type"
+                                    required
+                                    itemprop="serviceType"
+                                    class="form-select"
+                                >
+                                    <option value="">Choose your growth solution...</option>
+                                    <option value="power-bi-dashboard">📊 Power BI Dashboard</option>
+                                    <option value="excel-dashboard">📈 Excel Dashboard</option>
+                                    <option value="data-cleaning-analysis">🧹 Data Cleaning &amp; Analysis</option>
+                                    <option value="sql-database-queries">🗄️ SQL Database Queries</option>
+                                    <option value="data-visualization-python">🐍 Data Visualization (Python)</option>
+                                    <option value="machine-learning-models">🤖 Machine Learning Models</option>
+                                    <option value="excel-automation">⚡ Excel Automation</option>
+                                    <option value="website-development">🌐 Website Development</option>
+                                    <option value="multiple-services">🚀 Multiple Services</option>
+                                    <option value="consultation">🤔 Not Sure / Free Consultation</option>
                                 </select>
                             </div>
 
-                            <div class="form-group half-width">
-                                <label for="budget">Budget Range</label>
-                                <select
-                                    id="budget"
-                                    name="budget"
-                                    itemprop="budget"
-                                >
-                                    <option value="">Select budget...</option>
-                                    <option value="under-5000">💵 Under ₹5,000</option>
-                                    <option value="5000-15000">💰 ₹5,000-₹15,000</option>
-                                    <option value="15000-30000">💎 ₹15,000-₹30,000</option>
-                                    <option value="30000-plus">🏆 ₹30,000+</option>
-                                    <option value="lets-discuss">💬 Let's discuss</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 form-group">
+                                    <label for="timeline" class="form-label">Project Timeline</label>
+                                    <select
+                                        id="timeline"
+                                        name="timeline"
+                                        itemprop="timeline"
+                                        class="form-select"
+                                    >
+                                        <option value="">Select timeline...</option>
+                                        <option value="within-1-week">⚡ Within 1 week</option>
+                                        <option value="2-4-weeks">📅 2-4 weeks</option>
+                                        <option value="1-2-months">📆 1-2 months</option>
+                                        <option value="3-plus-months">🗓️ 3+ months</option>
+                                        <option value="flexible">🤷 Flexible</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3 form-group">
+                                    <label for="budget" class="form-label">Budget Range</label>
+                                    <select
+                                        id="budget"
+                                        name="budget"
+                                        itemprop="budget"
+                                        class="form-select"
+                                    >
+                                        <option value="">Select budget...</option>
+                                        <option value="under-5000">💵 Under ₹5,000</option>
+                                        <option value="5000-15000">💰 ₹5,000-₹15,000</option>
+                                        <option value="15000-30000">💎 ₹15,000-₹30,000</option>
+                                        <option value="30000-plus">🏆 ₹30,000+</option>
+                                        <option value="lets-discuss">💬 Let's discuss</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="subject">Project Title</label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                placeholder="e.g., Sales Dashboard for Q4 Analysis"
-                                itemprop="description"
-                            >
-                        </div>
+                            <div class="mb-3 form-group">
+                                <label for="subject" class="form-label">Project Title</label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    placeholder="e.g., Sales Dashboard for Q4 Analysis"
+                                    itemprop="description"
+                                    class="form-control"
+                                >
+                            </div>
 
-                        <div class="form-group">
-                            <label for="message">Tell Me About Your Challenge <span class="required">*</span></label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="5"
-                                required
-                                placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
-                                itemprop="text"
-                            ></textarea>
-                        </div>
+                            <div class="mb-3 form-group">
+                                <label for="message" class="form-label">Tell Me About Your Challenge <span class="required">*</span></label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    required
+                                    placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
+                                    itemprop="text"
+                                    class="form-control"
+                                ></textarea>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Send Message</span>
-                        </button>
-                        <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
-                            🔒 Your information is safe • ⚡ Response within 24 hours
-                        </p>
-                    </form>
+                            <button type="submit" class="btn btn-primary btn-full w-100" id="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                            <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
+                                🔒 Your information is safe • ⚡ Response within 24 hours
+                            </p>
+                        </form>
                     </div>
                 </div>
             </section>
         </main>
         <!-- Footer -->
-        <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+        <footer class="footer">
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h3 style="color: #6bb6ff !important; font-size: 1.1rem !important; font-family: 'Inter', Arial, sans-serif !important; font-weight: 700 !important;">Gagan | Data Analyst</h3>
+                        <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
                         <p>
                             Transforming data into actionable insights for
                             businesses worldwide.
@@ -633,6 +449,7 @@
                             <li><a href="about">About</a></li>
                             <li><a href="projects">Projects</a></li>
                             <li><a href="services">Services</a></li>
+                            <li><a href="faq">FAQ</a></li>
                             <li><a href="contact">Contact</a></li>
                         </ul>
                     </div>
@@ -649,8 +466,8 @@
                 </div>
                 <div class="footer-bottom">
                     <p>
-                        &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
+                        &copy; <span>2025</span>
+                        <span>Gagan BP</span>. All
                         rights reserved. | Freelance Data Analyst
                     </p>
                 </div>
@@ -662,5 +479,30 @@
         </button>
         <!-- Script -->
         <script src="scripts.js"></script>
+        <!-- Bootstrap 5 JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        // Navbar background toggle on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            var navbar = document.querySelector('.navbar');
+            function onScroll() {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll(); // Initial check
+        });
+        </script>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </body>
 </html>

@@ -42,7 +42,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
 
         <!-- Security meta tags for GitHub Pages -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://cdn.jsdelivr.net; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="X-XSS-Protection" content="1; mode=block">
         <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -107,23 +107,22 @@
     <!-- <link rel="canonical" href="https://databygagan.netlify.app/"> Use Netlify URL until custom domain is live -->
     <link rel="canonical" href="https://databygagan.com/">
 
-        <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="scripts.js" as="script">
 
-        <!-- Fonts -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
+    <!-- Bootstrap 5 CSS: load first for all overrides to work -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        <!-- Font Awesome -->
+    <!-- Font Awesome: preload and stylesheet -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-        <!-- Stylesheets -->
+    <!-- Main site CSS -->
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
 
         <!-- Breadcrumb Schema -->
@@ -385,7 +384,7 @@
                 ]
             }
         </script>
-        <!-- Critical inline CSS to prevent white flash -->
+        <!-- Critical inline CSS to prevent white flash and enable Bootstrap Offcanvas Navbar -->
         <style>
         @media (max-width: 768px) {
             .logo span[itemprop="name"] {
@@ -400,173 +399,81 @@
                 color: #007bff !important;
             }
         }
-            html,body{background:#0a1120!important;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden;overscroll-behavior:none;-webkit-overflow-scrolling:touch;transform:translateZ(0);backface-visibility:hidden}
-            .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a1120;display:flex;align-items:center;justify-content:center;z-index:9999}
-            *{transform:translateZ(0);backface-visibility:hidden}
-            .container,.section,.hero{contain:layout style;will-change:transform}
-            img{contain:layout;aspect-ratio:16/10;width:100%;height:auto}
-
-            /* Enhanced Service Cards Styles */
-            .services-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 2rem;
-                padding: 2rem 0;
+        /* Navbar blur and background on scroll */
+        .navbar {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(8px);
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: none;
+        }
+        .navbar-scrolled {
+            background: rgba(10, 10, 32, 0.95) !important;
+            box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .offcanvas-header,
+        .offcanvas-body {
+            background: #0a1120;
+            color: #e0e6ed;
+        }
+        /* Ensure offcanvas overlays the page and hides background content */
+        .offcanvas-backdrop.show {
+            opacity: 0.95 !important;
+            background: #0a1120 !important;
+            z-index: 1050 !important;
+        }
+        .offcanvas {
+            box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
+            z-index: 1060 !important;
+        }
+        body.offcanvas-backdrop-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100vw;
+        }
+        @media (max-width: 991.98px) {
+            .offcanvas {
+                max-width: 80vw;
             }
-
-            .service-card {
-                background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 2rem;
-                transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-                position: relative;
-                overflow: hidden;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                min-height: fit-content;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-                will-change: transform, opacity;
-                contain: layout style;
+            /* Force offcanvas to cover full viewport on mobile */
+            .offcanvas.offcanvas-end {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                height: 100vh !important;
+                top: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+                border-radius: 0 !important;
             }
-
-            .service-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-                opacity: 0;
-                transition: opacity 0.4s ease;
-                border-radius: 20px;
+            .offcanvas-header, .offcanvas-body {
+                min-height: 0;
+                max-height: none;
+                overflow-y: auto;
             }
-
-            .service-card:hover::before {
-                opacity: 1;
+            body.offcanvas-backdrop-open {
+                overflow: hidden !important;
+                position: fixed;
+                width: 100vw;
             }
-
-            .service-card:hover {
-                transform: translateY(-8px);
-                border-color: rgba(255, 255, 255, 0.2);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .service-icon {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 1.5rem;
-                transition: all 0.4s ease;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .service-card:hover .service-icon {
-                background: rgba(255, 255, 255, 0.15);
-                transform: rotate(10deg) scale(1.1);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .service-icon i {
-                font-size: 2rem;
-                color: #e0e6ed;
-                transition: all 0.4s ease;
-            }
-
-            .service-card:hover .service-icon i {
-                color: #ffffff;
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-
-            .service-card h3 {
-                font-size: 1.25rem;
-                font-weight: 600;
-                margin: 0 0 1rem 0;
-                color: #e0e6ed;
-                transition: all 0.4s ease;
-                line-height: 1.4;
-            }
-
-            .service-card:hover h3 {
-                color: #ffffff;
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            }
-
-            .service-card p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-                color: rgba(224, 230, 237, 0.8);
-                margin: 0;
-                transition: all 0.4s ease;
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
-                text-align: center;
-            }
-
-            .service-card:hover p {
-                color: rgba(255, 255, 255, 0.9);
-            }
-
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-                .services-grid {
-                    grid-template-columns: 1fr;
-                    gap: 1.5rem;
-                    padding: 1rem;
-                    contain: content;
-                    will-change: transform;
-                }
-                
-                .service-card {
-                    padding: 1.5rem;
-                    transform: none !important;
-                    backdrop-filter: blur(6px);
-                    -webkit-backdrop-filter: blur(6px);
-                    transition: opacity 0.2s ease-out;
-                    contain: layout style;
-                }
-                
-                .service-card:hover {
-                    transform: none !important;
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                }
-                
-                .service-icon {
-                    width: 70px;
-                    height: 70px;
-                    will-change: transform;
-                }
-                
-                .service-icon i {
-                    font-size: 1.75rem;
-                }
-
-                .service-card::before {
-                    display: none;
-                }
-            }
-
-            /* Additional interactive effects */
-            .service-card:active {
-                transform: translateY(-5px) scale(0.98);
-            }
-
-            .service-card:focus {
-                outline: 2px solid rgba(255, 255, 255, 0.3);
-                outline-offset: 4px;
-            }
+        }
+            html,body{background:#0a1120;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
+            .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
+        
+        /* Remove underline from navbar links */
+        .navbar-nav .nav-link {
+            text-decoration: none !important;
+        }
+        
+        /* Resume Structure Styles (leave for rest of site) */
+        /* ...existing code... */
+        </style>
+        <style>
+        /* Remove underline from navbar links and ensure navbar is flush with top */
+        .navbar-nav .nav-link {
+            text-decoration: none !important;
+        }
+        /* Remove all forced navbar position and header#header overrides */
+        /* main/#main padding-top will be set inline below for 100px */
         </style>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
@@ -580,64 +487,42 @@
 
         <!-- Header -->
         <header id="header">
-            <!-- Mobile logo style moved to main <style> block above -->
-            <nav id="nav" aria-label="Main navigation">
-                <a href="#home" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button type="button"
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="#home" class="active"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects"
-                           ><i class="fas fa-project-diagram"></i>Projects</a
-                        >
-                    </li>
-                    <li>
-                        <a href="services"
-                           ><i class="fas fa-briefcase"></i>Services</a
-                        >
-                    </li>
-                    <li>
-                        <a href="testimonials"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume">
-                           <i class="fas fa-file-alt"></i>Resume
-                        </a>
-                    </li>
-                    <li>
-                        <a href="contact"
-                           ><i class="fas fa-envelope"></i>Contact</a
-                        >
-                    </li>
-                </ul>
-            </nav>
+    <!-- Bootstrap 5 Offcanvas Navbar (EXACT from resume.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+        <div class="container-fluid py-1">
+            <a href="index" class="navbar-brand logo" aria-label="Home">
+                <!-- Logo content removed for layout, link remains -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                        <li class="nav-item"><a class="nav-link active" href="index"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
         </header>
 
         <!-- Hero Section -->
         <main id="main">
+        <!-- Set padding-top to 100px for fixed navbar spacing, as in resume.html -->
+    <main id="main" style="padding-top: 70px;">
         <section
             id="home"
             class="hero"
@@ -1301,55 +1186,72 @@
             </section>
 <!--Contact section end -->
         <!-- Footer -->
-    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
-                            Transforming data into actionable insights for
-                            businesses worldwide.
-                        </p>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>
-                        &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
-                        rights reserved. | Freelance Data Analyst
-                    </p>
-                </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                <p>
+                    Transforming data into actionable insights for
+                    businesses worldwide.
+                </p>
             </div>
-        </footer>
+            <div class="footer-section">
+                <strong>Quick Links</strong>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <strong>Services</strong>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Excel Dashboards</li>
+                    <li>Data Cleaning (Excel / Python)</li>
+                    <li>SQL &amp; Python Analytics</li>
+                    <li>Excel Automation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span>2025</span>
+                <span>Gagan BP</span>. All
+                rights reserved. | Freelance Data Analyst
+            </p>
+        </div>
+    </div>
+</footer>
 
         <!-- Back to Top Button -->
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
         <!-- Script -->
         <script src="scripts.js"></script>
-
+        <!-- Bootstrap 5 JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Navbar background toggle on scroll (like FAQ/resume) -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var navbar = document.querySelector('.navbar');
+            function onScroll() {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        });
+        </script>
         <!-- Skip link for accessibility -->
-        <a class="skip-link" href="#main">Skip to main content</a>
+        
         </main>
     </body>
 </html>

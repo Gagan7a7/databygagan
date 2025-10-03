@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Primary Meta Tags -->
         <title>Projects - Gagan BP | Remote Data Analyst &amp; Global BI Expert</title>
     <meta name="description" content="Explore global data analysis projects by Gagan BP: Power BI, Python, SQL, Excel, and machine learning for clients worldwide. Freelance analytics portfolio.">
@@ -113,6 +106,74 @@
 
         <!-- Critical inline CSS to prevent white flash -->
         <style>
+    /* Navbar/Offcanvas CSS from resume.html */
+    @media (max-width: 768px) {
+        .logo span[itemprop="name"] {
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: none;
+        }
+        .logo .fa-chart-line {
+            color: #007bff !important;
+        }
+    }
+    .navbar {
+        background: rgba(10, 10, 20, 0.7);
+        backdrop-filter: blur(8px);
+        transition: background 0.3s, box-shadow 0.3s;
+        box-shadow: none;
+    }
+    .navbar-scrolled {
+        background: rgba(10, 10, 32, 0.95) !important;
+        box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+        backdrop-filter: blur(12px);
+    }
+    .offcanvas-header,
+    .offcanvas-body {
+        background: #0a1120;
+        color: #e0e6ed;
+    }
+    .offcanvas-backdrop.show {
+        opacity: 0.95 !important;
+        background: #0a1120 !important;
+        z-index: 1050 !important;
+    }
+    .offcanvas {
+        box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
+        z-index: 1060 !important;
+    }
+    body.offcanvas-backdrop-open {
+        overflow: hidden !important;
+        position: fixed;
+        width: 100vw;
+    }
+    @media (max-width: 991.98px) {
+        .offcanvas {
+            max-width: 80vw;
+        }
+        .offcanvas.offcanvas-end {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            height: 100vh !important;
+            top: 0 !important;
+            right: 0 !important;
+            left: 0 !important;
+            border-radius: 0 !important;
+        }
+        .offcanvas-header, .offcanvas-body {
+            min-height: 0;
+            max-height: none;
+            overflow-y: auto;
+        }
+        body.offcanvas-backdrop-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100vw;
+        }
+    }
         @media (max-width: 768px) {
             .logo span[itemprop="name"] {
                 font-family: 'Inter', Arial, sans-serif;
@@ -229,54 +290,36 @@
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
         <header id="header">
-            <!-- Mobile logo style moved to main <style> block above -->
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu"
-                    type="button"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="index"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects" class="active"><i class="fas fa-project-diagram"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="services"><i class="fas fa-briefcase"></i>Services</a>
-                    </li>
-                    <li>
-                        <a href="testimonials"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume"><i class="fas fa-file-alt"></i>Resume</a>
-                    </li>
-                    <li>
-                        <a href="contact"><i class="fas fa-envelope"></i>Contact</a>
-                    </li>
-                </ul>
-            </nav>
+    <!-- Bootstrap 5 Offcanvas Navbar (EXACT from resume.html/index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+        <div class="container-fluid py-1">
+            <a href="index" class="navbar-brand logo" aria-label="Home">
+                <!-- Logo content removed for layout, link remains -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                        <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
         </header>
 
         <!-- Main Content -->
@@ -298,53 +341,66 @@
         </main>
 
         <!-- Footer -->
-    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
-                            Transforming data into actionable insights for
-                            businesses worldwide.
-                        </p>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>
-                        &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
-                        rights reserved. | Freelance Data Analyst
-                    </p>
-                </div>
-            </div>
-        </footer>
 
-        <!-- Back to Top Button -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                <p>
+                    Transforming data into actionable insights for
+                    businesses worldwide.
+                </p>
+            </div>
+            <div class="footer-section">
+                <strong>Quick Links</strong>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <strong>Services</strong>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Excel Dashboards</li>
+                    <li>Data Cleaning (Excel / Python)</li>
+                    <li>SQL &amp; Python Analytics</li>
+                    <li>Excel Automation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span>2025</span>
+                <span>Gagan BP</span>. All
+                rights reserved. | Freelance Data Analyst
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top Button -->
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 
 
         <!-- Script -->
+    <!-- Bootstrap 5 JS Bundle for Offcanvas/hamburger menu -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts.js"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </body>
 </html>

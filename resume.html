@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
         <!-- Primary Meta Tags -->
         <title>Resume - Gagan BP | Global Data Analyst – Python, SQL, Excel, Power BI</title>
     <meta name="description" content="View the resume of Gagan BP, global data analyst: Python, SQL, Excel, Power BI, machine learning. See project experience and technical skills.">
@@ -128,6 +118,63 @@
                 color: #007bff !important;
             }
         }
+        /* Navbar blur and background on scroll */
+        .navbar {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(8px);
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: none;
+        }
+        .navbar-scrolled {
+            background: rgba(10, 10, 32, 0.95) !important;
+            box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        .offcanvas-header,
+        .offcanvas-body {
+            background: #0a1120;
+            color: #e0e6ed;
+        }
+        /* Ensure offcanvas overlays the page and hides background content */
+        .offcanvas-backdrop.show {
+            opacity: 0.95 !important;
+            background: #0a1120 !important;
+            z-index: 1050 !important;
+        }
+        .offcanvas {
+            box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
+            z-index: 1060 !important;
+        }
+        body.offcanvas-backdrop-open {
+            overflow: hidden !important;
+            position: fixed;
+            width: 100vw;
+        }
+        @media (max-width: 991.98px) {
+            .offcanvas {
+                max-width: 80vw;
+            }
+            /* Force offcanvas to cover full viewport on mobile */
+            .offcanvas.offcanvas-end {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                height: 100vh !important;
+                top: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+                border-radius: 0 !important;
+            }
+            .offcanvas-header, .offcanvas-body {
+                min-height: 0;
+                max-height: none;
+                overflow-y: auto;
+            }
+            body.offcanvas-backdrop-open {
+                overflow: hidden !important;
+                position: fixed;
+                width: 100vw;
+            }
+        }
             html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
             .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
             
@@ -139,6 +186,7 @@
                 padding: 40px;
                 border-radius: 10px;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                font-size: 1.05rem;
             }
             
             .resume-section {
@@ -184,15 +232,32 @@
             .contact-item i {
                 color: #6bb6ff;
                 width: 18px;
+                min-width: 18px;
+                display: inline-block !important;
+                font-size: 1.1rem;
+                vertical-align: middle;
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-right: 0.4rem;
             }
-            
-            .contact-item a {
-                color: #6bb6ff;
-                text-decoration: none;
-            }
-            
-            .contact-item a:hover {
-                text-decoration: underline;
+            @media (max-width: 576px) {
+                .contact-info {
+                    flex-direction: column !important;
+                    gap: 0.5rem !important;
+                    align-items: flex-start !important;
+                }
+                .contact-item {
+                    justify-content: flex-start !important;
+                    width: 100%;
+                    margin-left: 0.5rem;
+                }
+                .contact-item i {
+                    font-size: 1.1rem !important;
+                    margin-right: 0.5rem !important;
+                    display: inline-block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
             }
             
             .skills-grid-resume {
@@ -279,6 +344,7 @@
                 .resume-body {
                     padding: 20px;
                     margin: 10px;
+                    font-size: 0.97rem;
                 }
                 
                 .contact-info {
@@ -293,246 +359,256 @@
                     font-size: 1.4rem;
                 }
             }
+
+            .footer-section strong,
+            .footer-section ul li,
+            .footer-section ul li a {
+                color: #fff !important;
+            }
+        /* Make resume certifications white */
+        .resume-certifications h4,
+        .resume-certifications .cert-details {
+            color: #fff !important;
+        }
         </style>
 
         <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Header -->
         <header id="header">
-        <!-- Mobile logo style moved to main <style> block above -->
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu"
-                    type="button"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="about"><i class="fas fa-user"></i>About</a></li>
-                    <li><a href="skills"><i class="fas fa-cogs"></i>Skills</a></li>
-                    <li><a href="projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-                    <li><a href="services"><i class="fas fa-briefcase"></i>Services</a></li>
-                    <li><a href="testimonials"><i class="fas fa-comments"></i>Testimonials</a></li>
-                    <li><a href="faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
-                    <li><a href="resume" class="active"><i class="fas fa-file-alt"></i>Resume</a></li>
-                    <li><a href="contact"><i class="fas fa-envelope"></i>Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Bootstrap 5 Offcanvas Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+        <div class="container-fluid py-1">
+            <a href="index" class="navbar-brand logo" aria-label="Home">
+                <!-- Logo content removed for layout, link remains -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                        <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
         <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
-            <div class="section">
-                <div class="container">
-                    <h1 class="section-title">Resume</h1>
-
-                    <div class="resume-body">
-                        <!-- Resume Header -->
-                        <div class="resume-section resume-intro">
-                            <h2>GAGAN B P</h2>
-                            <h2>Data Analyst / Business Analyst</h2>
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <i class="fas fa-phone"></i>
-                                    <span>7892329607</span>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>databygagan@gmail.com</span>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fab fa-linkedin"></i>
-                                    <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank">LinkedIn Profile</a>
-                                </div>
-
-                                <div class="contact-item">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Bangalore, Karnataka 560045</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Professional Summary -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-user-tie"></i>PROFESSIONAL SUMMARY</h2>
-                            <p>Data Analyst with practical experience in creating interactive Power BI dashboards, automated data workflows, and uncovering insights using Python and SQL to drive informed business decisions.</p>
-                        </div>
-
-                        <!-- Skills Section -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-cogs"></i>SKILLS</h2>
-                            <div class="skills-grid-resume">
-                                <div class="skill-category">
-                                    <h4>Tools &amp; Platforms:</h4>
-                                    <p>Power BI, Excel (Pivot Tables, Power Query, XLOOKUP, VBA, Macros), Git, GitHub</p>
-                                </div>
-                                <div class="skill-category">
-                                    <h4>Programming &amp; Query Languages:</h4>
-                                    <p>Python (Pandas, NumPy, Matplotlib, Seaborn), SQL (MySQL)</p>
-                                </div>
-                                <div class="skill-category">
-                                    <h4>Data &amp; Analytics:</h4>
-                                    <p>Data Cleaning, EDA, Data Modeling, DAX, Business Intelligence, Statistical Analysis, Predictive Modeling, Data Visualization</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Projects Section -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-project-diagram"></i>PROJECTS</h2>
-
-                            <div class="resume-project">
-                                <div class="project-header">
-                                    <h4 style="font-size: 1rem !important;">REAL-TIME WEATHER DASHBOARD</h4>
-                                    <span class="project-meta">Power BI, GitHub Actions, Weather API, Python | July 2025</span>
-                                </div>
-                                <ul class="project-details">
-                                    <li>Developed a responsive Power BI dashboard to monitor real-time weather and air quality across 9 Indian cities, integrating GitHub Actions and Weather API for continuous data updates</li>
-                                    <li>Designed a scheduled data pipeline with GitHub Actions fetching data every 3 hours and enabling 8x daily refresh in Power BI Service without manual intervention</li>
-                                    <li>Visualized 14-day forecasts, temperature trends, UV index, and pollutant levels (PM2.5, PM10, O₃, NO₂) through interactive visuals, enabling data-driven decisions for health, travel, and logistics</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-project">
-                                <div class="project-header">
-                                    <h4 style="font-size: 1rem !important;">ANALYSIS ON SUICIDE TRENDS IN INDIA</h4>
-                                    <span class="project-meta">Python, Pandas, Seaborn, Scikit-learn, Colab | April 2024</span>
-                                </div>
-                                <ul class="project-details">
-                                    <li>Conducted comprehensive statistical analysis and implemented data processing workflows on 2021 suicide trends using NCRB dataset, organizing and standardizing data across 28 states, 8 Union Territories, and 53 cities</li>
-                                    <li>Pinpointed geographical clusters exhibiting the highest and lowest suicide incidence using NCRB data, charting gender-specific trends to devise a focused data collection blueprint for comparative inquiries</li>
-                                    <li>Executed predictive analytics using linear regression with Python libraries (Pandas, Matplotlib, Seaborn, Scikit-learn) to forecast suicide rates for 2024 with 85% accuracy</li>
-                                    <li>Generated actionable insights through data analysis, creating 10 detailed visualizations that clarified complex data sets, leading to a 25% increase in decision-making speed and a clearer understanding of market trends</li>
-                                    <li>Shared insights through peer-reviewed academic presentation, illustrating key findings via compelling charts and fostering 30% more audience engagement during review sessions</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Experience Section -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-briefcase"></i>INTERNSHIP EXPERIENCE</h2>
-
-                            <div class="resume-experience">
-                                <div class="experience-header">
-                                    <h4 style="font-size: 1rem !important;">POWER BI INTERN</h4>
-                                    <span class="company">Cognifyz Technologies - Remote</span>
-                                    <span class="duration">August 2024 - September 2024</span>
-                                </div>
-                                <ul class="experience-details">
-                                    <li>Leveraged Power BI to perform data analysis and create visualizations, enhancing decision-making efficiency by 10%</li>
-                                    <li>Created interactive dashboards and self-updating reports, reducing manual reporting time by 25%</li>
-                                    <li>Conducted rigorous data quality checks and validation, improving data accuracy by 15%</li>
-                                    <li>Constructed data models for 7 tasks, collaborating with cross-functional teams to align with business objectives</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Education Section -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-graduation-cap"></i>EDUCATION</h2>
-
-                            <div class="resume-education">
-                                <div class="education-header">
-                                    <h4 style="font-size: 1rem !important;">MASTER OF COMPUTER APPLICATIONS</h4>
-                                    <span class="institution">VVIET - Mysore, Karnataka</span>
-                                    <span class="graduation">February 2022 - September 2024</span>
-                                </div>
-                                <p class="coursework">Relevant Coursework: Data Analysis in Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Structures and Algorithms</p>
-                            </div>
-
-                            <div class="resume-education">
-                                <div class="education-header">
-                                    <h4 style="font-size: 1rem !important;">BACHELOR OF COMPUTER APPLICATIONS</h4>
-                                    <span class="institution">SDM College - Ujire, Karnataka</span>
-                                    <span class="graduation">June 2019 - September 2022</span>
-                                </div>
-                                <p class="coursework">Relevant Coursework: Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Mining</p>
-                            </div>
-                        </div>
-
-                        <!-- Certifications Section -->
-                        <div class="resume-section">
-                            <h2 style="font-size:1.1em !important; font-weight:700 !important; color:#6bb6ff !important; font-family:'Inter', Arial, sans-serif !important;"><i class="fas fa-certificate"></i>CERTIFICATIONS</h2>
-
-                            <div class="resume-certifications">
-                                <div class="certification-item">
-                                    <h4 style="font-size: 1rem !important;">Python Full Stack</h4>
-                                    <span class="cert-details">(Currently Pursuing at Pentagon Space) | August 2025</span>
-                                </div>
-                                <div class="certification-item">
-                                    <h4 style="font-size: 1rem !important;">YBI Foundation Data Analytics Internship Certificate</h4>
-                                    <span class="cert-details">September 2024</span>
-                                </div>
-                                <div class="certification-item">
-                                    <h4 style="font-size: 1rem !important;">Coursera - Foundations: Data, Data, Everywhere (Google)</h4>
-                                    <span class="cert-details">September 2024</span>
-                                </div>
-                            </div>
+    <div class="container py-4">
+        <h1 class="section-title text-center mb-4" style="font-family: 'Inter', Arial, sans-serif; font-weight: 800; font-size: 2rem; color: #e0e6ed; letter-spacing: 0.01em;">Resume</h1>
+        <div class="resume-body bg-dark rounded-4 shadow-lg p-4 p-md-5 mx-auto" style="max-width: 900px; background: #1a1a1a; font-family: 'Inter', Arial, sans-serif;">
+            <!-- Resume Header -->
+            <section class="resume-section resume-intro mb-4">
+                <div class="row align-items-center text-center">
+                    <div class="col-12">
+                        <h2 class="mb-1" style="color: hsla(180, 71%, 99%, 0.996); font-size: 1.25rem; font-weight: 700; font-family: 'Inter', Arial, sans-serif;">GAGAN B P</h2>
+                        <h2 class="mb-1" style="color: #fcfcfcfe; font-size: 1.05rem; font-weight: 700; font-family: 'Inter', Arial, sans-serif;">Data Analyst / Business Analyst</h2>
+                    </div>
+                    <div class="col-12">
+                        <div class="contact-info d-flex flex-wrap justify-content-center gap-3 mb-2">
+                            <div class="contact-item d-flex align-items-center gap-2"><i class="fas fa-phone"></i><span>7892329607</span></div>
+                            <div class="contact-item d-flex align-items-center gap-2"><i class="fas fa-envelope"></i><span>databygagan@gmail.com</span></div>
+                            <div class="contact-item d-flex align-items-center gap-2"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank">LinkedIn Profile</a></div>
+                            <div class="contact-item d-flex align-items-center gap-2"><i class="fas fa-map-marker-alt"></i><span>Bangalore, Karnataka 560045</span></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </section>
+            <!-- Professional Summary -->
+            <section class="resume-section mb-4">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-user-tie me-2"></i>PROFESSIONAL SUMMARY</h2>
+                <p class="mb-0" style="font-size:0.93rem;font-family: 'Inter', Arial, sans-serif;">Data Analyst with practical experience in creating interactive Power BI dashboards, automated data workflows, and uncovering insights using Python and SQL to drive informed business decisions.</p>
+            </section>
+            <!-- Skills Section -->
+            <section class="resume-section mb-4">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-cogs me-2"></i>SKILLS</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <h4 class="mb-1" style="color:#6bb6ff;font-size:0.93rem;font-weight:600;font-family: 'Inter', Arial, sans-serif;">Tools &amp; Platforms:</h4>
+                        <p class="mb-0" style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Power BI, Excel (Pivot Tables, Power Query, XLOOKUP, VBA, Macros), Git, GitHub</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h4 class="mb-1" style="color:#6bb6ff;font-size:0.93rem;font-weight:600;font-family: 'Inter', Arial, sans-serif;">Programming &amp; Query Languages:</h4>
+                        <p class="mb-0" style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Python (Pandas, NumPy, Matplotlib, Seaborn), SQL (MySQL)</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h4 class="mb-1" style="color:#6bb6ff;font-size:0.93rem;font-weight:600;font-family: 'Inter', Arial, sans-serif;">Data &amp; Analytics:</h4>
+                        <p class="mb-0" style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Data Cleaning, EDA, Data Modeling, DAX, Business Intelligence, Statistical Analysis, Predictive Modeling, Data Visualization</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Projects Section -->
+            <section class="resume-section mb-4">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-project-diagram me-2"></i>PROJECTS</h2>
+                <div class="mb-3">
+                    <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">REAL-TIME WEATHER DASHBOARD</h4>
+                    <span class="project-meta d-block mb-2" style="color:#9ca3af;font-size:0.89rem;font-style:italic;font-family: 'Inter', Arial, sans-serif;">Power BI, GitHub Actions, Weather API, Python | July 2025</span>
+                    <ul class="project-details ps-3 mb-0">
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Developed a responsive Power BI dashboard to monitor real-time weather and air quality across 9 Indian cities, integrating GitHub Actions and Weather API for continuous data updates</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Designed a scheduled data pipeline with GitHub Actions fetching data every 3 hours and enabling 8x daily refresh in Power BI Service without manual intervention</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Visualized 14-day forecasts, temperature trends, UV index, and pollutant levels (PM2.5, PM10, O₃, NO₂) through interactive visuals, enabling data-driven decisions for health, travel, and logistics</li>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">ANALYSIS ON SUICIDE TRENDS IN INDIA</h4>
+                    <span class="project-meta d-block mb-2" style="color:#9ca3af;font-size:0.89rem;font-style:italic;font-family: 'Inter', Arial, sans-serif;">Python, Pandas, Seaborn, Scikit-learn, Colab | April 2024</span>
+                    <ul class="project-details ps-3 mb-0">
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Conducted comprehensive statistical analysis and implemented data processing workflows on 2021 suicide trends using NCRB dataset, organizing and standardizing data across 28 states, 8 Union Territories, and 53 cities</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Pinpointed geographical clusters exhibiting the highest and lowest suicide incidence using NCRB data, charting gender-specific trends to devise a focused data collection blueprint for comparative inquiries</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Executed predictive analytics using linear regression with Python libraries (Pandas, Matplotlib, Seaborn, Scikit-learn) to forecast suicide rates for 2024 with 85% accuracy</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Generated actionable insights through data analysis, creating 10 detailed visualizations that clarified complex data sets, leading to a 25% increase in decision-making speed and a clearer understanding of market trends</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Shared insights through peer-reviewed academic presentation, illustrating key findings via compelling charts and fostering 30% more audience engagement during review sessions</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Experience Section -->
+            <section class="resume-section mb-4">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-briefcase me-2"></i>INTERNSHIP EXPERIENCE</h2>
+                <div class="mb-3">
+                    <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">POWER BI INTERN</h4>
+                    <span class="company d-block" style="color:#6bb6ff;font-weight:600;font-family: 'Inter', Arial, sans-serif;">Cognifyz Technologies - Remote</span>
+                    <span class="duration d-block mb-2" style="color:#9ca3af;font-size:0.89rem;font-style:italic;font-family: 'Inter', Arial, sans-serif;">August 2024 - September 2024</span>
+                    <ul class="experience-details ps-3 mb-0">
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Leveraged Power BI to perform data analysis and create visualizations, enhancing decision-making efficiency by 10%</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Created interactive dashboards and self-updating reports, reducing manual reporting time by 25%</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Conducted rigorous data quality checks and validation, improving data accuracy by 15%</li>
+                        <li style="font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Constructed data models for 7 tasks, collaborating with cross-functional teams to align with business objectives</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Education Section -->
+            <section class="resume-section mb-4">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-graduation-cap me-2"></i>EDUCATION</h2>
+                <div class="mb-3">
+                    <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">MASTER OF COMPUTER APPLICATIONS</h4>
+                    <span class="institution d-block" style="color:#6bb6ff;font-weight:600;font-family: 'Inter', Arial, sans-serif;">VVIET - Mysore, Karnataka</span>
+                    <span class="graduation d-block mb-2" style="color:#9ca3af;font-size:0.89rem;font-style:italic;font-family: 'Inter', Arial, sans-serif;">February 2022 - September 2024</span>
+                    <p class="coursework mb-0" style="color:#9ca3af;font-style:italic;font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Relevant Coursework: Data Analysis in Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Structures and Algorithms</p>
+                </div>
+                <div class="mb-3">
+                    <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">BACHELOR OF COMPUTER APPLICATIONS</h4>
+                    <span class="institution d-block" style="color:#6bb6ff;font-weight:600;font-family: 'Inter', Arial, sans-serif;">SDM College - Ujire, Karnataka</span>
+                    <span class="graduation d-block mb-2" style="color:#9ca3af;font-size:0.89rem;font-style:italic;font-family: 'Inter', Arial, sans-serif;">June 2019 - September 2022</span>
+                    <p class="coursework mb-0" style="color:#9ca3af;font-style:italic;font-size:0.91rem;font-family: 'Inter', Arial, sans-serif;">Relevant Coursework: Python, Internet of Things (IoT), Database Management Systems (DBMS), Data Mining</p>
+                </div>
+            </section>
+            <!-- Certifications Section -->
+            <section class="resume-section mb-2">
+                <h2 class="mb-2" style="font-size:0.98rem;font-weight:700;color:#6bb6ff;font-family: 'Inter', Arial, sans-serif;"><i class="fas fa-certificate me-2"></i>CERTIFICATIONS</h2>
+                <div class="resume-certifications">
+                    <div class="certification-item mb-3">
+                        <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">Python Full Stack</h4>
+                        <span class="cert-details d-block" style="color:#fff;font-size:0.89rem;font-family: 'Inter', Arial, sans-serif;">(Currently Pursuing at Pentagon Space) | August 2025</span>
+                    </div>
+                    <div class="certification-item mb-3">
+                        <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">YBI Foundation Data Analytics Internship Certificate</h4>
+                        <span class="cert-details d-block" style="color:#fff;font-size:0.89rem;font-family: 'Inter', Arial, sans-serif;">September 2024</span>
+                    </div>
+                    <div class="certification-item mb-3">
+                        <h4 class="mb-1" style="font-size:0.93rem;color:#fff;font-family: 'Inter', Arial, sans-serif;">Coursera - Foundations: Data, Data, Everywhere (Google)</h4>
+                        <span class="cert-details d-block" style="color:#fff;font-size:0.89rem;font-family: 'Inter', Arial, sans-serif;">September 2024</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
 
         <!-- Footer -->
-    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
-                            Transforming data into actionable insights for
-                            businesses worldwide.
-                        </p>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>
-                        &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
-                        rights reserved. | Freelance Data Analyst
-                    </p>
-                </div>
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                <p>
+                    Transforming data into actionable insights for
+                    businesses worldwide.
+                </p>
             </div>
-        </footer>
+            <div class="footer-section">
+                <strong>Quick Links</strong>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <strong>Services</strong>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Excel Dashboards</li>
+                    <li>Data Cleaning (Excel / Python)</li>
+                    <li>SQL &amp; Python Analytics</li>
+                    <li>Excel Automation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span>2025</span>
+                <span>Gagan BP</span>. All
+                rights reserved. | Freelance Data Analyst
+            </p>
+        </div>
+    </div>
+</footer>
 
         <!-- Back to Top Button -->
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
         <!-- Script -->
     <script src="scripts.js"></script>
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Navbar background toggle on scroll (like FAQ)
+document.addEventListener('DOMContentLoaded', function() {
+    var navbar = document.querySelector('.navbar');
+    function onScroll() {
+        if (window.scrollY > 40) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initial check
+});
+</script>
+<head>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </body>
 </html>

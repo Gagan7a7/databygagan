@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
         <!-- Primary Meta Tags -->
         <title>About - Gagan BP | Data Analyst – Python, SQL, Excel, Power BI</title>
                 <meta name="description" content="Learn about Gagan BP, a freelance data analyst skilled in Python, SQL, Excel, Power BI &amp; Tableau. Discover my journey and passion for data insights.">
@@ -472,7 +463,7 @@
                             .hover-zone:hover {
                                 transform: translateY(-3px);
                             }
-                            
+                
                             .floating-element {
                                 width: 32px;
                                 height: 32px;
@@ -480,10 +471,29 @@
                                 animation: none !important;
                                 transition: none !important;
                             }
-                            
+                
                             .about-text p.lead {
                                 font-size: 1.1em;
                                 padding: 1.5rem;
+                            }
+                            /* Ensure Bootstrap Offcanvas covers full viewport and is above all content */
+                            .offcanvas {
+                                width: 100vw !important;
+                                max-width: 100vw !important;
+                                height: 100vh !important;
+                                top: 0 !important;
+                                right: 0 !important;
+                                left: 0 !important;
+                                border-radius: 0 !important;
+                                z-index: 1200 !important;
+                            }
+                            .offcanvas-backdrop.show {
+                                opacity: 0.95 !important;
+                                background: #0a1120 !important;
+                                z-index: 1190 !important;
+                            }
+                            #header {
+                                z-index: 1000 !important;
                             }
                         }
 
@@ -545,7 +555,9 @@
     font-display: swap;
 }
                 </style>
-                <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Parallax Background Layers -->
@@ -568,91 +580,79 @@
 
         <!-- Header -->
         <header id="header">
-            <!-- Mobile logo style moved to main <style> block above -->
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index.html" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button type="button"
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="index.html"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html" class="active"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills.html"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects.html"><i class="fas fa-project-diagram"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="services.html"><i class="fas fa-briefcase"></i>Services</a>
-                    </li>
-                    <li>
-                        <a href="testimonials.html"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume.html"><i class="fas fa-file-alt"></i>Resume</a>
-                    </li>
-                    <li>
-                        <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
-                    </li>
-                </ul>
+            <!-- Bootstrap 5 Offcanvas Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <a href="index" class="navbar-brand logo" aria-label="Home">
+                        <!-- Logo content removed for layout, link remains -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                                <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="about"><i class="fas fa-user"></i> About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                                <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                                <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                                <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                                <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <!-- Main Content -->
-        <main id="main" style="padding-top: 100px;">
-            <!-- About Section -->
-            <section id="about" class="section" aria-labelledby="about-heading">
+    <main id="main" style="padding-top: 70px;">
+            <!-- About Section (Bootstrap 5 grid) -->
+            <section id="about" class="py-5" aria-labelledby="about-heading">
                 <div class="container">
-                    <h1 id="about-heading" class="section-title">About Me</h1>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p class="lead reveal-fade">
-                                Hi there! 👋 I'm <strong>Gagan BP</strong>, a data analyst based in Bangalore. Welcome to my corner of the web—I'm glad you're here!
-                            </p>
-                            <p class="hover-zone reveal-left">
-                                My journey into data analytics began during my MCA, when I worked on a project analyzing suicide trends in India. That experience opened my eyes to the power of data to create real impact, and it set me on a path to help others make sense of their numbers.
-                            </p>
-                            <p class="hover-zone reveal-right">
-                                Today, I specialize in
-                                <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow">Power BI</a>,
-                                <a href="https://www.python.org/" target="_blank" rel="noopener nofollow">Python</a>,
-                                <a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow">MySQL</a>,
-                                <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener nofollow">Excel</a>,
-                                <a href="https://www.tableau.com/" target="_blank" rel="noopener nofollow">Tableau</a>, and
-                                <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener nofollow">SQL</a>.
-                                I help business owners, managers, and teams who want to turn messy data into clear, actionable insights—whether that's through dashboards, automation, or deep-dive analysis.
-                            </p>
-                            <p class="hover-zone reveal-left">
-                                What motivates me? It's seeing the "aha!" moment when a client realizes how data can drive smarter decisions. I love building dashboards that not only look good, but also make complex information simple and useful.
-                            </p>
-                            <p class="hover-zone reveal-up">
-                                Outside of work, you'll find me exploring Bangalore's food scene, playing chess, or tinkering with new tech tools. I believe learning never stops—I'm always looking for new ways to grow, both as an analyst and as a person.
-                            </p>
-                            <p class="hover-zone reveal-right" style="margin-top:2em;">
-                                I believe the best results come from listening first—understanding your goals, your challenges, and what really matters to you. I enjoy working side by side with clients, asking questions, and making sure we're always moving toward something useful, not just impressive on paper. I'm always learning, whether it's a new tool or a new way to look at a problem, and I find a lot of joy in those small "aha" moments along the way. When I'm not working, you'll probably find me with a good cup of coffee, exploring a new part of Bangalore, or catching up with friends and family. If you'd like to chat about data, projects, or just swap stories, I'd love to hear from you.
-                            </p>
-                            <div style="margin:2.5em 0 2em 0; text-align:center;">
-                                <a href="contact.html" class="btn btn-primary" style="color: #fff !important; text-decoration: none !important;">
-                                    Let's Unlock Your Data Story &rarr;
-                                </a>
+                    <h1 id="about-heading" class="section-title text-center mb-5">About Me</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="about-content">
+                                <div class="about-text">
+                                    <p class="lead reveal-fade">
+                                        Hi there! 👋 I'm <strong>Gagan BP</strong>, a data analyst based in Bangalore. Welcome to my corner of the web—I'm glad you're here!
+                                    </p>
+                                    <p class="hover-zone reveal-left">
+                                        My journey into data analytics began during my MCA, when I worked on a project analyzing suicide trends in India. That experience opened my eyes to the power of data to create real impact, and it set me on a path to help others make sense of their numbers.
+                                    </p>
+                                    <p class="hover-zone reveal-right">
+                                        Today, I specialize in
+                                        <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow">Power BI</a>,
+                                        <a href="https://www.python.org/" target="_blank" rel="noopener nofollow">Python</a>,
+                                        <a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow">MySQL</a>,
+                                        <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener nofollow">Excel</a>,
+                                        <a href="https://www.tableau.com/" target="_blank" rel="noopener nofollow">Tableau</a>, and
+                                        <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener nofollow">SQL</a>.
+                                        I help business owners, managers, and teams who want to turn messy data into clear, actionable insights—whether that's through dashboards, automation, or deep-dive analysis.
+                                    </p>
+                                    <p class="hover-zone reveal-left">
+                                        What motivates me? It's seeing the "aha!" moment when a client realizes how data can drive smarter decisions. I love building dashboards that not only look good, but also make complex information simple and useful.
+                                    </p>
+                                    <p class="hover-zone reveal-up">
+                                        Outside of work, you'll find me exploring Bangalore's food scene, playing chess, or tinkering with new tech tools. I believe learning never stops—I'm always looking for new ways to grow, both as an analyst and as a person.
+                                    </p>
+                                    <p class="hover-zone reveal-right" style="margin-top:2em;">
+                                        I believe the best results come from listening first—understanding your goals, your challenges, and what really matters to you. I enjoy working side by side with clients, asking questions, and making sure we're always moving toward something useful, not just impressive on paper. I'm always learning, whether it's a new tool or a new way to look at a problem, and I find a lot of joy in those small "aha" moments along the way. When I'm not working, you'll probably find me with a good cup of coffee, exploring a new part of Bangalore, or catching up with friends and family. If you'd like to chat about data, projects, or just swap stories, I'd love to hear from you.
+                                    </p>
+                                    <div class="text-center my-4">
+                                        <a href="contact" class="btn btn-primary">
+                                            Let's Unlock Your Data Story &rarr;
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -663,27 +663,27 @@
         <!-- Footer -->
         <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
-                            Transforming data into actionable insights for
-                            businesses worldwide.
-                        </p>
+                <div class="row footer-content">
+                        <div class="col-md-4 footer-section mb-4 mb-md-0">
+                         <h4 class="text-center" style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                         <p>
+                             Transforming data into actionable insights for
+                             businesses worldwide.
+                         </p>
                     </div>
-                    <div class="footer-section">
+                    <div class="col-md-4 footer-section mb-4 mb-md-0">
                         <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                        <ul class="list-unstyled">
+                            <li><a href="index">Home</a></li>
+                            <li><a href="about">About</a></li>
+                            <li><a href="projects">Projects</a></li>
+                            <li><a href="services">Services</a></li>
+                            <li><a href="contact">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="footer-section">
+                    <div class="col-md-4 footer-section">
                         <strong>Services</strong>
-                        <ul>
+                        <ul class="list-unstyled">
                             <li>Power BI Dashboards</li>
                             <li>Excel Dashboards</li>
                             <li>Data Cleaning (Excel / Python)</li>
@@ -692,7 +692,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="footer-bottom">
+                <div class="footer-bottom text-center mt-4">
                     <p>
                         &copy; <span itemprop="copyrightYear">2025</span>
                         <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
@@ -916,6 +916,33 @@
             });
         });
         </script>
+        <!-- No custom nav JS needed; Bootstrap 5 Offcanvas handles open/close -->
         <script src="scripts.js"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Navbar background toggle on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        var navbar = document.querySelector('.navbar');
+        function onScroll() {
+            if (window.scrollY > 40) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // Initial check
+    });
+    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </body>
 </html>
