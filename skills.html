@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Essential meta tags first (like working admin pages) -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <title>Skills - Data Analytics Technologies | Gagan BP</title>
-
-        <!-- Bootstrap CSS early (like working admin pages) -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-        <!-- Google Fonts: Inter -->
-                <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-                <noscript>
-                        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-                </noscript>
         <!-- Primary Meta Tags -->
+    <title>Skills - Gagan BP | Global Data Analytics &amp; Remote Skills</title>
     <meta name="description" content="Gagan BP's global data analytics skills: Python, SQL, Excel, Power BI, Tableau, data visualization for remote and worldwide projects.">
     <meta name="keywords" content="global data analytics skills, remote data analyst, Power BI expertise, Python for data analysis, Excel automation, SQL reporting, business intelligence skills, data visualization tools, machine learning basics, analytics for business, worldwide data professional, international analytics">
     <meta name="author" content="Gagan BP">
@@ -157,269 +142,142 @@
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"></noscript>
+
+        <!-- Font Awesome -->
+    <!-- Load Font Awesome only for mobile -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="(max-width: 768px)">
+    <!-- Optionally, keep desktop loading for desktop only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="(min-width: 769px)">
 
         <!-- Critical inline CSS to prevent white flash -->
-        <style>
-        /* Navbar blur and background on scroll (light glassy look) */
-        .navbar {
-            background: transparent !important;
-            backdrop-filter: blur(8px) !important;
-            transition: background 0.3s, box-shadow 0.3s;
-            box-shadow: none !important;
-            padding-top: 0.25rem !important;
-            padding-bottom: 0.25rem !important;
-        }
-        .navbar-scrolled {
-            background: transparent !important;
-            box-shadow: 0 2px 16px rgba(241, 243, 245, 0.08);
-            backdrop-filter: blur(12px) !important;
-        }
-        .offcanvas-header,
-        .offcanvas-body {
-            background: #0a1120;
-            color: #e0e6ed;
-        }
-        /* Ensure offcanvas overlays the page and hides background content */
-        .offcanvas-backdrop.show {
-            opacity: 0.95 !important;
-            background: #0a1120 !important;
-            z-index: 1050 !important;
-        }
-        .offcanvas {
-            box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
-            z-index: 1060 !important;
-        }
-        body.offcanvas-backdrop-open {
-            overflow: hidden !important;
-            position: fixed;
-            width: 100vw;
-        }
-        @media (max-width: 991.98px) {
-            .offcanvas {
-                max-width: 80vw;
-            }
-            /* Force offcanvas to cover full viewport on mobile */
-            .offcanvas.offcanvas-end {
-                width: 100vw !important;
-                max-width: 100vw !important;
-                height: 100vh !important;
-                top: 0 !important;
-                right: 0 !important;
-                left: 0 !important;
-                border-radius: 0 !important;
-            }
-            .offcanvas-header, .offcanvas-body {
-                min-height: 0;
-                max-height: none;
-                overflow-y: auto;
-            }
-            body.offcanvas-backdrop-open {
-                overflow: hidden !important;
-                position: fixed;
-                width: 100vw;
-            }
-        }
-        @media (max-width: 768px) {
-            .logo span[itemprop="name"] {
-                font-family: 'Inter', Arial, sans-serif;
-                font-size: 1.2rem;
-                color: #007bff;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-                text-shadow: none;
-            }
-            .logo .fa-chart-line {
-                color: #007bff !important;
-            }
-        }
-        /* Navbar blur and background on scroll */
-        .navbar {
-            background: transparent !important;
-            backdrop-filter: blur(8px) !important;
-            transition: background 0.3s, box-shadow 0.3s;
-            box-shadow: none !important;
-        }
-        .navbar-scrolled {
-            background: transparent !important;
-            box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
-            backdrop-filter: blur(12px) !important;
-        }
-        .offcanvas-header,
-        .offcanvas-body {
-            background: #0a1120;
-            color: #e0e6ed;
-        }
-        /* Ensure offcanvas overlays the page and hides background content */
-        .offcanvas-backdrop.show {
-            opacity: 0.95 !important;
-            background: #0a1120 !important;
-            z-index: 1050 !important;
-        }
-        .offcanvas {
-            box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
-            z-index: 1060 !important;
-        }
-        body.offcanvas-backdrop-open {
-            overflow: hidden !important;
-            position: fixed;
-            width: 100vw;
-        }
-        @media (max-width: 768px) {
-            .logo span[itemprop="name"] {
-                font-family: 'Inter', Arial, sans-serif;
-                font-size: 1.2rem;
-                color: #007bff;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-                text-shadow: none;
-            }
-            .logo .fa-chart-line {
-                color: #007bff !important;
-            }
-        }
-        </style>
+       
 
-        <!-- Stylesheets -->
+        <!-- Bootstrap 5.3.0 CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Font Awesome 6.4.0 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- Custom CSS for Bootstrap overrides -->
         <link rel="stylesheet" href="styles.css">
-                <!-- Enhanced Styles for Glassmorphism and Interactions -->
-        <style>
-            /* Style for skill headings */
-            .skill-heading {
-                color: var(--secondary-color);
-                font-size: 1.3rem;
-                margin-bottom: 20px;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-                gap: 12px;
+                <!-- Styles -->
+            <style>
+            /* Prevent card hover from being cut off at top */
+            @media (min-width: 768px) {
+                #skills .row.g-2 {
+                    padding-top: 12px !important;
+                }
             }
+            /* Mobile card spacing perfect */
+            @media (max-width: 767.98px) {
+                #skills .row.g-2 {
+                    padding-left: 8px !important;
+                    padding-right: 8px !important;
+                    margin-top: 1.2rem !important;
+                }
+                .skill-category.card {
+                    margin-bottom: 1.2rem !important;
+                }
+            }
+            </style>
+             <head>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-            /* Glassmorphism effect for skill categories */
-            .skill-category {
-                backdrop-filter: blur(10px);
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 15px;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .skill-category::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                pointer-events: none;
-            }
-
-            .skill-category:hover::before {
-                opacity: 1;
-            }
-
-            .skill-category:hover {
-                backdrop-filter: blur(15px);
-                border-color: rgba(255, 255, 255, 0.2);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                transform: translateY(-5px);
-            }
-
-            /* Interactive skill tags */
-            .skill-tag {
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .skill-tag::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                transition: left 0.6s ease;
-            }
-
-            .skill-tag:hover::before {
-                left: 100%;
-            }
-
-            .skill-tag:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
-
-            /* Subtle icon animations */
-            .skill-category h3 i {
-                transition: transform 0.3s ease;
-            }
-
-            .skill-category:hover h3 i {
-                transform: scale(1.1) rotate(5deg);
-            }
-
-            /* Add floating particles for visual interest */
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-            }
-
-            .skill-category::after {
-                content: '';
-                position: absolute;
-                top: 20%;
-                right: 10%;
-                width: 3px;
-                height: 3px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                animation: float 3s ease-in-out infinite;
-            }
-        </style>
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
+        
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
-        <!-- Header -->
-        <header id="header">
-    <!-- Bootstrap 5 Offcanvas Navbar (EXACT from resume.html) -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" aria-label="Main navigation">
-        <div class="container-fluid py-1">
-            <a href="index" class="navbar-brand logo" aria-label="Home">
-                <!-- Logo content removed for layout, link remains -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
-                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!-- Header - Bootstrap 5 Navbar -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <!-- Hamburger button - positioned on the right for mobile -->
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <!-- Desktop navbar (visible on lg+) and mobile collapse menu -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Mobile offcanvas menu (slides from right) -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav gap-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
-                        <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
+            </nav>
+        </header>
 
         <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
@@ -428,17 +286,22 @@
                 id="skills"
                 class="section section-dark"
                 aria-labelledby="skills-heading"
+                style="padding-top: 0; margin-top: -2rem;"
             >
                 <div class="container">
-                    <h1 id="skills-heading" class="section-title">
-                        Skills &amp; Technologies
-                    </h1>
-                    <div class="row g-4 justify-content-center">
-                        <!-- Top row: 3 cards (stretched horizontally, reduced height) -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 id="skills-heading" class="section-title text-center reveal-title" style="margin-top: 0.5rem; margin-bottom: 1.1rem;">
+                                Skills &amp; Technologies
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center" style="margin-top:2.2rem; padding-left:2.5rem; padding-right:2.5rem;">
+                        <!-- Top row: 3 cards -->
                         <div class="col-12 col-md-4 px-2 d-flex">
                             <div class="skill-category card w-100" style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                                 <div class="card-body d-flex flex-column">
-                                    <h2 class="skill-heading"><i class="fas fa-database" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Management</h2>
+                                    <h3 class="skill-heading"><i class="fas fa-database" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Management</h3>
                                     <div class="skill-list mt-auto">
                                         <span class="skill-tag" itemprop="knowsAbout">SQL</span>
                                         <span class="skill-tag" itemprop="knowsAbout"><a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">MySQL</a></span>
@@ -453,7 +316,7 @@
                         <div class="col-12 col-md-4 px-2 d-flex">
                             <div class="skill-category card w-100" style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                                 <div class="card-body d-flex flex-column">
-                                    <h2 class="skill-heading"><i class="fab fa-python" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Programming &amp; Tools</h2>
+                                    <h3 class="skill-heading"><i class="fab fa-python" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Programming &amp; Tools</h3>
                                     <div class="skill-list mt-auto">
                                         <span class="skill-tag" itemprop="knowsAbout"><a href="https://www.python.org/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">Python</a></span>
                                         <span class="skill-tag" itemprop="knowsAbout">Pandas</span>
@@ -469,7 +332,7 @@
                         <div class="col-12 col-md-4 px-2 d-flex">
                             <div class="skill-category card w-100" style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                                 <div class="card-body d-flex flex-column">
-                                    <h2 class="skill-heading"><i class="fas fa-chart-bar" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Visualization</h2>
+                                    <h3 class="skill-heading"><i class="fas fa-chart-bar" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Data Visualization</h3>
                                     <div class="skill-list mt-auto">
                                         <span class="skill-tag" itemprop="knowsAbout"><a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow" style="color:inherit;font-weight:bold;text-decoration:underline;">Power BI</a></span>
                                         <span class="skill-tag" itemprop="knowsAbout">DAX</span>
@@ -481,11 +344,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Bottom row: 2 cards, rectangular and stretched horizontally -->
+                        <!-- Bottom row: 2 cards -->
                         <div class="col-12 col-md-4 px-2 d-flex">
                             <div class="skill-category card w-100" style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                                 <div class="card-body d-flex flex-column">
-                                    <h2 class="skill-heading"><i class="fas fa-brain" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Machine Learning Basics</h2>
+                                    <h3 class="skill-heading"><i class="fas fa-brain" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Machine Learning Basics</h3>
                                     <div class="skill-list mt-auto">
                                         <span class="skill-tag" itemprop="knowsAbout">Scikit-learn</span>
                                         <span class="skill-tag" itemprop="knowsAbout">Train-Test Split</span>
@@ -497,7 +360,7 @@
                         <div class="col-12 col-md-4 px-2 d-flex">
                             <div class="skill-category card w-100" style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                                 <div class="card-body d-flex flex-column">
-                                    <h2 class="skill-heading"><i class="fas fa-robot" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Automation &amp; AI Tools</h2>
+                                    <h3 class="skill-heading"><i class="fas fa-robot" style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Automation &amp; AI Tools</h3>
                                     <div class="skill-list mt-auto">
                                         <span class="skill-tag" itemprop="knowsAbout">Excel Automation (Python + GPT)</span>
                                         <span class="skill-tag" itemprop="knowsAbout">AI-Driven Data Analysis</span>
@@ -512,72 +375,108 @@
         </main>
 
         <!-- Footer -->
-    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
-                <p>
-                    Transforming data into actionable insights for
-                    businesses worldwide.
-                </p>
+        <footer style="background-color: #000000; color: #ffffff; margin-top: 3rem;">
+            <div class="container">
+                <div class="row footer-content py-5">
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h4 class="mb-3" style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                        <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
+                            Transforming data into actionable insights for
+                            businesses worldwide.
+                        </p>
+                    </div>
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><a href="index.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                            <li class="mb-3"><a href="about.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                            <li class="mb-3"><a href="projects.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                            <li class="mb-3"><a href="services.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                            <li class="mb-3"><a href="contact.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-section text-center">
+                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Services</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+                    <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
+                        &copy; <span itemprop="copyrightYear">2025</span>
+                        <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
+                    </p>
+                </div>
             </div>
-            <div class="footer-section">
-                <strong>Quick Links</strong>
-                <ul>
-                    <li><a href="index">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="projects">Projects</a></li>
-                    <li><a href="services">Services</a></li>
-                    <li><a href="faq">FAQ</a></li>
-                    <li><a href="contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <strong>Services</strong>
-                <ul>
-                    <li>Power BI Dashboards</li>
-                    <li>Excel Dashboards</li>
-                    <li>Data Cleaning (Excel / Python)</li>
-                    <li>SQL &amp; Python Analytics</li>
-                    <li>Excel Automation</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>
-                &copy; <span>2025</span>
-                <span>Gagan BP</span>. All
-                rights reserved. | Freelance Data Analyst
-            </p>
-        </div>
-    </div>
         </footer>
 
         <!-- Back to Top Button -->
-        <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <button type="button" class="btn btn-primary rounded-circle shadow-lg" id="back-to-top" aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
         </button>
 
-        <!-- Script -->
-    <script src="scripts.js"></script>
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-    // Navbar background toggle on scroll (like resume.html)
-    document.addEventListener('DOMContentLoaded', function() {
-        var navbar = document.querySelector('.navbar');
-        function onScroll() {
-            if (window.scrollY > 40) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll(); // Initial check
-    });
-    </script>
+        <!-- Bootstrap Back-to-Top Functionality -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backToTopBtn = document.getElementById('back-to-top');
+                
+                // Show/hide button based on scroll position
+                function toggleBackToTop() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.remove('d-none');
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                        setTimeout(() => {
+                            if (!backToTopBtn.classList.contains('show')) {
+                                backToTopBtn.classList.add('d-none');
+                            }
+                        }, 300);
+                    }
+                }
+                
+                // Smooth scroll to top
+                function scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Event listeners
+                window.addEventListener('scroll', toggleBackToTop, { passive: true });
+                backToTopBtn.addEventListener('click', scrollToTop);
+                
+                // Initial check
+                toggleBackToTop();
+            });
+        </script>
+        
+        <!-- Scripts -->
+        
+        <!-- Bootstrap 5 JS Bundle -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Bootstrap functionality testing -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
+                console.log('Offcanvas available:', typeof bootstrap.Offcanvas !== 'undefined');
+                
+                // Test offcanvas
+                const mobileOffcanvas = document.getElementById('mobileOffcanvas');
+                if (mobileOffcanvas) {
+                    console.log('Mobile offcanvas found');
+                    const bsOffcanvas = new bootstrap.Offcanvas(mobileOffcanvas);
+                    console.log('Offcanvas initialized:', bsOffcanvas);
+                }
+            });
+        </script>
         <!-- Enhanced JavaScript for interactions -->
     <script>
         // Simple hover interactions for skill tags
@@ -585,31 +484,23 @@
             tag.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px)';
             });
-
+            
             tag.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
         });
-
+        
         // Simple card interactions
         document.querySelectorAll('.skill-category').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-5px)';
             });
-
+            
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
         });
     </script>
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-5Z3EEE9EZZ');
-</script>
     <!-- Mobile critical CSS is now inlined and minified above. Removed duplicate style block. -->
     </body>
 </html>

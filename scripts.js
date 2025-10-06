@@ -402,16 +402,33 @@ function setupContactForm() {
 }
 function setupEmailDomainValidation() {
     const allowedDomains = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "protonmail.com", "icloud.com"];
+    // List of known tempmail domains (add more as needed)
+    const tempMailDomains = [
+        "tempmail.com", "mailinator.com", "10minutemail.com", "guerrillamail.com", "getnada.com", "trashmail.com", "fakeinbox.com", "mintemail.com", "dispostable.com", "yopmail.com", "sharklasers.com", "spamgourmet.com", "maildrop.cc", "mytemp.email", "throwawaymail.com", "mailnesia.com"
+    ];
     const emailInput = document.getElementById("email") || document.getElementById("index-email");
     const warning = document.getElementById("email-warning") || document.getElementById("index-email-warning");
     const form = document.getElementById("contact-form");
     if (!emailInput || !warning || !form) return;
     emailInput.addEventListener("input", function () {
         const email = emailInput.value;
-        const domain = email.substring(email.lastIndexOf("@") + 1);
-        if (email && !allowedDomains.includes(domain)) {
+        const domain = email.substring(email.lastIndexOf("@") + 1).toLowerCase();
+        let errorMsg = "";
+        if (email) {
+            if (tempMailDomains.includes(domain)) {
+                errorMsg = "Temporary email addresses are not allowed.";
+            } else if (
+                !allowedDomains.includes(domain) &&
+                domain !== "onmicrosoft.com" &&
+                !domain.match(/^[a-z0-9.-]+\.(com|org|net|edu|gov|co|io|in|info|biz|us|ca|uk|au|de|fr|jp|cn|ru|br|za|eu)$/)
+            ) {
+                errorMsg = "Invalid email domain.";
+            }
+        }
+        if (errorMsg) {
+            warning.textContent = errorMsg;
             warning.style.display = "block";
-            emailInput.setCustomValidity("Invalid email domain.");
+            emailInput.setCustomValidity(errorMsg);
         } else {
             warning.style.display = "none";
             emailInput.setCustomValidity("");
@@ -419,11 +436,24 @@ function setupEmailDomainValidation() {
     });
     form.addEventListener("submit", function (e) {
         const email = emailInput.value;
-        const domain = email.substring(email.lastIndexOf("@") + 1);
-        if (email && !allowedDomains.includes(domain)) {
+        const domain = email.substring(email.lastIndexOf("@") + 1).toLowerCase();
+        let errorMsg = "";
+        if (email) {
+            if (tempMailDomains.includes(domain)) {
+                errorMsg = "Submission blocked: Temporary email addresses are not allowed.";
+            } else if (
+                !allowedDomains.includes(domain) &&
+                domain !== "onmicrosoft.com" &&
+                !domain.match(/^[a-z0-9.-]+\.(com|org|net|edu|gov|co|io|in|info|biz|us|ca|uk|au|de|fr|jp|cn|ru|br|za|eu)$/)
+            ) {
+                errorMsg = "Submission blocked: Invalid email domain.";
+            }
+        }
+        if (errorMsg) {
             e.preventDefault();
+            warning.textContent = errorMsg;
             warning.style.display = "block";
-            showNotification("Submission blocked: Only trusted email domains allowed.", "error");
+            showNotification(errorMsg, "error");
             return !1;
         }
     });
@@ -501,6 +531,25 @@ function validateField(field) {
             errorMessage = "Name should only contain letters and spaces.";
         }
     }
+    // Project title validation
+    if (field.name === "project-title" && value) {
+        const titleRegex = /^[a-zA-Z0-9\s\-\.,:()]+$/;
+        // Reject repeated characters (aaa, ddd, oopp, etc.) and gibberish
+        const spamPattern = /(.)\1{2,}|^(a{2,}|d{2,}|o{2,}|s{2,}|h{2,}|y{2,}|g{2,}|b{2,}|p{2,})$/i;
+        if (!titleRegex.test(value) || spamPattern.test(value.replace(/\s+/g, ""))) {
+            isValid = !1;
+            errorMessage = "Project title looks invalid or spammy.";
+        }
+    }
+    // Challenge description validation
+        if (field.name === "message" && value) {
+            // Require at least 2 words, but no sentence-ending punctuation
+            const wordCount = value.trim().split(/\s+/).length;
+            if (wordCount < 2) {
+                isValid = !1;
+                errorMessage = "Please briefly describe your challenge (at least 2 words).";
+            }
+    }
     if (!isValid) {
         showFieldError(field, errorMessage);
     } else {
@@ -511,6 +560,15 @@ function validateField(field) {
 function showFieldError(field, message) {
     clearFieldError(field);
     field.classList.add("error");
+    // Use dedicated warning span for challenge description
+    if (field.name === "message") {
+        const warning = document.getElementById("message-warning");
+        if (warning) {
+            warning.textContent = message;
+            warning.style.display = "block";
+            return;
+        }
+    }
     const errorElement = document.createElement("span");
     errorElement.className = "field-error";
     errorElement.textContent = message;
@@ -518,8 +576,16 @@ function showFieldError(field, message) {
 }
 function clearFieldError(field) {
     field.classList.remove("error");
+    // Hide dedicated warning span for challenge description
+    if (field.name === "message") {
+        const warning = document.getElementById("message-warning");
+        if (warning) {
+            warning.textContent = "";
+            warning.style.display = "none";
+        }
+    }
     const existingError = field.parentNode.querySelector(".field-error");
-    if (existingError) {
+    if (existingError && field.name !== "message") {
         existingError.remove();
     }
 }

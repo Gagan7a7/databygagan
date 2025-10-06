@@ -102,305 +102,13 @@
     <!-- Font Awesome for all screen sizes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- Bootstrap CSS early (like working admin pages) -->
+    <!-- Bootstrap 5.3.0 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Critical inline CSS to prevent white flash -->
-    <style>
-    @media (max-width: 768px) {
-        .logo span[itemprop="name"] {
-            font-family: 'Inter', Arial, sans-serif;
-            font-size: 1.2rem;
-            color: #007bff;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: none;
-        }
-        .logo .fa-chart-line {
-            color: #007bff !important;
-        }
-    }
-    /* Navbar blur and background on scroll */
-    .navbar {
-        background: rgba(10, 10, 20, 0.7);
-        backdrop-filter: blur(8px);
-        transition: background 0.3s, box-shadow 0.3s;
-        box-shadow: none;
-    }
-    .navbar-scrolled {
-        background: rgba(10, 10, 32, 0.95) !important;
-        box-shadow: 0 2px 16px rgba(74, 144, 226, 0.08);
-        backdrop-filter: blur(12px);
-    }
-    .offcanvas-header,
-    .offcanvas-body {
-        background: #0a1120;
-        color: #e0e6ed;
-    }
-    /* Ensure offcanvas overlays the page and hides background content */
-    .offcanvas-backdrop.show {
-        opacity: 0.95 !important;
-        background: #0a1120 !important;
-        z-index: 1050 !important;
-    }
-    .offcanvas {
-        box-shadow: 0 0 32px 0 rgba(0,0,0,0.45);
-        z-index: 1060 !important;
-    }
-    body.offcanvas-backdrop-open {
-        overflow: hidden !important;
-        position: fixed;
-        width: 100vw;
-    }
-    @media (max-width: 991.98px) {
-        .offcanvas {
-            max-width: 80vw;
-        }
-        /* Force offcanvas to cover full viewport on mobile */
-        .offcanvas.offcanvas-end {
-            width: 100vw !important;
-            max-width: 100vw !important;
-            height: 100vh !important;
-            top: 0 !important;
-            right: 0 !important;
-            left: 0 !important;
-            border-radius: 0 !important;
-        }
-        .offcanvas-header, .offcanvas-body {
-            min-height: 0;
-            max-height: none;
-            overflow-y: auto;
-        }
-        body.offcanvas-backdrop-open {
-            overflow: hidden !important;
-            position: fixed;
-            width: 100vw;
-        }
-    }
-        html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
-        .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
-
-        /* Resume Structure Styles */
-        .resume-body {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            font-size: 1.05rem;
-        }
-
-        .resume-section {
-            margin-bottom: 35px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 25px;
-        }
-
-        .resume-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .resume-intro h2 {
-            color: #6bb6ff;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .resume-intro h2:first-child {
-            font-size: 2.2rem;
-            font-weight: 800;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            align-items: center;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #e0e6ed;
-            white-space: nowrap;
-        }
-
-        .contact-item i {
-            color: #6bb6ff;
-            width: 18px;
-            min-width: 18px;
-            display: inline-block !important;
-            font-size: 1.1rem;
-            vertical-align: middle;
-            visibility: visible !important;
-            opacity: 1 !important;
-            margin-right: 0.4rem;
-        }
-        /* Force Font Awesome icons to be visible everywhere */
-        .contact-item .fas,
-        .contact-item .fab,
-        .contact-item .far {
-            display: inline-block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
-            font-weight: 900 !important;
-        }
-        @media (max-width: 576px) {
-            .contact-info {
-                flex-direction: column !important;
-                gap: 0.5rem !important;
-                align-items: flex-start !important;
-            }
-            .contact-item {
-                justify-content: flex-start !important;
-                width: 100%;
-                margin-left: 0.5rem;
-            }
-            .contact-item i {
-                font-size: 1.2rem !important;
-                margin-right: 0.6rem !important;
-                display: inline-block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                color: #6bb6ff !important;
-                width: 20px !important;
-                min-width: 20px !important;
-                text-align: center;
-            }
-        }
-        @media (max-width: 768px) {
-            .contact-item i {
-                font-size: 1.15rem !important;
-                margin-right: 0.5rem !important;
-                display: inline-block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                color: #6bb6ff !important;
-                width: 18px !important;
-                min-width: 18px !important;
-            }
-        }
-
-        .skills-grid-resume {
-            display: block;
-        }
-
-        .skill-category {
-            margin-bottom: 20px;
-        }
-
-        .skill-category h4 {
-            color: #6bb6ff;
-            margin-bottom: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .skill-category p {
-            line-height: 1.6;
-            color: #e0e6ed;
-            margin-bottom: 0;
-            font-size: 0.95rem;
-        }
-
-        .project-header, .experience-header, .education-header {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .project-meta, .duration, .graduation {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        .company, .institution {
-            color: #6bb6ff;
-            font-weight: 600;
-        }
-
-        .project-details, .experience-details {
-            list-style: none;
-            padding: 0;
-        }
-
-        .project-details li, .experience-details li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            line-height: 1.6;
-            color: #e0e6ed;
-        }
-
-        .project-details li::before, .experience-details li::before {
-            content: "▸";
-            color: #6bb6ff;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .coursework {
-            color: #9ca3af;
-            font-style: italic;
-            margin-top: 10px;
-            line-height: 1.6;
-        }
-
-        .certification-item {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .cert-details {
-            color: #9ca3af;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .resume-body {
-                padding: 20px;
-                margin: 10px;
-                font-size: 0.97rem;
-            }
-
-            .contact-info {
-                gap: 15px;
-            }
-
-            .resume-intro h2:first-child {
-                font-size: 1.8rem;
-            }
-
-            .resume-intro h2 {
-                font-size: 1.4rem;
-            }
-        }
-
-        .footer-section strong,
-        .footer-section ul li,
-        .footer-section ul li a {
-            color: #fff !important;
-        }
-    /* Make resume certifications white */
-    .resume-certifications h4,
-    .resume-certifications .cert-details {
-        color: #fff !important;
-    }
-    </style>
-
-    <!-- Stylesheets -->
+    
+    <!-- Font Awesome 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS for Bootstrap overrides -->
     <link rel="stylesheet" href="styles.css">
 
     <!-- Google tag (gtag.js) -->
@@ -414,39 +122,89 @@
     </script>
 </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
-        <!-- Header -->
-        <header id="header">
-    <!-- Bootstrap 5 Offcanvas Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
-        <div class="container-fluid py-1">
-            <a href="index" class="navbar-brand logo" aria-label="Home">
-                <!-- Logo content removed for layout, link remains -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
-                <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                    <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!-- Header - Bootstrap 5 Navbar -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <!-- Hamburger button - positioned on the right for mobile -->
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <!-- Desktop navbar (visible on lg+) and mobile collapse menu -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="resume"><i class="fas fa-file-alt"></i> Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Mobile offcanvas menu (slides from right) -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav gap-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="resume"><i class="fas fa-file-alt"></i> Resume</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
-                        <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="resume"><i class="fas fa-file-alt"></i> Resume</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
+            </nav>
+        </header>
 
         <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
@@ -571,69 +329,107 @@
 </main>
 
         <!-- Footer -->
-    <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 style="color: #4a90e2;">Gagan | Data Analyst</h4>
-                <p>
-                    Transforming data into actionable insights for
-                    businesses worldwide.
-                </p>
+        <footer style="background-color: #000000; color: #ffffff; margin-top: 3rem;">
+            <div class="container">
+                <div class="row footer-content py-5">
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h4 class="mb-3" style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                        <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
+                            Transforming data into actionable insights for
+                            businesses worldwide.
+                        </p>
+                    </div>
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><a href="index.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                            <li class="mb-3"><a href="about.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                            <li class="mb-3"><a href="projects.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                            <li class="mb-3"><a href="services.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                            <li class="mb-3"><a href="contact.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-section text-center">
+                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Services</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+                    <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
+                        &copy; <span itemprop="copyrightYear">2025</span>
+                        <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
+                    </p>
+                </div>
             </div>
-            <div class="footer-section">
-                <strong>Quick Links</strong>
-                <ul>
-                    <li><a href="index">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="projects">Projects</a></li>
-                    <li><a href="services">Services</a></li>
-                    <li><a href="faq">FAQ</a></li>
-                    <li><a href="contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <strong>Services</strong>
-                <ul>
-                    <li>Power BI Dashboards</li>
-                    <li>Excel Dashboards</li>
-                    <li>Data Cleaning (Excel / Python)</li>
-                    <li>SQL &amp; Python Analytics</li>
-                    <li>Excel Automation</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>
-                &copy; <span>2025</span>
-                <span>Gagan BP</span>. All
-                rights reserved. | Freelance Data Analyst
-            </p>
-        </div>
-    </div>
-</footer>
+        </footer>
 
         <!-- Back to Top Button -->
-    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+        <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
 
-        <!-- Script -->
-    <script src="scripts.js"></script>
-<!-- Bootstrap 5 JS Bundle -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script>
-// Navbar background toggle on scroll (like FAQ)
-document.addEventListener('DOMContentLoaded', function() {
-    var navbar = document.querySelector('.navbar');
-    function onScroll() {
-        if (window.scrollY > 40) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-        }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // Initial check
-});
-</script>
+    <!-- Bootstrap Back-to-Top Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            // Show/hide button based on scroll position
+            function toggleBackToTop() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('d-none');
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                    setTimeout(() => {
+                        if (!backToTopBtn.classList.contains('show')) {
+                            backToTopBtn.classList.add('d-none');
+                        }
+                    }, 300);
+                }
+            }
+            
+            // Smooth scroll to top
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Event listeners
+            window.addEventListener('scroll', toggleBackToTop, { passive: true });
+            backToTopBtn.addEventListener('click', scrollToTop);
+            
+            // Initial check
+            toggleBackToTop();
+        });
+    </script>
+    
+    <!-- Scripts -->
+    
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Bootstrap functionality testing -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
+            console.log('Offcanvas available:', typeof bootstrap.Offcanvas !== 'undefined');
+            
+            // Test offcanvas
+            const mobileOffcanvas = document.getElementById('mobileOffcanvas');
+            if (mobileOffcanvas) {
+                console.log('Mobile offcanvas found');
+                const bsOffcanvas = new bootstrap.Offcanvas(mobileOffcanvas);
+                console.log('Offcanvas initialized:', bsOffcanvas);
+            }
+        });
+    </script>
     </body>
 </html>
