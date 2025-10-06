@@ -158,11 +158,11 @@
         });
         </script>
 
-        
+
                 <!-- Stylesheets -->
     <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
+
     <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -180,7 +180,6 @@
 
       gtag('config', 'G-5Z3EEE9EZZ');
     </script>
-    </body>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Parallax Background Layers -->
@@ -200,7 +199,7 @@
                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+
                     <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul class="navbar-nav gap-2">
@@ -233,7 +232,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
                         <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
@@ -325,7 +324,7 @@
                                             Let's Unlock Your Data Story &rarr;
                                         </a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -594,7 +593,7 @@
         </script>
         <!-- No custom nav JS needed; Bootstrap 5 Offcanvas handles open/close -->
         <script src="scripts.js"></script>
-        
+
         <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -611,7 +610,7 @@
                     });
                 }
             });
-            
+
             // Navbar scroll effect - Changes navbar appearance on scroll
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
@@ -622,12 +621,12 @@
                 }
             });
         </script>
-        
+
         <!-- Bootstrap Back-to-Top Functionality -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const backToTopBtn = document.getElementById('back-to-top');
-                
+
                 // Show/hide button based on scroll position
                 function toggleBackToTop() {
                     if (window.pageYOffset > 300) {
@@ -642,7 +641,7 @@
                         }, 300);
                     }
                 }
-                
+
                 // Smooth scroll to top
                 function scrollToTop() {
                     window.scrollTo({
@@ -650,13 +649,14 @@
                         behavior: 'smooth'
                     });
                 }
-                
+
                 // Event listeners
                 window.addEventListener('scroll', toggleBackToTop, { passive: true });
                 backToTopBtn.addEventListener('click', scrollToTop);
-                
+
                 // Initial check
                 toggleBackToTop();
             });
         </script>
+    </body>
 </html>

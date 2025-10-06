@@ -102,7 +102,6 @@
         <!-- Stylesheets -->
     <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
     <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -120,101 +119,7 @@
 
   gtag('config', 'G-5Z3EEE9EZZ');
 </script>
-    </head>
-    <body itemscope itemtype="https://schema.org/WebPage" lang="en">
-        <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
-                <div class="container-fluid py-1">
-                    <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
-                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav gap-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
-                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                            <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
-                            <ul class="navbar-nav gap-2">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <!-- Main Content -->
-        <main id="main">
-            <section
-                id="projects"
-                class="section"
-                aria-labelledby="projects-heading"
-            >
-                <div class="container">
-                    <style>
+<style>
                     /* Category headings style */
                     .project-category-heading {
                     text-align: center;
@@ -336,6 +241,98 @@
                         }
                     }
                     </style>
+    </head>
+    <body itemscope itemtype="https://schema.org/WebPage" lang="en">
+        <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav gap-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main">
+            <section
+                id="projects"
+                class="section"
+                aria-labelledby="projects-heading"
+            >
+                <div class="container">
                     <h1 id="projects-heading" class="section-title">
                         Featured Projects
                     </h1>

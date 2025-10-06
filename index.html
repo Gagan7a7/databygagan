@@ -387,6 +387,27 @@
         <style>
             /* Keep only essential Bootstrap navbar functionality */
             body { margin: 0; padding: 0; }
+             /* Force 2 service cards per row for screens between 600px and 1100px */
+                                                @media (min-width: 600px) and (max-width: 1100px) {
+                                                    .services-grid {
+                                                        display: grid !important;
+                                                        grid-template-columns: 1fr 1fr !important;
+                                                        gap: 2rem !important;
+                                                    }
+                                                    .service-card {
+                                                        min-width: 0 !important;
+                                                        max-width: 100% !important;
+                                                        transform: none !important;
+                                                        box-shadow: none !important;
+                                                        transition: transform 0.2s, box-shadow 0.2s;
+                                                    }
+                                                    .service-card:hover {
+                                                        transform: translateY(-8px) scale(1.03);
+                                                        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+                                                    }
+                                                }
+                                
+            
         </style>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -787,27 +808,6 @@
                         </h2>
                     </div>
                 </div>
-                                <style>
-                                                /* Force 2 service cards per row for screens between 600px and 1100px */
-                                                @media (min-width: 600px) and (max-width: 1100px) {
-                                                    .services-grid {
-                                                        display: grid !important;
-                                                        grid-template-columns: 1fr 1fr !important;
-                                                        gap: 2rem !important;
-                                                    }
-                                                    .service-card {
-                                                        min-width: 0 !important;
-                                                        max-width: 100% !important;
-                                                        transform: none !important;
-                                                        box-shadow: none !important;
-                                                        transition: transform 0.2s, box-shadow 0.2s;
-                                                    }
-                                                    .service-card:hover {
-                                                        transform: translateY(-8px) scale(1.03);
-                                                        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
-                                                    }
-                                                }
-                                </style>
                 <div class="services-grid">
                     <div
                         class="service-card"
@@ -1270,7 +1270,7 @@
                 }
             });
         </script>
-        
+
         <!-- Bootstrap Back-to-Top Functionality -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
