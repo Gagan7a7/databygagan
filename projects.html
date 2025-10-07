@@ -120,17 +120,6 @@
   gtag('config', 'G-5Z3EEE9EZZ');
 </script>
 <style>
-    /* Reserve space for project cards to prevent CLS */
-    .project-card {
-        min-height: 220px;
-        aspect-ratio: 16/7;
-    }
-    @media (max-width: 768px) {
-        .project-card {
-            min-height: 180px;
-            aspect-ratio: 16/11;
-        }
-    }
     html, body {
         height: 100%;
     }
@@ -138,18 +127,13 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        width: 100vw;
-        box-sizing: border-box;
     }
     main#main {
         flex: 1 0 auto;
         min-height: 1px;
-        display: flex;
-        flex-direction: column;
     }
     footer {
         flex-shrink: 0;
-        width: 100%;
     }
                     /* Category headings style */
                     .project-category-heading {
