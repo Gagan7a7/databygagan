@@ -59,7 +59,15 @@
                 <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
                 <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-                 <style>
+                <style>
+        /* Responsive: Make the main CTA button smaller on mobile */
+        @media (max-width: 576px) {
+            .about-content .btn.btn-outline-primary.btn-lg.hover-lift {
+                font-size: 1rem !important;
+                padding: 8px 18px !important;
+                border-radius: 32px !important;
+            }
+        }
         .about-text p:not(:last-child) a {
             color: inherit;
             text-decoration: underline;
@@ -236,7 +244,7 @@
                     <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
                         <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                            <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                            <h3 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem;">Menu</h3>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
@@ -288,7 +296,7 @@
                     </div>
                 </div>
                 <div class="container position-relative" style="z-index: 2;">
-                    <h2 id="about-heading" class="section-title text-center mb-5 reveal-title">About Me</h2>
+                    <h1 id="about-heading" class="section-title text-center mb-5 reveal-title" style="font-size:2rem;">About Me</h1>
                     <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
                             <div class="about-content">
@@ -338,14 +346,14 @@
             <div class="container">
                 <div class="row footer-content py-5">
                     <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                        <h4 class="mb-3" style="color: #4a90e2;">Gagan | Data Analyst</h4>
+                        <h2 class="mb-3" style="color: #4a90e2; font-size:1.3rem;">Gagan | Data Analyst</h2>
                         <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                             Transforming data into actionable insights for
                             businesses worldwide.
                         </p>
                     </div>
                     <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h5>
+                        <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Quick Links</h3>
                         <ul class="list-unstyled">
                             <li class="mb-3"><a href="index.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
                             <li class="mb-3"><a href="about.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
@@ -355,7 +363,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4 footer-section text-center">
-                        <h5 class="fw-bold mb-4" style="color: #4a90e2;">Services</h5>
+                        <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Services</h3>
                         <ul class="list-unstyled">
                             <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
                             <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
