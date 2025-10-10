@@ -1131,17 +1131,20 @@ function setupPerformanceMonitoring() {
                 <i class="${dashboardIcon}"></i>${dashboardText}
                 </a>`
                             : `<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`;
-                        let imgTag;
-                        if (!firstProjectRendered && isMobileDevice()) {
-                            const webpSrc = proj.image.replace(/\.png$/i, ".webp");
-                            imgTag = `<picture>
+                       let imgTag;
+if (!firstProjectRendered && isMobileDevice()) {
+    const transformedImage = proj.image.replace('/upload/', '/upload/w_800,f_auto,q_auto/');
+    const webpSrc = transformedImage.replace(/\.(png|jpg|jpeg|avif)$/i, ".webp");
+    imgTag = `<picture>
   <source srcset="${webpSrc}" type="image/webp">
-  <img src="${proj.image}" alt="${proj.alt}" itemprop="image" />
+  <img src="${transformedImage}" alt="${proj.alt}" itemprop="image" style="width: 100%; height: auto;" />
 </picture>`;
-                            firstProjectRendered = !0;
-                        } else {
-                            imgTag = `<img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;                        }
-                        const card = `
+    firstProjectRendered = true;
+} else {
+    const transformedImage = proj.image.replace('/upload/', '/upload/w_1200,f_auto,q_auto/');
+    imgTag = `<img src="${transformedImage}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;
+}
+const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="project-image">
     ${imgTag}
