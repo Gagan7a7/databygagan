@@ -978,7 +978,7 @@ main {
     align-items: center;
 }
 .project-card:nth-child(even) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
 }
 .project-card:nth-child(even) .project-image {
     order: 2;
