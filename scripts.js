@@ -1135,8 +1135,7 @@ function setupPerformanceMonitoring() {
                         // Add cache-busting query to force Cloudinary refresh
                         const cacheBuster = '?v=20251010';
                         if (!firstProjectRendered && isMobileDevice()) {
-                            let transformedImage = proj.image.replace('/upload/', '/upload/w_800,f_auto,q_auto/');
-                            transformedImage += cacheBuster;
+                            let transformedImage = proj.image + cacheBuster;
                             const webpSrc = transformedImage.replace(/\.(png|jpg|jpeg|avif)(\?v=\d+)?$/i, ".webp?v=20251010");
                             imgTag = `<picture>
   <source srcset="${webpSrc}" type="image/webp">
@@ -1144,8 +1143,7 @@ function setupPerformanceMonitoring() {
 </picture>`;
                             firstProjectRendered = true;
                         } else {
-                            let transformedImage = proj.image.replace('/upload/', '/upload/w_1200,f_auto,q_auto/');
-                            transformedImage += cacheBuster;
+                            let transformedImage = proj.image + cacheBuster;
                             imgTag = `<img src="${transformedImage}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;
                         }
                         const card = `
