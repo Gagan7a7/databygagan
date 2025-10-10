@@ -1132,19 +1132,23 @@ function setupPerformanceMonitoring() {
                 </a>`
                             : `<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`;
                        let imgTag;
-if (!firstProjectRendered && isMobileDevice()) {
-    const transformedImage = proj.image.replace('/upload/', '/upload/w_800,f_auto,q_auto/');
-    const webpSrc = transformedImage.replace(/\.(png|jpg|jpeg|avif)$/i, ".webp");
-    imgTag = `<picture>
+                        // Add cache-busting query to force Cloudinary refresh
+                        const cacheBuster = '?v=20251010';
+                        if (!firstProjectRendered && isMobileDevice()) {
+                            let transformedImage = proj.image.replace('/upload/', '/upload/w_800,f_auto,q_auto/');
+                            transformedImage += cacheBuster;
+                            const webpSrc = transformedImage.replace(/\.(png|jpg|jpeg|avif)(\?v=\d+)?$/i, ".webp?v=20251010");
+                            imgTag = `<picture>
   <source srcset="${webpSrc}" type="image/webp">
   <img src="${transformedImage}" alt="${proj.alt}" itemprop="image" style="width: 100%; height: auto;" />
 </picture>`;
-    firstProjectRendered = true;
-} else {
-    const transformedImage = proj.image.replace('/upload/', '/upload/w_1200,f_auto,q_auto/');
-    imgTag = `<img src="${transformedImage}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;
-}
-const card = `
+                            firstProjectRendered = true;
+                        } else {
+                            let transformedImage = proj.image.replace('/upload/', '/upload/w_1200,f_auto,q_auto/');
+                            transformedImage += cacheBuster;
+                            imgTag = `<img src="${transformedImage}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;
+                        }
+                        const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="project-image">
     ${imgTag}
