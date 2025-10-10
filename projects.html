@@ -35,8 +35,7 @@
         <!-- DNS prefetch for performance -->
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
         <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-        <link rel="dns-prefetch" href="//databygagan.com">
-        <link rel="preload" href="/api/projects" as="fetch" crossorigin>
+    <link rel="dns-prefetch" href="//databygagan.com">
     <!-- Custom domain is live -->
 
         <!-- Open Graph / Facebook -->
@@ -96,17 +95,15 @@
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <!-- Preload and async load Google Fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Preload LCP Cloudinary image for mobile performance. Only update this if your main above-the-fold image changes. -->
     <link rel="preload" as="image" href="https://res.cloudinary.com/databygagan/image/upload/f_auto,q_auto,w_600/v1690000000/weatherdashboard.png">
 
         <!-- Stylesheets -->
     <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Async load Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -438,7 +435,7 @@
         </button>
 
         <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <!-- NAVBAR FUNCTIONALITY SCRIPT - Tests Bootstrap loading and adds scroll effects -->
         <script>
@@ -500,6 +497,6 @@
         </script>
 
         <!-- Script -->
-    <script src="scripts.js" defer></script>
+        <script src="scripts.js"></script>
     </body>
 </html>
