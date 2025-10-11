@@ -170,6 +170,29 @@
                     margin-bottom: 1.2rem !important;
                 }
             }
+            
+                        .desktop-pointer-cue {
+                            position: absolute;
+                            left: 0;
+                            top: 120px; /* moved lower */
+                            z-index: 10;
+                            font-size: 2.1rem;
+                            color: #4a90e2;
+                            filter: drop-shadow(0 2px 8px rgba(44,62,80,0.12));
+                            pointer-events: none;
+                            transition: left 1.2s cubic-bezier(.4,0,.2,1), top 1.2s cubic-bezier(.4,0,.2,1);
+                            animation: beckon-hand 1.3s infinite cubic-bezier(.4,0,.2,1);
+                        }
+                        @keyframes beckon-hand {
+                            0% { transform: translateX(0) scale(1.08) rotate(-8deg); opacity: 0.7; }
+                            30% { transform: translateX(18px) scale(1.13) rotate(-8deg); opacity: 1; }
+                            60% { transform: translateX(-10px) scale(1.10) rotate(-8deg); opacity: 0.9; }
+                            100% { transform: translateX(0) scale(1.08) rotate(-8deg); opacity: 0.7; }
+                        }
+                        @media (max-width: 991.98px) {
+                            .desktop-pointer-cue { display: none !important; }
+                        }
+                        
             </style>
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -286,29 +309,6 @@
                         </div>
                     </div>
                     <div class="row g-2 justify-content-center" style="margin-top:2.2rem; padding-left:2.5rem; padding-right:2.5rem;">
-                        <style>
-                        .desktop-pointer-cue {
-                            position: absolute;
-                            left: 0;
-                            top: 120px; /* moved lower */
-                            z-index: 10;
-                            font-size: 2.1rem;
-                            color: #4a90e2;
-                            filter: drop-shadow(0 2px 8px rgba(44,62,80,0.12));
-                            pointer-events: none;
-                            transition: left 1.2s cubic-bezier(.4,0,.2,1), top 1.2s cubic-bezier(.4,0,.2,1);
-                            animation: beckon-hand 1.3s infinite cubic-bezier(.4,0,.2,1);
-                        }
-                        @keyframes beckon-hand {
-                            0% { transform: translateX(0) scale(1.08) rotate(-8deg); opacity: 0.7; }
-                            30% { transform: translateX(18px) scale(1.13) rotate(-8deg); opacity: 1; }
-                            60% { transform: translateX(-10px) scale(1.10) rotate(-8deg); opacity: 0.9; }
-                            100% { transform: translateX(0) scale(1.08) rotate(-8deg); opacity: 0.7; }
-                        }
-                        @media (max-width: 991.98px) {
-                            .desktop-pointer-cue { display: none !important; }
-                        }
-                        </style>
                         <!-- The hand icon is absolutely positioned, so the parent container must be relative -->
                         <script>
                         // Ensure the parent .container is relative for absolute positioning
