@@ -405,7 +405,15 @@
                                                         box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
                                                     }
                                                 }
-                                
+                                /* Ensure Featured Projects section never blocks vertical scroll on mobile */
+                @media (max-width: 768px) {
+                  #projects, #projects .container, #featured-projects-list {
+                    overflow: visible !important;
+                    max-height: none !important;
+                    height: auto !important;
+                  }
+                }
+             
             
         </style>
         <!-- Google tag (gtag.js) -->
@@ -790,16 +798,6 @@
                         });
                 });
                 </script>
-                <style>
-                /* Ensure Featured Projects section never blocks vertical scroll on mobile */
-                @media (max-width: 768px) {
-                  #projects, #projects .container, #featured-projects-list {
-                    overflow: visible !important;
-                    max-height: none !important;
-                    height: auto !important;
-                  }
-                }
-                </style>
             </div>
         </section>
 
