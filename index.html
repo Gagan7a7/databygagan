@@ -405,7 +405,21 @@
                                                         box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
                                                     }
                                                 }
-                                
+                                @media (max-width: 768px) {
+        #projects-heading {
+            position: static !important;
+            transform: none !important;
+        }
+        
+        #projects {
+            pointer-events: auto !important;
+            touch-action: pan-y !important;
+        }
+        
+        #featured-projects-list {
+            pointer-events: auto !important;
+        }
+    }
             
         </style>
         <!-- Google tag (gtag.js) -->
