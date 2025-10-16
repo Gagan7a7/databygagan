@@ -413,6 +413,14 @@
                     height: auto !important;
                   }
                 }
+                                    /* Desktop & tablet: restore normal scroll/layout for Featured Projects */
+                                    @media (min-width: 769px) {
+                                        #projects, #projects .container, #featured-projects-list {
+                                            overflow: initial !important;
+                                            max-height: initial !important;
+                                            height: auto !important;
+                                        }
+                                    }
              
             
         </style>
