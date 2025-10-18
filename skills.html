@@ -181,7 +181,10 @@
                             filter: drop-shadow(0 2px 8px rgba(44,62,80,0.12));
                             pointer-events: none;
                             transition: left 1.2s cubic-bezier(.4,0,.2,1), top 1.2s cubic-bezier(.4,0,.2,1);
-                            animation: beckon-hand 1.3s infinite cubic-bezier(.4,0,.2,1);
+                            /* start hidden; will be shown after a short delay via JS */
+                            opacity: 0;
+                            visibility: hidden;
+                            animation: beckon-hand 1.8s infinite cubic-bezier(.4,0,.2,1);
                         }
                         @keyframes beckon-hand {
                             0% { transform: translateX(0) scale(1.08) rotate(-8deg); opacity: 0.7; }
@@ -191,6 +194,31 @@
                         }
                         @media (max-width: 991.98px) {
                             .desktop-pointer-cue { display: none !important; }
+                        }
+                        /* Desktop-only hover hint shown briefly on first card */
+                        @media (min-width: 992px) {
+                            .hover-hint {
+                                position: absolute;
+                                top: -28px;
+                                left: 12px;
+                                background: rgba(74,144,226,0.10);
+                                color: #246fb3;
+                                padding: 6px 10px;
+                                border-radius: 999px;
+                                font-size: 0.85rem;
+                                backdrop-filter: blur(4px);
+                                opacity: 0;
+                                transform: translateY(-6px);
+                                transition: opacity 220ms ease, transform 260ms ease;
+                                pointer-events: none;
+                                z-index: 20;
+                            }
+                            .hint-pulse { animation: hint-pulse 1.6s ease-in-out 2; }
+                            @keyframes hint-pulse {
+                                0% { transform: translateY(0) scale(1); }
+                                50% { transform: translateY(-4px) scale(1.02); }
+                                100% { transform: translateY(0) scale(1); }
+                            }
                         }
                         
             </style>
@@ -324,6 +352,9 @@
                             let idx = 0;
                             let pointerInterval = null;
                             let hovering = false;
+                            let pointerReady = false; // becomes true after initial delay
+                            let pointerVisible = false;
+
                             function movePointer() {
                                 var card = cards[idx];
                                 var left = card.offsetLeft - 48;
@@ -332,15 +363,51 @@
                                 pointer.style.top = top + 'px';
                                 idx = (idx + 1) % cards.length;
                             }
-                            function startPointerLoop() {
+                            function startPointerLoop(intervalMs) {
                                 if (pointerInterval) clearInterval(pointerInterval);
                                 pointerInterval = setInterval(function() {
                                     if (!hovering) movePointer();
-                                }, 3000);
+                                }, intervalMs || 4500);
                             }
-                            // Initial position
-                            movePointer();
-                            startPointerLoop();
+
+                            // controller exposed for popup code to hide/show pointer safely
+                            window.pointerController = {
+                                hide: function() {
+                                    hovering = true; // pause movement
+                                    if (pointerVisible) {
+                                        pointer.style.opacity = 0;
+                                        pointer.style.visibility = 'hidden';
+                                        pointerVisible = false;
+                                    }
+                                },
+                                show: function() {
+                                    // only show if initial delay passed
+                                    if (!pointerReady) return;
+                                    hovering = false;
+                                    if (!pointerVisible) {
+                                        pointer.style.opacity = 1;
+                                        pointer.style.visibility = 'visible';
+                                        pointerVisible = true;
+                                        // position and restart loop
+                                        movePointer();
+                                        startPointerLoop(4500);
+                                    }
+                                },
+                                isReady: function() { return pointerReady; },
+                                isVisible: function() { return pointerVisible; }
+                            };
+
+                            // Show pointer only after a short delay (3s), then start moving slowly
+                            setTimeout(function() {
+                                pointerReady = true;
+                                // show only if popup isn't open (popup script will hide if needed)
+                                pointer.style.opacity = 1;
+                                pointer.style.visibility = 'visible';
+                                pointerVisible = true;
+                                // initial position once visible
+                                movePointer();
+                                startPointerLoop(4500);
+                            }, 3000);
 
                             // Stop pointer movement and animation on hover, resume after
                             cards.forEach(function(card) {
@@ -354,6 +421,40 @@
                                 });
                             });
                         });
+                        </script>
+                        <script>
+                        // Show a brief "Hover to view details" hint above the first card on desktop
+                        (function() {
+                            function showHoverHint() {
+                                if (!window.matchMedia('(min-width: 992px) and (hover: hover) and (pointer: fine)').matches) return;
+                                try {
+                                    var firstCard = document.querySelector('.skill-category.card');
+                                    if (!firstCard) return;
+                                    // ensure parent is positioned
+                                    var parent = firstCard.closest('.row');
+                                    if (parent) parent.style.position = parent.style.position || 'relative';
+
+                                    var hint = document.createElement('div');
+                                    hint.className = 'hover-hint';
+                                    hint.textContent = 'Hover to view details';
+                                    firstCard.style.position = firstCard.style.position || 'relative';
+                                    firstCard.appendChild(hint);
+                                    // trigger visible state + pulse
+                                    requestAnimationFrame(function() {
+                                        hint.style.opacity = 1;
+                                        hint.style.transform = 'translateY(0)';
+                                        firstCard.classList.add('hint-pulse');
+                                    });
+                                    // remove after 2.5s
+                                    setTimeout(function() {
+                                        try { hint.style.opacity = 0; hint.style.transform = 'translateY(-6px)'; } catch(e){}
+                                        try { firstCard.classList.remove('hint-pulse'); } catch(e){}
+                                        setTimeout(function(){ try{ hint.remove(); }catch(e){} }, 300);
+                                    }, 2500);
+                                } catch (e) { console.warn(e); }
+                            }
+                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showHoverHint); else showHoverHint();
+                        })();
                         </script>
                         <!-- Skill Card Popup Container -->
                         <div id="skill-popup" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; z-index:9999; align-items:center; justify-content:center; pointer-events:none;">
@@ -714,6 +815,8 @@
                     var closeBtn = popupCard.querySelector('.popup-close-btn');
                     if (closeBtn) closeBtn.style.display = 'none';
                 }
+                // Hide pointer while popup is visible (desktop)
+                try { if (window.pointerController) window.pointerController.hide(); } catch(e){}
             }
             
             function hidePopup(mode) {
@@ -727,6 +830,8 @@
                 popupCard.style.backdropFilter = 'blur(18px)';
                 popupCard.style.boxShadow = '0 8px 32px rgba(44,62,80,0.18)';
                 if (mode === 'desktop') clearBlur();
+                // Restore pointer after popup closes (desktop)
+                try { if (window.pointerController) window.pointerController.show(); } catch(e){}
             }
 
             if (isDesktop) {
@@ -740,13 +845,24 @@
                             if (!popupHovered) hidePopup('desktop');
                         }, 0);
                     });
+                    // keyboard accessibility: hide pointer on focus, show on blur
+                    trigger.addEventListener('focus', function() {
+                        try { if (window.pointerController) window.pointerController.hide(); } catch(e){}
+                        showPopup(trigger, 'desktop');
+                    });
+                    trigger.addEventListener('blur', function() {
+                        hidePopup('desktop');
+                        try { if (window.pointerController) window.pointerController.show(); } catch(e){}
+                    });
                 });
                 popup.addEventListener('mouseenter', function() {
                     popupHovered = true;
+                    try { if (window.pointerController) window.pointerController.hide(); } catch(e){}
                 });
                 popup.addEventListener('mouseleave', function() {
                     popupHovered = false;
                     hidePopup('desktop');
+                    try { if (window.pointerController) window.pointerController.show(); } catch(e){}
                 });
             } else {
                 // Mobile: only info icon triggers popup

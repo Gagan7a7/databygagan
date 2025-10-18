@@ -120,6 +120,17 @@ body{margin:0;padding:0;background-color:#0a1120;color:#e0e6ed;font-family:'Inte
   .featured-badge{transform:none!important;box-shadow:0 4px 15px rgb(74 144 226 / .3)!important}
   .highlight-tag{transform:none!important}
   .client-name{color:var(--light-text)!important}
+
+    /* Ensure featured badge doesn't overlap client name on small screens
+         Place it above client info using flex alignment inside the card */
+    .testimonial-card .featured-badge {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        align-self: flex-end !important;
+        margin-bottom: 0.6rem !important;
+        display: inline-block !important;
+    }
 }
 .testimonial-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgb(74 144 226 / .02) 0%,rgb(107 182 255 / .01) 100%);opacity:0;transition:opacity 0.3s ease;pointer-events:none}
 .testimonial-card::after{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(135deg,rgb(74 144 226 / .1),rgb(107 182 255 / .05));border-radius:calc(var(--border-radius) + 2px);z-index:-1;opacity:0;transition:opacity 0.3s ease}
