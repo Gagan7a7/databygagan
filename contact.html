@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
         <!-- Primary Meta Tags -->
         <title>Contact - Gagan BP | Remote Data Analyst &amp; Global BI Expert</title>
     <meta name="description" content="Contact Gagan BP: Remote freelance data analyst serving global clients. Reach out for Power BI, Python, SQL, Excel, and BI solutions.">
@@ -30,7 +21,7 @@
     <meta name="content-language" content="en">
 
     <!-- Content Security Policy to allow Formspree contact form -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
+    <!-- CSP handled globally via _headers file -->
         <!-- Performance and SEO meta tags -->
         <meta name="theme-color" content="#6c63ff">
         <meta name="msapplication-TileColor" content="#6c63ff">
@@ -89,256 +80,134 @@
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-        <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-        <!-- Critical inline CSS to prevent white flash -->
-        <style>
-            html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden}
-            .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
-            .required {
-                color: red;
-            }
-            .form-row {
-                display: flex;
-                gap: 20px;
-            }
-
-            .form-row .form-group {
-                width: 100%;
-            }
-            .half-width {
-                width: 50%;
-            }
-
-            /* Clean Form Animations */
-            .contact-form {
-                opacity: 0;
-                transform: translateY(20px);
-                animation: slideIn 0.6s ease forwards;
-            }
-
-            @keyframes slideIn {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            .form-group {
-                opacity: 0;
-                animation: fadeIn 0.5s ease forwards;
-            }
-
-            .form-group:nth-child(1) { animation-delay: 0.1s; }
-            .form-group:nth-child(2) { animation-delay: 0.2s; }
-            .form-group:nth-child(3) { animation-delay: 0.3s; }
-            .form-group:nth-child(4) { animation-delay: 0.4s; }
-            .form-group:nth-child(5) { animation-delay: 0.5s; }
-            .form-group:nth-child(6) { animation-delay: 0.6s; }
-            .form-group:nth-child(7) { animation-delay: 0.7s; }
-
-            @keyframes fadeIn {
-                to { opacity: 1; }
-            }
-
-            /* Enhanced Input Focus */
-            .form-group input:focus,
-            .form-group select {
-                background-color: rgb(35, 40, 55);
-                color: var(--light-text);
-            }
-            .form-group select option {
-                background-color: rgb(35, 40, 55) !important;
-                color: var(--light-text);
-            }
-
-            .form-group select:focus,
-            .form-group textarea:focus {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(108, 99, 255, 0.15);
-                transition: all 0.3s ease;
-            }
-
-            /* Better CTA Button */
-            .btn-primary {
-                background: linear-gradient(135deg, #6c63ff 0%, #5a52d8 100%);
-                border: none;
-                border-radius: 8px;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .btn-primary::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-                transition: left 0.5s;
-            }
-
-            .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
-            }
-
-            .btn-primary:hover::before {
-                left: 100%;
-            }
-
-            /* Contact Items Hover */
-            .contact-item {
-                transition: transform 0.3s ease;
-                padding: 15px;
-                border-radius: 8px;
-            }
-
-            .contact-item:hover {
-                transform: translateX(5px);
-                background: rgba(108, 99, 255, 0.05);
-            }
-
-            /* Success Message */
-            .success-message {
-                background: rgba(76, 175, 80, 0.1);
-                border: 1px solid #4caf50;
-                color: #4caf50;
-                padding: 15px;
-                border-radius: 8px;
-                margin-bottom: 20px;
-                display: none;
-                opacity: 0;
-                animation: slideDown 0.3s ease forwards;
-            }
-
-            @keyframes slideDown {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            .success-message.show {
-                display: block;
-            }
-
-            /* Loading State */
-            .btn-primary.loading {
-                pointer-events: none;
-                opacity: 0.7;
-            }
-
-            .btn-primary.loading::after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 16px;
-                height: 16px;
-                margin: -8px 0 0 -8px;
-                border: 2px solid transparent;
-                border-top: 2px solid #fff;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-
-            /* Responsive */
-            @media (max-width: 768px) {
-                .form-row {
-                    flex-direction: column;
-                    gap: 0;
-                }
-                .half-width {
-                    width: 100%;
-                }
-            }
-        </style>
+    <!-- Preload Google Fonts for mobile FCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="(max-width: 768px)" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
         <!-- Stylesheets -->
+    <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS - REQUIRED for navbar glassmorphism effects and offcanvas styling -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5Z3EEE9EZZ');
+</script>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
-        <!-- Header -->
-        <header id="header">
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button type="button"
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="index"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects"><i class="fas fa-project-diagram"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="services"><i class="fas fa-briefcase"></i>Services</a>
-                    </li>
-                    <li>
-                        <a href="testimonials"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume"><i class="fas fa-file-alt"></i>Resume</a>
-                    </li>
-                    <li>
-                        <a href="contact" class="active"><i class="fas fa-envelope"></i>Contact</a>
-                    </li>
-                </ul>
+        <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h4 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1rem;">Menu</h4>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav gap-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html"><i class="fas fa-user"></i> About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
-
         <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
-            <!-- Contact Section -->
-            <section id="contact" class="section" aria-labelledby="contact-heading">
+            <!-- Contact Section (replaced with index.html markup and logic) -->
+            <section id="contact" class="section section-dark" aria-labelledby="contact-heading">
                 <div class="container">
-                    <h1 id="contact-heading" class="section-title">
-                        Let's Turn Your Data Into Growth
-                    </h1>
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <h2>Ready to Scale Your Business?</h2>
+                                <div class="row justify-content-center mb-5">
+                                    <div class="col-lg-10 text-center">
+                                        <h1 id="contact-heading" class="section-title mb-4 text-center" style="font-size:2rem;">
+                                            Let's Turn Your Data Into Growth
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="contact-content row g-5">
+                                    <div class="col-lg-6">
+                                        <div class="contact-info">
+                            <h2 style="font-size:1.2rem;">Ready to Scale Your Business?</h2>
                             <p>
                                 Ready to transform your data into insights? Let's
                                 discuss your project and how I can help you achieve
-                                your goals.<br><br>
-                                <strong>Available for remote projects globally, with flexible hours for US, UK, EU, and APAC clients. All communication in English, with secure online delivery and support for international payments.</strong>
+                                your goals.
                             </p>
-
                             <div
                                 class="contact-item"
                                 itemscope
@@ -354,7 +223,6 @@
                                     >
                                 </div>
                             </div>
-
                             <div
                                 class="contact-item"
                                 itemscope
@@ -369,7 +237,6 @@
                                     <span itemprop="addressCountry">IN</span>
                                 </div>
                             </div>
-
                             <div class="contact-item">
                                 <i class="fas fa-phone"></i>
                                 <div>
@@ -377,7 +244,6 @@
                                     <a href="tel:+917892329607" itemprop="telephone">+91 7892329607</a>
                                 </div>
                             </div>
-
                             <div class="social-links">
                                 <a
                                     href="https://www.linkedin.com/in/gagan-b-p-0a9635243/"
@@ -408,7 +274,8 @@
                                 </a>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="col-lg-6">
                         <form
                         class="contact-form"
                         id="contact-form"
@@ -425,12 +292,6 @@
                             tabindex="-1"
                             autocomplete="off"
                         >
-
-                        <!-- Success Message -->
-                        <div id="success-message" class="success-message">
-                            🎉 Awesome! Your message is on its way. I'll get back to you within 24 hours with a detailed proposal!
-                        </div>
-
                         <div class="form-group">
                             <label for="name">Your Name <span class="required">*</span></label>
                             <input
@@ -438,12 +299,21 @@
                                 id="name"
                                 name="name"
                                 required
-                                pattern="[A-Za-z\s]+"
-                                title="Enter a valid name (letters only)"
+                                title="Enter a valid name"
                                 itemprop="name"
                             >
+                            <span
+                                id="name-warning"
+                                style="
+                                    color: #f44336;
+                                    display: none;
+                                    font-size: 0.8rem;
+                                    margin-top: 5px;
+                                "
+                            >
+                                Please enter a valid name.
+                            </span>
                         </div>
-
                         <div class="form-group">
                             <label for="email">Your Email <span class="required">*</span></label>
                             <input
@@ -467,7 +337,6 @@
                                 etc. are allowed.
                             </span>
                         </div>
-
                         <div class="form-group">
                             <label for="service-type">What Do You Need? <span class="required">*</span></label>
                             <select
@@ -489,9 +358,8 @@
                                 <option value="consultation">🤔 Not Sure / Free Consultation</option>
                             </select>
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group half-width">
+                        <div class="form-row row g-3">
+                            <div class="form-group half-width col-md-6">
                                 <label for="timeline">Project Timeline</label>
                                 <select
                                     id="timeline"
@@ -506,8 +374,7 @@
                                     <option value="flexible">🤷 Flexible</option>
                                 </select>
                             </div>
-
-                            <div class="form-group half-width">
+                            <div class="form-group half-width col-md-6">
                                 <label for="budget">Budget Range</label>
                                 <select
                                     id="budget"
@@ -523,18 +390,16 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label for="subject">Project Title</label>
+                            <label for="project-title">Project Title</label>
                             <input
                                 type="text"
-                                id="subject"
-                                name="subject"
+                                id="project-title"
+                                name="project-title"
                                 placeholder="e.g., Sales Dashboard for Q4 Analysis"
                                 itemprop="description"
                             >
                         </div>
-
                         <div class="form-group">
                             <label for="message">Tell Me About Your Challenge <span class="required">*</span></label>
                             <textarea
@@ -545,8 +410,8 @@
                                 placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
                                 itemprop="text"
                             ></textarea>
+                            <span id="message-warning" class="field-error" style="display:none"></span>
                         </div>
-
                         <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
                             <i class="fas fa-paper-plane"></i>
                             <span>Send Message</span>
@@ -554,57 +419,391 @@
                         <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
                             🔒 Your information is safe • ⚡ Response within 24 hours
                         </p>
-                    </form>
+                        </form>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div> <!-- Close .container -->
+        </section> <!-- Close #contact section -->
+    </main> <!-- Close main -->
         <!-- Footer -->
-        <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+        <!-- Contact Form Validation and Warning Scripts (from index.html/scripts.js) -->
+        <script>
+        // Name Validation Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('name');
+            const nameWarning = document.getElementById('name-warning');
+            const form = document.getElementById('contact-form');
+            function validateName(name) {
+                const cleanName = name.trim().toLowerCase();
+                if (cleanName.length < 4) return false;
+                const spamPatterns = [
+                    /^[a-z]\s[a-z]$/,
+                    /^[a-z]{1,2}\s[a-z]{1,2}$/,
+                    /^(.)\1+\s(.)\2+$/,
+                    /^test\s*test$/,
+                    /^name\s*name$/,
+                    /^[a-z]{1,2}$/,
+                ];
+                for (let pattern of spamPatterns) {
+                    if (pattern.test(cleanName)) return false;
+                }
+                return true;
+            }
+            function showNameWarning() {
+                nameWarning.style.display = 'block';
+                nameInput.style.borderColor = '#f44336';
+            }
+            function hideNameWarning() {
+                nameWarning.style.display = 'none';
+                nameInput.style.borderColor = '';
+            }
+            nameInput.addEventListener('input', function() {
+                const name = this.value;
+                if (name.length > 0) {
+                    if (validateName(name)) {
+                        hideNameWarning();
+                    } else {
+                        showNameWarning();
+                    }
+                } else {
+                    hideNameWarning();
+                }
+            });
+            form.addEventListener('submit', function(e) {
+                const name = nameInput.value;
+                if (!validateName(name)) {
+                    e.preventDefault();
+                    showNameWarning();
+                    nameInput.focus();
+                    return false;
+                }
+            });
+        });
+        // Email Domain Validation Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const allowedDomains = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "protonmail.com", "icloud.com"];
+            const tempMailDomains = [
+                "tempmail.com", "mailinator.com", "10minutemail.com", "guerrillamail.com", "getnada.com", "trashmail.com", "fakeinbox.com", "mintemail.com", "dispostable.com", "yopmail.com", "sharklasers.com", "spamgourmet.com", "maildrop.cc", "mytemp.email", "throwawaymail.com", "mailnesia.com"
+            ];
+            const emailInput = document.getElementById("email");
+            const warning = document.getElementById("email-warning");
+            const form = document.getElementById("contact-form");
+            if (!emailInput || !warning || !form) return;
+            emailInput.addEventListener("input", function () {
+                const email = emailInput.value;
+                const domain = email.substring(email.lastIndexOf("@") + 1).toLowerCase();
+                let errorMsg = "";
+                if (email) {
+                    if (tempMailDomains.includes(domain)) {
+                        errorMsg = "Temporary email addresses are not allowed.";
+                    } else if (
+                        !allowedDomains.includes(domain) &&
+                        domain !== "onmicrosoft.com" &&
+                        !domain.match(/^[a-z0-9.-]+\.(com|org|net|edu|gov|co|io|in|info|biz|us|ca|uk|au|de|fr|jp|cn|ru|br|za|eu)$/)
+                    ) {
+                        errorMsg = "Invalid email domain.";
+                    }
+                }
+                if (errorMsg) {
+                    warning.textContent = errorMsg;
+                    warning.style.display = "block";
+                    emailInput.setCustomValidity(errorMsg);
+                } else {
+                    warning.style.display = "none";
+                    emailInput.setCustomValidity("");
+                }
+            });
+            form.addEventListener("submit", function (e) {
+                const email = emailInput.value;
+                const domain = email.substring(email.lastIndexOf("@") + 1).toLowerCase();
+                let errorMsg = "";
+                if (email) {
+                    if (tempMailDomains.includes(domain)) {
+                        errorMsg = "Submission blocked: Temporary email addresses are not allowed.";
+                    } else if (
+                        !allowedDomains.includes(domain) &&
+                        domain !== "onmicrosoft.com" &&
+                        !domain.match(/^[a-z0-9.-]+\.(com|org|net|edu|gov|co|io|in|info|biz|us|ca|uk|au|de|fr|jp|cn|ru|br|za|eu)$/)
+                    ) {
+                        errorMsg = "Submission blocked: Invalid email domain.";
+                    }
+                }
+                if (errorMsg) {
+                    e.preventDefault();
+                    warning.textContent = errorMsg;
+                    warning.style.display = "block";
+                    showNotification(errorMsg, "error");
+                    return false;
+                }
+            });
+        });
+        // Message Validation and Field Error Scripts
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            function validateField(field) {
+                const value = field.value.trim();
+                const fieldType = field.type;
+                let isValid = true;
+                let errorMessage = "";
+                if (field.hasAttribute("required") && !value) {
+                    isValid = false;
+                    errorMessage = "This field is required.";
+                }
+                if (fieldType === "email" && value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = "Please enter a valid email address.";
+                    }
+                }
+                if (field.name === "name" && value) {
+                    const nameRegex = /^[a-zA-Z\s]+$/;
+                    if (!nameRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = "Name should only contain letters and spaces.";
+                    }
+                }
+                if (field.name === "project-title" && value) {
+                    const titleRegex = /^[a-zA-Z0-9\s\-\.,:()]+$/;
+                    const spamPattern = /(.)\1{2,}|^(a{2,}|d{2,}|o{2,}|s{2,}|h{2,}|y{2,}|g{2,}|b{2,}|p{2,})$/i;
+                    if (!titleRegex.test(value) || spamPattern.test(value.replace(/\s+/g, ""))) {
+                        isValid = false;
+                        errorMessage = "Project title looks invalid or spammy.";
+                    }
+                }
+                    if (field.name === "message" && value) {
+                        const wordCount = value.trim().split(/\s+/).length;
+                        if (wordCount < 2) {
+                            isValid = false;
+                            errorMessage = "Please briefly describe your challenge (at least 2 words).";
+                        }
+                }
+                if (!isValid) {
+                    showFieldError(field, errorMessage);
+                } else {
+                    clearFieldError(field);
+                }
+                return isValid;
+            }
+            function showFieldError(field, message) {
+                clearFieldError(field);
+                field.classList.add("error");
+                if (field.name === "message") {
+                    const warning = document.getElementById("message-warning");
+                    if (warning) {
+                        warning.textContent = message;
+                        warning.style.display = "block";
+                        return;
+                    }
+                }
+                const errorElement = document.createElement("span");
+                errorElement.className = "field-error";
+                errorElement.textContent = message;
+                field.parentNode.appendChild(errorElement);
+            }
+            function clearFieldError(field) {
+                field.classList.remove("error");
+                if (field.name === "message") {
+                    const warning = document.getElementById("message-warning");
+                    if (warning) {
+                        warning.textContent = "";
+                        warning.style.display = "none";
+                    }
+                }
+                const existingError = field.parentNode.querySelector(".field-error");
+                if (existingError && field.name !== "message") {
+                    existingError.remove();
+                }
+            }
+            function validateForm(form) {
+                const inputs = form.querySelectorAll("input[required], textarea[required]");
+                let isValid = true;
+                inputs.forEach((input) => {
+                    if (!validateField(input)) {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                if (!validateForm(form)) {
+                    showNotification("Please fill in all required fields correctly.", "error");
+                    return false;
+                }
+                const submitBtn = document.getElementById('submit-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                const formData = new FormData(form);
+                fetch(form.action, { method: "POST", body: formData, headers: { Accept: "application/json" } })
+                    .then((response) => {
+                        if (response.ok) {
+                            showNotification("Message sent successfully! I'll get back to you soon.", "success");
+                            form.reset();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        } else {
+                            throw new Error("Network response was not ok");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        showNotification("There was a problem sending your message. Please try again later.", "error");
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
+            });
+            const inputs = form.querySelectorAll("input, textarea");
+            inputs.forEach((input) => {
+                input.addEventListener("blur", function () {
+                    validateField(this);
+                });
+                input.addEventListener("input", function () {
+                    clearFieldError(this);
+                });
+            });
+        });
+        // Notification System (show at top of form, like index.html)
+        function showNotification(message, type = "info") {
+            const notification = document.createElement("div");
+            notification.className = `notification notification-${type}`;
+            const form = document.getElementById("contact-form");
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${getNotificationIcon(type)}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="notification-close">&times;</button>
+            `;
+            // Show notification above the form
+            form.parentNode.insertBefore(notification, form);
+            setTimeout(() => notification.classList.add("show"), 100);
+            setTimeout(() => hideNotification(notification), 5000);
+            notification.querySelector(".notification-close").addEventListener("click", () => {
+                hideNotification(notification);
+            });
+        }
+        function hideNotification(notification) {
+            notification.classList.add("hide");
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }
+        function getNotificationIcon(type) {
+            const icons = { success: "check-circle", error: "exclamation-circle", warning: "exclamation-triangle", info: "info-circle" };
+            return icons[type] || icons.info;
+        }
+        </script>
+    <footer class="footer mt-5" itemscope itemtype="https://schema.org/WPFooter" style="background-color: #000000; color: #e0e6ed;">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Gagan | Data Analyst</h3>
-                        <p>
+                <div class="row footer-content py-5">
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h3 class="mb-3" style="color: #4a90e2; font-size:1.1rem;">Gagan | Data Analyst</h3>
+                        <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                             Transforming data into actionable insights for
                             businesses worldwide.
                         </p>
                     </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="services">Services</a></li>
-                            <li><a href="contact">Contact</a></li>
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h4 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Quick Links</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><a href="index.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                            <li class="mb-3"><a href="about.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                            <li class="mb-3"><a href="projects.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                            <li class="mb-3"><a href="services.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                            <li class="mb-3"><a href="contact.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
+                    <div class="col-md-4 footer-section text-center">
+                        <h4 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Services</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
                         </ul>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>
+                <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+                    <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
                         &copy; <span itemprop="copyrightYear">2025</span>
-                        <span itemprop="copyrightHolder">Gagan BP</span>. All
-                        rights reserved. | Freelance Data Analyst
+                        <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
                     </p>
                 </div>
             </div>
         </footer>
         <!-- Back to Top Button -->
-        <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top" aria-label="Back to top">
             <i class="fas fa-arrow-up"></i>
         </button>
-        <!-- Script -->
-        <script src="scripts.js"></script>
+        <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- NAVBAR FUNCTIONALITY SCRIPT - Tests Bootstrap loading and adds scroll effects -->
+        <script>
+            // Test Bootstrap functionality - CRITICAL for debugging navbar issues
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                if (navbarToggler) {
+                    console.log('Navbar toggler found');
+                    navbarToggler.addEventListener('click', function() {
+                        console.log('Hamburger clicked!');
+                    });
+                }
+            });
+            
+            // Navbar scroll effect - Changes navbar appearance on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+        </script>
+        <!-- Bootstrap Back-to-Top Functionality -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backToTopBtn = document.getElementById('back-to-top');
+                
+                // Show/hide button based on scroll position
+                function toggleBackToTop() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.remove('d-none');
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                        setTimeout(() => {
+                            if (!backToTopBtn.classList.contains('show')) {
+                                backToTopBtn.classList.add('d-none');
+                            }
+                        }, 300);
+                    }
+                }
+                
+                // Smooth scroll to top
+                function scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Event listeners
+                window.addEventListener('scroll', toggleBackToTop, { passive: true });
+                backToTopBtn.addEventListener('click', scrollToTop);
+                
+                // Initial check
+                toggleBackToTop();
+            });
+        </script>
     </body>
 </html>

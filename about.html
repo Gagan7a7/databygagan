@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Z3EEE9EZZ');
-</script>
         <!-- Primary Meta Tags -->
         <title>About - Gagan BP | Data Analyst – Python, SQL, Excel, Power BI</title>
                 <meta name="description" content="Learn about Gagan BP, a freelance data analyst skilled in Python, SQL, Excel, Power BI &amp; Tableau. Discover my journey and passion for data insights.">
@@ -68,366 +59,135 @@
                 <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
                 <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
                 <style>
-                        html,body{background:#0a0a0a;color:#e0e6ed;margin:0;padding:0;overflow-x:hidden;min-height:100vh}
-                        .loader{position:fixed;top:0;left:0;width:100%;height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
+        /* Responsive: Make the main CTA button smaller on mobile */
+        @media (max-width: 576px) {
+            .about-content .btn.btn-outline-primary.btn-lg.hover-lift {
+                font-size: 1rem !important;
+                padding: 8px 18px !important;
+                border-radius: 32px !important;
+            }
+        }
+        .about-text p:not(:last-child) a {
+            color: inherit;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: inherit;
+            background: transparent;
+            border: none;
+            transition: color 0.3s ease;
+            overflow: visible;
+        }
+        .about-text p {
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .about-text p.animate {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+        .about-text p.lead {
+            font-size: 1.3em;
+            line-height: 1.7;
+            min-height: 80px;
+            position: relative;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            background: rgba(74, 144, 226, 0.03);
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .about-text p.lead::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+            animation: shimmer 2s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .hover-zone {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .hover-zone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        .hover-zone:hover::before {
+            opacity: 1;
+        }
+        .hover-zone:hover {
+            transform: translateX(15px) translateY(-5px);
+            box-shadow: -10px 10px 30px rgba(74, 144, 226, 0.1);
+        }
+    </style>
+        <script>
+        // Animated paragraph reveal and hover effect for about section
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for Reveal Animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.about-text p').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        </script>
 
-                        /* Modern Interactive About Me Styles - Research Based */
-                        
-                        /* Parallax Background Layers */
-                        .parallax-container {
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            z-index: -10;
-                            overflow: hidden;
-                        }
 
-                        .parallax-layer-1 {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            background: radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.03) 0%, transparent 70%);
-                            will-change: transform;
-                        }
+                <!-- Stylesheets -->
+    <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-                        .parallax-layer-2 {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            background: radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.05) 0%, transparent 70%);
-                            will-change: transform;
-                        }
+    <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-                        /* Floating Interactive Elements - Modern Trend */
-                        .floating-interactive {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            top: 0;
-                            left: 0;
-                            pointer-events: none;
-                            z-index: -5;
-                        }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-                        .floating-element {
-                            position: absolute;
-                            opacity: 0.08;
-                            transition: all 0.3s ease;
-                            animation: float 25s infinite linear;
-                        }
+    <!-- Custom CSS - REQUIRED for navbar glassmorphism effects and offcanvas styling -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-                        .floating-element:nth-child(1) { left: 10%; animation-delay: 0s; }
-                        .floating-element:nth-child(2) { left: 20%; animation-delay: -5s; }
-                        .floating-element:nth-child(3) { left: 70%; animation-delay: -10s; }
-                        .floating-element:nth-child(4) { left: 85%; animation-delay: -15s; }
-                        .floating-element:nth-child(5) { left: 45%; animation-delay: -20s; }
-
-                        @keyframes float {
-                            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); }
-                            50% { transform: translateY(50vh) rotate(180deg) scale(1.2); }
-                            100% { transform: translateY(-100px) rotate(360deg) scale(0.8); }
-                        }
-
-                        /* Section Title - Enhanced Animation */
-                        .section-title {
-                            position: relative;
-                            display: block;
-                            text-align: center;
-                            opacity: 0;
-                            transform: translateY(60px) scale(0.8);
-                            animation: titleReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-                            margin-bottom: 3rem;
-                        }
-
-                        .section-title::before {
-                            content: '';
-                            position: absolute;
-                            top: -20px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            width: 60px;
-                            height: 2px;
-                            background: var(--primary-color, #4a90e2);
-                            opacity: 0;
-                            animation: lineAppear 1s ease forwards 0.8s;
-                        }
-
-                        .section-title::after {
-                            content: '';
-                            position: absolute;
-                            bottom: -15px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            width: 0;
-                            height: 4px;
-                            background: linear-gradient(90deg, var(--primary-color, #4a90e2), var(--accent-color, #63b3ed));
-                            border-radius: 2px;
-                            animation: expandCenterLine 1.5s ease forwards 0.6s;
-                        }
-
-                        @keyframes titleReveal {
-                            to {
-                                opacity: 1;
-                                transform: translateY(0) scale(1);
-                            }
-                        }
-
-                        @keyframes lineAppear {
-                            to { opacity: 1; }
-                        }
-
-                        @keyframes expandCenterLine {
-                            to { width: 120px; }
-                        }
-
-                        /* Content Sections - Staggered Reveal */
-                        .about-text {
-                            position: relative;
-                            z-index: 2;
-                        }
-
-                        .about-text p {
-                            opacity: 0;
-                            transform: translateY(40px) rotateX(10deg);
-                            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                            margin-bottom: 2rem;
-                            position: relative;
-                        }
-
-                        .about-text p.animate {
-                            opacity: 1;
-                            transform: translateY(0) rotateX(0deg);
-                        }
-
-                        /* Lead Paragraph - Special Treatment */
-                        .about-text p.lead {
-                            font-size: 1.3em;
-                            line-height: 1.7;
-                            position: relative;
-                            padding: 2rem;
-                            margin: 2.5rem 0;
-                            background: rgba(74, 144, 226, 0.03);
-                            border: 1px solid rgba(74, 144, 226, 0.1);
-                            border-radius: 15px;
-                            overflow: hidden;
-                        }
-
-                        .about-text p.lead::before {
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: -100%;
-                            width: 100%;
-                            height: 100%;
-                            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
-                            animation: shimmer 2s infinite;
-                        }
-
-                        @keyframes shimmer {
-                            0% { left: -100%; }
-                            100% { left: 100%; }
-                        }
-
-                        /* Interactive Hover Zones - Modern Parallax */
-                        .hover-zone {
-                            position: relative;
-                            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                            padding: 1rem;
-                            border-radius: 10px;
-                            cursor: pointer;
-                        }
-
-                        .hover-zone::before {
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background: rgba(74, 144, 226, 0.05);
-                            border-radius: 10px;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                            z-index: -1;
-                        }
-
-                        .hover-zone:hover::before {
-                            opacity: 1;
-                        }
-
-                        .hover-zone:hover {
-                            transform: translateX(15px) translateY(-5px);
-                            box-shadow: -10px 10px 30px rgba(74, 144, 226, 0.1);
-                        }
-
-                        /* Skill Links - Inline with text, not badges */
-                        /* Skill Links - Only for inline technology links */
-                        .about-text p:not(:last-child) a {
-                            position: relative;
-                            display: inline;
-                            padding: 0;
-                            margin: 0;
-                            border-radius: 0;
-                            background: transparent;
-                            border: none;
-                            color: inherit;
-                            text-decoration: underline;
-                            font-weight: bold;
-                            font-size: inherit;
-                            transition: color 0.3s ease;
-                            overflow: visible;
-                        }
-
-                        .about-text p:not(:last-child) a::before {
-                            display: none;
-                        }
-
-                        .about-text p:not(:last-child) a:hover {
-                            transform: none;
-                            background: transparent;
-                            border-color: transparent;
-                            box-shadow: none;
-                        }
-
-                        /* Preserve button color on hover */
-                        .about-text .btn.btn-primary:hover {
-                            color: #fff;
-                        }
-
-                        /* Scroll-triggered Number Counter */
-                        .stats-counter {
-                            display: none; /* Will be activated via JS */
-                            text-align: center;
-                            margin: 3rem 0;
-                            padding: 2rem;
-                            background: rgba(74, 144, 226, 0.05);
-                            border-radius: 15px;
-                        }
-
-                        /* Typewriter Effect */
-                        .typewriter {
-                            overflow: hidden;
-                            border-right: 2px solid var(--primary-color, #4a90e2);
-                            white-space: nowrap;
-                            margin: 0 auto;
-                            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-                        }
-
-                        @keyframes typing {
-                            from { width: 0; }
-                            to { width: 100%; }
-                        }
-
-                        @keyframes blink-caret {
-                            from, to { border-color: transparent; }
-                            50% { border-color: var(--primary-color, #4a90e2); }
-                        }
-
-                        /* Magnetic Mouse Effect */
-                        .magnetic {
-                            transition: transform 0.2s ease-out;
-                        }
-
-                        /* Reveal on Scroll - Different Directions */
-                        .reveal-left {
-                            transform: translateX(-60px);
-                            opacity: 0;
-                            transition: all 0.8s ease;
-                            will-change: transform, opacity;
-                        }
-
-                        .reveal-right {
-                            transform: translateX(60px);
-                            opacity: 0;
-                            transition: all 0.8s ease;
-                            will-change: transform, opacity;
-                        }
-
-                        .reveal-up {
-                            transform: translateY(60px);
-                            opacity: 0;
-                            transition: all 0.8s ease;
-                        }
-
-                        .reveal-fade {
-                            opacity: 0;
-                            transition: all 1s ease;
-                        }
-
-                        .revealed {
-                            transform: translate(0);
-                            opacity: 1;
-                        }
-
-                        /* Particle System Background */
-                        .particles {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100vh;
-                            z-index: -8;
-                            pointer-events: none;
-                            overflow: hidden;
-                        }
-
-                        .particle {
-                            position: absolute;
-                            width: 2px;
-                            height: 2px;
-                            background: var(--primary-color, #4a90e2);
-                            border-radius: 50%;
-                            opacity: 0.3;
-                            animation: particleFloat 15s infinite linear;
-                        }
-
-                        @keyframes particleFloat {
-                            0% {
-                                transform: translateY(100vh) translateX(0px);
-                                opacity: 0;
-                            }
-                            10% {
-                                opacity: 0.3;
-                            }
-                            90% {
-                                opacity: 0.3;
-                            }
-                            100% {
-                                transform: translateY(-100px) translateX(100px);
-                                opacity: 0;
-                            }
-                        }
-
-                        /* Button Styles for CTA */
-                        .about-text .btn.btn-primary,
-                        .about-text .btn.btn-primary:hover,
-                        .about-text .btn.btn-primary:focus,
-                        .about-text .btn.btn-primary:active {
-                            color: #fff !important;
-                            text-decoration: none !important;
-                        }
-
-                        /* Mobile Responsiveness */
-                        @media (max-width: 768px) {
-                            .hover-zone:hover {
-                                transform: translateY(-3px);
-                            }
-                            
-                            .floating-element {
-                                opacity: 0.05;
-                            }
-                            
-                            .about-text p.lead {
-                                font-size: 1.1em;
-                                padding: 1.5rem;
-                            }
-                        }
-                </style>
-                <link rel="stylesheet" href="styles.css">
+      gtag('config', 'G-5Z3EEE9EZZ');
+    </script>
     </head>
     <body itemscope itemtype="https://schema.org/WebPage" lang="en">
         <!-- Parallax Background Layers -->
@@ -436,104 +196,144 @@
             <div class="parallax-layer-2" id="parallax-layer-2"></div>
         </div>
 
-        <!-- Floating Interactive Elements -->
-        <div class="floating-interactive">
-            <div class="floating-element"><i class="fas fa-chart-bar" style="font-size: 2rem; color: var(--primary-color, #4a90e2);"></i></div>
-            <div class="floating-element"><i class="fas fa-database" style="font-size: 1.5rem; color: var(--primary-color, #4a90e2);"></i></div>
-            <div class="floating-element"><i class="fas fa-code" style="font-size: 1.8rem; color: var(--primary-color, #4a90e2);"></i></div>
-            <div class="floating-element"><i class="fas fa-chart-line" style="font-size: 2.2rem; color: var(--primary-color, #4a90e2);"></i></div>
-            <div class="floating-element"><i class="fas fa-brain" style="font-size: 1.6rem; color: var(--primary-color, #4a90e2);"></i></div>
-        </div>
-
         <!-- Particle System -->
         <div class="particles" id="particles"></div>
 
-        <!-- Header -->
-        <header id="header">
-            <nav id="nav" aria-label="Main navigation">
-                <a href="index.html" class="logo" aria-label="Home">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span itemprop="name">GaganBP</span>
-                </a>
-                <button type="button"
-                    class="menu-toggle"
-                    id="mobile-menu"
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links" id="nav-links">
-                    <li>
-                        <a href="index.html"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html" class="active"><i class="fas fa-user"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="skills.html"><i class="fas fa-cogs"></i>Skills</a>
-                    </li>
-                    <li>
-                        <a href="projects.html"><i class="fas fa-project-diagram"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="services.html"><i class="fas fa-briefcase"></i>Services</a>
-                    </li>
-                    <li>
-                        <a href="testimonials.html"><i class="fas fa-quote-right"></i>Testimonials</a>
-                    </li>
-                    <li>
-                        <a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a>
-                    </li>
-                    <li>
-                        <a href="resume.html"><i class="fas fa-file-alt"></i>Resume</a>
-                    </li>
-                    <li>
-                        <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
-                    </li>
-                </ul>
+        <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid py-1">
+                    <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="about.html"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                        <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                            <h3 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem;">Menu</h3>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                            <ul class="navbar-nav gap-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="about.html"><i class="fas fa-user"></i> About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="resume.html"><i class="fas fa-file-alt"></i> Resume</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <!-- Main Content -->
         <main id="main" style="padding-top: 100px;">
-            <!-- About Section -->
-            <section id="about" class="section" aria-labelledby="about-heading">
-                <div class="container">
-                    <h1 id="about-heading" class="section-title">About Me</h1>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p class="lead reveal-fade">
-                                Hi there! 👋 I'm <strong>Gagan BP</strong>, a data analyst based in Bangalore. Welcome to my corner of the web—I'm glad you're here!
-                            </p>
-                            <p class="hover-zone reveal-left">
-                                My journey into data analytics began during my MCA, when I worked on a project analyzing suicide trends in India. That experience opened my eyes to the power of data to create real impact, and it set me on a path to help others make sense of their numbers.
-                            </p>
-                            <p class="hover-zone reveal-right">
-                                Today, I specialize in
-                                <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow">Power BI</a>,
-                                <a href="https://www.python.org/" target="_blank" rel="noopener nofollow">Python</a>,
-                                <a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow">MySQL</a>,
-                                <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener nofollow">Excel</a>,
-                                <a href="https://www.tableau.com/" target="_blank" rel="noopener nofollow">Tableau</a>, and
-                                <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener nofollow">SQL</a>.
-                                I help business owners, managers, and teams who want to turn messy data into clear, actionable insights—whether that's through dashboards, automation, or deep-dive analysis.
-                            </p>
-                            <p class="hover-zone reveal-left">
-                                What motivates me? It's seeing the "aha!" moment when a client realizes how data can drive smarter decisions. I love building dashboards that not only look good, but also make complex information simple and useful.
-                            </p>
-                            <p class="hover-zone reveal-up">
-                                Outside of work, you'll find me exploring Bangalore's food scene, playing chess, or tinkering with new tech tools. I believe learning never stops—I'm always looking for new ways to grow, both as an analyst and as a person.
-                            </p>
-                            <p class="hover-zone reveal-right" style="margin-top:2em;">
-                                I believe the best results come from listening first—understanding your goals, your challenges, and what really matters to you. I enjoy working side by side with clients, asking questions, and making sure we're always moving toward something useful, not just impressive on paper. I'm always learning, whether it's a new tool or a new way to look at a problem, and I find a lot of joy in those small "aha" moments along the way. When I'm not working, you'll probably find me with a good cup of coffee, exploring a new part of Bangalore, or catching up with friends and family. If you'd like to chat about data, projects, or just swap stories, I'd love to hear from you.
-                            </p>
-                            <div style="margin:2.5em 0 2em 0; text-align:center;">
-                                <a href="contact.html" class="btn btn-primary" style="color: #fff !important; text-decoration: none !important;">
-                                    Let's Unlock Your Data Story &rarr;
-                                </a>
+            <!-- About Section (Bootstrap 5 grid, modern design, floating shapes, parallax) -->
+            <section id="about" class="section position-relative py-5" aria-labelledby="about-heading" style="overflow-x: hidden;">
+                <!-- Parallax Background Elements -->
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 0; overflow: hidden;">
+                    <div class="floating-shapes">
+                        <div class="floating-shape shape-1"></div>
+                        <div class="floating-shape shape-2"></div>
+                        <div class="floating-shape shape-3"></div>
+                    </div>
+                </div>
+                <div class="container position-relative" style="z-index: 2;">
+                    <h1 id="about-heading" class="section-title text-center mb-5 reveal-title" style="font-size:2rem;">About Me</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-xl-8">
+                            <div class="about-content">
+                                <div class="about-text" style="text-align: justify; text-justify: inter-word; hyphens: auto;">
+                                    <!-- All your current about page paragraphs below remain unchanged -->
+                                    <p class="lead text-center mb-4 fade-in-text shimmer-box" data-delay="0" style="text-align: justify;">
+                                        Hi there! 👋 I'm <strong>Gagan BP</strong>, a data analyst based in Bangalore. Welcome to my corner of the web—I'm glad you're here!
+                                    </p>
+                                    <p class="hover-zone reveal-left">
+                                        My journey into data analytics began during my MCA, when I worked on a project analyzing suicide trends in India. That experience opened my eyes to the power of data to create real impact, and it set me on a path to help others make sense of their numbers.
+                                    </p>
+                                    <p class="hover-zone reveal-right">
+                                        Today, I specialize in
+                                        <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener nofollow">Power BI</a>,
+                                        <a href="https://www.python.org/" target="_blank" rel="noopener nofollow">Python</a>,
+                                        <a href="https://www.mysql.com/" target="_blank" rel="noopener nofollow">MySQL</a>,
+                                        <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener nofollow">Excel</a>,
+                                        <a href="https://www.tableau.com/" target="_blank" rel="noopener nofollow">Tableau</a>, and
+                                        <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener nofollow">SQL</a>.
+                                        I help business owners, managers, and teams who want to turn messy data into clear, actionable insights—whether that's through dashboards, automation, or deep-dive analysis.
+                                    </p>
+                                    <p class="hover-zone reveal-left">
+                                        What motivates me? It's seeing the "aha!" moment when a client realizes how data can drive smarter decisions. I love building dashboards that not only look good, but also make complex information simple and useful.
+                                    </p>
+                                    <p class="hover-zone reveal-up">
+                                        Outside of work, you'll find me exploring Bangalore's food scene, playing chess, or tinkering with new tech tools. I believe learning never stops—I'm always looking for new ways to grow, both as an analyst and as a person.
+                                    </p>
+                                    <p class="hover-zone reveal-right" style="margin-top:2em;">
+                                        I believe the best results come from listening first—understanding your goals, your challenges, and what really matters to you. I enjoy working side by side with clients, asking questions, and making sure we're always moving toward something useful, not just impressive on paper. I'm always learning, whether it's a new tool or a new way to look at a problem, and I find a lot of joy in those small "aha" moments along the way. When I'm not working, you'll probably find me with a good cup of coffee, exploring a new part of Bangalore, or catching up with friends and family. If you'd like to chat about data, projects, or just swap stories, I'd love to hear from you.
+                                    </p>
+                                    <div class="text-center my-4">
+                                        <a href="contact.html" class="btn btn-outline-primary btn-lg hover-lift" style="border-radius: 50px; padding: 12px 30px;">
+                                            Let's Unlock Your Data Story &rarr;
+                                        </a>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -542,39 +342,39 @@
         </main>
 
         <!-- Footer -->
-        <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+        <footer class="footer mt-5" itemscope itemtype="https://schema.org/WPFooter" style="background-color: #000000; color: #e0e6ed;">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>Gagan | Data Analyst</h4>
-                        <p>
+                <div class="row footer-content py-5">
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h2 class="mb-3" style="color: #4a90e2; font-size:1.3rem;">Gagan | Data Analyst</h2>
+                        <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                             Transforming data into actionable insights for
                             businesses worldwide.
                         </p>
                     </div>
-                    <div class="footer-section">
-                        <strong>Quick Links</strong>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                    <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                        <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Quick Links</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><a href="index.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                            <li class="mb-3"><a href="about.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                            <li class="mb-3"><a href="projects.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                            <li class="mb-3"><a href="services.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                            <li class="mb-3"><a href="contact.html" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="footer-section">
-                        <strong>Services</strong>
-                        <ul>
-                            <li>Power BI Dashboards</li>
-                            <li>Excel Dashboards</li>
-                            <li>Data Cleaning (Excel / Python)</li>
-                            <li>SQL &amp; Python Analytics</li>
-                            <li>Excel Automation</li>
+                    <div class="col-md-4 footer-section text-center">
+                        <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Services</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
+                            <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
                         </ul>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>
+                <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+                    <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
                         &copy; <span itemprop="copyrightYear">2025</span>
                         <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
                     </p>
@@ -583,7 +383,9 @@
         </footer>
 
         <!-- Back to Top Button -->
-        <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+        <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
 
         <script>
         // Modern Interactive About Me - Enhanced with Latest Trends
@@ -797,6 +599,72 @@
             });
         });
         </script>
+        <!-- No custom nav JS needed; Bootstrap 5 Offcanvas handles open/close -->
         <script src="scripts.js"></script>
+
+        <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- NAVBAR FUNCTIONALITY SCRIPT - Tests Bootstrap loading and adds scroll effects -->
+        <script>
+            // Test Bootstrap functionality - CRITICAL for debugging navbar issues
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                if (navbarToggler) {
+                    console.log('Navbar toggler found');
+                    navbarToggler.addEventListener('click', function() {
+                        console.log('Hamburger clicked!');
+                    });
+                }
+            });
+
+            // Navbar scroll effect - Changes navbar appearance on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+        </script>
+
+        <!-- Bootstrap Back-to-Top Functionality -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backToTopBtn = document.getElementById('back-to-top');
+
+                // Show/hide button based on scroll position
+                function toggleBackToTop() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.remove('d-none');
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                        setTimeout(() => {
+                            if (!backToTopBtn.classList.contains('show')) {
+                                backToTopBtn.classList.add('d-none');
+                            }
+                        }, 300);
+                    }
+                }
+
+                // Smooth scroll to top
+                function scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Event listeners
+                window.addEventListener('scroll', toggleBackToTop, { passive: true });
+                backToTopBtn.addEventListener('click', scrollToTop);
+
+                // Initial check
+                toggleBackToTop();
+            });
+        </script>
     </body>
 </html>
