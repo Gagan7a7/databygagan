@@ -210,16 +210,13 @@ app.get("/api/projects", async (req, res) => {
         const projects = await sql`SELECT * FROM projects`;
         // Convert tech from JSONB to array and fix property names for frontend
         const result = projects.map(p => {
-            // Add Cloudinary transformation to image URLs
-            let imageUrl = p.image;
-            if (imageUrl && imageUrl.includes('cloudinary.com') && imageUrl.includes('/upload/')) {
-                imageUrl = imageUrl.replace('/upload/', '/upload/w_1200,f_auto,q_auto/');
-            }
-            
+            // Use stored image URL as-is (do not inject a Cloudinary width transform)
+            let imageUrl = p.image || null;
+
             return {
                 title: p.title,
                 category: p.category,
-                image: imageUrl,  // Use transformed URL
+                image: imageUrl,  // Use stored URL
                 alt: p.alt,
                 dashboardUrl: p.dashboardurl || p.dashboardUrl,
                 codeUrl: p.codeurl || p.codeUrl,
