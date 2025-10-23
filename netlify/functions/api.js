@@ -209,27 +209,23 @@ app.get("/api/projects", async (req, res) => {
     try {
         const projects = await sql`SELECT * FROM projects`;
         // Convert tech from JSONB to array and fix property names for frontend
-        const result = projects.map(p => {
-            // Use stored image URL as-is (do not inject a Cloudinary width transform)
-            let imageUrl = p.image || null;
-
-            return {
-                title: p.title,
-                category: p.category,
-                image: imageUrl,  // Use stored URL
-                alt: p.alt,
-                dashboardUrl: p.dashboardurl || p.dashboardUrl,
-                codeUrl: p.codeurl || p.codeUrl,
-                description: p.description,
-                tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []),
-                featured: p.featured
-            };
-        });
+        const result = projects.map(p => ({
+            title: p.title,
+            category: p.category,
+            image: p.image,
+            alt: p.alt,
+            dashboardUrl: p.dashboardurl || p.dashboardUrl,
+            codeUrl: p.codeurl || p.codeUrl,
+            description: p.description,
+            tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []),
+            featured: p.featured
+        }));
         res.json(result);
     } catch (e) {
         res.status(500).json({ error: "Failed to fetch projects" });
     }
 });
+
 // Add a new project
 app.post("/api/projects", async (req, res) => {
     // Enhanced debugging
