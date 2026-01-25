@@ -3,3 +3,5 @@ admin/
 node_modules/
 .env
 *.log
+.agent/
+ARCHITECTURE.md
