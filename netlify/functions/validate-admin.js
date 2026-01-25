@@ -1,6 +1,6 @@
 // Netlify serverless function for admin password validation
-exports.handler = async function(event, context) {
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'MyPortfolio@P@ssword77';
+exports.handler = async function (event, context) {
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
   let body;
   try {
     body = JSON.parse(event.body);

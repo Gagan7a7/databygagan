@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>View Testimonials - Admin Dashboard</title>
     <script>
-    // Check if user is logged in by verifying admin token
-    if (!localStorage.getItem('admin_token')) {
-        window.location.href = 'signin.html';
-    }
+        // Check if user is logged in by verifying admin token
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
     <meta name="robots" content="noindex, nofollow">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,14 +27,17 @@
             padding: 15px 0;
             overflow-y: auto;
         }
+
         .content {
             margin-left: 250px;
             min-height: 100vh;
             background: #151821;
         }
+
         .bg-secondary {
             background-color: #191C24 !important;
         }
+
         .testimonial-card {
             background: #191C24;
             border-radius: 8px;
@@ -42,15 +46,18 @@
             border-left: 4px solid #007BFF;
             transition: transform 0.2s ease;
         }
+
         .testimonial-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .client-info {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
+
         .client-avatar {
             width: 50px;
             height: 50px;
@@ -63,11 +70,13 @@
             font-weight: bold;
             margin-right: 15px;
         }
+
         .testimonial-highlights {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid #2A2D3A;
         }
+
         .highlight-tag {
             display: inline-block;
             padding: 4px 12px;
@@ -76,6 +85,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
         }
+
         .featured-badge {
             position: absolute;
             top: 10px;
@@ -87,30 +97,36 @@
             font-size: 0.85rem;
             font-weight: bold;
         }
+
         .filter-section {
             background: #191C24;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
+
         .search-box {
             background: #2A2D3A;
             border-color: #3E4651;
             color: #fff;
         }
+
         .search-box:focus {
             background: #2A2D3A;
             border-color: #007BFF;
             color: #fff;
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
-        .category-filter, .sort-filter {
+
+        .category-filter,
+        .sort-filter {
             background: #2A2D3A;
             border-color: #3E4651;
             color: #fff;
         }
     </style>
 </head>
+
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Sidebar -->
@@ -121,8 +137,11 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo"
+                            style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Gagan</h6>
@@ -130,12 +149,17 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.html" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
-                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                    <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add Testimonial</a>
-                    <a href="viewtestimonial.html" class="nav-item nav-link active"><i class="fa fa-comments me-2"></i>View Testimonials</a>
-                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View
+                        Projects</a>
+                    <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add
+                        Testimonial</a>
+                    <a href="viewtestimonial.html" class="nav-item nav-link active"><i
+                            class="fa fa-comments me-2"></i>View Testimonials</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i
+                            class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -153,7 +177,8 @@
                                         <span class="input-group-text bg-transparent text-white border-end-0">
                                             <i class="fa fa-search"></i>
                                         </span>
-                                        <input type="text" class="form-control search-box border-start-0" id="searchInput" placeholder="Search testimonials...">
+                                        <input type="text" class="form-control search-box border-start-0"
+                                            id="searchInput" placeholder="Search testimonials...">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -212,7 +237,8 @@
             <div class="modal-content bg-secondary">
                 <div class="modal-header border-bottom-0">
                     <h5 class="modal-title text-white">Confirm Delete</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-white">
                     Are you sure you want to delete this testimonial? This action cannot be undone.
@@ -237,19 +263,19 @@
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
                 localStorage.removeItem('admin_token');
-                window.location.href = 'signin.html';
+                window.location.href = '/index.html';
             }
         }
 
         // Initialize delete modal and restore filters
         document.addEventListener('DOMContentLoaded', () => {
             deleteModalInstance = new bootstrap.Modal(document.getElementById('deleteModal'));
-            
+
             // Set up event handlers for filters
             document.getElementById('searchInput').addEventListener('input', filterTestimonials);
             document.getElementById('categoryFilter').addEventListener('change', filterTestimonials);
             document.getElementById('sortFilter').addEventListener('change', filterTestimonials);
-            
+
             // Restore filters if coming back from edit
             const savedFilters = sessionStorage.getItem('testimonialFilters');
             if (savedFilters) {
@@ -259,7 +285,7 @@
                 document.getElementById('sortFilter').value = sortBy;
                 sessionStorage.removeItem('testimonialFilters');
             }
-            
+
             // Load testimonials
             loadTestimonials();
         });
@@ -288,7 +314,7 @@
 
             // Apply search filter
             if (searchTerm) {
-                filtered = filtered.filter(t => 
+                filtered = filtered.filter(t =>
                     t.clientName.toLowerCase().includes(searchTerm) ||
                     t.testimonialText.toLowerCase().includes(searchTerm) ||
                     (t.clientCompany && t.clientCompany.toLowerCase().includes(searchTerm))
@@ -378,7 +404,7 @@
                 const response = await fetch(`/api/testimonials/${id}`, {
                     method: 'DELETE'
                 });
-                
+
                 if (response.ok) {
                     testimonials = testimonials.filter(t => t.id !== id);
                     filterTestimonials();
@@ -398,14 +424,14 @@
             const searchTerm = document.getElementById('searchInput').value;
             const category = document.getElementById('categoryFilter').value;
             const sortBy = document.getElementById('sortFilter').value;
-            
+
             // Store filters in sessionStorage
             sessionStorage.setItem('testimonialFilters', JSON.stringify({
                 searchTerm,
                 category,
                 sortBy
             }));
-            
+
             // Navigate to edit page
             window.location.href = `addtestimonial.html?id=${id}`;
         }
@@ -430,4 +456,5 @@
         });
     </script>
 </body>
+
 </html>

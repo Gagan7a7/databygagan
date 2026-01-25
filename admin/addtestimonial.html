@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Add Testimonial - Admin Dashboard</title>
     <script>
-    // Check if user is logged in by verifying admin token
-    if (!localStorage.getItem('admin_token')) {
-        window.location.href = 'signin.html';
-    }
+        // Check if user is logged in by verifying admin token
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
     <meta name="robots" content="noindex, nofollow">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -27,43 +28,53 @@
             padding: 15px 0;
             overflow-y: auto;
         }
+
         .content {
             margin-left: 250px;
             min-height: 100vh;
             background: #151821;
         }
+
         .bg-secondary {
             background-color: #191C24 !important;
         }
+
         .form-control {
             background-color: #2A2D3A;
             border-color: #3E4651;
             color: #fff;
         }
+
         .form-control:focus {
             background-color: #2A2D3A;
             border-color: #007BFF;
             color: #fff;
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
+
         .form-control::placeholder {
             color: #adb5bd;
         }
+
         body {
             background-color: #151821;
             color: #fff;
         }
+
         .alert {
             margin-top: 1rem;
         }
+
         .btn-success {
             background-color: #28a745;
             border-color: #28a745;
         }
+
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
         }
+
         .preview-section {
             background: #191C24;
             border: 2px dashed #3E4651;
@@ -71,17 +82,20 @@
             padding: 20px;
             margin-top: 20px;
         }
+
         .testimonial-preview {
             background: #2A2D3A;
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #007BFF;
         }
+
         .client-info {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
+
         .client-avatar {
             width: 50px;
             height: 50px;
@@ -96,12 +110,13 @@
         }
     </style>
 </head>
+
 <body>
     <script>
-    // Check if user is logged in
-    if (!localStorage.getItem('admin_token')) {
-        window.location.href = 'signin.html';
-    }
+        // Check if user is logged in
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
 
     <div class="container-fluid position-relative d-flex p-0">
@@ -113,8 +128,11 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo"
+                            style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Gagan</h6>
@@ -122,12 +140,17 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.html" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
-                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                    <a href="addtestimonial.html" class="nav-item nav-link active"><i class="fa fa-quote-right me-2"></i>Add Testimonial</a>
-                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View Testimonials</a>
-                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View
+                        Projects</a>
+                    <a href="addtestimonial.html" class="nav-item nav-link active"><i
+                            class="fa fa-quote-right me-2"></i>Add Testimonial</a>
+                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View
+                        Testimonials</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i
+                            class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -151,13 +174,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="clientName" placeholder="Client Name" required>
+                                            <input type="text" class="form-control" id="clientName"
+                                                placeholder="Client Name" required>
                                             <label for="clientName">Client Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="clientRole" placeholder="Client Role">
+                                            <input type="text" class="form-control" id="clientRole"
+                                                placeholder="Client Role">
                                             <label for="clientRole">Role/Position (Optional)</label>
                                         </div>
                                     </div>
@@ -166,27 +191,31 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="clientCompany" placeholder="Company Name">
+                                            <input type="text" class="form-control" id="clientCompany"
+                                                placeholder="Company Name">
                                             <label for="clientCompany">Company/Organization (Optional)</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="clientLocation" placeholder="Location">
+                                            <input type="text" class="form-control" id="clientLocation"
+                                                placeholder="Location">
                                             <label for="clientLocation">Location (Optional)</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" id="testimonialText" style="height: 120px" required></textarea>
+                                    <textarea class="form-control" id="testimonialText" style="height: 120px"
+                                        required></textarea>
                                     <label for="testimonialText">Full Testimonial</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" id="shortQuote" style="height: 80px"></textarea>
                                     <label for="shortQuote">Short Quote (For Homepage)</label>
-                                    <div class="form-text text-light">Keep it under 100 characters for best display</div>
+                                    <div class="form-text text-light">Keep it under 100 characters for best display
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -233,14 +262,17 @@
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="projectRelated" placeholder="Related Project">
+                                    <input type="text" class="form-control" id="projectRelated"
+                                        placeholder="Related Project">
                                     <label for="projectRelated">Related Project (Optional)</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="keyHighlights" placeholder="Key Highlights">
+                                    <input type="text" class="form-control" id="keyHighlights"
+                                        placeholder="Key Highlights">
                                     <label for="keyHighlights">Key Highlights (comma separated)</label>
-                                    <div class="form-text text-light">E.g.: On-time delivery, Quality work, Technical expertise</div>
+                                    <div class="form-text text-light">E.g.: On-time delivery, Quality work, Technical
+                                        expertise</div>
                                 </div>
 
                                 <!-- Preview Section -->
@@ -254,7 +286,8 @@
                                                 <div class="text-muted" id="previewRole">Client</div>
                                             </div>
                                         </div>
-                                        <p class="mb-0 text-light" id="previewText">Your testimonial will appear here...</p>
+                                        <p class="mb-0 text-light" id="previewText">Your testimonial will appear here...
+                                        </p>
                                     </div>
                                 </div>
 
@@ -285,7 +318,7 @@
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
                 localStorage.removeItem('admin_token');
-                window.location.href = 'signin.html';
+                window.location.href = '/index.html';
             }
         }
 
@@ -314,7 +347,7 @@
         // Real-time preview updates
         const form = document.getElementById('testimonial-form');
         const inputs = form.querySelectorAll('input, textarea, select');
-        
+
         inputs.forEach(input => {
             input.addEventListener('input', updatePreview);
         });
@@ -324,37 +357,37 @@
             const role = document.getElementById('clientRole').value;
             const company = document.getElementById('clientCompany').value;
             const location = document.getElementById('clientLocation').value;
-            const text = document.getElementById('shortQuote').value || 
-                        document.getElementById('testimonialText').value || 
-                        'Your testimonial will appear here...';
+            const text = document.getElementById('shortQuote').value ||
+                document.getElementById('testimonialText').value ||
+                'Your testimonial will appear here...';
 
             document.getElementById('previewName').textContent = name;
             document.getElementById('previewAvatar').textContent = name.charAt(0).toUpperCase();
-            
+
             let roleText = '';
             const roleParts = [];
-            
+
             if (role && role.trim()) roleParts.push(role.trim());
             if (company && company.trim()) roleParts.push(company.trim());
             if (location && location.trim()) roleParts.push(location.trim());
-            
+
             roleText = roleParts.join(' • ') || 'Client';
-            
+
             document.getElementById('previewRole').textContent = roleText;
-            document.getElementById('previewText').textContent = text.slice(0, 200) + 
+            document.getElementById('previewText').textContent = text.slice(0, 200) +
                 (text.length > 200 ? '...' : '');
         }
 
         // Check for edit mode when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
             const editId = urlParams.get('id');
-            
+
             if (editId) {
                 // Change title and button text for edit mode
                 document.querySelector('h3.text-primary').textContent = 'Edit Testimonial';
                 document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Update Testimonial';
-                
+
                 // Fetch the testimonial data
                 fetch(`/api/testimonials/${editId}`)
                     .then(res => res.json())
@@ -376,7 +409,7 @@
                         if (data.dateAdded) {
                             document.getElementById('customDate').value = data.dateAdded;
                         }
-                        
+
                         // Update the preview
                         updatePreview();
                     })
@@ -387,7 +420,7 @@
         });
 
         // Form submission handler
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -397,10 +430,10 @@
             submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving...';
 
             const editId = document.getElementById('edit-index').value;
-            
+
             const customDate = document.getElementById('customDate').value;
             const today = new Date().toISOString().split('T')[0];
-            
+
             const testimonialData = {
                 clientName: document.getElementById('clientName').value,
                 clientRole: document.getElementById('clientRole').value || null,
@@ -415,14 +448,14 @@
                 show_date: document.getElementById('showDate').value === 'true',
                 dateAdded: customDate || today
             };
-            
+
             // API endpoint for testimonials with full environment support
             const isEdit = !!editId;
             const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
             const baseUrl = isLocalhost ? "http://localhost:5000/api" : "/api";
             const url = `${baseUrl}/testimonials${isEdit ? `/${editId}` : ''}`;
             const method = isEdit ? 'PUT' : 'POST';
-            
+
             console.log('Submitting testimonial to:', url);
 
             fetch(url, {
@@ -430,42 +463,42 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(testimonialData)
             })
-            .then(async res => {
-                if (!res.ok) {
-                    // Try to get error details from response
-                    const errorText = await res.text();
-                    let errorDetail;
-                    try {
-                        const errorJson = JSON.parse(errorText);
-                        errorDetail = errorJson.error || errorJson.message || errorText;
-                    } catch {
-                        errorDetail = errorText;
+                .then(async res => {
+                    if (!res.ok) {
+                        // Try to get error details from response
+                        const errorText = await res.text();
+                        let errorDetail;
+                        try {
+                            const errorJson = JSON.parse(errorText);
+                            errorDetail = errorJson.error || errorJson.message || errorText;
+                        } catch {
+                            errorDetail = errorText;
+                        }
+                        throw new Error(`HTTP ${res.status}: ${errorDetail}`);
                     }
-                    throw new Error(`HTTP ${res.status}: ${errorDetail}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    const message = isEdit ? 'Testimonial updated successfully!' : 'Testimonial added successfully!';
-                    showNotification(message, 'success');
-                    if (!isEdit) {
-                        resetForm();
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const message = isEdit ? 'Testimonial updated successfully!' : 'Testimonial added successfully!';
+                        showNotification(message, 'success');
+                        if (!isEdit) {
+                            resetForm();
+                        } else {
+                            window.location.href = 'viewtestimonial.html';
+                        }
                     } else {
-                        window.location.href = 'viewtestimonial.html';
+                        showNotification('Error saving testimonial: ' + (data.error || 'Unknown error'), 'error');
                     }
-                } else {
-                    showNotification('Error saving testimonial: ' + (data.error || 'Unknown error'), 'error');
-                }
-            })
-            .catch(err => {
-                console.error('API Error:', err);
-                showNotification('Error saving testimonial: ' + err.message, 'error');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            });
+                })
+                .catch(err => {
+                    console.error('API Error:', err);
+                    showNotification('Error saving testimonial: ' + err.message, 'error');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
         });
 
         // Reset form function
@@ -481,4 +514,5 @@
         document.addEventListener('DOMContentLoaded', updatePreview);
     </script>
 </body>
+
 </html>
