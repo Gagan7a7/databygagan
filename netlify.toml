@@ -58,3 +58,14 @@
     Content-Security-Policy = "default-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; connect-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;"
     Cache-Control = "no-store, no-cache, must-revalidate, private"
     Referrer-Policy = "no-referrer"
+
+# FORCE REVALIDATION FOR CSS & JS (Fixes Mobile Cache Issues)
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
