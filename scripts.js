@@ -969,6 +969,7 @@ if (typeof module !== "undefined" && module.exports) {
 }
 const phrases = [
     "Freelance Data Analyst",
+    "n8n Automation Specialist",
     "Power BI Developer",
     "Excel Dashboard Specialist",
     "Data Cleaning Expert",
