@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <!-- Essential meta tags first (like working admin pages) -->
+    <!-- Essential meta tags first -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Services - Gagan BP | Global Data Analytics &amp; Remote Solutions</title>
+    <title>Freelance Technical Services – Gagan BP | India</title>
 
     <!-- Bootstrap 5.3.0 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -14,11 +14,11 @@
     <!-- Custom CSS for Bootstrap overrides -->
     <link rel="stylesheet" href="styles.css?v=fixed">
 
-    <!-- All your existing meta tags preserved -->
+    <!-- Primary Meta Tags -->
     <meta name="description"
-        content="Global data analytics by Gagan BP: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, automation for remote clients worldwide.">
+        content="Freelance automation, analytics, and web services from India. n8n workflows, chatbots, Power BI dashboards, and portfolio websites for global clients.">
     <meta name="keywords"
-        content="global data analytics services, remote data analyst, Power BI dashboard development, Excel automation expert, Python data solutions, SQL query writing, business intelligence consulting, machine learning for business, analytics support worldwide, freelance data services, international data analytics">
+        content="freelance technical services India, n8n automation specialist, workflow automation, Power BI dashboard expert, chatbot development, MCP agents, lead outreach systems, data analytics freelancer, portfolio websites, Excel automation, Python data visualization, global freelancer">
     <meta name="author" content="Gagan BP">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
@@ -27,6 +27,13 @@
     <meta http-equiv="Content-Language" content="en">
     <meta name="language" content="English">
     <link rel="alternate" href="https://databygagan.com/services" hreflang="en">
+    <link rel="alternate" href="https://databygagan.com/services" hreflang="x-default">
+
+    <!-- Geographic Meta Tags -->
+    <meta name="geo.region" content="IN-KA">
+    <meta name="geo.placename" content="Bengaluru">
+    <meta name="geo.position" content="12.9716;77.5946">
+    <meta name="ICBM" content="12.9716, 77.5946">
 
     <!-- Performance and SEO meta tags -->
     <meta name="theme-color" content="#6c63ff">
@@ -42,20 +49,24 @@
 
     <!-- DNS prefetch for performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Services - Gagan BP | Global Data Analytics & Remote Solutions">
-    <meta property="og:description"
-        content="Global data analytics services: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, and automation for remote and worldwide clients.">
     <meta property="og:url" content="https://databygagan.com/services">
+    <meta property="og:title" content="Freelance Technical Services – Gagan BP | India">
+    <meta property="og:description"
+        content="Freelance automation, analytics, and web services. n8n workflows, Power BI dashboards, chatbots, and portfolio websites.">
     <meta property="og:locale" content="en_US">
     <meta property="og:image" content="https://databygagan.com/assets/favicon-512x512.png">
+    <meta property="og:site_name" content="DataByGagan">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Services - Gagan BP | Global Data Analytics & Remote Solutions">
+    <meta name="twitter:title" content="Freelance Technical Services – Gagan BP | India">
     <meta name="twitter:description"
-        content="Global data analytics services by Gagan BP for remote and international clients. Excel, Power BI, SQL, Python, automation, and more.">
+        content="Freelance automation, analytics, and web services. n8n workflows, Power BI dashboards, chatbots, and portfolio websites.">
     <meta name="twitter:image" content="https://databygagan.com/assets/favicon-512x512.png">
 
     <!-- Favicon -->
@@ -64,38 +75,107 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://databygagan.com/services">
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data - ServiceCatalog @graph -->
     <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "WebPage",
-                    "url": "https://databygagan.com/services",
-                    "name": "Services - Gagan BP | Global Data Analytics & Remote Solutions",
-                    "description": "Global data analytics services by Gagan BP: Excel dashboards, Power BI, data cleaning, SQL, Python, machine learning, and automation for remote and worldwide clients.",
-                    "datePublished": "2024-09-01",
-                    "dateModified": "2025-09-23",
-                    "inLanguage": "en",
-                    "mainEntityOfPage": {
-                        "@type": "WebPage",
-                        "@id": "https://databygagan.com/services"
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://databygagan.com/services#webpage",
+                "name": "Freelance Technical Services – Gagan BP",
+                "description": "Comprehensive automation, analytics, and web services from an India-based freelance technical partner.",
+                "url": "https://databygagan.com/services",
+                "dateModified": "2026-02-01",
+                "inLanguage": "en",
+                "mainEntity": {
+                    "@id": "https://databygagan.com/#person"
+                }
+            },
+            {
+                "@type": "ItemList",
+                "@id": "https://databygagan.com/services#service-catalog",
+                "name": "Technical Services Catalog",
+                "numberOfItems": 3,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Automation & AI Services",
+                        "item": {
+                            "@type": "Service",
+                            "@id": "https://databygagan.com/services#automation",
+                            "serviceType": "Automation",
+                            "provider": {"@id": "https://databygagan.com/#person"},
+                            "areaServed": "Worldwide",
+                            "hasOfferCatalog": {
+                                "@type": "OfferCatalog",
+                                "name": "Automation Services",
+                                "itemListElement": [
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "n8n Workflow Automation"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lead Outreach Systems"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "WhatsApp/Telegram Chatbots"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "MCP Agent Development"}}
+                                ]
+                            }
+                        }
                     },
-                    "author": {
-                        "@type": "Person",
-                        "name": "Gagan BP",
-                        "url": "https://databygagan.com/",
-                        "jobTitle": "Global Data Analyst",
-                        "email": "databygagan@gmail.com",
-                        "image": "https://databygagan.com/assets/favicon-512x512.png",
-                        "sameAs": [
-                            "https://www.linkedin.com/in/gagan-b-p-0a9635243/"
-                        ],
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressCountry": "IN"
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Data Analytics Services",
+                        "item": {
+                            "@type": "Service",
+                            "@id": "https://databygagan.com/services#analytics",
+                            "serviceType": "Data Analytics",
+                            "provider": {"@id": "https://databygagan.com/#person"},
+                            "areaServed": "Worldwide",
+                            "hasOfferCatalog": {
+                                "@type": "OfferCatalog",
+                                "name": "Analytics Services",
+                                "itemListElement": [
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Power BI Dashboards"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Excel Dashboards & Automation"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SQL Query Writing"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Python Data Visualization"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Data Cleaning"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Machine Learning Models"}}
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Web Development Services",
+                        "item": {
+                            "@type": "Service",
+                            "@id": "https://databygagan.com/services#web",
+                            "serviceType": "Web Development",
+                            "provider": {"@id": "https://databygagan.com/#person"},
+                            "areaServed": "Worldwide",
+                            "hasOfferCatalog": {
+                                "@type": "OfferCatalog",
+                                "name": "Web Services",
+                                "itemListElement": [
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Portfolio Websites"}},
+                                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landing Pages"}}
+                                ]
+                            }
                         }
                     }
-                }
-                </script>
+                ]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://databygagan.com/"},
+                    {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://databygagan.com/services"}
+                ]
+            }
+        ]
+    }
+    </script>
     <!--Styles-->
 
     <!-- Fonts -->
@@ -215,138 +295,230 @@
         <section id="services" class="section section-dark" aria-labelledby="services-heading">
             <div class="container">
                 <h1 id="services-heading" class="section-title">
-                    Services I Offer
+                    Freelance Technical Services
                 </h1>
-                <div class="services-grid">
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-chart-pie"></i>
+                <p class="lead text-center mb-5" style="color: #84ade4; font-size: 1.05rem;">
+                    Automation, analytics, and web solutions for global clients from India.
+                </p>
+
+                <!-- PILLAR 1: Automation & AI Services -->
+                <article id="automation-services" aria-labelledby="automation-heading" style="margin-bottom: 3rem;">
+                    <h2 id="automation-heading" class="text-center mb-2"
+                        style="color: #4a90e2; font-size: 1.4rem; font-weight: 600;">
+                        <i class="fas fa-bolt me-2"></i>Automation & AI Services
+                    </h2>
+                    <p class="text-center mb-4" style="color: #a0aec0; font-size: 0.95rem; font-style: italic;">
+                        Save hours every week with intelligent workflows
+                    </p>
+                    <div class="services-grid">
+                        <!-- n8n Workflow Automation -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">n8n
+                                    Workflow Automation</h3>
+                                <p itemprop="description" class="card-text">
+                                    Custom n8n workflows to automate repetitive tasks,
+                                    connect your apps, and streamline business operations.
+                                    From simple integrations to complex multi-step processes.
+                                </p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Excel
-                                Dashboards</h2>
-                            <p itemprop="description" class="card-text">
-                                I create professional Excel dashboards using
-                                advanced formulas, pivot tables, conditional
-                                formatting, charts, and slicers. Ideal for tracking
-                                KPIs, business metrics, or custom reports based on
-                                your data.
-                            </p>
+                        <!-- Lead Outreach Systems -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Lead
+                                    Outreach Systems</h3>
+                                <p itemprop="description" class="card-text">
+                                    I build intelligent agents that research potential leads and write personalized
+                                    messages for you. These systems connect directly to your email setup, making your
+                                    outreach smarter while you stay in control of the overall strategy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- WhatsApp/Telegram Chatbots -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">
+                                    WhatsApp/Telegram Chatbots</h3>
+                                <p itemprop="description" class="card-text">
+                                    I build bots for Telegram and WhatsApp based on your specific needs. By using LLMs
+                                    (AI), I can create bots that understand and chat naturally with users, handle
+                                    automated alerts, or connect with your other apps to manage tasks exactly how you
+                                    want.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- PILLAR 2: Data Analytics Services -->
+                <article id="analytics-services" aria-labelledby="analytics-heading" style="margin-bottom: 3rem;">
+                    <h2 id="analytics-heading" class="text-center mb-2"
+                        style="color: #4a90e2; font-size: 1.4rem; font-weight: 600;">
+                        <i class="fas fa-chart-bar me-2"></i>Data Analytics Services
+                    </h2>
+                    <p class="text-center mb-4" style="color: #a0aec0; font-size: 0.95rem; font-style: italic;">
+                        Transform raw data into business insights
+                    </p>
+                    <div class="services-grid">
+                        <!-- Power BI Reports -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Power BI
+                                    Reports</h3>
+                                <p itemprop="description" class="card-text">
+                                    I design interactive and visually compelling reports
+                                    in Power BI using DAX and Power Query. Whether you
+                                    need dashboards for sales, operations, or data
+                                    monitoring, I can help you present your data
+                                    effectively.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Excel Dashboards -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Excel
+                                    Dashboards</h3>
+                                <p itemprop="description" class="card-text">
+                                    I create professional Excel dashboards using
+                                    advanced formulas, pivot tables, conditional
+                                    formatting, charts, and slicers. Ideal for tracking
+                                    KPIs, business metrics, or custom reports based on
+                                    your data.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- SQL Query Writing -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">SQL Query
+                                    Writing</h3>
+                                <p itemprop="description" class="card-text">
+                                    I write optimized SQL queries in MySQL for
+                                    selecting, filtering, joining, and summarizing data.
+                                    Whether it's simple reports or complex conditions, I
+                                    can help you extract the right insights from your
+                                    database.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Python Data Visualization -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Python Data
+                                    Visualization</h3>
+                                <p itemprop="description" class="card-text">
+                                    I use Python (Matplotlib and Seaborn) to create clear and
+                                    impactful charts like bar graphs, heatmaps, line
+                                    plots, and more. These visuals help you explore and
+                                    present your data effectively in reports or
+                                    dashboards.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Data Cleaning -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-broom"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Data
+                                    Cleaning</h3>
+                                <p itemprop="description" class="card-text">
+                                    I clean messy or unstructured data using Excel
+                                    functions, Power Query, or Python (Pandas). From
+                                    handling missing values to formatting columns, I
+                                    ensure your data is clean, consistent, and ready for
+                                    analysis.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Excel Automation -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Excel
+                                    Automation</h3>
+                                <p itemprop="description" class="card-text">
+                                    I automate Excel tasks like updating files,
+                                    formatting data, or generating reports using Python
+                                    scripts and AI (GPT). Save time by letting me handle
+                                    repetitive Excel work with smart automation.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-chart-line"></i>
+                </article>
+
+                <!-- PILLAR 3: Web Development Services -->
+                <article id="web-services" aria-labelledby="web-heading">
+                    <h2 id="web-heading" class="text-center mb-2"
+                        style="color: #4a90e2; font-size: 1.4rem; font-weight: 600;">
+                        <i class="fas fa-globe me-2"></i>Web Development Services
+                    </h2>
+                    <p class="text-center mb-4" style="color: #a0aec0; font-size: 0.95rem; font-style: italic;">
+                        Clean, professional web presence
+                    </p>
+                    <div class="services-grid">
+                        <!-- Portfolio Websites -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Portfolio
+                                    Websites</h3>
+                                <p itemprop="description" class="card-text">
+                                    I build simple, clean personal websites using HTML
+                                    and CSS — ideal for portfolios, resumes, or
+                                    freelancer profiles. I can also help you host it on
+                                    GitHub Pages for free access online.
+                                </p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Power BI
-                                Reports</h2>
-                            <p itemprop="description" class="card-text">
-                                I design interactive and visually compelling reports
-                                in Power BI using DAX and Power Query. Whether you
-                                need dashboards for sales, operations, or data
-                                monitoring, I can help you present your data
-                                effectively.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-broom"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">
-                                Data Cleaning (Excel / Python / Power Query)
-                            </h2>
-                            <p itemprop="description" class="card-text">
-                                I clean messy or unstructured data using Excel
-                                functions, Power Query, or Python (Pandas). From
-                                handling missing values to formatting columns, I
-                                ensure your data is clean, consistent, and ready for
-                                analysis.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">SQL Query
-                                Writing</h2>
-                            <p itemprop="description" class="card-text">
-                                I write optimized SQL queries in MySQL for
-                                selecting, filtering, joining, and summarizing data.
-                                Whether it's simple reports or complex conditions, I
-                                can help you extract the right insights from your
-                                database.
-                            </p>
+                        <!-- Landing Pages -->
+                        <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
+                            <div class="service-icon card-img-top">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="card-body">
+                                <h3 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Landing
+                                    Pages</h3>
+                                <p itemprop="description" class="card-text">
+                                    I build clean websites for your business, ranging from simple one-page landing pages
+                                    to sites with multiple pages. Every site is designed to look professional and work
+                                    correctly across all devices, including desktops, tablets, and mobile phones.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Python Data
-                                Visualization</h2>
-                            <p itemprop="description" class="card-text">
-                                I use Python (Matplotlib and Seaborn) to create clear and
-                                impactful charts like bar graphs, heatmaps, line
-                                plots, and more. These visuals help you explore and
-                                present your data effectively in reports or
-                                dashboards.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Machine
-                                Learning (Basic Models)</h2>
-                            <p itemprop="description" class="card-text">
-                                I build beginner-friendly machine learning models
-                                using scikit-learn. I can help you with data
-                                preparation, model training, accuracy evaluation,
-                                and visual insights — great for academic or
-                                prototype-level use.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">Excel
-                                Automation (Python + AI)</h2>
-                            <p itemprop="description" class="card-text">
-                                I automate Excel tasks like updating files,
-                                formatting data, or generating reports using Python
-                                scripts and AI (GPT). Save time by letting me handle
-                                repetitive Excel work with smart automation.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="service-card card" itemscope itemtype="https://schema.org/Service" tabindex="0">
-                        <div class="service-icon card-img-top">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="card-body">
-                            <h2 itemprop="name" class="card-title" style="font-size:1.2rem; color:#fff;">
-                                Portfolio / Resume Website (HTML &amp; CSS)
-                            </h2>
-                            <p itemprop="description" class="card-text">
-                                I build simple, clean personal websites using HTML
-                                and CSS — ideal for portfolios, resumes, or
-                                freelancer profiles. I can also help you host it on
-                                GitHub Pages for free access online.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                </article>
+
             </div>
         </section>
     </main>
@@ -356,10 +528,9 @@
         <div class="container">
             <div class="row footer-content py-5">
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h3 class="mb-3" style="color: #4a90e2; font-size:1.1rem;">Gagan | Data Analyst</h3>
+                    <h3 class="mb-3" style="color: #4a90e2; font-size:1.1rem;">Gagan | Technical Partner</h3>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
-                        Transforming data into actionable insights for
-                        businesses worldwide.
+                        Delivering automation, analytics, and web solutions for businesses worldwide.
                     </p>
                 </div>
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
@@ -380,18 +551,18 @@
                 <div class="col-md-4 footer-section text-center">
                     <h4 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Services</h4>
                     <ul class="list-unstyled">
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Chatbots & AI Agents</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Portfolio Websites</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
                 <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
-                    &copy; <span itemprop="copyrightYear">2025</span>
-                    <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Data Analyst
+                    &copy; <span itemprop="copyrightYear">2026</span>
+                    <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Technical Partner
                 </p>
             </div>
         </div>
