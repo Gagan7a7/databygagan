@@ -69,3 +69,17 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+[[plugins]]
+  package = "netlify-plugin-checklinks"
+  [plugins.inputs]
+    # Skip the future SEO anchors that don't have headings yet
+    skipPatterns = [
+        "#automation",
+        "#data",
+        "#web"
+    ]
+    todoPatterns = [
+        "#automation",
+        "#data",
+        "#web"
+    ]
