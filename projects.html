@@ -42,7 +42,6 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
-    <!-- Custom domain is live -->
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -62,20 +61,10 @@
     <meta name="twitter:image" content="https://databygagan.com/assets/favicon-512x512.png">
 
     <!-- Favicon -->
-    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
-    <!-- Missing asset: assets/favicon.ico. Add this file for legacy browser support if needed. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 
     <!-- Canonical URL -->
-    <!-- <link rel="canonical" href="https://databygagan.netlify.app/projects"> Use Netlify URL until custom domain is live -->
     <link rel="canonical" href="https://databygagan.com/projects">
-
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="databygagan/assets/apple-touch-icon.png"> -->
-    <!-- Missing asset: databygagan/assets/apple-touch-icon.png. Add this file for full PWA support. -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="databygagan/assets/favicon-16x16.png"> -->
-    <!-- Missing asset: databygagan/assets/favicon-16x16.png. Add this file for favicon support. -->
-    <!-- <link rel="manifest" href="databygagan/assets/site.webmanifest"> -->
-    <!-- Missing asset: databygagan/assets/site.webmanifest. Add this file for PWA/manifest support. -->
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -108,34 +97,24 @@
     }
     </script>
 
-    <!-- Fonts -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <!-- Preload LCP Cloudinary image for mobile performance. Only update this if your main above-the-fold image changes. -->
-    <link rel="preload" as="image"
-        href="https://res.cloudinary.com/databygagan/image/upload/f_auto,q_auto,w_600/v1690000000/weatherdashboard.png">
-
-    <!-- Stylesheets -->
-    <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Custom CSS - REQUIRED for navbar glassmorphism effects and offcanvas styling -->
+    <!-- Preload LCP Cloudinary image for mobile performance -->
+    <link rel="preload" as="image"
+        href="https://res.cloudinary.com/databygagan/image/upload/f_auto,q_auto,w_600/v1690000000/weatherdashboard.png">
+
+    <!-- Stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="styles.css?v=fixed">
-    <!-- Google tag (gtag.js) -->
+
+    <!-- Google Analytics -->
     <script>
         function isMobile() {
             return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
@@ -146,7 +125,6 @@
                 gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ';
                 gtagScript.async = true;
                 document.head.appendChild(gtagScript);
-
                 gtagScript.onload = function () {
                     window.dataLayer = window.dataLayer || [];
                     function gtag() { dataLayer.push(arguments); }
@@ -167,14 +145,7 @@
             };
         }
     </script>
-    <!-- End Google tag (gtag.js) -->
 
-    <!-- Stylesheet for smooth scrolling (optional) -->
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
     <style>
         html {
             scroll-behavior: smooth;
@@ -223,7 +194,6 @@
             }
         }
 
-        /* Reduce gap between navbar and Featured Projects heading */
         #projects-heading.section-title {
             margin-top: 2.2rem !important;
             margin-bottom: 2.2rem !important;
@@ -236,7 +206,7 @@
             }
         }
 
-        /* Center and style category buttons */
+        /* Category buttons */
         #category-buttons {
             display: flex;
             justify-content: center;
@@ -266,12 +236,6 @@
             transform: translateY(-2px) scale(1.07);
         }
 
-        .category-scroll-btn:active {
-            background: #4a90e2;
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
-            transform: scale(0.97);
-        }
-
         @media (max-width: 600px) {
             #category-buttons {
                 display: flex;
@@ -282,7 +246,6 @@
                 margin-bottom: 1.1rem;
                 scrollbar-width: thin;
                 scrollbar-color: #6c63ff #e0e6ed;
-                position: relative;
             }
 
             .category-scroll-btn {
@@ -291,61 +254,92 @@
                 min-width: 90px;
                 white-space: nowrap;
             }
+        }
 
-            #category-buttons::-webkit-scrollbar {
-                height: 6px;
+        /* ══════════════════════════════════════════════════ */
+        /* IMPROVED PROJECT CTA (matching services.html)      */
+        /* ══════════════════════════════════════════════════ */
+        .project-cta-section {
+            padding: 3rem 0;
+        }
+
+        .project-cta {
+            position: relative;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
+            border: 1px solid rgba(74, 144, 226, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 3rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-cta::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), transparent, rgba(139, 92, 246, 0.2));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            padding: 1px;
+            pointer-events: none;
+        }
+
+        .project-cta-btn {
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #4a90e2, #6366f1);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .project-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.3);
+            background: linear-gradient(135deg, #5a9ef2, #7376f1);
+            color: #fff;
+        }
+
+        .project-cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-cta {
+                padding: 2rem 1.5rem;
             }
 
-            #category-buttons::-webkit-scrollbar-thumb {
-                background: #6c63ff;
-                border-radius: 3px;
-            }
-
-            #category-buttons::-webkit-scrollbar-track {
-                background: #e0e6ed;
-            }
-
-            .category-scroll-arrow {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: #fff;
-                border: 1px solid #6c63ff;
-                color: #6c63ff;
-                border-radius: 50%;
-                width: 28px;
-                height: 28px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-                cursor: pointer;
-                z-index: 2;
-            }
-
-            .category-scroll-arrow.left {
-                left: 0;
-            }
-
-            .category-scroll-arrow.right {
-                right: 0;
+            .project-cta-btn {
+                padding: 12px 28px;
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage" lang="en">
-    <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
+    <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
             <div class="container-fluid py-1">
-                <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav gap-2">
                         <li class="nav-item">
@@ -376,7 +370,6 @@
                         </li>
                     </ul>
                 </div>
-                <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
                     aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
@@ -428,6 +421,34 @@
                 </h1>
                 <div id="category-buttons"></div>
                 <div id="projects-list"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- IMPROVED PROJECT CTA (matching services) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="project-cta-section" aria-labelledby="project-cta-heading">
+            <div class="container">
+                <div class="text-center project-cta">
+                    <div class="project-cta-badge">
+                        <i class="fas fa-rocket" style="color:#4a90e2;font-size:1.1rem;"></i>
+                        <span
+                            style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">
+                            Let's Build Together
+                        </span>
+                    </div>
+                    <h2 id="project-cta-heading" class="mb-3 fw-bold"
+                        style="color:#e0e6ed;font-size:clamp(1.3rem,3vw,1.6rem);">
+                        Have a Similar Project in Mind?
+                    </h2>
+                    <p class="mb-4 mx-auto" style="color:#a0aec0;font-size:1rem;max-width:540px;line-height:1.7;">
+                        Whether it's automating your workflows, building dashboards, or creating a
+                        professional website — let's discuss how I can help.
+                    </p>
+                    <a href="contact.html" class="project-cta-btn">
+                        <i class="fas fa-rocket me-2"></i> Start a Project Like This
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -482,13 +503,11 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- NAVBAR FUNCTIONALITY SCRIPT - Tests Bootstrap loading and adds scroll effects -->
     <script>
-        // Test Bootstrap functionality - CRITICAL for debugging navbar issues
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
             const navbarToggler = document.querySelector('.navbar-toggler');
@@ -500,7 +519,6 @@
             }
         });
 
-        // Navbar scroll effect - Changes navbar appearance on scroll
         window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -511,13 +529,10 @@
         });
     </script>
 
-    <!-- Bootstrap Back-to-Top Functionality -->
     <script>
-        // Back-to-Top Functionality
         document.addEventListener('DOMContentLoaded', function () {
             const backToTopBtn = document.getElementById('back-to-top');
 
-            // Show/hide back-to-top button based on scroll position
             function toggleBackToTop() {
                 if (window.pageYOffset > 300) {
                     backToTopBtn.classList.remove('d-none');
@@ -526,7 +541,6 @@
                 }
             }
 
-            // Throttled scroll event for performance
             let scrollTimeout;
             window.addEventListener('scroll', function () {
                 if (scrollTimeout) {
@@ -535,7 +549,6 @@
                 scrollTimeout = setTimeout(toggleBackToTop, 10);
             }, { passive: true });
 
-            // Smooth scroll to top when clicked
             backToTopBtn.addEventListener('click', function () {
                 window.scrollTo({
                     top: 0,
@@ -545,7 +558,6 @@
         });
     </script>
 
-    <!-- Script -->
     <script src="scripts.js"></script>
 </body>
 

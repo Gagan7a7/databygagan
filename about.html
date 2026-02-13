@@ -28,7 +28,6 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
-    <!-- Custom domain is live -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://databygagan.com/about">
     <meta property="og:title" content="About Gagan BP | Freelance Technical Partner – India">
@@ -40,8 +39,6 @@
     <meta name="twitter:title" content="About Gagan BP | Freelance Technical Partner – India">
     <meta name="twitter:description"
         content="India-based freelance technical partner specializing in n8n automation, Power BI dashboards & web development. Serving global clients.">
-
-    <!-- Hreflang Tags for Global Targeting -->
     <link rel="alternate" hreflang="en" href="https://databygagan.com/about">
     <link rel="alternate" hreflang="en-US" href="https://databygagan.com/about">
     <link rel="alternate" hreflang="en-GB" href="https://databygagan.com/about">
@@ -111,13 +108,31 @@
     ]
 }
 </script>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
+        /* Smooth scroll for entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth page entry */
+        body {
+            animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes pageEntry {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive: Make the main CTA button smaller on mobile */
         @media (max-width: 576px) {
             .about-content .btn.btn-outline-primary.btn-lg.hover-lift {
@@ -138,17 +153,22 @@
             overflow: visible;
         }
 
+        /* Modern paragraph reveal: blur-to-clear + slide up */
         .about-text p {
             opacity: 0;
-            transform: translateY(40px) rotateX(10deg);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(50px);
+            filter: blur(7px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             margin-bottom: 2rem;
             position: relative;
         }
 
         .about-text p.animate {
             opacity: 1;
-            transform: translateY(0) rotateX(0deg);
+            transform: translateY(0);
+            filter: blur(0);
         }
 
         .about-text p.lead {
@@ -189,7 +209,7 @@
 
         .hover-zone {
             position: relative;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             padding: 1rem;
             border-radius: 10px;
             cursor: pointer;
@@ -214,47 +234,206 @@
         }
 
         .hover-zone:hover {
-            transform: translateX(15px) translateY(-5px);
-            box-shadow: -10px 10px 30px rgba(74, 144, 226, 0.1);
+            transform: translateX(12px) translateY(-3px);
+            box-shadow: -8px 8px 25px rgba(74, 144, 226, 0.12);
+        }
+
+        /* Accordion Styling */
+        .accordion-button {
+            background: transparent !important;
+            color: #95bbeb !important;
+            font-size: 1.1rem;
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #4a90e2 !important;
+        }
+
+        .accordion-button::after {
+            filter: brightness(0) saturate(100%) invert(65%) sepia(41%) saturate(458%) hue-rotate(176deg) brightness(95%) contrast(89%);
+        }
+
+        .accordion-item {
+            background: rgba(74, 144, 226, 0.03) !important;
+            border: 1px solid rgba(74, 144, 226, 0.1) !important;
+            margin-bottom: 1rem !important;
+            border-radius: 10px !important;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(74, 144, 226, 0.1);
+        }
+
+        .accordion-body {
+            color: #a0aec0;
+        }
+
+        .accordion-collapse {
+            transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Section title reveal */
+        .reveal-title {
+            opacity: 0;
+            transform: translateY(35px) scale(0.96);
+            filter: blur(5px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-title.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* Subtitle reveal */
+        .reveal-subtitle {
+            opacity: 0;
+            transform: translateY(25px);
+            filter: blur(4px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* Accordion container reveal */
+        .reveal-accordion {
+            opacity: 0;
+            transform: translateY(35px);
+            filter: blur(4px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-accordion.animate {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* Aside card reveal */
+        .reveal-card {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            filter: blur(5px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-card.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* CTA reveal */
+        .reveal-cta {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            filter: blur(4px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-cta.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* CTA button hover */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-lift::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: inherit;
+        }
+
+        .hover-lift:hover::after {
+            opacity: 1;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 14px 40px rgba(74, 144, 226, 0.25) !important;
+        }
+
+        /* Footer section reveal */
+        .footer-reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .footer-reveal.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accessibility: reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            body {
+                animation: none;
+            }
+        }
+
+        /* Mobile: lighter animations for performance */
+        @media (max-width: 768px) {
+            .about-text p {
+                transform: translateY(30px);
+                filter: blur(4px);
+            }
+
+            .reveal-title {
+                transform: translateY(20px) scale(0.98);
+                filter: blur(3px);
+            }
+
+            .reveal-card,
+            .reveal-accordion {
+                transform: translateY(25px);
+                filter: blur(3px);
+            }
+
+            .hover-zone:hover {
+                transform: translateX(6px) translateY(-2px);
+                box-shadow: -4px 4px 15px rgba(74, 144, 226, 0.08);
+            }
         }
     </style>
-    <script>
-        // Animated paragraph reveal and hover effect for about section
-        document.addEventListener('DOMContentLoaded', function () {
-            // Intersection Observer for Reveal Animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, observerOptions);
-            document.querySelectorAll('.about-text p').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
 
     <!-- Stylesheets -->
-    <!-- Bootstrap CSS - REQUIRED for navbar styling and functionality -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Font Awesome - REQUIRED for navbar icons (fa-home, fa-user, etc) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <!-- Custom CSS - REQUIRED for navbar glassmorphism effects and offcanvas styling -->
     <link rel="stylesheet" href="styles.css?v=fixed">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -262,7 +441,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-5Z3EEE9EZZ');
     </script>
 </head>
@@ -277,18 +455,16 @@
     <!-- Particle System -->
     <div class="particles" id="particles"></div>
 
-    <!-- NAVBAR MAIN STRUCTURE - Complete responsive navbar with hamburger menu -->
+    <!-- NAVBAR MAIN STRUCTURE -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
             <div class="container-fluid py-1">
-                <!-- HAMBURGER BUTTON - Shows on mobile (< lg breakpoint), triggers offcanvas menu -->
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- DESKTOP NAVBAR - Hidden on mobile, shows on lg+ screens -->
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav gap-2">
                         <li class="nav-item">
@@ -301,7 +477,8 @@
                             <a class="nav-link" href="skills.html"><i class="fas fa-cogs"></i> Skills</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i>
+                                Projects</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="services.html"><i class="fas fa-briefcase"></i> Services</a>
@@ -313,14 +490,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
                         </li>
                     </ul>
                 </div>
 
-                <!-- MOBILE OFFCANVAS MENU - Slides from right when hamburger clicked -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
                     aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
@@ -353,7 +528,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
                             </li>
@@ -366,7 +540,6 @@
 
     <!-- Main Content -->
     <main id="main" style="padding-top: 100px;">
-        <!-- About Section (Bootstrap 5 grid, modern design, floating shapes, parallax) -->
         <section id="about" class="section position-relative py-5" aria-labelledby="about-heading"
             style="overflow-x: hidden;">
             <!-- Parallax Background Elements -->
@@ -378,16 +551,17 @@
                 </div>
             </div>
             <div class="container position-relative" style="z-index: 2;">
-                <h1 id="about-heading" class="section-title text-center mb-5 reveal-title" style="font-size:2rem;">About
+                <h1 id="about-heading" class="section-title text-center mb-5 reveal-title" style="font-size:2rem;">
+                    About
                     Gagan BP – Freelance Technical Partner, India</h1>
-                <p class="lead text-center mb-5" style="color: #95bbeb; font-size: 1.1rem;">Helping global clients with
+                <p class="lead text-center mb-5 reveal-subtitle" style="color: #95bbeb; font-size: 1.1rem;">Helping
+                    global clients with
                     automation, data analytics, and web development.</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-xl-8">
                         <div class="about-content">
                             <div class="about-text"
                                 style="text-align: justify; text-justify: inter-word; hyphens: auto;">
-                                <!-- All your current about page paragraphs below remain unchanged -->
                                 <p class="lead text-center mb-4 fade-in-text shimmer-box" data-delay="0"
                                     style="text-align: justify; font-size: 1.1rem;">
                                     Hi there! 👋 I'm <strong>Gagan BP</strong>, a freelance technical partner based in
@@ -405,51 +579,92 @@
                                     Here's how I typically help:
                                 </p>
 
-                                <!-- AUTOMATION - PRIMARY DIFFERENTIATOR (First) -->
-                                <article aria-labelledby="automation-heading">
-                                    <p class="hover-zone reveal-left" id="automation-heading" style="font-size: 1rem;">
-                                        🤖 <strong>Automation</strong> I design custom
-                                        <a href="services.html#automation"
-                                            style="color: white; text-decoration: underline;">n8n workflow
-                                            automation</a>
-                                        systems, MCP agents, chatbots, and lead generation pipelines.
-                                        This includes AI-assisted automations that reduce repetitive manual work—so
-                                        tools
-                                        work together more efficiently and teams can focus on higher-value tasks.
-                                    </p>
-                                </article>
+                                <!-- ACCORDION FOR SERVICES -->
+                                <div class="accordion accordion-flush mb-4 reveal-accordion" id="servicesAccordion">
+                                    <!-- AUTOMATION -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#automationCollapse"
+                                                aria-expanded="false" aria-controls="automationCollapse">
+                                                🤖 <strong>Automation</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="automationCollapse" class="accordion-collapse collapse"
+                                            data-bs-parent="#servicesAccordion">
+                                            <div class="accordion-body">
+                                                I design custom
+                                                <a href="services.html#automation"
+                                                    style="color: white; text-decoration: underline;">n8n workflow
+                                                    automation</a>
+                                                systems, MCP agents, chatbots, and lead generation pipelines.
+                                                This includes AI-assisted automations that reduce repetitive manual
+                                                work—so
+                                                tools
+                                                work together more efficiently and teams can focus on higher-value
+                                                tasks.
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <!-- DATA ANALYTICS - SECOND -->
-                                <article aria-labelledby="data-heading">
-                                    <p class="hover-zone reveal-right" id="data-heading" style="font-size: 1rem;">
-                                        📊 <strong>Data Analytics</strong> I work with
-                                        <a href="projects.html?filter=powerbi"
-                                            style="color: white; text-decoration: underline;">Power BI</a>,
-                                        <a href="https://www.python.org/" target="_blank" rel="noopener nofollow"
-                                            style="color: white; text-decoration: underline;">Python</a>,
-                                        <a href="https://en.wikipedia.org/wiki/SQL" target="_blank"
-                                            rel="noopener nofollow"
-                                            style="color: white; text-decoration: underline;">SQL</a>, and
-                                        <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank"
-                                            rel="noopener nofollow"
-                                            style="color: white; text-decoration: underline;">Excel</a>
-                                        to organize raw or messy datasets and convert them into clear, meaningful
-                                        dashboards
-                                        and reports. The focus is always on clarity, accuracy, and usability.
-                                    </p>
-                                </article>
+                                    <!-- DATA ANALYTICS -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#analyticsCollapse"
+                                                aria-expanded="false" aria-controls="analyticsCollapse">
+                                                📊 <strong>Data Analytics</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="analyticsCollapse" class="accordion-collapse collapse"
+                                            data-bs-parent="#servicesAccordion">
+                                            <div class="accordion-body">
+                                                I work with
+                                                <a href="projects.html?filter=powerbi"
+                                                    style="color: white; text-decoration: underline;">Power BI</a>,
+                                                <a href="https://www.python.org/" target="_blank"
+                                                    rel="noopener nofollow"
+                                                    style="color: white; text-decoration: underline;">Python</a>,
+                                                <a href="https://en.wikipedia.org/wiki/SQL" target="_blank"
+                                                    rel="noopener nofollow"
+                                                    style="color: white; text-decoration: underline;">SQL</a>, and
+                                                <a href="https://www.microsoft.com/en-us/microsoft-365/excel"
+                                                    target="_blank" rel="noopener nofollow"
+                                                    style="color: white; text-decoration: underline;">Excel</a>
+                                                to organize raw or messy datasets and convert them into clear,
+                                                meaningful
+                                                dashboards
+                                                and reports. The focus is always on clarity, accuracy, and usability.
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <!-- WEB DEVELOPMENT - THIRD -->
-                                <article aria-labelledby="web-heading">
-                                    <p class="hover-zone reveal-left" id="web-heading" style="font-size: 1rem;">
-                                        🌐 <strong>Web Development</strong> I build clean, lightweight
-                                        <a href="projects.html#web"
-                                            style="color: white; text-decoration: underline;">portfolio websites</a>
-                                        and landing pages using HTML, CSS, and modern frontend technologies. These are
-                                        designed to be
-                                        simple, fast, and practical, helping people present their work professionally.
-                                    </p>
-                                </article>
+                                    <!-- WEB DEVELOPMENT -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#webdevCollapse"
+                                                aria-expanded="false" aria-controls="webdevCollapse">
+                                                🌐 <strong>Web Development</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="webdevCollapse" class="accordion-collapse collapse"
+                                            data-bs-parent="#servicesAccordion">
+                                            <div class="accordion-body">
+                                                I build clean, lightweight
+                                                <a href="projects.html#web"
+                                                    style="color: white; text-decoration: underline;">portfolio
+                                                    websites</a>
+                                                and landing pages using HTML, CSS, and modern frontend technologies.
+                                                These are
+                                                designed to be
+                                                simple, fast, and practical, helping people present their work
+                                                professionally.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <p class="hover-zone reveal-up" style="font-size: 1rem;">
                                     I've developed this skill set with startups, students, and freelancers in mind. I
                                     understand the reality of limited budgets, evolving requirements, and tight
@@ -471,9 +686,10 @@
                                 </p>
 
                                 <!-- Location & Availability Section -->
-                                <aside aria-labelledby="location-heading" class="mt-5 p-4"
+                                <aside aria-labelledby="location-heading" class="mt-5 p-4 reveal-card"
                                     style="background: rgba(74, 144, 226, 0.05); border-radius: 12px; border: 1px solid rgba(74, 144, 226, 0.15);">
-                                    <h3 id="location-heading" class="mb-3" style="font-size: 1.1rem; color: #4a90e2;">📍
+                                    <h3 id="location-heading" class="mb-3" style="font-size: 1.1rem; color: #4a90e2;">
+                                        📍
                                         Location &amp; Availability</h3>
                                     <p class="mb-0" style="color: #a0aec0; font-size: 1rem;">
                                         Based in <strong>Bengaluru, India</strong> – serving clients in the
@@ -482,7 +698,28 @@
                                     </p>
                                 </aside>
 
-                                <div class="text-center my-5">
+                                <!-- India Advantage Badge -->
+                                <aside aria-labelledby="india-advantage-heading" class="mt-4 p-4 reveal-card"
+                                    style="background: rgba(74, 144, 226, 0.08); border-radius: 12px; border: 1px solid rgba(74, 144, 226, 0.2);">
+                                    <h3 id="india-advantage-heading" class="mb-3"
+                                        style="font-size: 1.1rem; color: #4a90e2;">
+                                        🇮🇳 The India Advantage
+                                    </h3>
+                                    <ul class="mb-0"
+                                        style="color: #a0aec0; font-size: 1rem; list-style: none; padding-left: 0;">
+                                        <li class="mb-2">✅ <strong>High-quality execution</strong> at startup-friendly
+                                            rates</li>
+                                        <li class="mb-2">✅ <strong>Direct communication</strong> — Google Meet / Zoom
+                                            updates, no middlemen</li>
+                                        <li class="mb-2">✅ <strong>Timezone flexibility</strong> — IST overlaps with
+                                            US,
+                                            UK & EU business hours</li>
+                                        <li class="mb-0">✅ <strong>Proven global delivery</strong> — clients in US, UK,
+                                            Australia & APAC</li>
+                                    </ul>
+                                </aside>
+
+                                <div class="text-center my-5 reveal-cta">
                                     <a href="contact.html" class="btn btn-outline-primary btn-lg hover-lift"
                                         style="border-radius: 50px; padding: 12px 30px;">
                                         Let's Work Together &rarr;
@@ -502,14 +739,14 @@
         style="background-color: #000000; color: #e0e6ed;">
         <div class="container">
             <div class="row footer-content py-5">
-                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center footer-reveal">
                     <h2 class="mb-3" style="color: #4a90e2; font-size:1.3rem;">Gagan | Technical Partner</h2>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                         Automation, data analytics &amp; web development
                         for global clients.
                     </p>
                 </div>
-                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center footer-reveal">
                     <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Quick Links</h3>
                     <ul class="list-unstyled">
                         <li class="mb-3"><a href="index.html" class="text-decoration-none"
@@ -524,20 +761,19 @@
                                 style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 footer-section text-center">
+                <div class="col-md-4 footer-section text-center footer-reveal">
                     <h3 class="fw-bold mb-4" style="color: #4a90e2; font-size:1.1rem;">Services</h3>
                     <ul class="list-unstyled">
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Chatbots &amp; AI Agents</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Web Development</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+            <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary footer-reveal">
                 <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
-                    &copy; <span itemprop="copyrightYear">2025</span>
+                    &copy; <span itemprop="copyrightYear">2026</span>
                     <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Technical Partner
                 </p>
             </div>
@@ -551,12 +787,9 @@
     </button>
 
     <script>
-        // Modern Interactive About Me - Enhanced with Latest Trends
+        // Unified Modern Scroll Animation Engine
         document.addEventListener('DOMContentLoaded', function () {
-            let scrollTimeout;
             let mouseX = 0, mouseY = 0;
-
-            // Reading progress removed
 
             // Parallax Background Layers
             const layer1 = document.getElementById('parallax-layer-1');
@@ -564,89 +797,109 @@
 
             function updateParallax() {
                 const scrolled = window.pageYOffset;
-                if (layer1) layer1.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
-                if (layer2) layer2.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
+                if (layer1) layer1.style.transform = 'translate3d(0,' + scrolled * 0.3 + 'px,0)';
+                if (layer2) layer2.style.transform = 'translate3d(0,' + scrolled * 0.5 + 'px,0)';
             }
 
-            // Intersection Observer for Reveal Animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+            // Single unified IntersectionObserver for all reveal animations
+            const revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-
-                        // Stagger paragraph animations
-                        if (entry.target.tagName === 'P') {
-                            setTimeout(() => {
-                                entry.target.classList.add('animate');
-                            }, Math.random() * 300);
-                        }
+                        const delay = parseInt(entry.target.dataset.revealDelay || 0, 10);
+                        setTimeout(function () {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        revealObserver.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
-
-            // Observe all reveal elements
-            document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-fade').forEach(el => {
-                observer.observe(el);
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
             });
 
-            document.querySelectorAll('.about-text p').forEach(el => {
-                observer.observe(el);
+            // Section title
+            var title = document.querySelector('.reveal-title');
+            if (title) { title.dataset.revealDelay = '80'; revealObserver.observe(title); }
+
+            // Subtitle
+            var subtitle = document.querySelector('.reveal-subtitle');
+            if (subtitle) { subtitle.dataset.revealDelay = '220'; revealObserver.observe(subtitle); }
+
+            // All about-text paragraphs – staggered
+            document.querySelectorAll('.about-text p').forEach(function (el, i) {
+                el.dataset.revealDelay = String(180 + i * 110);
+                revealObserver.observe(el);
+            });
+
+            // Accordion container
+            document.querySelectorAll('.reveal-accordion').forEach(function (el) {
+                el.dataset.revealDelay = '250';
+                revealObserver.observe(el);
+            });
+
+            // Aside cards – staggered
+            document.querySelectorAll('.reveal-card').forEach(function (el, i) {
+                el.dataset.revealDelay = String(180 + i * 140);
+                revealObserver.observe(el);
+            });
+
+            // CTA
+            var cta = document.querySelector('.reveal-cta');
+            if (cta) { cta.dataset.revealDelay = '200'; revealObserver.observe(cta); }
+
+            // Footer sections – staggered
+            document.querySelectorAll('.footer-reveal').forEach(function (el, i) {
+                el.dataset.revealDelay = String(80 + i * 100);
+                revealObserver.observe(el);
+            });
+
+            // Also observe reveal-left, reveal-right, reveal-up from styles.css
+            document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-fade').forEach(function (el) {
+                revealObserver.observe(el);
             });
 
             // Magnetic Mouse Effect
             function updateMagnetic(e) {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
-
-                document.querySelectorAll('.magnetic').forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    const deltaX = (mouseX - centerX) * 0.15;
-                    const deltaY = (mouseY - centerY) * 0.15;
-                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
+                document.querySelectorAll('.magnetic').forEach(function (el) {
+                    var rect = el.getBoundingClientRect();
+                    var centerX = rect.left + rect.width / 2;
+                    var centerY = rect.top + rect.height / 2;
+                    var deltaX = (mouseX - centerX) * 0.15;
+                    var deltaY = (mouseY - centerY) * 0.15;
+                    var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
                     if (distance < 100) {
-                        el.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.05)`;
+                        el.style.transform = 'translate(' + deltaX + 'px,' + deltaY + 'px) scale(1.05)';
                     } else {
-                        el.style.transform = 'translate(0px, 0px) scale(1)';
+                        el.style.transform = 'translate(0,0) scale(1)';
                     }
                 });
             }
 
-            // Skill Link Interactive Effects - Simplified for inline links
-            document.querySelectorAll('.about-text a').forEach(link => {
+            // Skill Link Interactive Effects
+            document.querySelectorAll('.about-text a').forEach(function (link) {
                 link.addEventListener('mouseenter', function () {
                     this.style.color = 'var(--primary-color, #4a90e2)';
                 });
-
                 link.addEventListener('mouseleave', function () {
                     this.style.color = '';
                 });
-
-                // Remove complex ripple effect for inline links
-                link.addEventListener('click', function (e) {
-                    // Simple highlight effect
-                    this.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
+                link.addEventListener('click', function () {
+                    var self = this;
+                    self.style.transform = 'scale(1.02)';
+                    setTimeout(function () { self.style.transform = ''; }, 150);
                 });
             });
 
             // Particle System
             function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = window.innerWidth < 768 ? 15 : 30;
-
-                const fragment = document.createDocumentFragment();
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
+                var particlesContainer = document.getElementById('particles');
+                if (!particlesContainer) return;
+                var particleCount = window.innerWidth < 768 ? 15 : 30;
+                var fragment = document.createDocumentFragment();
+                for (var i = 0; i < particleCount; i++) {
+                    var particle = document.createElement('div');
                     particle.className = 'particle';
                     particle.style.left = Math.random() * 100 + '%';
                     particle.style.animationDelay = Math.random() * 15 + 's';
@@ -656,13 +909,12 @@
                 particlesContainer.appendChild(fragment);
             }
 
-            // Hover Zone Effects with 3D Transform
-            document.querySelectorAll('.hover-zone').forEach(zone => {
+            // Hover Zone 3D Effect
+            document.querySelectorAll('.hover-zone').forEach(function (zone) {
                 zone.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateX(15px) translateY(-5px) rotateY(2deg)';
+                    this.style.transform = 'translateX(12px) translateY(-3px) rotateY(2deg)';
                     this.style.zIndex = '10';
                 });
-
                 zone.addEventListener('mouseleave', function () {
                     this.style.transform = '';
                     this.style.zIndex = '';
@@ -670,69 +922,23 @@
             });
 
             // Performance-optimized scroll handler
-            let lastScrollTime = 0;
-            const scrollThrottleMs = 10;
-
+            var lastScrollTime = 0;
             function handleScroll() {
-                const now = performance.now();
-                if (now - lastScrollTime < scrollThrottleMs) return;
-
+                var now = performance.now();
+                if (now - lastScrollTime < 10) return;
                 lastScrollTime = now;
-                requestAnimationFrame(() => {
-                    updateParallax();
-                });
-            }
-
-            // Typewriter Effect for Lead Paragraph (if needed)
-            function typewriterEffect(element, text, speed = 50) {
-                element.innerHTML = '';
-                let i = 0;
-
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    }
-                }
-
-                type();
-            }
-
-            // Enhanced Page Load Animation
-            function pageLoadAnimation() {
-                // Fade in body
-                document.body.style.opacity = '0';
-                document.body.style.transform = 'translateY(20px)';
-                document.body.style.transition = 'all 0.8s ease';
-
-                setTimeout(() => {
-                    document.body.style.opacity = '1';
-                    document.body.style.transform = 'translateY(0)';
-                }, 100);
-
-                // Cascade reveal content
-                const elements = document.querySelectorAll('.about-text p');
-                elements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }, 200 + (index * 100));
-                });
+                requestAnimationFrame(updateParallax);
             }
 
             // Mouse Movement Parallax
             function handleMouseMove(e) {
                 updateMagnetic(e);
-
-                // Parallax effect on floating elements
-                const floatingElements = document.querySelectorAll('.floating-element');
-                const mouseXPercent = (e.clientX / window.innerWidth) * 2 - 1;
-                const mouseYPercent = (e.clientY / window.innerHeight) * 2 - 1;
-
-                floatingElements.forEach((el, index) => {
-                    const speed = (index + 1) * 0.02;
-                    el.style.transform += ` translate(${mouseXPercent * speed * 20}px, ${mouseYPercent * speed * 20}px)`;
+                var floatingElements = document.querySelectorAll('.floating-element');
+                var mxp = (e.clientX / window.innerWidth) * 2 - 1;
+                var myp = (e.clientY / window.innerHeight) * 2 - 1;
+                floatingElements.forEach(function (el, index) {
+                    var speed = (index + 1) * 0.02;
+                    el.style.transform += ' translate(' + (mxp * speed * 20) + 'px,' + (myp * speed * 20) + 'px)';
                 });
             }
 
@@ -741,40 +947,25 @@
 
             // Initialize
             createParticles();
-            pageLoadAnimation();
-
-            // Ripple animation keyframes
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
 
             // Cleanup on page unload
-            window.addEventListener('beforeunload', () => {
+            window.addEventListener('beforeunload', function () {
                 window.removeEventListener('mousemove', handleMouseMove);
                 window.removeEventListener('scroll', handleScroll);
             });
         });
     </script>
-    <!-- No custom nav JS needed; Bootstrap 5 Offcanvas handles open/close -->
     <script src="scripts.js"></script>
 
-    <!-- BOOTSTRAP JAVASCRIPT - REQUIRED for offcanvas menu functionality -->
+    <!-- BOOTSTRAP JAVASCRIPT -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- NAVBAR FUNCTIONALITY SCRIPT - Tests Bootstrap loading and adds scroll effects -->
+    <!-- NAVBAR FUNCTIONALITY SCRIPT -->
     <script>
-        // Test Bootstrap functionality - CRITICAL for debugging navbar issues
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
-            const navbarToggler = document.querySelector('.navbar-toggler');
+            var navbarToggler = document.querySelector('.navbar-toggler');
             if (navbarToggler) {
                 console.log('Navbar toggler found');
                 navbarToggler.addEventListener('click', function () {
@@ -782,10 +973,8 @@
                 });
             }
         });
-
-        // Navbar scroll effect - Changes navbar appearance on scroll
         window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar');
+            var navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('navbar-scrolled');
             } else {
@@ -794,38 +983,28 @@
         });
     </script>
 
-    <!-- Bootstrap Back-to-Top Functionality -->
+    <!-- Back-to-Top Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const backToTopBtn = document.getElementById('back-to-top');
-            // Show/hide button based on scroll position
+            var backToTopBtn = document.getElementById('back-to-top');
             function toggleBackToTop() {
                 if (window.pageYOffset > 300) {
                     backToTopBtn.classList.remove('d-none');
                     backToTopBtn.classList.add('show');
                 } else {
                     backToTopBtn.classList.remove('show');
-                    setTimeout(() => {
+                    setTimeout(function () {
                         if (!backToTopBtn.classList.contains('show')) {
                             backToTopBtn.classList.add('d-none');
                         }
                     }, 300);
                 }
             }
-
-            // Smooth scroll to top
             function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-
-            // Event listeners
             window.addEventListener('scroll', toggleBackToTop, { passive: true });
             backToTopBtn.addEventListener('click', scrollToTop);
-
-            // Initial check
             toggleBackToTop();
         });
     </script>
