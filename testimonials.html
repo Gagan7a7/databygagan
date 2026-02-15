@@ -521,6 +521,47 @@
             margin-bottom: 1rem;
             color: var(--primary-color)
         }
+
+        /* CTA modern (Copied from services.html) */
+        .srv-cta {
+            position: relative;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
+            border: 1px solid rgba(74, 144, 226, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .srv-cta::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), transparent, rgba(139, 92, 246, 0.2));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            padding: 1px;
+            pointer-events: none;
+        }
+
+        .srv-cta-btn {
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #4a90e2, #6366f1);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .srv-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.3);
+            background: linear-gradient(135deg, #5a9ef2, #7376f1);
+        }
     </style>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -656,6 +697,29 @@
 
                 <!-- Testimonials Grid -->
                 <div id="testimonials-grid" class="testimonials-grid"></div>
+
+                <!-- Conversion CTA (Matching services.html) -->
+                <div class="text-center py-5 mt-4 reveal" style="max-width:1100px; margin: 0 auto;">
+                    <div class="srv-cta p-5">
+                        <div class="d-inline-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-rocket" style="color:#4a90e2;font-size:1.1rem;"></i>
+                            <span
+                                style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">
+                                Let's Work Together
+                            </span>
+                        </div>
+                        <h2 class="mb-3 fw-bold" style="color:#e0e6ed;font-size:clamp(1.3rem,3vw,1.6rem);">
+                            Ready to Automate, Analyze, or Build?
+                        </h2>
+                        <p class="mb-4 mx-auto" style="color:#a0aec0;font-size:1rem;max-width:540px;line-height:1.7;">
+                            Join these happy clients. I'll scope your project within 24 hours — no
+                            obligation, no surprises.
+                        </p>
+                        <a href="contact" class="btn btn-primary btn-lg srv-cta-btn">
+                            <i class="fas fa-envelope me-2"></i> Get a Free Consultation
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -688,11 +752,10 @@
                 <div class="col-md-4 footer-section text-center">
                     <h5 class="fw-bold mb-4" style="color: #4a90e2;">Services</h5>
                     <ul class="list-unstyled">
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Dashboards</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Data Cleaning (Excel / Python)</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">SQL &amp; Python Analytics</li>
-                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Excel Automation</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Chatbots &amp; AI Agents</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Web Development</li>
                     </ul>
                 </div>
             </div>
