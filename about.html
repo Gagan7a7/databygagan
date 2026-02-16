@@ -26,10 +26,10 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <meta name="referrer" content="no-referrer-when-downgrade">
 
-    <!-- ✅ PERF FIX: Preconnect (stronger than dns-prefetch, establishes TCP+TLS early) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- ✅ FIX: dns-prefetch instead of preconnect (checklinks plugin fails preconnect-check on Netlify build server) -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
 
     <!-- Open Graph Meta Tags -->
@@ -433,7 +433,7 @@
         }
     </style>
 
-    <!-- ✅ Bootstrap CSS: kept render-blocking (needed for layout, prevents CLS) -->
+    <!-- Bootstrap CSS: kept render-blocking (needed for layout, prevents CLS) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -966,10 +966,10 @@
         });
     </script>
 
-    <!-- ✅ PERF FIX: scripts.js deferred (was render-blocking, saves ~1,180ms) -->
+    <!-- ✅ PERF FIX: scripts.js deferred (was render-blocking) -->
     <script src="scripts.js" defer></script>
 
-    <!-- ✅ PERF FIX: Bootstrap JS deferred (was render-blocking, saves ~1,190ms) -->
+    <!-- ✅ PERF FIX: Bootstrap JS deferred (was render-blocking) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
