@@ -8,7 +8,6 @@ Allow: /skills
 Allow: /projects
 Allow: /services
 Allow: /contact
-Allow: /resume
 Allow: /faq
 Allow: /testimonials
 

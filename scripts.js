@@ -1182,3 +1182,10 @@ function setupPerformanceMonitoring() {
             });
         });
 })();
+// Dynamic copyright year
+document.addEventListener('DOMContentLoaded', function () {
+    const yearElement = document.querySelector('[itemprop="copyrightYear"]');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});

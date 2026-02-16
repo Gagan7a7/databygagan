@@ -24,8 +24,8 @@
     <meta name="content-language" content="en">
 
     <!-- Performance and SEO meta tags -->
-    <meta name="theme-color" content="#6c63ff">
-    <meta name="msapplication-TileColor" content="#6c63ff">
+    <meta name="theme-color" content="#0a1120">
+    <meta name="msapplication-TileColor" content="#0a1120">
     <meta name="format-detection" content="telephone=yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,8 +96,8 @@
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <!-- Commented out to avoid Netlify preconnect error. Uncomment for performance if needed. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"> -->
 
     <!-- Stylesheets -->
     <!-- Bootstrap CSS -->
@@ -114,7 +114,7 @@
         rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=fixed">
 
     <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
@@ -317,28 +317,6 @@
             padding: 0;
         }
 
-        /* Force 2 service cards per row for screens between 600px and 1100px */
-        @media (min-width: 600px) and (max-width: 1100px) {
-            .services-grid {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 2rem !important;
-            }
-
-            .service-card {
-                min-width: 0 !important;
-                max-width: 100% !important;
-                transform: none !important;
-                box-shadow: none !important;
-                transition: transform 0.2s, box-shadow 0.2s;
-            }
-
-            .service-card:hover {
-                transform: translateY(-8px) scale(1.03);
-                box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
-            }
-        }
-
         /* Ensure Featured Projects section never blocks vertical scroll on mobile */
         @media (max-width: 768px) {
 
@@ -361,6 +339,50 @@
                 max-height: initial !important;
                 height: auto !important;
             }
+        }
+
+        /* Services Card Hover Effects - Matching services.html */
+        .srv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent, #4a90e2), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .srv-card:hover,
+        .srv-card:focus-visible {
+            transform: translateY(-6px);
+            border-color: rgba(74, 144, 226, 0.2) !important;
+            box-shadow: 0 12px 40px rgba(74, 144, 226, 0.08) !important;
+        }
+
+        .srv-card:hover::before,
+        .srv-card:focus-visible::before {
+            opacity: 1;
+        }
+
+        .srv-card:hover .srv-icon {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .srv-card:focus-visible {
+            outline: 2px solid #4a90e2;
+            outline-offset: 2px;
+        }
+
+        /* srv-cta link hover effects */
+        .srv-cta:hover {
+            gap: 12px !important;
+            color: #5a9ef2 !important;
+        }
+
+        .srv-cta:hover i {
+            transform: translateX(4px);
         }
     </style>
     <!-- Google tag (gtag.js) -->
@@ -426,7 +448,8 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
                     aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                        <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                        <!-- <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5> -->
+                        <h3 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem">Menu</h3>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
@@ -573,7 +596,7 @@
                                 <p class="fade-in-text" data-delay="200"
                                     style="text-align: justify; line-height: 1.8; margin-bottom: 1.5rem;">
                                     🤖 <strong>Automation:</strong> I build custom
-                                    <a href="services.html#automation-services"
+                                    <a href="services#automation-services"
                                         style="color:inherit;font-weight:bold;text-decoration:underline;">n8n
                                         workflows</a>,
                                     chatbots, and lead outreach systems that eliminate repetitive work — so your
@@ -582,20 +605,20 @@
                                 <p class="fade-in-text" data-delay="400"
                                     style="text-align: justify; line-height: 1.8; margin-bottom: 1.5rem;">
                                     📊 <strong>Data Analytics:</strong> I turn messy data into clear decisions using
-                                    <a href="projects.html"
+                                    <a href="projects"
                                         style="color:inherit;font-weight:bold;text-decoration:underline;">Power BI</a>,
                                     Python, SQL, and Excel — dashboards that stakeholders actually use.
                                 </p>
                                 <p class="fade-in-text" data-delay="600"
                                     style="text-align: justify; line-height: 1.8; margin-bottom: 1.5rem;">
                                     🌐 <strong>Web Development:</strong> I create clean, fast
-                                    <a href="projects.html"
+                                    <a href="projects"
                                         style="color:inherit;font-weight:bold;text-decoration:underline;">portfolio
                                         websites</a>
                                     and landing pages designed to convert visitors into clients.
                                 </p>
                                 <div class="text-center mt-4 fade-in-text" data-delay="800">
-                                    <a href="about.html" class="btn btn-outline-primary btn-lg hover-lift"
+                                    <a href="about" class="btn btn-outline-primary btn-lg hover-lift"
                                         style="border-radius: 50px; padding: 12px 30px;">
                                         My Full Story <i class="fas fa-arrow-right ms-2"></i>
                                     </a>
@@ -644,7 +667,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h3 class="skill-heading"><i class="fab fa-python"
                                         style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Programming
-                                    &amp; Tools</h3>
+                                    &amp; Web Tools</h3>
                                 <div class="skill-list mt-auto">
                                     <span class="skill-tag" itemprop="knowsAbout">Python</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Pandas</span>
@@ -699,8 +722,11 @@
                                         style="width:24px;height:24px;min-width:24px;min-height:24px;display:inline-block;"></i>Automation
                                     &amp; AI Tools</h3>
                                 <div class="skill-list mt-auto">
-                                    <span class="skill-tag" itemprop="knowsAbout">Excel Automation (Python + GPT)</span>
-                                    <span class="skill-tag" itemprop="knowsAbout">AI-Driven Data Analysis</span>
+                                    <span class="skill-tag" itemprop="knowsAbout">n8n Automation</span>
+                                    <span class="skill-tag" itemprop="knowsAbout">MCP Agents</span>
+                                    <span class="skill-tag" itemprop="knowsAbout">API Integration</span>
+                                    <span class="skill-tag" itemprop="knowsAbout">AI Chatbots</span>
+                                    <span class="skill-tag" itemprop="knowsAbout">LLM Implementation</span>
                                 </div>
                             </div>
                         </div>
@@ -708,14 +734,13 @@
                     <div class="col-12 col-md-4 d-none d-md-block"></div>
                 </div>
                 <div class="text-center mt-4" data-delay="800">
-                    <a href="skills.html" class="btn btn-outline-primary btn-lg hover-lift"
+                    <a href="skills" class="btn btn-outline-primary btn-lg hover-lift"
                         style="border-radius: 50px; padding: 12px 30px;">
-                        View Details <i class="fas fa-arrow-right ms-2"></i>
+                        View Full Technical Profile <i class="fas fa-arrow-right ms-2"></i>
                     </a>
                 </div>
             </div>
         </section>
-
         <!-- Projects Section -->
         <section id="projects" class="section" aria-labelledby="projects-heading">
             <div class="container">
@@ -728,7 +753,7 @@
                 </div>
                 <div id="featured-projects-list"></div>
                 <div class="text-center mt-4 fade-in-text" data-delay="800">
-                    <a href="projects.html" class="btn btn-outline-primary btn-lg hover-lift"
+                    <a href="projects" class="btn btn-outline-primary btn-lg hover-lift"
                         style="border-radius: 50px; padding: 12px 30px;">
                         See All Projects <i class="fas fa-arrow-right ms-2"></i>
                     </a>
@@ -790,288 +815,140 @@
         <!-- Services Section -->
         <section id="services" class="section section-dark" aria-labelledby="services-heading">
             <div class="container">
-                <div class="row justify-content-center mb-5">
-                    <div class="col-lg-10 text-center">
-                        <h2 id="services-heading" class="section-title mb-4 text-center">
-                            Services I Offer
-                        </h2>
+                <div class="row justify-content-center mb-4 mb-md-5">
+                    <div class="col-lg-8 text-center">
+                        <h2 id="services-heading" class="section-title">Technical Services</h2>
+                        <p class="lead text-muted">Three pillars of digital growth.</p>
                     </div>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-pie"></i>
+
+                <!-- Improved grid with better spacing -->
+                <div class="row g-3 g-lg-4 justify-content-center" style="max-width: 1140px; margin: 0 auto;">
+
+                    <!-- Card 1: Automation & AI -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="srv-card h-100 d-flex flex-column" itemscope itemtype="https://schema.org/Service"
+                            tabindex="0"
+                            style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 1.5rem; transition: transform 0.35s cubic-bezier(.22, .61, .36, 1), border-color 0.35s ease, box-shadow 0.35s ease; cursor: default; position: relative; overflow: hidden; --accent:#4a90e2;">
+
+                            <div class="srv-icon icon-blue mb-3"
+                                style="width: 56px; height: 56px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; transition: transform 0.3s ease; background: rgba(74, 144, 226, 0.12); color: #4a90e2;">
+                                <i class="fas fa-robot"></i>
+                            </div>
+
+                            <h3 itemprop="name" class="mb-3 fw-semibold"
+                                style="font-size:1.1rem; color:#fff; line-height:1.4;">
+                                Automation &amp; AI
+                            </h3>
+
+                            <p itemprop="description" class="mb-4 flex-grow-1"
+                                style="color:#a0aec0; font-size:0.9rem; line-height:1.7;">
+                                n8n workflows, Chatbots, and Agents that work while you sleep.
+                            </p>
+
+                            <a href="services#automation-services" class="srv-cta mt-auto"
+                                style="display: inline-flex; align-items: center; gap: 8px; color: #4a90e2; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: gap 0.3s ease, color 0.3s ease;">
+                                Explore Automation <i class="fas fa-arrow-right"
+                                    style="transition: transform 0.3s ease;"></i>
+                            </a>
                         </div>
-                        <h3 itemprop="name">Excel Dashboards</h3>
-                        <p itemprop="description">
-                            I create professional Excel dashboards using
-                            advanced formulas, pivot tables, conditional
-                            formatting, charts, and slicers. Ideal for tracking
-                            KPIs, business metrics, or custom reports based on
-                            your data.
-                        </p>
                     </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
+
+                    <!-- Card 2: Data Analytics -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="srv-card h-100 d-flex flex-column" itemscope itemtype="https://schema.org/Service"
+                            tabindex="0"
+                            style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 1.5rem; transition: transform 0.35s cubic-bezier(.22, .61, .36, 1), border-color 0.35s ease, box-shadow 0.35s ease; cursor: default; position: relative; overflow: hidden; --accent:#10b981;">
+
+                            <div class="srv-icon icon-green mb-3"
+                                style="width: 56px; height: 56px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; transition: transform 0.3s ease; background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+
+                            <h3 itemprop="name" class="mb-3 fw-semibold"
+                                style="font-size:1.1rem; color:#fff; line-height:1.4;">
+                                Data Analytics
+                            </h3>
+
+                            <p itemprop="description" class="mb-4 flex-grow-1"
+                                style="color:#a0aec0; font-size:0.9rem; line-height:1.7;">
+                                Power BI &amp; Python dashboards that turn chaos into clarity.
+                            </p>
+
+                            <a href="services#analytics-services" class="srv-cta mt-auto"
+                                style="display: inline-flex; align-items: center; gap: 8px; color: #4a90e2; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: gap 0.3s ease, color 0.3s ease;">
+                                Explore Data <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                            </a>
                         </div>
-                        <h3 itemprop="name">Power BI Reports</h3>
-                        <p itemprop="description">
-                            I design interactive and visually compelling reports
-                            in Power BI using DAX and Power Query. Whether you
-                            need dashboards for sales, operations, or data
-                            monitoring, I can help you present your data
-                            effectively.
-                        </p>
                     </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-broom"></i>
+
+                    <!-- Card 3: Web Development -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="srv-card h-100 d-flex flex-column" itemscope itemtype="https://schema.org/Service"
+                            tabindex="0"
+                            style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 1.5rem; transition: transform 0.35s cubic-bezier(.22, .61, .36, 1), border-color 0.35s ease, box-shadow 0.35s ease; cursor: default; position: relative; overflow: hidden; --accent:#8b5cf6;">
+
+                            <div class="srv-icon icon-purple mb-3"
+                                style="width: 56px; height: 56px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; transition: transform 0.3s ease; background: rgba(139, 92, 246, 0.12); color: #8b5cf6;">
+                                <i class="fas fa-code"></i>
+                            </div>
+
+                            <h3 itemprop="name" class="mb-3 fw-semibold"
+                                style="font-size:1.1rem; color:#fff; line-height:1.4;">
+                                Web Development
+                            </h3>
+
+                            <p itemprop="description" class="mb-4 flex-grow-1"
+                                style="color:#a0aec0; font-size:0.9rem; line-height:1.7;">
+                                Fast, modern websites and portfolios that convert.
+                            </p>
+
+                            <a href="services#web-services" class="srv-cta mt-auto"
+                                style="display: inline-flex; align-items: center; gap: 8px; color: #4a90e2; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: gap 0.3s ease, color 0.3s ease;">
+                                Explore Web <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                            </a>
                         </div>
-                        <h3 itemprop="name">
-                            Data Cleaning (Excel / Python / Power Query)
-                        </h3>
-                        <p itemprop="description">
-                            I clean messy or unstructured data using Excel
-                            functions, Power Query, or Python (Pandas). From
-                            handling missing values to formatting columns, I
-                            ensure your data is clean, consistent, and ready for
-                            analysis.
-                        </p>
                     </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3 itemprop="name">SQL Query Writing</h3>
-                        <p itemprop="description">
-                            I write optimized SQL queries in MySQL for
-                            selecting, filtering, joining, and summarizing data.
-                            Whether it's simple reports or complex conditions, I
-                            can help you extract the right insights from your
-                            database.
-                        </p>
-                    </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h3 itemprop="name">Python Data Visualization</h3>
-                        <p itemprop="description">
-                            I use Matplotlib and Seaborn to create clear and
-                            impactful charts like bar graphs, heatmaps, line
-                            plots, and more. These visuals help you explore and
-                            present your data effectively in reports or
-                            dashboards.
-                        </p>
-                    </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 itemprop="name">Machine Learning (Basic Models)</h3>
-                        <p itemprop="description">
-                            I build beginner-friendly machine learning models
-                            using scikit-learn. I can help you with data
-                            preparation, model training, accuracy evaluation,
-                            and visual insights — great for academic or
-                            prototype-level use.
-                        </p>
-                    </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 itemprop="name">Excel Automation (Python + AI)</h3>
-                        <p itemprop="description">
-                            I automate Excel tasks like updating files,
-                            formatting data, or generating reports using Python
-                            scripts and AI (GPT). Save time by letting me handle
-                            repetitive Excel work with smart automation.
-                        </p>
-                    </div>
-                    <div class="service-card" itemscope itemtype="https://schema.org/Service">
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 itemprop="name">
-                            Portfolio / Resume Website (HTML &amp; CSS)
-                        </h3>
-                        <p itemprop="description">
-                            I build simple, clean personal websites using HTML
-                            and CSS — ideal for portfolios, resumes, or
-                            freelancer profiles. I can also help you host it on
-                            GitHub Pages for free access online.
-                        </p>
-                    </div>
+
+                </div>
+
+                <!-- Gateway Button -->
+                <div class="text-center mt-5">
+                    <a href="services" class="btn btn-outline-primary btn-lg hover-lift"
+                        style="border-radius: 50px; padding: 12px 30px;">
+                        View All Services <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
                 </div>
             </div>
         </section>
-
         <!-- Contact Section -->
-        <section id="contact" class="section section-dark" aria-labelledby="contact-heading">
+        <section id="contact-cta" class="section section-dark text-center py-5">
             <div class="container">
-                <div class="row justify-content-center mb-5">
-                    <div class="col-lg-10 text-center">
-                        <h2 id="contact-heading" class="section-title mb-4 text-center">
-                            Let's Turn Your Data Into Growth
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-8">
+
+                        <h2 class="section-title mb-3 fw-bold" style="font-size: 2.2rem;">
+                            Ready to Automate Your Workflow?
                         </h2>
-                    </div>
-                </div>
-                <div class="contact-content row g-5">
-                    <div class="col-lg-6">
-                        <div class="contact-info">
-                            <h3>Ready to Scale Your Business?</h3>
-                            <p>
-                                Ready to transform your data into insights? Let's
-                                discuss your project and how I can help you achieve
-                                your goals.
-                            </p>
 
-                            <div class="contact-item" itemscope itemtype="https://schema.org/ContactPoint">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <strong>Email</strong>
-                                    <a href="mailto:databygagan@gmail.com" itemprop="email">📧 databygagan@gmail.com</a>
-                                </div>
-                            </div>
+                        <p class="lead mb-5 px-md-5" style="color: #e0e6ed; opacity: 0.9; line-height: 1.7;">
+                            Stop wasting time on manual tasks. Whether you need a
+                            <span style="color: #4a90e2; font-weight: 600;">quick data fix</span>,
+                            a <span style="color: #4a90e2; font-weight: 600;">student project</span>,
+                            or a <span style="color: #4a90e2; font-weight: 600;">full-scale AI agent</span>,
+                            I have a custom solution that fits your budget.
+                        </p>
 
-                            <div class="contact-item" itemscope itemtype="https://schema.org/PostalAddress">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <strong>Location</strong>
-                                    <p itemprop="streetAddress">212, 5th cross, Vyalikaval HBCS Layout, Nagavara</p>
-                                    <p itemprop="addressLocality">Bengaluru, Karnataka 560045</p>
-                                    <span itemprop="addressRegion">Karnataka</span>
-                                    <span itemprop="addressCountry">IN</span>
-                                </div>
-                            </div>
+                        <a href="contact" class="btn btn-primary btn-lg px-5 py-3 shadow-lg"
+                            style="border-radius: 50px; font-weight: 600; letter-spacing: 0.5px;">
+                            <i class="fas fa-rocket me-2"></i> Start Your Project
+                        </a>
 
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <strong>Phone</strong>
-                                    <a href="tel:+917892329607" itemprop="telephone">+91 7892329607</a>
-                                </div>
-                            </div>
+                        <p class="mt-4 mb-0 small" style="color: #a0aec0;">
+                            <i class="fas fa-bolt text-warning me-1"></i>
+                            Response time: <strong>Within 24 hours</strong>
+                        </p>
 
-                            <div class="social-links">
-                                <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank"
-                                    class="social-link" itemprop="sameAs" aria-label="LinkedIn Profile">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://github.com/GaganBP" target="_blank" class="social-link"
-                                    itemprop="sameAs" aria-label="GitHub Profile">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.instagram.com/databygagan/" target="_blank" class="social-link"
-                                    itemprop="sameAs" aria-label="Instagram Profile">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkgbjblo"
-                            method="post" itemscope itemtype="https://schema.org/ContactPage">
-                            <!-- Honeypot trap for bots -->
-                            <input type="text" name="_gotcha" style="display: none" tabindex="-1" autocomplete="off">
-                            <div class="form-group">
-                                <label for="name">Your Name <span class="required">*</span></label>
-                                <input type="text" id="name" name="name" required title="Enter a valid name"
-                                    itemprop="name">
-                                <span id="name-warning" style="
-                                    color: #f44336;
-                                    display: none;
-                                    font-size: 0.8rem;
-                                    margin-top: 5px;
-                                ">
-                                    Please enter a valid name.
-                                </span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Your Email <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" required
-                                    title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
-                                    itemprop="email">
-                                <span id="email-warning" style="
-                                    color: #f44336;
-                                    display: none;
-                                    font-size: 0.8rem;
-                                    margin-top: 5px;
-                                ">
-                                    Only trusted domains like Gmail, Yahoo, Outlook,
-                                    etc. are allowed.
-                                </span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="service-type">What Do You Need? <span class="required">*</span></label>
-                                <select id="service-type" name="service-type" required itemprop="serviceType">
-                                    <option value="">Choose your growth solution...</option>
-                                    <option value="power-bi-dashboard">📊 Power BI Dashboard</option>
-                                    <option value="excel-dashboard">📈 Excel Dashboard</option>
-                                    <option value="data-cleaning-analysis">🧹 Data Cleaning &amp; Analysis</option>
-                                    <option value="sql-database-queries">🗄️ SQL Database Queries</option>
-                                    <option value="data-visualization-python">🐍 Data Visualization (Python)</option>
-                                    <option value="machine-learning-models">🤖 Machine Learning Models</option>
-                                    <option value="excel-automation">⚡ Excel Automation</option>
-                                    <option value="website-development">🌐 Website Development</option>
-                                    <option value="multiple-services">🚀 Multiple Services</option>
-                                    <option value="consultation">🤔 Not Sure / Free Consultation</option>
-                                </select>
-                            </div>
-
-                            <div class="form-row row g-3">
-                                <div class="form-group half-width col-md-6">
-                                    <label for="timeline">Project Timeline</label>
-                                    <select id="timeline" name="timeline" itemprop="timeline">
-                                        <option value="">Select timeline...</option>
-                                        <option value="within-1-week">⚡ Within 1 week</option>
-                                        <option value="2-4-weeks">📅 2-4 weeks</option>
-                                        <option value="1-2-months">📆 1-2 months</option>
-                                        <option value="3-plus-months">🗓️ 3+ months</option>
-                                        <option value="flexible">🤷 Flexible</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group half-width col-md-6">
-                                    <label for="budget">Budget Range</label>
-                                    <select id="budget" name="budget" itemprop="budget">
-                                        <option value="">Select budget...</option>
-                                        <option value="under-5000">💵 Under ₹5,000</option>
-                                        <option value="5000-15000">💰 ₹5,000-₹15,000</option>
-                                        <option value="15000-30000">💎 ₹15,000-₹30,000</option>
-                                        <option value="30000-plus">🏆 ₹30,000+</option>
-                                        <option value="lets-discuss">💬 Let's discuss</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="subject">Project Title</label>
-                                <input type="text" id="project-title" name="project-title"
-                                    placeholder="e.g., Sales Dashboard for Q4 Analysis" itemprop="description">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message">Tell Me About Your Challenge <span
-                                        class="required">*</span></label>
-                                <textarea id="message" name="message" rows="5" required
-                                    placeholder="What's the problem you're trying to solve? What data do you have? What results are you hoping to achieve? The more details, the better I can help!"
-                                    itemprop="text"></textarea>
-                                <span id="message-warning" class="field-error" style="display:none"></span>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                <span>Send Message</span>
-                            </button>
-                            <p style="text-align: center; font-size: 0.85rem; margin-top: 10px; opacity: 0.7;">
-                                🔒 Your information is safe • ⚡ Response within 24 hours
-                            </p>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -1092,15 +969,15 @@
                     <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
                         <h5 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-3"><a href="index.html" class="text-decoration-none"
+                            <li class="mb-3"><a href="/" class="text-decoration-none"
                                     style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
-                            <li class="mb-3"><a href="about.html" class="text-decoration-none"
+                            <li class="mb-3"><a href="about" class="text-decoration-none"
                                     style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
-                            <li class="mb-3"><a href="projects.html" class="text-decoration-none"
+                            <li class="mb-3"><a href="projects" class="text-decoration-none"
                                     style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
-                            <li class="mb-3"><a href="services.html" class="text-decoration-none"
+                            <li class="mb-3"><a href="services" class="text-decoration-none"
                                     style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
-                            <li class="mb-3"><a href="contact.html" class="text-decoration-none"
+                            <li class="mb-3"><a href="contact" class="text-decoration-none"
                                     style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                         </ul>
                     </div>
@@ -1137,16 +1014,13 @@
         <script>
             // Test Bootstrap functionality
             document.addEventListener('DOMContentLoaded', function () {
-                console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
                 const navbarToggler = document.querySelector('.navbar-toggler');
                 if (navbarToggler) {
-                    console.log('Navbar toggler found');
                     navbarToggler.addEventListener('click', function () {
-                        console.log('Hamburger clicked!');
+                        // Empty handler - can be removed if not needed
                     });
                 }
             });
-
             // Navbar scroll effect
             window.addEventListener('scroll', function () {
                 const navbar = document.querySelector('.navbar');
@@ -1241,81 +1115,6 @@
                         ticking = true;
                     }
                 }, { passive: true });
-            });
-        </script>
-
-        <!-- Name Validation Script -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const nameInput = document.getElementById('name');
-                const nameWarning = document.getElementById('name-warning');
-                const form = document.getElementById('contact-form');
-
-                function validateName(name) {
-                    // Remove extra spaces and convert to lowercase for checking
-                    const cleanName = name.trim().toLowerCase();
-
-                    // Check minimum length (at least 4 characters)
-                    if (cleanName.length < 4) {
-                        return false;
-                    }
-
-                    // Block obvious spam patterns
-                    const spamPatterns = [
-                        /^[a-z]\s[a-z]$/,           // Single letters like "a b"
-                        /^[a-z]{1,2}\s[a-z]{1,2}$/, // Very short words like "aa bb"
-                        /^(.)\1+\s(.)\2+$/,         // Repeated characters like "aaa bbb"
-                        /^test\s*test$/,            // "test test"
-                        /^name\s*name$/,            // "name name"
-                        /^[a-z]{1,2}$/,             // Single short words like "aa"
-                    ];
-
-                    // Check if name matches any spam pattern
-                    for (let pattern of spamPatterns) {
-                        if (pattern.test(cleanName)) {
-                            return false;
-                        }
-                    }
-
-                    return true;
-                }
-
-                function showNameWarning() {
-                    nameWarning.style.display = 'block';
-                    nameInput.style.borderColor = '#f44336';
-                }
-
-                function hideNameWarning() {
-                    nameWarning.style.display = 'none';
-                    nameInput.style.borderColor = '';
-                }
-
-                // Real-time validation as user types
-                nameInput.addEventListener('input', function () {
-                    const name = this.value;
-
-                    if (name.length > 0) {
-                        if (validateName(name)) {
-                            hideNameWarning();
-                        } else {
-                            showNameWarning();
-                        }
-                    } else {
-                        hideNameWarning();
-                    }
-                });
-
-                // Prevent form submission if name is invalid
-                form.addEventListener('submit', function (e) {
-                    const name = nameInput.value;
-
-                    if (!validateName(name)) {
-                        e.preventDefault();
-                        showNameWarning();
-                        nameInput.focus();
-                        return false;
-                    }
-                });
             });
         </script>
 

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
+
   <!-- Homepage -->
   <url>
     <loc>https://databygagan.com/</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-02-16</lastmod>
     <image:image>
       <image:loc>https://databygagan.com/images/Hranalytics.png</image:loc>
       <image:title>HR Analytics Dashboard</image:title>
@@ -15,26 +13,22 @@
     </image:image>
   </url>
 
-  <!-- Main Pages -->
+  <!-- About -->
   <url>
     <loc>https://databygagan.com/about</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
+  <!-- Skills -->
   <url>
     <loc>https://databygagan.com/skills</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
+  <!-- Projects -->
   <url>
     <loc>https://databygagan.com/projects</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
     <image:image>
       <image:loc>https://databygagan.com/images/Hranalytics.png</image:loc>
       <image:title>HR Analytics Dashboard Project</image:title>
@@ -60,41 +54,35 @@
       <image:title>Netflix Movie Analysis Project</image:title>
       <image:caption>Comprehensive analysis of Netflix movie dataset</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://databygagan.com/images/Weatherdashboard.png</image:loc>
+      <image:title>Weather Dashboard Project</image:title>
+      <image:caption>Interactive weather data dashboard with real-time analytics</image:caption>
+    </image:image>
   </url>
 
+  <!-- Services -->
   <url>
     <loc>https://databygagan.com/services</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
+  <!-- Testimonials -->
   <url>
     <loc>https://databygagan.com/testimonials</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
+  <!-- FAQ -->
   <url>
     <loc>https://databygagan.com/faq</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
-  <url>
-    <loc>https://databygagan.com/resume</loc>
-  <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
+  <!-- Contact -->
   <url>
     <loc>https://databygagan.com/contact</loc>
-    <lastmod>2025-09-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-16</lastmod>
   </url>
 
 </urlset>
