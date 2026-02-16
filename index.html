@@ -90,8 +90,8 @@
         as="style">
     <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="scripts.js" as="script">
-    <!-- Preload project data to reduce critical path latency -->
-    <link rel="preload" href="/api/projects" as="fetch" crossorigin>
+    <!-- Early fetch for project data (uses script instead of link preload to avoid checklinks build error) -->
+    <script>window.__projectsPromise = fetch('/api/projects').then(r => r.json()).catch(() => null);</script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
