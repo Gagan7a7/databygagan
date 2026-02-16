@@ -850,8 +850,6 @@ function initializePerformanceOptimizations() {
 function enableResourceHints() {
     const hints = [
         { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
     ];
     hints.forEach((hint) => {
         const link = document.createElement("link");
