@@ -94,8 +94,8 @@
     <script>window.__projectsPromise = fetch('/api/projects').then(r => r.json()).catch(() => null);</script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"> -->
 
@@ -1034,43 +1034,6 @@
                 } else {
                     navbar.classList.remove('navbar-scrolled');
                 }
-            });
-        </script>
-
-        <!-- Bootstrap Back-to-Top Functionality -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const backToTopBtn = document.getElementById('back-to-top');
-
-                // Show/hide button based on scroll position
-                function toggleBackToTop() {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.classList.remove('d-none');
-                        backToTopBtn.classList.add('show');
-                    } else {
-                        backToTopBtn.classList.remove('show');
-                        setTimeout(() => {
-                            if (!backToTopBtn.classList.contains('show')) {
-                                backToTopBtn.classList.add('d-none');
-                            }
-                        }, 300);
-                    }
-                }
-
-                // Smooth scroll to top
-                function scrollToTop() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-
-                // Event listeners
-                window.addEventListener('scroll', toggleBackToTop, { passive: true });
-                backToTopBtn.addEventListener('click', scrollToTop);
-
-                // Initial check
-                toggleBackToTop();
             });
         </script>
 
