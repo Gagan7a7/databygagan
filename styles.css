@@ -1727,3 +1727,39 @@ main {
     background: #181c2a;
     transition: var(--transition);
 }
+
+/* Accessibility: Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .floating-shape,
+    .floating-element,
+    .data-shape,
+    .hero-background {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .fade-in-text {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .animate-on-scroll,
+    .reveal-element {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #back-to-top {
+        transition: none !important;
+    }
+}

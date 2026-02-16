@@ -1,3 +1,5 @@
+// Respect user's reduced motion preference (accessibility - WCAG 2.1 SC 2.3.3)
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const preconnectLinks = ["https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"];
 function addPreconnects() {
     preconnectLinks.forEach((url) => {
@@ -52,11 +54,16 @@ function initializePortfolio() {
         }
         const typewriterElement = document.querySelector(".typewriter-text");
         if (typewriterElement) {
-            const shouldRunTypewriter = optimizeForMobile();
-            if (shouldRunTypewriter !== !1) {
-                requestAnimationFrame(() => {
-                    setTimeout(initTypewriter, isMobileDevice() ? 1000 : 500);
-                });
+            if (prefersReducedMotion) {
+                // Show first phrase as static text instead of perpetual animation
+                typewriterElement.textContent = "Freelance Data Analyst";
+            } else {
+                const shouldRunTypewriter = optimizeForMobile();
+                if (shouldRunTypewriter !== !1) {
+                    requestAnimationFrame(() => {
+                        setTimeout(initTypewriter, isMobileDevice() ? 1000 : 500);
+                    });
+                }
             }
         }
         initializePerformanceOptimizations();
@@ -70,6 +77,17 @@ function handleLoading() {
     // Guard clause: Skip scroll lock logic if no loader element exists
     // This fixes scroll lock bug on pages without #loader (about.html, projects.html, etc.)
     if (!loader) {
+        setupPageSpecificAnimations();
+        return;
+    }
+
+    // Skip loader animation for reduced motion users — immediately show content
+    if (prefersReducedMotion) {
+        loader.style.display = "none";
+        loader.classList.add("hidden");
+        document.body.style.cssText = "";
+        document.documentElement.style.cssText = "";
+        sessionStorage.setItem("portfolioLoaded", "true");
         setupPageSpecificAnimations();
         return;
     }
@@ -206,7 +224,7 @@ function setupSmoothScrolling() {
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                window.scrollTo({ top: offsetPosition, behavior: prefersReducedMotion ? "auto" : "smooth" });
             }
         });
     });
@@ -263,6 +281,9 @@ function handleActiveNavigation(sections, navLinks) {
     });
 }
 function setupAnimations() {
+    // Images must always be optimized regardless of motion preference
+    optimizeImages();
+    if (prefersReducedMotion) return;
     const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const observer = new IntersectionObserver(function (entries) {
         entries.forEach((entry) => {
@@ -279,9 +300,9 @@ function setupAnimations() {
         el.classList.add("animate-on-scroll");
         observer.observe(el);
     });
-    optimizeImages();
 }
 function handleParallaxEffect() {
+    if (prefersReducedMotion) return;
     const hero = document.querySelector(".hero");
     const heroBackground = document.querySelector(".hero-background");
     if (hero && heroBackground) {
@@ -306,6 +327,8 @@ function setupScrollProgressBar() {
     }
 }
 function setupRevealAnimations() {
+    // Skip entirely: don't add .reveal-element (opacity:0) so elements stay visible natively
+    if (prefersReducedMotion) return;
     const revealElements = document.querySelectorAll(
         ".section-title, .about-text p, .contact-item, .skill-category h3, .service-card h3"
     );
@@ -380,6 +403,7 @@ function optimizeImages() {
     });
 }
 function triggerEntranceAnimations() {
+    if (prefersReducedMotion) return;
     const heroContent = document.querySelector(".hero-content");
     if (heroContent) {
         heroContent.classList.add("animate-in");
@@ -392,6 +416,11 @@ function setupPageSpecificAnimations() {
 }
 function staggerChildAnimations(parent) {
     const children = parent.children;
+    if (prefersReducedMotion) {
+        // Show all children immediately without stagger delays
+        Array.from(children).forEach(child => child.classList.add("animate-in"));
+        return;
+    }
     Array.from(children).forEach((child, index) => {
         setTimeout(() => {
             child.classList.add("animate-in");
@@ -500,7 +529,7 @@ function handleFormSubmission(form, submitButton) {
             if (response.ok) {
                 showNotification("Message sent successfully! I'll get back to you soon.", "success");
                 form.reset();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
             } else {
                 throw new Error("Network response was not ok");
             }
@@ -508,7 +537,7 @@ function handleFormSubmission(form, submitButton) {
         .catch((error) => {
             console.error("Error:", error);
             showNotification("There was a problem sending your message. Please try again later.", "error");
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
         })
         .finally(() => {
             submitButton.innerHTML = originalText;
@@ -679,7 +708,7 @@ function setupBackToTop() {
     window.addEventListener("scroll", throttledScrollHandler, passiveIfSupported);
     backToTopButton.addEventListener("click", function (e) {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
     });
     throttledScrollHandler();
 }
