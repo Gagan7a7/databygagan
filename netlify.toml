@@ -89,15 +89,19 @@
     # Disable external link checking to prevent build crashes
     checkExternal = false
     # Skip the future SEO anchors that don't have headings yet
-    # Also skip admin routes, API endpoints, and service page anchors
+    # Also skip admin routes, API endpoints, service page anchors,
+    # and external CDN/analytics URLs that cause ETIMEDOUT during build
     skipPatterns = [
         "/admin",
         "/admin/*",
         "/api/*",
         "api/*",
         "*/admin/*",
-        "https://fonts.googleapis.com",
-        "https://fonts.gstatic.com",
+        "https://fonts.googleapis.com*",
+        "https://fonts.gstatic.com*",
+        "https://www.googletagmanager.com*",
+        "https://www.google-analytics.com*",
+        "https://cdnjs.cloudflare.com*",
         "#automation",
         "#automation-services",
         "#analytics-services",
