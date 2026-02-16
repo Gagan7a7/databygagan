@@ -73,8 +73,19 @@
 [[plugins]]
   package = "netlify-plugin-checklinks"
   [plugins.inputs]
-    # Only check HTML files
-    entryPoints = ["*.html"]
+    # Only check public-facing HTML files (admin.html excluded — its inlined JS
+    # references Netlify Functions that don't exist as local files during build)
+    entryPoints = [
+        "index.html",
+        "about.html",
+        "contact.html",
+        "faq.html",
+        "testimonials.html",
+        "skills.html",
+        "projects.html",
+        "servicescroll.html",
+        "services.html"
+    ]
     # Disable external link checking to prevent build crashes
     checkExternal = false
     # Skip the future SEO anchors that don't have headings yet
