@@ -83,6 +83,7 @@
         "/admin",
         "/admin/*",
         "/api/*",
+        "api/*",
         "*/admin/*",
         "https://fonts.googleapis.com",
         "https://fonts.gstatic.com",
