@@ -84,6 +84,8 @@
         "/admin/*",
         "/api/*",
         "*/admin/*",
+        "https://fonts.googleapis.com",
+        "https://fonts.gstatic.com",
         "#automation",
         "#automation-services",
         "#analytics-services",
