@@ -93,9 +93,11 @@
     <!-- Early fetch for project data (uses script instead of link preload to avoid checklinks build error) -->
     <script>window.__projectsPromise = fetch('/api/projects').then(r => r.json()).catch(() => null);</script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts preconnects (via script to avoid checklinks SSL error during Netlify build) -->
+    <script>
+        var gc = document.createElement('link'); gc.rel = 'preconnect'; gc.href = 'https://fonts.googleapis.com'; document.head.appendChild(gc);
+        var gs = document.createElement('link'); gs.rel = 'preconnect'; gs.href = 'https://fonts.gstatic.com'; gs.crossOrigin = 'anonymous'; document.head.appendChild(gs);
+    </script>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"> -->
 

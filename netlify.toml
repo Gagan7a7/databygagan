@@ -112,7 +112,5 @@
     todoPatterns = [
         "#automation",
         "#data",
-        "#web",
-        "https://fonts.googleapis.com*",
-        "https://fonts.gstatic.com*"
+        "#web"
     ]
