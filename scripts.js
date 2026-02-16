@@ -1,6 +1,6 @@
 // Respect user's reduced motion preference (accessibility - WCAG 2.1 SC 2.3.3)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const preconnectLinks = ["https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"];
+const preconnectLinks = ["https://cdnjs.cloudflare.com"];
 function addPreconnects() {
     preconnectLinks.forEach((url) => {
         const link = document.createElement("link");
