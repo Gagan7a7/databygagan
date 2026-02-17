@@ -40,6 +40,7 @@
 
     <!-- DNS prefetch for performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
 
@@ -171,11 +172,7 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
     </noscript>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        media="(max-width: 768px)">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        media="(min-width: 769px)">
+
 
     <!-- Bootstrap 5.3.0 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -423,12 +420,25 @@
                             let pointerReady = false; // becomes true after initial delay
                             let pointerVisible = false;
 
+                            // Cache positions once — read layout once, not every 4.5s
+                            var cardPositions = [];
+                            function cacheCardPositions() {
+                                cardPositions = [];
+                                for (var i = 0; i < cards.length; i++) {
+                                    cardPositions.push({
+                                        left: cards[i].offsetLeft - 48,
+                                        top: cards[i].offsetTop + (cards[i].offsetHeight / 2) - 24
+                                    });
+                                }
+                            }
+                            cacheCardPositions();
+                            window.addEventListener('resize', cacheCardPositions, { passive: true });
+
                             function movePointer() {
-                                var card = cards[idx];
-                                var left = card.offsetLeft - 48;
-                                var top = card.offsetTop + (card.offsetHeight / 2) - 24;
-                                pointer.style.left = left + 'px';
-                                pointer.style.top = top + 'px';
+                                var pos = cardPositions[idx];
+                                if (!pos) return;
+                                pointer.style.left = pos.left + 'px';
+                                pointer.style.top = pos.top + 'px';
                                 idx = (idx + 1) % cards.length;
                             }
                             function startPointerLoop(intervalMs) {
@@ -697,14 +707,14 @@
         <div class="container">
             <div class="row footer-content py-5">
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h4 class="mb-3" style="color: #4a90e2; font-size:1.1rem;">Gagan | Technical Partner</h4>
+                    <h3 class="mb-3" style="color: #4a90e2; font-size:1.1rem;">Gagan | Technical Partner</h3>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                         Delivering automation, analytics, and web solutions for
                         businesses worldwide.
                     </p>
                 </div>
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h5 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Quick Links</h5>
+                    <h4 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Quick Links</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3"><a href="/" class="text-decoration-none"
                                 style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
@@ -719,7 +729,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 footer-section text-center">
-                    <h5 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Services</h5>
+                    <h4 class="fw-bold mb-4" style="color: #4a90e2; font-size:1rem;">Services</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
@@ -780,7 +790,7 @@
     </script>
     <!-- Scripts -->
     <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
     <script>
         // FIXED: Skill card popup effect with proper positioning for all cards
         document.addEventListener('DOMContentLoaded', function () {
