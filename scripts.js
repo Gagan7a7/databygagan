@@ -3,11 +3,13 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const preconnectLinks = ["https://cdnjs.cloudflare.com"];
 function addPreconnects() {
     preconnectLinks.forEach((url) => {
-        const link = document.createElement("link");
-        link.rel = "preconnect";
-        link.href = url;
-        if (url.includes("gstatic")) link.crossOrigin = "anonymous";
-        document.head.appendChild(link);
+        if (!document.querySelector('link[href="' + url + '"]')) {
+            const link = document.createElement("link");
+            link.rel = "preconnect";
+            link.href = url;
+            if (url.includes("gstatic")) link.crossOrigin = "anonymous";
+            document.head.appendChild(link);
+        }
     });
 }
 if ("requestIdleCallback" in window) {
@@ -1169,20 +1171,25 @@ function setupPerformanceMonitoring() {
                             : `<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`;
                         let imgTag;
                         const cacheBuster = "?v=20251010";
-                        if (!firstProjectRendered && isMobileDevice()) {
-                            let transformedImage = proj.image + cacheBuster;
+                        const isFirstProject = !firstProjectRendered;
+                        const imgAttrs = isFirstProject ? 'fetchpriority="high"' : 'loading="lazy"';
+                        let transformedImage = proj.image + cacheBuster;
+
+                        if (isFirstProject) {
+                            firstProjectRendered = !0;
+                        }
+
+                        if (isMobileDevice()) {
                             const webpSrc = transformedImage.replace(
                                 /\.(png|jpg|jpeg|avif)(\?v=\d+)?$/i,
                                 ".webp?v=20251010"
                             );
                             imgTag = `<picture>
   <source srcset="${webpSrc}" type="image/webp">
-  <img src="${transformedImage}" alt="${proj.alt}" itemprop="image" style="width: 100%; height: auto;" />
+  <img src="${transformedImage}" alt="${proj.alt}" ${imgAttrs} itemprop="image" style="width: 100%; height: auto;" />
 </picture>`;
-                            firstProjectRendered = !0;
                         } else {
-                            let transformedImage = proj.image + cacheBuster;
-                            imgTag = `<img src="${transformedImage}" alt="${proj.alt}" loading="lazy" itemprop="image" style="width: 100%; height: auto;" />`;
+                            imgTag = `<img src="${transformedImage}" alt="${proj.alt}" ${imgAttrs} itemprop="image" style="width: 100%; height: auto;" />`;
                         }
                         const card = `
 <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">

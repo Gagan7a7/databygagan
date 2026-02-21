@@ -1794,8 +1794,7 @@ main {
 /* CLS Fix: Reserve desktop space for dynamic projects injection */
 @media (min-width: 769px) {
     #projects-list {
-        min-height: 2500px;
-        contain: layout;
+        min-height: 3500px;
     }
 
     .project-cta-section {
