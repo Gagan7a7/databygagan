@@ -3,15 +3,20 @@ admin/
 node_modules/
 .env
 *.log
-.agent/
 ARCHITECTURE.md
 aboutoriginal.html
 serviceoriginal.html
 PLAN-skills-seo.md
 PLAN-services-seo.md
+PROJECT_AUDIT.md
 PLAN-projects-seo.md
 PLAN-site-evolution-audit.md
 PLAN-testimonials-seo.md
+legacy-cleanup.md
+cls-fix.md
+cls-fix-v2.md
+cls-fix-v3.md
+_legacy_archive/
 skillsoriginal.html
 testimonialsoriginal.html
 PLAN-services-modernization.md
@@ -48,4 +53,6 @@ about9-2-.html
 about10-02.html
 about11-02.html
 MASTER-EXECUTION-PLAN.md
+projects-cls-fix.md
+
 

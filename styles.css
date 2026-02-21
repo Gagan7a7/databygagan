@@ -1781,3 +1781,16 @@ main {
         transition: none !important;
     }
 }
+
+/* CLS Fix: Reserve desktop space for dynamic projects injection */
+@media (min-width: 769px) {
+    #projects-list {
+        min-height: 2500px;
+        contain: layout;
+    }
+
+    .project-cta-section {
+        min-height: 400px;
+        contain: layout;
+    }
+}
