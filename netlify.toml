@@ -2,6 +2,9 @@
   functions = "netlify/functions"
   publish = "."
 
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "CLOUDINARY_CLOUD_NAME"
+
 # Disable automatic sitemap generation
 [build.processing]
   skip_processing = true
