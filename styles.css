@@ -1791,6 +1791,13 @@ main {
     }
 }
 
+/* Mobile Skeleton Loader for LCP Optimization */
+.mobile-skeleton-loader {
+    width: 100%;
+    min-height: 80vh;
+    border-radius: var(--border-radius);
+}
+
 /* CLS Fix: Reserve desktop space for dynamic projects injection */
 @media (min-width: 769px) {
     #projects-list {
