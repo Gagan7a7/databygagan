@@ -1296,6 +1296,15 @@ main {
         font-size: 0.85rem !important;
         line-height: 1.6 !important;
     }
+
+    #projects-list {
+        min-height: 3500px;
+    }
+
+    .project-cta-section {
+        min-height: 400px;
+        contain: layout;
+    }
 }
 
 .services-grid {
