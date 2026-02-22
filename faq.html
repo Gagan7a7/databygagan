@@ -34,8 +34,11 @@
 
     <!-- DNS prefetch for performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//databygagan.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" href="styles.css?v=fixed" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2"
+        as="font" type="font/woff2" crossorigin>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -78,169 +81,172 @@
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css?v=fixed">
 
     <!-- FAQ Schema for Google Search Console (18 Questions - GEO Optimized) -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "name": "FAQ: Data, Automation & Web Services",
-        "description": "Frequently asked questions about freelance technical services covering data analytics, workflow automation, and web development.",
-        "url": "https://databygagan.com/faq",
-        "dateModified": "2026-02-07",
-        "inLanguage": "en",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Do you work with clients worldwide?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! I am available for remote projects globally, with flexible hours for US, UK, EU, and APAC clients. All communication is in English, with secure online delivery and support for international payments."
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "name": "FAQ: Data, Automation & Web Services",
+            "description": "Frequently asked questions about freelance technical services covering data analytics, workflow automation, and web development.",
+            "url": "https://databygagan.com/faq",
+            "dateModified": "2026-02-07",
+            "inLanguage": "en",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Do you work with clients worldwide?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes! I am available for remote projects globally, with flexible hours for US, UK, EU, and APAC clients. All communication is in English, with secure online delivery and support for international payments."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How can I hire you for a project?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "You can contact me through the contact form on this website, email me at databygagan@gmail.com, connect with me on LinkedIn, or hire me directly on Fiverr for quick project bookings. I offer free consultations to discuss your project requirements and provide detailed proposals."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is your typical project timeline?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Timelines depend on the project scope. Simple dashboards or automations typically take 2-5 days. Full websites or complex data systems may take 1-3 weeks. I provide a specific delivery date in every proposal."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you work with small businesses and startups?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Absolutely! I work with businesses of all sizes, from individual entrepreneurs to growing companies. I understand that small businesses and startups have unique needs and budget constraints, so I offer flexible solutions, scalable pricing options, and phased project approaches to fit different requirements."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What information do you need to start a project?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It depends on the service. For Data, I need your sources (Excel/SQL). For Automation, I need your workflow logic. For Websites, I need design references or content. We will clarify exactly what is needed during our consultation."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you provide ongoing support after project completion?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. I offer support packages that cover data refreshes, automation monitoring, and website maintenance. This ensures your dashboards stay accurate, your workflows keep running, and your site stays online."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What data analytics services do you offer?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I offer comprehensive data analytics services including Excel dashboard development, Power BI report creation, data cleaning and processing, SQL development, Python data analysis, and machine learning solutions. I also provide Excel automation using Python and AI tools to streamline repetitive tasks."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What tools and technologies do you use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I work with SQL, Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn), Power BI, Excel, MySQL, and various data visualization tools to deliver comprehensive analytics solutions. I also integrate AI tools like GPT to enhance analysis efficiency and automate workflows."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can you work with messy or incomplete data?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, data cleaning and preparation is one of my core specialties. I can work with messy, incomplete, or poorly structured data to transform it into clean, analysis-ready datasets. This includes handling missing values, removing duplicates, standardizing formats, and ensuring data quality."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do you ensure data security and confidentiality?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I take data security very seriously. All client data is handled with strict confidentiality, and I can sign NDAs when required. I follow best practices for data handling, use secure file transfer methods, and ensure all work is done in secure environments."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What industries have you worked with?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I have demonstrated experience with HR analytics and e-commerce data through various projects. My analytical approach is adaptable to any industry that needs data-driven insights, and I'm always excited to tackle new domains and business challenges."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What kind of automation workflows can you build?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I specialize in building custom automation workflows for lead outreach, content creation (image & video generation), and intelligent chatbots for Telegram and WhatsApp. I achieve this by seamlessly connecting LLMs and third-party APIs into your workflow, ensuring your automation is smart, efficient, and tailored to your specific needs."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How are AI costs (LLMs) handled?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "AI costs depend entirely on your project requirements. For paid models (like OpenAI or Anthropic), I recommend using your own API keys. This ensures you retain full ownership of the account and pay only for what you use. I will guide you through the secure setup process to get everything running smoothly."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can you connect to custom software not in n8n?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I primarily focus on standard, stable integrations supported natively by n8n to ensure your workflow runs smoothly. For custom software, I can review the API documentation first. If it is safe and feasible, I can set it up using HTTP requests, but I will evaluate it first to ensure we don't risk your data stability."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you build websites or landing pages?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, I build single-page and multi-page landing pages, as well as professional portfolio sites. My primary focus is on frontend development to ensure your site looks great and loads fast. For backend functionality, I evaluate it based on your specific requirements to ensure I can deliver the best result based on my expertise."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need to buy my own domain and hosting?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, you need to purchase the domain and hosting in your own name. This ensures you retain full ownership of your website. Once you have purchased them, you can simply share the access credentials with me, and I will upload the website files for you."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Will my website work on mobile phones?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Absolutely. I ensure all my websites are built with responsive design principles, so they look perfect and function smoothly on all devices—desktops, tablets, and mobile phones, regardless of the screen size."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I update the website content myself?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I provide a user guide explaining your website's structure. However, because I build high-performance custom sites (not drag-and-drop WordPress), significant layout changes require coding. For best results, I recommend reaching out to me for updates, or we can discuss a maintenance package."
+                    }
                 }
-            },
-            {
-                "@type": "Question",
-                "name": "How can I hire you for a project?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "You can contact me through the contact form on this website, email me at databygagan@gmail.com, connect with me on LinkedIn, or hire me directly on Fiverr for quick project bookings. I offer free consultations to discuss your project requirements and provide detailed proposals."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is your typical project timeline?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Timelines depend on the project scope. Simple dashboards or automations typically take 2-5 days. Full websites or complex data systems may take 1-3 weeks. I provide a specific delivery date in every proposal."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you work with small businesses and startups?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely! I work with businesses of all sizes, from individual entrepreneurs to growing companies. I understand that small businesses and startups have unique needs and budget constraints, so I offer flexible solutions, scalable pricing options, and phased project approaches to fit different requirements."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What information do you need to start a project?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "It depends on the service. For Data, I need your sources (Excel/SQL). For Automation, I need your workflow logic. For Websites, I need design references or content. We will clarify exactly what is needed during our consultation."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you provide ongoing support after project completion?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. I offer support packages that cover data refreshes, automation monitoring, and website maintenance. This ensures your dashboards stay accurate, your workflows keep running, and your site stays online."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What data analytics services do you offer?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I offer comprehensive data analytics services including Excel dashboard development, Power BI report creation, data cleaning and processing, SQL development, Python data analysis, and machine learning solutions. I also provide Excel automation using Python and AI tools to streamline repetitive tasks."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What tools and technologies do you use?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I work with SQL, Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn), Power BI, Excel, MySQL, and various data visualization tools to deliver comprehensive analytics solutions. I also integrate AI tools like GPT to enhance analysis efficiency and automate workflows."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can you work with messy or incomplete data?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, data cleaning and preparation is one of my core specialties. I can work with messy, incomplete, or poorly structured data to transform it into clean, analysis-ready datasets. This includes handling missing values, removing duplicates, standardizing formats, and ensuring data quality."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How do you ensure data security and confidentiality?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I take data security very seriously. All client data is handled with strict confidentiality, and I can sign NDAs when required. I follow best practices for data handling, use secure file transfer methods, and ensure all work is done in secure environments."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What industries have you worked with?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I have demonstrated experience with HR analytics and e-commerce data through various projects. My analytical approach is adaptable to any industry that needs data-driven insights, and I'm always excited to tackle new domains and business challenges."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What kind of automation workflows can you build?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I specialize in building custom automation workflows for lead outreach, content creation (image & video generation), and intelligent chatbots for Telegram and WhatsApp. I achieve this by seamlessly connecting LLMs and third-party APIs into your workflow, ensuring your automation is smart, efficient, and tailored to your specific needs."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How are AI costs (LLMs) handled?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "AI costs depend entirely on your project requirements. For paid models (like OpenAI or Anthropic), I recommend using your own API keys. This ensures you retain full ownership of the account and pay only for what you use. I will guide you through the secure setup process to get everything running smoothly."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can you connect to custom software not in n8n?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I primarily focus on standard, stable integrations supported natively by n8n to ensure your workflow runs smoothly. For custom software, I can review the API documentation first. If it is safe and feasible, I can set it up using HTTP requests, but I will evaluate it first to ensure we don't risk your data stability."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you build websites or landing pages?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, I build single-page and multi-page landing pages, as well as professional portfolio sites. My primary focus is on frontend development to ensure your site looks great and loads fast. For backend functionality, I evaluate it based on your specific requirements to ensure I can deliver the best result based on my expertise."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do I need to buy my own domain and hosting?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, you need to purchase the domain and hosting in your own name. This ensures you retain full ownership of your website. Once you have purchased them, you can simply share the access credentials with me, and I will upload the website files for you."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Will my website work on mobile phones?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely. I ensure all my websites are built with responsive design principles, so they look perfect and function smoothly on all devices—desktops, tablets, and mobile phones, regardless of the screen size."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I update the website content myself?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "I provide a user guide explaining your website's structure. However, because I build high-performance custom sites (not drag-and-drop WordPress), significant layout changes require coding. For best results, I recommend reaching out to me for updates, or we can discuss a maintenance package."
-                }
-            }
-        ]
-    }
-    </script>
+            ]
+        }
+        </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
     <script>
@@ -789,22 +795,26 @@
                 <!-- Category Navigation Buttons -->
                 <div class="faq-nav-container">
                     <div class="faq-nav-wrapper">
-                        <button class="faq-nav-btn active" data-category="general" type="button">
+                        <button class="faq-nav-btn active" data-category="general" type="button"
+                            aria-label="General and Business questions">
                             <i class="fas fa-briefcase"></i>
                             <span class="btn-text">General &amp; Business</span>
                             <span class="count-badge">6</span>
                         </button>
-                        <button class="faq-nav-btn" data-category="data" type="button">
+                        <button class="faq-nav-btn" data-category="data" type="button"
+                            aria-label="Data Analytics questions">
                             <i class="fas fa-chart-bar"></i>
                             <span class="btn-text">Data Analytics</span>
                             <span class="count-badge">5</span>
                         </button>
-                        <button class="faq-nav-btn" data-category="automation" type="button">
+                        <button class="faq-nav-btn" data-category="automation" type="button"
+                            aria-label="Automation and AI questions">
                             <i class="fas fa-robot"></i>
                             <span class="btn-text">Automation &amp; AI</span>
                             <span class="count-badge">3</span>
                         </button>
-                        <button class="faq-nav-btn" data-category="web" type="button">
+                        <button class="faq-nav-btn" data-category="web" type="button"
+                            aria-label="Web Development questions">
                             <i class="fas fa-code"></i>
                             <span class="btn-text">Web Development</span>
                             <span class="count-badge">4</span>
@@ -1130,13 +1140,13 @@
         <div class="container">
             <div class="row footer-content py-5">
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h4 class="mb-3" style="color: #4a90e2;">Gagan | Technical Partner</h4>
+                    <h3 class="mb-3" style="color: #4a90e2;">Gagan | Technical Partner</h3>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                         Transforming data into actionable insights for businesses worldwide.
                     </p>
                 </div>
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h5 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h5>
+                    <h4 class="fw-bold mb-4" style="color: #4a90e2;">Quick Links</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3"><a href="/" class="text-decoration-none"
                                 style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
@@ -1151,7 +1161,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 footer-section text-center">
-                    <h5 class="fw-bold mb-4" style="color: #4a90e2;">Services</h5>
+                    <h4 class="fw-bold mb-4" style="color: #4a90e2;">Services</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
                         <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
@@ -1177,8 +1187,7 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <!-- FAQ Functionality Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
