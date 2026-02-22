@@ -107,8 +107,12 @@
     ]
 }
 </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    </noscript>
     <style>
         /* Smooth scroll for entire page */
         html {
@@ -415,12 +419,20 @@
     </style>
 
     <!-- Stylesheets -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="scripts.js" as="script">
+    <link rel="preload" href="styles.css?v=fixed" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2"
+        as="font" type="font/woff2" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+        media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
     <link rel="stylesheet" href="styles.css?v=fixed">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -915,7 +927,7 @@
 
             // Mouse Movement Parallax
             function handleMouseMove(e) {
-                updateMagnetic(e);
+                requestAnimationFrame(function () { updateMagnetic(e); });
                 var floatingElements = document.querySelectorAll('.floating-element');
                 var mxp = (e.clientX / window.innerWidth) * 2 - 1;
                 var myp = (e.clientY / window.innerHeight) * 2 - 1;
@@ -938,11 +950,11 @@
             });
         });
     </script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
 
     <!-- BOOTSTRAP JAVASCRIPT -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
     <!-- NAVBAR FUNCTIONALITY SCRIPT -->
     <script>
