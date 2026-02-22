@@ -921,7 +921,7 @@ function setupResumeModal() {
 window.setupResumeModal = setupResumeModal;
 function isMobileDevice() {
     return (
-        window.innerWidth <= 768 ||
+        window.matchMedia('(max-width: 768px)').matches ||
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     );
 }
@@ -935,7 +935,7 @@ function optimizeForMobile() {
         }
     });
     const typewriterElement = document.querySelector(".typewriter-text");
-    if (typewriterElement && window.innerWidth <= 480) {
+    if (typewriterElement && window.matchMedia('(max-width: 480px)').matches) {
         return !0;
     }
     setTimeout(() => {
