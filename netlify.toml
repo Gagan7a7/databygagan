@@ -100,7 +100,6 @@
         "servicescroll.html",
         "services.html"
     ]
-    exclude = ['/api/.*', 'api/.*']
     # Disable external link checking to prevent build crashes
     checkExternal = false
     # Skip the future SEO anchors that don't have headings yet
