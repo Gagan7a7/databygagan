@@ -38,8 +38,6 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <meta name="referrer" content="no-referrer-when-downgrade">
 
-    <!-- DNS prefetch for performance -->
-
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://databygagan.com/projects">
@@ -344,6 +342,36 @@
                 font-size: 0.95rem;
             }
         }
+
+        /* ══════════════════════════════════════════════════════════════ */
+        /* FIX: Override the global min-height: 3500px on desktop.       */
+        /* The skeleton loader needs space BEFORE projects load.         */
+        /* Once JS injects cards, a MutationObserver resets it to auto.  */
+        /* ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 769px) {
+            #projects-list {
+                min-height: 400px;
+                /* enough for shimmer, collapses after load */
+            }
+
+            .project-cta-section {
+                min-height: unset;
+                /* no reserved space needed */
+                contain: unset;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #projects-list {
+                min-height: 3500px;
+                /* keep mobile CLS reservation as before */
+            }
+
+            .project-cta-section {
+                min-height: 400px;
+                contain: layout;
+            }
+        }
     </style>
 </head>
 
@@ -576,6 +604,46 @@
                 });
             });
         });
+    </script>
+
+    <!--
+        FIX: MutationObserver watches #projects-list.
+        The moment scripts.js replaces the shimmer skeleton with real project
+        cards, we immediately collapse min-height to 'auto' on desktop so the
+        CTA section sits flush below the last card instead of floating 1000px
+        below it.  Mobile keeps its own CSS min-height (3500px) for CLS.
+    -->
+    <script>
+        (function () {
+            var isDesktop = window.matchMedia('(min-width: 769px)').matches;
+            if (!isDesktop) return; // mobile handles its own CLS reservation via CSS
+
+            var projectsList = document.getElementById('projects-list');
+            if (!projectsList) return;
+
+            var observer = new MutationObserver(function (mutations, obs) {
+                // Check if the shimmer placeholder is gone and real content exists
+                var shimmer = projectsList.querySelector('.mobile-skeleton-loader');
+                var hasCards = projectsList.querySelector('.project-card');
+
+                if (!shimmer || hasCards) {
+                    // Content has loaded — release the reserved height
+                    projectsList.style.minHeight = 'auto';
+                    obs.disconnect();
+                }
+            });
+
+            observer.observe(projectsList, { childList: true, subtree: true });
+
+            // Safety net: if something goes wrong with the observer,
+            // release the min-height after 8 seconds regardless
+            setTimeout(function () {
+                if (projectsList.style.minHeight !== 'auto') {
+                    projectsList.style.minHeight = 'auto';
+                    observer.disconnect();
+                }
+            }, 8000);
+        })();
     </script>
 
     <script src="scripts.js"></script>
