@@ -859,8 +859,6 @@
         function initTestimonialHover() { const grid = document.getElementById('testimonials-grid'); if (!grid) return; if (window.matchMedia('(hover: hover)').matches && window.innerWidth > 768) { grid.addEventListener('mouseenter', (e) => { if (e.target.classList.contains('testimonial-card')) { grid.classList.add('has-hovered-card'); e.target.classList.add('is-hovered') } }, !0); grid.addEventListener('mouseleave', (e) => { if (e.target.classList.contains('testimonial-card')) { grid.classList.remove('has-hovered-card'); e.target.classList.remove('is-hovered'); grid.querySelectorAll('.testimonial-card').forEach(card => { card.classList.remove('is-hovered') }) } }, !0) } }
         document.addEventListener('DOMContentLoaded', () => { loadTestimonials(); initTestimonialHover(); window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateScrollEffects); ticking = !0 } }, { passive: !0 }); const backToTop = document.getElementById('back-to-top'); backToTop?.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }) }); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.style.scrollBehavior = 'auto' }
     </script>
-
-    <script src="scripts.js"></script>
 </body>
 
 </html>
