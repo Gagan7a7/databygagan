@@ -590,6 +590,41 @@
             box-shadow: 0 8px 30px var(--primary-glow);
         }
 
+        .project-cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .project-cta-btn {
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #4a90e2, #6366f1);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .project-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.3);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .project-cta-btn {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* ============ RESPONSIVE DESIGN ============ */
         @media (max-width: 768px) {
             .faq-nav-wrapper {
@@ -754,7 +789,7 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
                     aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
-                        <h5 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h5>
+                        <h2 class="offcanvas-title" id="mobileOffcanvasLabel">Menu</h2>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
@@ -1125,8 +1160,21 @@
 
                 <!-- Call to Action -->
                 <div class="faq-cta-section">
-                    <p>Still have questions?</p>
-                    <a href="contact" class="btn btn-primary">
+                    <div class="project-cta-badge">
+                        <i class="fas fa-envelope" style="color:#4a90e2;font-size:1.1rem;"></i>
+                        <span
+                            style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">
+                            Still Have Questions?
+                        </span>
+                    </div>
+                    <h2 class="mb-3 fw-bold" style="color:#e0e6ed;font-size:clamp(1.3rem,3vw,1.6rem);">
+                        Let's Talk About Your Project
+                    </h2>
+                    <p class="mb-4 mx-auto" style="color:#a0aec0;font-size:1rem;max-width:540px;line-height:1.7;">
+                        Can't find what you're looking for? I'm happy to answer any questions about my services,
+                        pricing, or process.
+                    </p>
+                    <a href="contact" class="project-cta-btn">
                         <i class="fas fa-envelope me-2"></i>Get in Touch
                     </a>
                 </div>
