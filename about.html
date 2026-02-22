@@ -741,8 +741,7 @@
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
                     <h4 class="mb-3" style="color: #4a90e2; font-size:1.3rem;">Gagan | Technical Partner</h4>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
-                        Automation, data analytics &amp; web development
-                        for global clients.
+                        Delivering automation, analytics, and web solutions for businesses worldwide.
                     </p>
                 </div>
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
@@ -780,8 +779,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top"
-        aria-label="Back to top">
+    <button type="button" id="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -984,20 +982,18 @@
             var backToTopBtn = document.getElementById('back-to-top');
             function toggleBackToTop() {
                 if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.remove('d-none');
                     backToTopBtn.classList.add('show');
+                    backToTopBtn.classList.add('visible');
                 } else {
                     backToTopBtn.classList.remove('show');
-                    setTimeout(function () {
-                        if (!backToTopBtn.classList.contains('show')) {
-                            backToTopBtn.classList.add('d-none');
-                        }
-                    }, 300);
+                    backToTopBtn.classList.remove('visible');
                 }
             }
             function scrollToTop() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            window.addEventListener('scroll', toggleBackToTop, { passive: true });
+            window.removeEventListener('scroll', toggleBackToTop);
             window.addEventListener('scroll', toggleBackToTop, { passive: true });
             backToTopBtn.addEventListener('click', scrollToTop);
             toggleBackToTop();

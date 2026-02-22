@@ -260,7 +260,7 @@
         :root {
             --primary-color: #4a90e2;
             --primary-glow: rgba(74, 144, 226, 0.3);
-            --secondary-color: #6c63ff;
+            --secondary-color: #00bcd4;
             --bg-dark: #0a1120;
             --bg-card: rgba(20, 25, 45, 0.8);
             --bg-card-hover: rgba(30, 35, 55, 0.9);
@@ -268,8 +268,8 @@
             --text-light: #e0e6ed;
             --text-muted: #a0a8b8;
             --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --gradient-primary: linear-gradient(135deg, #4a90e2 0%, #6c63ff 100%);
-            --gradient-glow: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(108, 99, 255, 0.1) 100%);
+            --gradient-primary: linear-gradient(135deg, #4a90e2 0%, #00bcd4 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(0, 188, 212, 0.1) 100%);
         }
 
         /* ============ CATEGORY NAVIGATION BUTTONS ============ */
@@ -537,7 +537,8 @@
             background: var(--gradient-primary);
             background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            /* -webkit-text-fill-color: transparent;*/
+            -webkit-text-fill-color: #00bcd4;
             margin-bottom: 1rem;
             font-weight: 700;
             font-size: 2.5rem;

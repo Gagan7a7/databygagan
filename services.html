@@ -411,6 +411,9 @@
             border: 1px solid rgba(74, 144, 226, 0.12);
             border-radius: 20px;
             overflow: hidden;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .srv-cta::before {
@@ -455,6 +458,18 @@
         .srv-card:focus-visible {
             outline: 2px solid #4a90e2;
             outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .srv-cta {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .srv-cta-btn {
+                width: 100%;
+                text-align: center;
+                padding: 12px 28px;
+            }
         }
     </style>
 </head>
@@ -527,7 +542,7 @@
                         <i class="fas fa-sparkles" style="font-size:0.7rem;"></i> What I Offer
                     </span>
                     <h1 id="services-heading" class="fw-bold mt-3 mb-3"
-                        style="color:#e0e6ed;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;">
+                        style="color:#00bcd4;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;">
                         n8n Automation, Data &amp; Web Services
                     </h1>
                     <p class="mx-auto mb-0" style="color:#84ade4;font-size:1.05rem;max-width:520px;line-height:1.7;">
@@ -546,7 +561,7 @@
                                 <i class="fas fa-bolt"></i>
                             </div>
                             <h2 id="automation-heading" class="mb-0 fw-semibold"
-                                style="color:#e0e6ed;font-size:1.35rem;">
+                                style="color:#00bcd4;font-size:1.35rem;">
                                 Automation &amp; AI Services
                             </h2>
                             <span class="srv-count">3</span>

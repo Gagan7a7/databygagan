@@ -825,7 +825,7 @@
                 <div class="row justify-content-center mb-4 mb-md-5">
                     <div class="col-lg-8 text-center">
                         <h2 id="services-heading" class="section-title">Technical Services</h2>
-                        <p class="lead text-muted">Three pillars of digital growth.</p>
+                        <p class="lead" style="color: #7ecece;">Three pillars of digital growth.</p>
                     </div>
                 </div>
 
@@ -970,8 +970,7 @@
                     <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
                         <h3 class="mb-3" style="color: #4a90e2; font-size: 1.25rem;">Gagan | Technical Partner</h3>
                         <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
-                            Delivering automation, analytics, and web solutions
-                            for businesses worldwide.
+                            Delivering automation, analytics, and web solutions for businesses worldwide.
                         </p>
                     </div>
                     <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
@@ -1091,6 +1090,28 @@
 
         <!-- Custom Scripts -->
         <script src="scripts.js" defer></script>
+        <script>
+            window.addEventListener('load', function () {
+                const el = document.querySelector('.typewriter-text');
+                if (el && !el.textContent) {
+                    setTimeout(initTypewriter, 500);
+                }
+            });
+        </script>
+        <script>
+            (function () {
+                var btn = document.getElementById('back-to-top');
+                if (!btn) return;
+                function toggle() {
+                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrolled > 300) btn.classList.add('show');
+                    else btn.classList.remove('show');
+                }
+                window.addEventListener('scroll', toggle, { passive: true });
+                btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+                toggle();
+            })();
+        </script>
 
     </main>
 </body>
