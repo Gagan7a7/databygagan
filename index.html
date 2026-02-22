@@ -88,7 +88,7 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         as="style">
-    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="styles.css?v=fixed" as="style">
     <link rel="preload" href="scripts.js" as="script">
     <!-- Early fetch for project data (uses script instead of link preload to avoid checklinks build error) -->
     <script>window.__projectsPromise = fetch('/api/projects').then(r => r.json()).catch(() => null);</script>
@@ -99,7 +99,7 @@
         var gs = document.createElement('link'); gs.rel = 'preconnect'; gs.href = 'https://fonts.gstatic.com'; gs.crossOrigin = 'anonymous'; document.head.appendChild(gs);
     </script>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"> -->
+            rel="stylesheet"> -->
 
     <!-- Stylesheets -->
     <!-- Bootstrap CSS -->
@@ -117,205 +117,205 @@
     </noscript>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional"
+        rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css?v=fixed">
 
     <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": "https://databygagan.com/"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Projects",
-                        "item": "https://databygagan.com/projects"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 3,
-                        "name": "Services",
-                        "item": "https://databygagan.com/services"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 4,
-                        "name": "Contact",
-                        "item": "https://databygagan.com/contact"
-                    }
-                ]
-            }
-        </script>
+                {
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://databygagan.com/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Projects",
+                            "item": "https://databygagan.com/projects"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": "Services",
+                            "item": "https://databygagan.com/services"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 4,
+                            "name": "Contact",
+                            "item": "https://databygagan.com/contact"
+                        }
+                    ]
+                }
+            </script>
 
 
     <!-- Comprehensive Structured Data -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": ["Person", "ProfessionalService"],
-        "name": "Gagan BP",
-        "givenName": "Gagan BP",
-        "url": "https://databygagan.com/",
-        "jobTitle": "Freelance Technical Partner",
-        "description": "Freelance technical partner based in India, specializing in n8n workflow automation, MCP agent development, Power BI dashboards, and web development. Serving global clients with reliable, cost-effective solutions.",
-        "image": "https://databygagan.com/images/Hranalytics.png",
-        "telephone": "+917892329607",
-        "email": "databygagan@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Bengaluru",
-            "addressRegion": "Karnataka",
-            "postalCode": "560045",
-            "addressCountry": "IN"
-        },
-        "workLocation": "Remote - Worldwide",
-        "areaServed": ["US", "GB", "CA", "AU", "AE", "SG", "NZ", "IE", "Worldwide"],
-        "sameAs": [
-            "https://www.linkedin.com/in/gagan-b-p-0a9635243/",
-            "https://github.com/GaganBP"
-        ],
-        "knowsAbout": [
-            {"@type": "Thing", "name": "n8n Automation", "description": "Workflow automation and custom agent development"},
-            {"@type": "Thing", "name": "MCP Development", "description": "Model Context Protocol agents for reliable AI systems"},
-            {"@type": "Thing", "name": "Power BI", "description": "Business intelligence dashboards and DAX formulas"},
-            {"@type": "Thing", "name": "SQL Analytics", "description": "Database querying, optimization, and reporting"},
-            {"@type": "Thing", "name": "Python", "description": "Data science and automation scripting"},
-            {"@type": "Thing", "name": "Web Development", "description": "Modern websites with HTML, CSS, JavaScript"},
-            {"@type": "Thing", "name": "Chatbot Development", "description": "Custom conversational AI and lead systems"}
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Technical Services",
-            "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Power BI Dashboards", "description": "Interactive business intelligence dashboards", "serviceType": "Data Analytics"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Data Science Projects", "description": "Python-based data analysis and machine learning", "serviceType": "Data Analytics"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Excel Automation", "description": "Advanced Excel solutions with formulas and VBA", "serviceType": "Data Analytics"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SQL Analytics", "description": "Database queries, optimization, and reporting", "serviceType": "Data Analytics"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "n8n Workflow Automation", "description": "Custom workflow automation and integrations", "serviceType": "Automation"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lead Outreach Systems", "description": "Automated lead generation and outreach workflows", "serviceType": "Automation"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Chatbots", "description": "AI-powered conversational interfaces", "serviceType": "Automation"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "MCP Agents", "description": "Reliable AI agents using Model Context Protocol", "serviceType": "Automation"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Frontend Web Design", "description": "Modern, responsive web interfaces", "serviceType": "Web Development"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Portfolio Websites", "description": "Professional portfolio sites for individuals", "serviceType": "Web Development"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landing Pages", "description": "Conversion-focused landing page design", "serviceType": "Web Development"}}
-            ]
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "email": "databygagan@gmail.com",
-            "availableLanguage": ["English", "Hindi", "Kannada"],
-            "hoursAvailable": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "opens": "09:00",
-                "closes": "21:00"
-            }
-        },
-        "priceRange": "$",
-        "isAccessibleForFree": false,
-        "paymentAccepted": ["PayPal", "Bank Transfer", "Razorpay", "Payoneer", "Wise"],
-        "currenciesAccepted": ["USD", "EUR", "GBP", "AUD", "CAD", "INR"]
-    }
-    </script>
-
-    <script type="application/ld+json">
         {
-          "@context": "https://schema.org",
-          "@type": "Schedule",
-          "name": "Global Service Hours",
-          "description": "Available across all time zones for international clients",
-          "scheduleTimezone": "Asia/Kolkata",
-          "byDay": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "09:00",
-          "closes": "21:00",
-          "additionalProperty": {
-            "@type": "PropertyValue",
-            "name": "Global Coverage",
-            "value": "Flexible hours for US, UK, EU, and APAC clients"
-          }
+            "@context": "https://schema.org",
+            "@type": ["Person", "ProfessionalService"],
+            "name": "Gagan BP",
+            "givenName": "Gagan BP",
+            "url": "https://databygagan.com/",
+            "jobTitle": "Freelance Technical Partner",
+            "description": "Freelance technical partner based in India, specializing in n8n workflow automation, MCP agent development, Power BI dashboards, and web development. Serving global clients with reliable, cost-effective solutions.",
+            "image": "https://databygagan.com/images/Hranalytics.png",
+            "telephone": "+917892329607",
+            "email": "databygagan@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bengaluru",
+                "addressRegion": "Karnataka",
+                "postalCode": "560045",
+                "addressCountry": "IN"
+            },
+            "workLocation": "Remote - Worldwide",
+            "areaServed": ["US", "GB", "CA", "AU", "AE", "SG", "NZ", "IE", "Worldwide"],
+            "sameAs": [
+                "https://www.linkedin.com/in/gagan-b-p-0a9635243/",
+                "https://github.com/GaganBP"
+            ],
+            "knowsAbout": [
+                {"@type": "Thing", "name": "n8n Automation", "description": "Workflow automation and custom agent development"},
+                {"@type": "Thing", "name": "MCP Development", "description": "Model Context Protocol agents for reliable AI systems"},
+                {"@type": "Thing", "name": "Power BI", "description": "Business intelligence dashboards and DAX formulas"},
+                {"@type": "Thing", "name": "SQL Analytics", "description": "Database querying, optimization, and reporting"},
+                {"@type": "Thing", "name": "Python", "description": "Data science and automation scripting"},
+                {"@type": "Thing", "name": "Web Development", "description": "Modern websites with HTML, CSS, JavaScript"},
+                {"@type": "Thing", "name": "Chatbot Development", "description": "Custom conversational AI and lead systems"}
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Technical Services",
+                "itemListElement": [
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Power BI Dashboards", "description": "Interactive business intelligence dashboards", "serviceType": "Data Analytics"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Data Science Projects", "description": "Python-based data analysis and machine learning", "serviceType": "Data Analytics"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Excel Automation", "description": "Advanced Excel solutions with formulas and VBA", "serviceType": "Data Analytics"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SQL Analytics", "description": "Database queries, optimization, and reporting", "serviceType": "Data Analytics"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "n8n Workflow Automation", "description": "Custom workflow automation and integrations", "serviceType": "Automation"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lead Outreach Systems", "description": "Automated lead generation and outreach workflows", "serviceType": "Automation"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Chatbots", "description": "AI-powered conversational interfaces", "serviceType": "Automation"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "MCP Agents", "description": "Reliable AI agents using Model Context Protocol", "serviceType": "Automation"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Frontend Web Design", "description": "Modern, responsive web interfaces", "serviceType": "Web Development"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Portfolio Websites", "description": "Professional portfolio sites for individuals", "serviceType": "Web Development"}},
+                    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landing Pages", "description": "Conversion-focused landing page design", "serviceType": "Web Development"}}
+                ]
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "email": "databygagan@gmail.com",
+                "availableLanguage": ["English", "Hindi", "Kannada"],
+                "hoursAvailable": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                    "opens": "09:00",
+                    "closes": "21:00"
+                }
+            },
+            "priceRange": "$",
+            "isAccessibleForFree": false,
+            "paymentAccepted": ["PayPal", "Bank Transfer", "Razorpay", "Payoneer", "Wise"],
+            "currenciesAccepted": ["USD", "EUR", "GBP", "AUD", "CAD", "INR"]
         }
         </script>
 
-    <!-- Website Schema -->
     <script type="application/ld+json">
             {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "Gagan BP – Freelance Technical Partner",
-                "url": "https://databygagan.com/",
-                "description": "Freelance technical partner offering n8n automation, Power BI analytics, and web development for global clients",
-                "author": {
-                    "@type": "Person",
-                    "name": "Gagan"
-                },
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://databygagan.com/search?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                }
+            "@context": "https://schema.org",
+            "@type": "Schedule",
+            "name": "Global Service Hours",
+            "description": "Available across all time zones for international clients",
+            "scheduleTimezone": "Asia/Kolkata",
+            "byDay": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "21:00",
+            "additionalProperty": {
+                "@type": "PropertyValue",
+                "name": "Global Coverage",
+                "value": "Flexible hours for US, UK, EU, and APAC clients"
             }
-        </script>
+            }
+            </script>
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Gagan BP – Freelance Technical Partner",
+                    "url": "https://databygagan.com/",
+                    "description": "Freelance technical partner offering n8n automation, Power BI analytics, and web development for global clients",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Gagan"
+                    },
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "https://databygagan.com/search?q={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
+                }
+            </script>
 
     <!-- FAQ Schema -->
     <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "What data analytics services do you offer?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "I offer comprehensive data analytics services including Excel dashboard development, Power BI report creation, data cleaning and processing, SQL development, Python data analysis, and machine learning solutions."
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "What data analytics services do you offer?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "I offer comprehensive data analytics services including Excel dashboard development, Power BI report creation, data cleaning and processing, SQL development, Python data analysis, and machine learning solutions."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What tools and technologies do you use?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "I work with SQL, Python (Pandas, NumPy, Scikit-learn), Power BI, Tableau, Excel, MySQL, PostgreSQL, and various data visualization tools to deliver comprehensive analytics solutions."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How can I hire you for my data analytics project?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "You can contact me through the contact form on this website, email me at databygagan@gmail.com, or connect with me on LinkedIn. I offer free consultations to discuss your project requirements."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "What industries have you worked with?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "I have experience working with healthcare, HR, e-commerce, and public sector data. My analytical approach can be adapted to any industry that needs data-driven insights."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Do you provide ongoing support after project completion?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes, I offer various support packages depending on your needs, from one-time fixes to ongoing maintenance and updates for your dashboards and reports."
+                            }
                         }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What tools and technologies do you use?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "I work with SQL, Python (Pandas, NumPy, Scikit-learn), Power BI, Tableau, Excel, MySQL, PostgreSQL, and various data visualization tools to deliver comprehensive analytics solutions."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "How can I hire you for my data analytics project?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "You can contact me through the contact form on this website, email me at databygagan@gmail.com, or connect with me on LinkedIn. I offer free consultations to discuss your project requirements."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What industries have you worked with?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "I have experience working with healthcare, HR, e-commerce, and public sector data. My analytical approach can be adapted to any industry that needs data-driven insights."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Do you provide ongoing support after project completion?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, I offer various support packages depending on your needs, from one-time fixes to ongoing maintenance and updates for your dashboards and reports."
-                        }
-                    }
-                ]
-            }
-        </script>
+                    ]
+                }
+            </script>
     <!-- Minimal CSS for basic functionality -->
     <style>
         /* Keep only essential Bootstrap navbar functionality */
@@ -554,10 +554,10 @@
                             style="margin: 20px 0 25px; text-align: justify; line-height: 1.8; font-size: 0.95rem;">
                             Feel free to connect with me on
                             <a href="https://www.linkedin.com/in/gagan-b-p-0a9635243/" target="_blank" style="
-                            color: #0a66c2;
-                            font-weight: bold;
-                            text-decoration: none;
-                        "><i class="fab fa-linkedin me-1"></i>LinkedIn</a>
+                                color: #0a66c2;
+                                font-weight: bold;
+                                text-decoration: none;
+                            "><i class="fab fa-linkedin me-1"></i>LinkedIn</a>
                             to discuss collaborations or opportunities.
                         </p>
 
@@ -790,27 +790,27 @@
                                 featured.forEach(proj => {
                                     const techTags = Array.isArray(proj.tech) ? proj.tech.map(tag => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join('\n') : '';
                                     const card = `
-<article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
-    <div class="project-image">
-        <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
-        <div class="project-overlay">
-            <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
-                <i class="${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
-            </a>
+    <article class="project-card" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="project-image">
+            <img src="${proj.image}" alt="${proj.alt}" loading="lazy" itemprop="image" />
+            <div class="project-overlay">
+                <a href="${proj.dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
+                    <i class="${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i>${proj.dashboardUrl && proj.dashboardUrl.includes('colab') ? 'Open in Colab' : 'View Dashboard'}
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="project-content">
-        <h3 itemprop="headline">${proj.title}</h3>
-        <p itemprop="description">${proj.description}</p>
-        <div class="project-tech">${techTags}</div>
-        <div class="project-actions">
-            <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
-                <i class="fab fa-github"></i>View Code
-            </a>
+        <div class="project-content">
+            <h3 itemprop="headline">${proj.title}</h3>
+            <p itemprop="description">${proj.description}</p>
+            <div class="project-tech">${techTags}</div>
+            <div class="project-actions">
+                <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
+                    <i class="fab fa-github"></i>View Code
+                </a>
+            </div>
         </div>
-    </div>
-</article>
-`;
+    </article>
+    `;
                                     list.innerHTML += card;
                                 });
                             });
@@ -1016,7 +1016,7 @@
 
         <!-- Bootstrap JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
         <!-- Navbar scroll effect script -->
         <script>
@@ -1090,7 +1090,7 @@
         </script>
 
         <!-- Custom Scripts -->
-        <script src="scripts.js"></script>
+        <script src="scripts.js" defer></script>
 
     </main>
 </body>
