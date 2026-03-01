@@ -689,8 +689,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top"
-        aria-label="Back to top">
+    <button type="button" id="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -719,22 +718,29 @@
     <!-- Back to Top -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const backToTopBtn = document.getElementById('back-to-top');
+            var backToTopBtn = document.getElementById('back-to-top');
+            if (!backToTopBtn) return;
+
             function toggleBackToTop() {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.remove('d-none');
+                var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                if (scrollPosition > 300) {
+                    backToTopBtn.classList.add('show');
                 } else {
-                    backToTopBtn.classList.add('d-none');
+                    backToTopBtn.classList.remove('show');
                 }
             }
-            let scrollTimeout;
-            window.addEventListener('scroll', function () {
-                if (scrollTimeout) clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(toggleBackToTop, 10);
-            }, { passive: true });
+
             backToTopBtn.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            var scrollTimeout;
+            window.addEventListener('scroll', function () {
+                if (scrollTimeout) window.cancelAnimationFrame(scrollTimeout);
+                scrollTimeout = window.requestAnimationFrame(toggleBackToTop);
+            }, { passive: true });
+
+            toggleBackToTop();
         });
     </script>
 
