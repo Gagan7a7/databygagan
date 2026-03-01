@@ -374,8 +374,6 @@
             box-shadow: 0 14px 40px rgba(74, 144, 226, 0.25) !important;
         }
 
-
-
         /* Accessibility: reduced motion */
         @media (prefers-reduced-motion: reduce) {
 
@@ -415,6 +413,18 @@
                 transform: translateX(6px) translateY(-2px);
                 box-shadow: -4px 4px 15px rgba(74, 144, 226, 0.08);
             }
+        }
+
+        /* ── Scroll Lock: applied via JS when offcanvas opens ──
+           Targets both html and body because the about page's parallax
+           passive scroll listeners bypass CSS-only overflow:hidden on body alone. */
+        body.menu-open {
+            overflow: hidden !important;
+            touch-action: none !important;
+        }
+
+        html.menu-open {
+            overflow: hidden !important;
         }
     </style>
 
@@ -846,8 +856,6 @@
             var cta = document.querySelector('.reveal-cta');
             if (cta) { cta.dataset.revealDelay = '200'; revealObserver.observe(cta); }
 
-
-
             // Also observe reveal-left, reveal-right, reveal-up from styles.css
             document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-fade').forEach(function (el) {
                 revealObserver.observe(el);
@@ -967,7 +975,25 @@
                     console.log('Hamburger clicked!');
                 });
             }
+
+            // ── Scroll Lock Fix ──
+            // The about page has passive:true scroll listeners (parallax) which
+            // cannot be blocked by CSS overflow:hidden alone.
+            // Solution: use Bootstrap's own offcanvas events to add/remove a
+            // class on both <html> and <body>, which our CSS then locks.
+            var offcanvasEl = document.getElementById('mobileOffcanvas');
+            if (offcanvasEl) {
+                offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+                    document.body.classList.add('menu-open');
+                    document.documentElement.classList.add('menu-open');
+                });
+                offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+                    document.body.classList.remove('menu-open');
+                    document.documentElement.classList.remove('menu-open');
+                });
+            }
         });
+
         window.addEventListener('scroll', function () {
             var navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {

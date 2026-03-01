@@ -1833,3 +1833,109 @@ main {
         contain: layout
     }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   INTERMEDIATE DEVICES: 577px – 1199px
+   Tablets · iPads · Nest Hubs · Small Laptops
+   ───────────────────────────────────────────────────────────
+   FREEZE: Desktop ≥1200px and Mobile ≤576px are untouched.
+   FREEZE: No card internals (colors, padding, .skill-tag).
+   FREEZE: scripts.js is untouched.
+   ═══════════════════════════════════════════════════════════ */
+
+@media (min-width:577px) and (max-width:1199px) {
+
+    /* ── 1. ORPHAN ALIGNMENT ──
+       Force orphan (last-row) cards to left-align
+       instead of centering under justify-content-center */
+
+    #skills .row.justify-content-center,
+    #skills .row.g-4.justify-content-center,
+    #skills .row.g-2.justify-content-center {
+        justify-content: flex-start !important
+    }
+
+    #services .row.justify-content-center {
+        justify-content: flex-start !important
+    }
+
+    /* ── 2. SKILL CARDS ──
+       Cap width to prevent horizontal stretching into
+       wide rectangles on 2-col or 3-col tablet grids */
+
+    .skill-category.card {
+        max-width: 340px
+    }
+
+    /* ── 3. SERVICE CARDS (services.html CSS Grid) ──
+       Constrain card width in 2-col grid and
+       left-align the orphan 9th card */
+
+    .services-grid {
+        justify-items: start
+    }
+
+    .service-card {
+        max-width: 380px
+    }
+
+    /* ── 4. SERVICE CARDS (index.html Bootstrap Grid) ──
+       Constrain .srv-card width on intermediate screens */
+
+    .srv-card {
+        max-width: 380px
+    }
+
+    /* ── 5. PROJECT CARDS ──
+       Switch to single-column below 992px to prevent
+       squished 2-col image+text layout on tablets.
+       Keep 2-col at 992px–1199px but cap total width. */
+}
+
+@media (min-width:577px) and (max-width:991px) {
+
+    .project-card {
+        grid-template-columns: 1fr !important;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .project-card:nth-child(even) {
+        grid-template-columns: 1fr !important
+    }
+
+    .project-card:nth-child(even) .project-image,
+    .project-card:nth-child(even) .project-content {
+        order: unset
+    }
+}
+
+@media (min-width:577px) and (max-width:1199px) {
+
+    /* ── 6. BUTTON DISTORTION ──
+       Cap button width so they don't stretch
+       into oversized blocks on wide cards */
+
+    .btn-lg {
+        max-width: 320px;
+        display: inline-block
+    }
+
+    .btn-outline {
+        max-width: 220px
+    }
+
+    /* ── 7. CONTACT PAGE ──
+       Tighten form and info section widths */
+
+    .contact-content {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .contact-form {
+        max-width: 600px
+    }
+}

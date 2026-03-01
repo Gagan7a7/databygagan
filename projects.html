@@ -212,65 +212,153 @@
 
         #projects-heading.section-title {
             margin-top: 2.2rem !important;
-            margin-bottom: 2.2rem !important;
+            margin-bottom: 1.2rem !important;
         }
 
         @media (max-width: 768px) {
             #projects-heading.section-title {
                 margin-top: 1.2rem !important;
-                margin-bottom: 1.2rem !important;
+                margin-bottom: 0.8rem !important;
             }
         }
 
-        /* Category buttons */
-        #category-buttons {
+        /* ═══════════════════════════════════════════════
+           CATEGORY SCROLL STRIP
+           One clean row of buttons with ‹ › arrow controls.
+           Works for 2 buttons or 20 — never wraps, never breaks.
+           ═══════════════════════════════════════════════ */
+
+        .category-strip-wrapper {
             display: flex;
-            justify-content: center;
-            gap: 0.7rem;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1.6rem;
+            position: relative;
+            max-width: 100%;
         }
 
+        /* Arrow buttons */
+        .cat-arrow {
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(74, 144, 226, 0.45);
+            background: rgba(74, 144, 226, 0.08);
+            color: #6bb6ff;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s, opacity 0.2s;
+            outline: none;
+            /* hidden by default — JS shows when overflow exists */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cat-arrow.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cat-arrow:hover {
+            background: rgba(74, 144, 226, 0.22);
+            border-color: rgba(74, 144, 226, 0.8);
+            transform: scale(1.1);
+        }
+
+        .cat-arrow:active {
+            transform: scale(0.96);
+        }
+
+        /* Scrollable inner track — hides scrollbar visually */
+        #category-buttons {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            /* single row, NEVER wraps */
+            overflow-x: auto;
+            gap: 0.55rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+            padding: 4px 2px;
+            flex: 1;
+        }
+
+        #category-buttons::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        /* Category buttons themselves */
         .category-scroll-btn {
+            flex-shrink: 0;
+            /* never shrink — key to single-row */
+            white-space: nowrap;
             background: linear-gradient(90deg, #4a90e2 60%, #00bcd4 100%);
             color: #fff;
             border: none;
             border-radius: 20px;
-            padding: 0.35rem 1.1rem;
-            font-size: 0.97rem;
+            padding: 0.38rem 1.15rem;
+            font-size: 0.93rem;
             font-weight: 500;
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
             cursor: pointer;
-            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
             outline: none;
         }
 
         .category-scroll-btn:hover,
         .category-scroll-btn:focus {
             background: linear-gradient(90deg, #00bcd4 60%, #4a90e2 100%);
-            box-shadow: 0 4px 16px rgba(44, 62, 80, 0.14);
-            transform: translateY(-2px) scale(1.07);
+            box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
+            transform: translateY(-2px) scale(1.05);
         }
 
-        @media (max-width: 600px) {
-            #category-buttons {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                justify-content: flex-start;
-                gap: 0.5rem;
-                margin-bottom: 1.1rem;
-                scrollbar-width: thin;
-                scrollbar-color: #00bcd4 #e0e6ed;
-            }
-
-            .category-scroll-btn {
-                font-size: 0.82rem;
-                padding: 0.22rem 0.6rem;
-                min-width: 90px;
-                white-space: nowrap;
-            }
+        .category-scroll-btn.active {
+            background: linear-gradient(90deg, #00bcd4 0%, #4a90e2 100%);
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5), 0 4px 14px rgba(44, 62, 80, 0.18);
         }
+
+        /* Fade edges to hint scrollability */
+        .category-strip-wrapper::before,
+        .category-strip-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 28px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .category-strip-wrapper::before {
+            left: 40px;
+            background: linear-gradient(to right, var(--dark-bg, #0a1120), transparent);
+        }
+
+        .category-strip-wrapper::after {
+            right: 40px;
+            background: linear-gradient(to left, var(--dark-bg, #0a1120), transparent);
+        }
+
+        .category-strip-wrapper.fade-left::before {
+            opacity: 1;
+        }
+
+        .category-strip-wrapper.fade-right::after {
+            opacity: 1;
+        }
+
+        /* ═══════════════════════════════════════════════ */
 
         /* ══════════════════════════════════════════════════ */
         /* IMPROVED PROJECT CTA (matching services.html)      */
@@ -344,20 +432,13 @@
             }
         }
 
-        /* ══════════════════════════════════════════════════════════════ */
-        /* FIX: Override the global min-height: 3500px on desktop.       */
-        /* The skeleton loader needs space BEFORE projects load.         */
-        /* Once JS injects cards, a MutationObserver resets it to auto.  */
-        /* ══════════════════════════════════════════════════════════════ */
         @media (min-width: 769px) {
             #projects-list {
                 min-height: 400px;
-                /* enough for shimmer, collapses after load */
             }
 
             .project-cta-section {
                 min-height: unset;
-                /* no reserved space needed */
                 contain: unset;
             }
         }
@@ -365,7 +446,6 @@
         @media (max-width: 768px) {
             #projects-list {
                 min-height: 3500px;
-                /* keep mobile CLS reservation as before */
             }
 
             .project-cta-section {
@@ -466,16 +546,29 @@
                 <h1 id="projects-heading" class="section-title">
                     Featured Projects
                 </h1>
-                <div id="category-buttons"></div>
+
+                <!-- ═══════════════════════════════════════════════
+                     CATEGORY SCROLL STRIP
+                     scripts.js injects buttons into #category-buttons.
+                     The wrapper + arrows are pure HTML — scripts.js untouched.
+                     ═══════════════════════════════════════════════ -->
+                <div class="category-strip-wrapper" id="category-strip-wrapper" aria-label="Project category filters">
+                    <button class="cat-arrow" id="cat-arrow-left" aria-label="Scroll categories left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div id="category-buttons" role="group" aria-label="Category filters"></div>
+                    <button class="cat-arrow" id="cat-arrow-right" aria-label="Scroll categories right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
                 <div id="projects-list">
                     <div class="shimmer-box mobile-skeleton-loader"></div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════ -->
-        <!-- IMPROVED PROJECT CTA (matching services) -->
-        <!-- ═══════════════════════════════════════ -->
+        <!-- IMPROVED PROJECT CTA -->
         <section class="project-cta-section" aria-labelledby="project-cta-heading">
             <div class="container">
                 <div class="text-center project-cta">
@@ -559,13 +652,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
             const navbarToggler = document.querySelector('.navbar-toggler');
             if (navbarToggler) {
-                console.log('Navbar toggler found');
-                navbarToggler.addEventListener('click', function () {
-                    console.log('Hamburger clicked!');
-                });
+                navbarToggler.addEventListener('click', function () { });
             }
         });
 
@@ -579,10 +668,10 @@
         });
     </script>
 
+    <!-- Back to Top -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const backToTopBtn = document.getElementById('back-to-top');
-
             function toggleBackToTop() {
                 if (window.pageYOffset > 300) {
                     backToTopBtn.classList.remove('d-none');
@@ -590,43 +679,82 @@
                     backToTopBtn.classList.add('d-none');
                 }
             }
-
             let scrollTimeout;
             window.addEventListener('scroll', function () {
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
+                if (scrollTimeout) clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(toggleBackToTop, 10);
             }, { passive: true });
-
             backToTopBtn.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
 
-    <!--
-        FIX: MutationObserver watches #projects-list.
-        The moment scripts.js replaces the shimmer skeleton with real project
-        cards, we immediately collapse min-height to 'auto' on desktop so the
-        CTA section sits flush below the last card instead of floating 1000px
-        below it.  Mobile keeps its own CSS min-height (3500px) for CLS.
-    -->
+    <!-- ═══════════════════════════════════════════════════════
+         CATEGORY SCROLL STRIP CONTROLLER
+         Watches #category-buttons for buttons injected by scripts.js.
+         Shows/hides arrows only when overflow actually exists.
+         scripts.js is completely untouched.
+         ═══════════════════════════════════════════════════════ -->
+    <script>
+        (function () {
+            var track = document.getElementById('category-buttons');
+            var wrapper = document.getElementById('category-strip-wrapper');
+            var btnL = document.getElementById('cat-arrow-left');
+            var btnR = document.getElementById('cat-arrow-right');
+            if (!track || !btnL || !btnR) return;
+
+            var SCROLL_STEP = 180; // px per arrow click
+
+            /* ── Update arrow visibility + fade edges ── */
+            function updateArrows() {
+                var canScrollLeft = track.scrollLeft > 2;
+                var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
+                var hasOverflow = track.scrollWidth > track.clientWidth + 4;
+
+                btnL.classList.toggle('visible', hasOverflow && canScrollLeft);
+                btnR.classList.toggle('visible', hasOverflow && canScrollRight);
+
+                wrapper.classList.toggle('fade-left', hasOverflow && canScrollLeft);
+                wrapper.classList.toggle('fade-right', hasOverflow && canScrollRight);
+            }
+
+            /* Arrow click handlers */
+            btnL.addEventListener('click', function () {
+                track.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+            });
+            btnR.addEventListener('click', function () {
+                track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+            });
+
+            /* Re-check on scroll within track */
+            track.addEventListener('scroll', updateArrows, { passive: true });
+
+            /* Re-check on window resize */
+            window.addEventListener('resize', updateArrows, { passive: true });
+
+            /* ── MutationObserver: fires when scripts.js injects buttons ── */
+            var mo = new MutationObserver(function () {
+                /* Small delay so layout settles after injection */
+                setTimeout(updateArrows, 60);
+            });
+            mo.observe(track, { childList: true });
+
+            /* Initial check (buttons may already exist) */
+            updateArrows();
+        })();
+    </script>
+
+    <!-- MutationObserver: collapse min-height after projects load -->
     <script>
         (function () {
             var projectsList = document.getElementById('projects-list');
             if (!projectsList) return;
 
             var observer = new MutationObserver(function (mutations, obs) {
-                // Check if the shimmer placeholder is gone and real content exists
                 var shimmer = projectsList.querySelector('.mobile-skeleton-loader');
                 var hasCards = projectsList.querySelector('.project-card');
-
                 if (!shimmer || hasCards) {
-                    // Content has loaded — release the reserved height
                     projectsList.style.minHeight = 'auto';
                     obs.disconnect();
                 }
@@ -634,8 +762,6 @@
 
             observer.observe(projectsList, { childList: true, subtree: true });
 
-            // Safety net: if something goes wrong with the observer,
-            // release the min-height after 8 seconds regardless
             setTimeout(function () {
                 if (projectsList.style.minHeight !== 'auto') {
                     projectsList.style.minHeight = 'auto';
