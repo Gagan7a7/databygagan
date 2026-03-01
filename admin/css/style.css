@@ -287,3 +287,66 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+/* Custom Responsive Fixes for Admin Dashboard */
+@media (max-width: 1024px) {
+    .container-fluid.position-relative.d-flex.p-0 {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin-left: 0 !important;
+    }
+
+    .content {
+        line-height: normal !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .bg-secondary.rounded.p-4 {
+        padding: 1rem !important;
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .input-group {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Allow flex containers like headers to wrap */
+    .d-flex.justify-content-between.align-items-center {
+        flex-wrap: wrap !important;
+        gap: 15px;
+    }
+
+    .d-flex.flex-wrap.gap-2 {
+        justify-content: center !important;
+    }
+
+    /* Keep modal constrained */
+    .modal-dialog {
+        max-width: 95% !important;
+        margin: 1rem auto !important;
+    }
+
+    /* Make navbar items readable */
+    .sidebar .navbar .navbar-nav .nav-link {
+        padding: 12px 20px !important;
+    }
+}
