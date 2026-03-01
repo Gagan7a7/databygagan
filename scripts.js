@@ -1,4 +1,4 @@
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; const preconnectLinks = []; function addPreconnects() { preconnectLinks.forEach((url) => { if (!document.querySelector('link[href="' + url + '"]')) { const link = document.createElement("link"); link.rel = "preconnect"; link.href = url; if (url.includes("gstatic")) link.crossOrigin = "anonymous"; document.head.appendChild(link) } }) }
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; const preconnectLinks = []; function addPreconnects() { preconnectLinks.forEach((url) => { if (!document.querySelector('link[href="' + url + '"]')) { const link = document.createElement("link"); link.rel = "preconnect"; link.href = url; if (url.includes("gstatic")) link.crossOrigin = "anonymous"; document.head.appendChild(link) } }) }
 if ("requestIdleCallback" in window) { requestIdleCallback(addPreconnects) } else { setTimeout(addPreconnects, 0) }
 if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", initializePortfolio) } else { initializePortfolio() }
 const passiveIfSupported = supportsPassive() ? { passive: !0 } : !1; function supportsPassive() {
@@ -62,7 +62,7 @@ function optimizeImages() {
 function triggerEntranceAnimations() { if (prefersReducedMotion) return; const heroContent = document.querySelector(".hero-content"); if (heroContent) { heroContent.classList.add("animate-in") } }
 function setupPageSpecificAnimations() { if (document.querySelector(".hero-content")) { triggerEntranceAnimations() } }
 function staggerChildAnimations(parent) {
-    const children = parent.children; if (prefersReducedMotion) { Array.from(children).forEach(child => child.classList.add("animate-in")); return }
+    const children = parent.children; if (prefersReducedMotion) { Array.from(children).forEach((child) => child.classList.add("animate-in")); return }
     Array.from(children).forEach((child, index) => { setTimeout(() => { child.classList.add("animate-in") }, index * 100) })
 }
 function setupContactForm() { const form = document.getElementById("contact-form"); if (!form) return; const submitButton = form.querySelector('button[type="submit"]'); if (!submitButton) return; setupEmailDomainValidation(); form.addEventListener("submit", function (e) { e.preventDefault(); handleFormSubmission(form, submitButton) }); setupFormValidation(form) }
@@ -167,7 +167,7 @@ function throttle(func, limit) { let inThrottle; return function () { const args
 let scrollTimeout; let lastScrollY = 0; const optimizedScrollHandler = function () { if (scrollTimeout) return; const currentScrollY = window.scrollY; if (Math.abs(currentScrollY - lastScrollY) < 5) return; scrollTimeout = requestAnimationFrame(function () { lastScrollY = currentScrollY; scrollTimeout = null }) }; if (supportsPassive()) { window.addEventListener("scroll", optimizedScrollHandler, { passive: !0 }) } else { window.addEventListener("scroll", optimizedScrollHandler) }
 window.addEventListener("error", function (e) { console.error("JavaScript error:", e.error) }); function optimizeNetworkRequests() { const scripts = document.querySelectorAll('script[src*="googletagmanager"]'); scripts.forEach((script) => { if (script.src.includes("gtag")) { script.async = !0; script.defer = !0 } }) }
 function initializePerformanceOptimizations() { preventForcedReflows(); optimizeNetworkRequests(); enableResourceHints(); optimizeThirdPartyScripts(); setupPerformanceMonitoring() }
-function enableResourceHints() { const hints = [{ rel: "dns-prefetch", href: "https://www.googletagmanager.com" },]; hints.forEach((hint) => { const link = document.createElement("link"); link.rel = hint.rel; link.href = hint.href; if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin; document.head.appendChild(link) }) }
+function enableResourceHints() { const hints = [{ rel: "dns-prefetch", href: "https://www.googletagmanager.com" }]; hints.forEach((hint) => { const link = document.createElement("link"); link.rel = hint.rel; link.href = hint.href; if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin; document.head.appendChild(link) }) }
 function optimizeThirdPartyScripts() { const scripts = document.querySelectorAll("script[src]"); scripts.forEach((script) => { if (script.src.includes("googletagmanager") || script.src.includes("gtag")) { script.async = !0; script.defer = !0; script.setAttribute("importance", "low") } }) }
 function setupPerformanceMonitoring() {
     if ("web-vital" in window || typeof webVitals !== "undefined") { return }
@@ -179,9 +179,9 @@ function setupResumeModal() {
     if (!closeResumeButton) { return }
     try { closeResumeButton.addEventListener("click", function () { closeResumeModal() }); resumeModal.addEventListener("click", function (e) { if (e.target === resumeModal) { closeResumeModal() } }); document.addEventListener("keydown", function (e) { if (e.key === "Escape" && resumeModal.classList && resumeModal.classList.contains("active")) { closeResumeModal() } }) } catch (error) { return }
 }
-window.setupResumeModal = setupResumeModal; function isMobileDevice() { return (window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) }
+window.setupResumeModal = setupResumeModal; function isMobileDevice() { return (window.matchMedia("(max-width: 768px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) }
 function optimizeForMobile() {
-    if (!isMobileDevice()) return; const floatingElements = document.querySelectorAll(".floating-element"); floatingElements.forEach((el) => { if (el) { el.style.animation = "none"; el.style.transform = "translateZ(0)" } }); const typewriterElement = document.querySelector(".typewriter-text"); if (typewriterElement && window.matchMedia('(max-width: 480px)').matches) { return !0 }
+    if (!isMobileDevice()) return; const floatingElements = document.querySelectorAll(".floating-element"); floatingElements.forEach((el) => { if (el) { el.style.animation = "none"; el.style.transform = "translateZ(0)" } }); const typewriterElement = document.querySelector(".typewriter-text"); if (typewriterElement && window.matchMedia("(max-width: 480px)").matches) { return !0 }
     setTimeout(() => { const cards = document.querySelectorAll(".project-card, .service-card"); cards.forEach((card) => { if (card) { card.style.willChange = "auto" } }) }, 2000); return !0
 }
 function preventForcedReflows() {
@@ -209,7 +209,7 @@ function preventForcedReflows() {
     }; let cacheCleanupTimer; function scheduleCacheCleanup() { clearTimeout(cacheCleanupTimer); cacheCleanupTimer = setTimeout(() => { elementCache.clear(); if (window.location.hostname === "localhost" || window.location.hostname.includes("replit")) { console.log("Performance metrics:", performanceMetrics) } }, 3000) }
     window.addEventListener("resize", scheduleCacheCleanup, { passive: !0 }); window.addEventListener("scroll", scheduleCacheCleanup, { passive: !0 }); scheduleCacheCleanup()
 }
-function enableResourceHints() { const hints = [{ rel: "dns-prefetch", href: "https://www.googletagmanager.com" },]; hints.forEach((hint) => { const link = document.createElement("link"); link.rel = hint.rel; link.href = hint.href; if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin; document.head.appendChild(link) }) }
+function enableResourceHints() { const hints = [{ rel: "dns-prefetch", href: "https://www.googletagmanager.com" }]; hints.forEach((hint) => { const link = document.createElement("link"); link.rel = hint.rel; link.href = hint.href; if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin; document.head.appendChild(link) }) }
 function optimizeThirdPartyScripts() { const scripts = document.querySelectorAll("script[src]"); scripts.forEach((script) => { if (script.src.includes("googletagmanager") || script.src.includes("gtag")) { script.async = !0; script.defer = !0; script.setAttribute("importance", "low") } }) }
 function setupPerformanceMonitoring() {
     if ("web-vital" in window || typeof webVitals !== "undefined") { return }
@@ -219,7 +219,7 @@ function setupPerformanceMonitoring() {
     fetch(apiUrl).then((res) => res.json()).then((projects) => {
         list.innerHTML = ""; btns.innerHTML = ""; const grouped = {}; projects.forEach((proj) => { const cat = proj.category || "Other"; if (!grouped[cat]) grouped[cat] = []; grouped[cat].push(proj) }); const categories = Object.keys(grouped); categories.forEach((category) => { const btn = document.createElement("button"); btn.textContent = category; btn.className = "category-scroll-btn"; btn.onclick = function () { const heading = document.getElementById("cat-" + category.replace(/\s+/g, "-").toLowerCase()); if (heading) { heading.scrollIntoView({ behavior: "smooth", block: "start" }) } }; btns.appendChild(btn) }); let firstProjectRendered = !1; categories.forEach((category) => {
             list.innerHTML += `<h2 class="project-category-heading" id="cat-${category.replace(/\s+/g, "-").toLowerCase()}">${category}</h2>`; grouped[category].slice().reverse().forEach((proj) => {
-                const techTags = proj.tech.map((tag) => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join("\n"); const hasDashboard = proj.dashboardUrl && typeof proj.dashboardUrl === "string"; const isColab = hasDashboard && proj.dashboardUrl.includes("colab"); const dashboardIcon = isColab ? "fab fa-google" : "fas fa-external-link-alt"; const dashboardText = isColab ? "Open in Colab" : "View Dashboard"; const dashboardUrl = hasDashboard ? proj.dashboardUrl : "#"; const dashboardBtn = hasDashboard ? `<a href="${dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
+                const techTags = proj.tech.map((tag) => `<span class="tech-tag" itemprop="keywords">${tag}</span>`).join("\n"); const hasDashboard = proj.dashboardUrl && typeof proj.dashboardUrl === "string"; const isColab = hasDashboard && proj.dashboardUrl.includes("colab"); const dashboardIcon = isColab ? "fab fa-google" : "fas fa-external-link-alt"; const dashboardText = proj.linklabel ? proj.linklabel : isColab ? "Open in Colab" : "View Dashboard"; const dashboardUrl = hasDashboard ? proj.dashboardUrl : "#"; const dashboardBtn = hasDashboard ? `<a href="${dashboardUrl}" target="_blank" class="btn btn-primary" itemprop="url">
                 <i class="${dashboardIcon}"></i>${dashboardText}
                 </a>`: `<span class="btn btn-disabled" title="No dashboard available"><i class="fas fa-ban"></i> No Dashboard</span>`; let imgTag; const cacheBuster = "?v=20251010"; const isFirstProject = !firstProjectRendered; const imgAttrs = isFirstProject ? 'fetchpriority="high"' : 'loading="lazy"'; let transformedImage = proj.image + cacheBuster; if (isFirstProject) { firstProjectRendered = !0 }
                 if (isMobileDevice()) {
@@ -243,6 +243,7 @@ function setupPerformanceMonitoring() {
         <a href="${proj.codeUrl}" target="_blank" class="btn btn-outline" itemprop="codeRepository">
         <i class="fab fa-github"></i>View Code
         </a>
+        ${hasDashboard ? `<a href="${proj.dashboardUrl}" target="_blank" rel="noopener" class="btn-dashboard-icon" aria-label="${isColab ? 'Open in Colab' : 'View Dashboard'}"><i class="${isColab ? 'fab fa-google' : 'fas fa-external-link-alt'}"></i></a>` : ''}
     </div>
     </div>
 </article>
@@ -250,4 +251,4 @@ function setupPerformanceMonitoring() {
             })
         })
     })
-})(); document.addEventListener('DOMContentLoaded', function () { const yearElement = document.querySelector('[itemprop="copyrightYear"]'); if (yearElement) { yearElement.textContent = new Date().getFullYear() } })
+})(); document.addEventListener("DOMContentLoaded", function () { const yearElement = document.querySelector('[itemprop="copyrightYear"]'); if (yearElement) { yearElement.textContent = new Date().getFullYear() } })

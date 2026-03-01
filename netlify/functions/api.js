@@ -102,7 +102,7 @@ app.post("/api/projects/set-featured", async (req, res) => {
                 featuredTitles = arr;
                 parsed = true;
             }
-        } catch (e) {}
+        } catch (e) { }
     }
     if (!featuredTitles || featuredTitles.length === 0) {
         return res.status(400).json({ error: "No titles provided", debug: { rawBody, bodyType: typeof rawBody } });
@@ -130,6 +130,7 @@ async function ensureTable() {
         featured BOOLEAN
     )`;
     await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS featured BOOLEAN;`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS linklabel TEXT;`;
 
     // Create testimonials table
     await sql`CREATE TABLE IF NOT EXISTS testimonials (
@@ -146,7 +147,7 @@ async function ensureTable() {
         key_highlights JSONB,
         date_added DATE NOT NULL
     )`;
-    
+
     // Add show_date column if it doesn't exist
     try {
         await sql`ALTER TABLE testimonials ADD COLUMN show_date BOOLEAN DEFAULT false`;
@@ -218,7 +219,8 @@ app.get("/api/projects", async (req, res) => {
             codeUrl: p.codeurl || p.codeUrl,
             description: p.description,
             tech: Array.isArray(p.tech) ? p.tech : (p.tech ? p.tech : []),
-            featured: p.featured
+            featured: p.featured,
+            linklabel: p.linklabel || null
         }));
         res.json(result);
     } catch (e) {
@@ -253,7 +255,7 @@ app.post("/api/projects", async (req, res) => {
     // Validate required fields with better error messages
     if (!p.title || typeof p.title !== 'string' || p.title.trim() === '') {
         console.log('Validation failed - title missing or invalid');
-        return res.status(400).json({ 
+        return res.status(400).json({
             error: "Project title is required",
             debug: {
                 receivedTitle: p.title,
@@ -265,20 +267,21 @@ app.post("/api/projects", async (req, res) => {
     }
     try {
         await sql`
-            INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech, featured)
-            VALUES (
-                ${p.title},
-                ${p.category},
-                ${p.image},
-                ${p.alt},
-                ${p.dashboardUrl},
-                ${p.codeUrl},
-                ${p.description},
-                ${JSON.stringify(p.tech)},
-                ${typeof p.featured === 'boolean' ? p.featured : false}
-            )
-            ON CONFLICT (title) DO NOTHING
-        `;
+    INSERT INTO projects (title, category, image, alt, dashboardUrl, codeUrl, description, tech, featured, linklabel)
+    VALUES (
+        ${p.title},
+        ${p.category},
+        ${p.image},
+        ${p.alt},
+        ${p.dashboardUrl},
+        ${p.codeUrl},
+        ${p.description},
+        ${JSON.stringify(p.tech)},
+        ${typeof p.featured === 'boolean' ? p.featured : false},
+        ${p.linklabel || null}
+    )
+    ON CONFLICT (title) DO NOTHING
+`;
         res.json({ success: true, project: p });
     } catch (e) {
         console.error('Database error:', e);
@@ -292,18 +295,19 @@ app.put("/api/projects/title/:title", async (req, res) => {
     const p = req.body;
     try {
         const result = await sql`
-            UPDATE projects SET
-                category = ${p.category},
-                image = ${p.image},
-                alt = ${p.alt},
-                dashboardUrl = ${p.dashboardUrl},
-                codeUrl = ${p.codeUrl},
-                description = ${p.description},
-                tech = ${JSON.stringify(p.tech)},
-                featured = ${typeof p.featured === 'boolean' ? p.featured : false}
-            WHERE title = ${title}
-            RETURNING *
-        `;
+    UPDATE projects SET
+        category = ${p.category},
+        image = ${p.image},
+        alt = ${p.alt},
+        dashboardUrl = ${p.dashboardUrl},
+        codeUrl = ${p.codeUrl},
+        description = ${p.description},
+        tech = ${JSON.stringify(p.tech)},
+        featured = ${typeof p.featured === 'boolean' ? p.featured : false},
+        linklabel = ${p.linklabel || null}
+    WHERE title = ${title}
+    RETURNING *
+`;
         if (result.length === 0) return res.status(404).json({ error: "Project not found" });
         res.json({ success: true, project: p });
     } catch (e) {
@@ -368,7 +372,7 @@ app.get("/api/testimonials/:id", async (req, res) => {
 // Add a new testimonial
 app.post("/api/testimonials", async (req, res) => {
     let t = req.body;
-    
+
     // Validate required fields
     if (!t.clientName || !t.testimonialText || !t.category) {
         return res.status(400).json({ error: "Missing required fields" });

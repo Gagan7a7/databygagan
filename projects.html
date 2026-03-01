@@ -500,6 +500,31 @@
                 contain: layout;
             }
         }
+
+        /* ── Dashboard icon button — all screens ── */
+        .btn-dashboard-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.4em;
+            height: 2.4em;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.12);
+            border: 2px solid rgba(74, 144, 226, 0.4);
+            color: #6bb6ff;
+            font-size: 1rem;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dashboard-icon:hover,
+        .btn-dashboard-icon:active {
+            background: rgba(74, 144, 226, 0.3);
+            border-color: #4a90e2;
+            color: #fff;
+            transform: scale(1.08);
+        }
     </style>
 </head>
 
