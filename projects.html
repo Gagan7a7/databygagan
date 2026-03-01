@@ -242,10 +242,12 @@
         /* Arrow buttons */
         .cat-arrow {
             flex-shrink: 0;
-            width: 32px;
+            /* ── KEY FIX: collapse to zero width when hidden so they don't
+               consume layout space and cause false overflow on small screens ── */
+            width: 0;
             height: 32px;
             border-radius: 50%;
-            border: 1.5px solid rgba(74, 144, 226, 0.45);
+            border: none;
             background: rgba(74, 144, 226, 0.08);
             color: #6bb6ff;
             font-size: 0.8rem;
@@ -253,16 +255,21 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s, border-color 0.2s, transform 0.2s, opacity 0.2s;
+            overflow: hidden;
+            transition: width 0.2s, opacity 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
             outline: none;
-            /* hidden by default — JS shows when overflow exists */
             opacity: 0;
             pointer-events: none;
+            padding: 0;
         }
 
         .cat-arrow.visible {
+            /* Expand to full size only when there is real overflow */
+            width: 32px;
+            border: 1.5px solid rgba(74, 144, 226, 0.45);
             opacity: 1;
             pointer-events: auto;
+            padding: 0;
         }
 
         .cat-arrow:hover {
@@ -349,9 +356,20 @@
             }
 
             .cat-arrow {
-                width: 28px;
                 height: 28px;
                 font-size: 0.72rem;
+            }
+
+            .cat-arrow.visible {
+                width: 28px;
+            }
+        }
+
+        /* iPhone SE and very small phones ≤ 390px */
+        @media (max-width: 390px) {
+            .category-scroll-btn {
+                padding: 0.25rem 0.6rem;
+                font-size: 0.74rem;
             }
         }
 
