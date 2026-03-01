@@ -1859,13 +1859,6 @@ main {
         justify-content: flex-start !important
     }
 
-    /* ── 2. SKILL CARDS ──
-       Cap width to prevent horizontal stretching into
-       wide rectangles on 2-col or 3-col tablet grids */
-
-    .skill-category.card {
-        max-width: 340px
-    }
 
     /* ── 3. SERVICE CARDS (services.html CSS Grid) ──
        Constrain card width in 2-col grid and
@@ -1938,4 +1931,39 @@ main {
     .contact-form {
         max-width: 600px
     }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UNIVERSAL BUTTON FLUID SIZING FIX (ADDITIVE ONLY)
+   Prevents ALL CTA buttons from stretching on mobile/tablets
+   without using device-specific media queries.
+   ═══════════════════════════════════════════════════════════ */
+.btn,
+.btn-primary,
+.btn-outline-primary,
+.btn-lg,
+.btn-outline,
+.project-cta-btn,
+.srv-cta,
+.btn-full {
+    width: fit-content !important;
+    max-width: 100% !important;
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 36px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* SPACING FREEZE PRESERVATION
+   Do not apply margin: auto to buttons inside flex wrappers (like d-flex) 
+   so they do not get pushed apart by flex gap distributing space. */
+.d-flex .btn,
+.d-flex .btn-lg,
+.d-flex .btn-outline,
+.d-flex .btn-outline-primary,
+.d-flex .btn-primary,
+.project-actions .btn,
+.project-actions .btn-outline,
+.project-actions .btn-primary {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

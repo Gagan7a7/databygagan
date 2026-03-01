@@ -552,7 +552,7 @@
                         </div>
                     </div>
                     <!-- Top row: 3 cards -->
-                    <div class="col-12 col-md-6 col-lg-4 px-2 d-flex">
+                    <div class="col-12 col-md-6 col-xl-4 px-2 d-flex">
                         <div class="skill-category card w-100"
                             style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                             <div class="card-body d-flex flex-column skill-popup-trigger" tabindex="0"
@@ -582,7 +582,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 px-2 d-flex">
+                    <div class="col-12 col-md-6 col-xl-4 px-2 d-flex">
                         <div class="skill-category card w-100"
                             style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                             <div class="card-body d-flex flex-column skill-popup-trigger" tabindex="0"
@@ -613,7 +613,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 px-2 d-flex">
+                    <div class="col-12 col-md-6 col-xl-4 px-2 d-flex">
                         <div class="skill-category card w-100"
                             style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                             <div class="card-body d-flex flex-column skill-popup-trigger" tabindex="0"
@@ -646,7 +646,7 @@
                         </div>
                     </div>
                     <!-- Bottom row: 2 cards -->
-                    <div class="col-12 col-md-6 col-lg-4 px-2 d-flex">
+                    <div class="col-12 col-md-6 col-xl-4 px-2 d-flex">
                         <div class="skill-category card w-100"
                             style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                             <div class="card-body d-flex flex-column skill-popup-trigger" tabindex="0"
@@ -671,7 +671,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 px-2 d-flex">
+                    <div class="col-12 col-md-6 col-xl-4 px-2 d-flex">
                         <div class="skill-category card w-100"
                             style="min-height:180px; max-width:420px; margin:0 auto; padding:18px 18px 12px 18px; font-size:1.04rem;">
                             <div class="card-body d-flex flex-column skill-popup-trigger" tabindex="0"
@@ -700,7 +700,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-none d-lg-block"></div>
+                    <div class="col-12 col-md-6 col-xl-4 d-none d-lg-block"></div>
                 </div>
             </div>
         </section>
@@ -953,7 +953,7 @@
                     }
                 } else {
                     var closeBtn = popupCard.querySelector('.popup-close-btn');
-                    if (closeBtn) closeBtn.style.display = 'none';
+                    if (closeBtn) closeBtn.style.display = 'flex';
                 }
                 // Hide pointer while popup is visible (desktop)
                 try { if (window.pointerController) window.pointerController.hide(); } catch (e) { }
@@ -1004,6 +1004,13 @@
                     hidePopup('desktop');
                     try { if (window.pointerController) window.pointerController.show(); } catch (e) { }
                 });
+
+                window.addEventListener('scroll', function () {
+                    if (popup.style.display === 'flex') {
+                        hidePopup('desktop');
+                    }
+                }, { passive: true });
+
             } else {
                 // Mobile: only info icon triggers popup
                 document.querySelectorAll('.skill-info-icon').forEach(function (icon) {
