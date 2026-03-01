@@ -245,6 +245,12 @@
                             <input type="text" class="form-control" id="edit-tech" required
                                 placeholder="React, Node.js, MongoDB">
                         </div>
+                        <div class="mb-3">
+                            <label for="edit-linklabel" class="form-label">Button Label (leave blank for
+                                default)</label>
+                            <input type="text" class="form-control" id="edit-linklabel"
+                                placeholder="e.g. View Website, View Workflow, Live Demo">
+                        </div>
 
                         <div class="d-flex justify-content-end gap-2">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -392,6 +398,7 @@
             document.getElementById('edit-codeUrl').value = project.codeUrl || '';
             document.getElementById('edit-description').value = project.description || '';
             document.getElementById('edit-tech').value = techToString(project.tech);
+            document.getElementById('edit-linklabel').value = project.linklabel || '';
             document.getElementById('edit-imageUpload').value = '';
             document.getElementById('edit-imageUpload').setAttribute('data-prev', project.image || '');
         }
@@ -409,12 +416,13 @@
             const proj = {
                 title: document.getElementById('edit-title').value,
                 category: document.getElementById('edit-category').value,
-                image: originalProject.image || '', // will be updated if new image uploaded
+                image: originalProject.image || '',
                 alt: document.getElementById('edit-alt').value,
                 dashboardUrl: document.getElementById('edit-dashboardUrl').value,
                 codeUrl: document.getElementById('edit-codeUrl').value,
                 description: document.getElementById('edit-description').value,
-                tech: document.getElementById('edit-tech').value.split(',').map(t => t.trim())
+                tech: document.getElementById('edit-tech').value.split(',').map(t => t.trim()),
+                linklabel: document.getElementById('edit-linklabel').value.trim() || null
             };
 
             async function saveProjectWithImage(imagePath) {
