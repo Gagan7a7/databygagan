@@ -156,14 +156,13 @@
             overflow: visible;
         }
 
-        /* Modern paragraph reveal: blur-to-clear + slide up */
         .about-text p {
             opacity: 0;
             transform: translateY(50px);
             filter: blur(7px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             margin-bottom: 2rem;
             position: relative;
         }
@@ -281,9 +280,11 @@
         /* Section title reveal */
         .reveal-title {
             opacity: 0;
-            transform: translateY(35px) scale(0.96);
+            transform: translateY(30px);
             filter: blur(5px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal-title.animate {
@@ -295,9 +296,11 @@
         /* Subtitle reveal */
         .reveal-subtitle {
             opacity: 0;
-            transform: translateY(25px);
+            transform: translateY(20px);
             filter: blur(4px);
-            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal-subtitle.animate {
