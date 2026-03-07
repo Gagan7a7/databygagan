@@ -297,7 +297,11 @@
         // Load testimonials from API
         async function loadTestimonials() {
             try {
-                const response = await fetch('/api/testimonials');
+                const response = await fetch('/api/testimonials', {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                    }
+                });
                 testimonials = await response.json();
                 filterTestimonials();
             } catch (error) {
@@ -406,7 +410,10 @@
         async function deleteTestimonial(id) {
             try {
                 const response = await fetch(`/api/testimonials/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                    }
                 });
 
                 if (response.ok) {

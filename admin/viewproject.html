@@ -435,7 +435,10 @@
                     const editTitle = encodeURIComponent(originalProject.title);
                     const res = await fetch(`/api/projects/title/${editTitle}`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                        },
                         body: JSON.stringify(proj)
                     });
                     const data = await res.json();
@@ -484,7 +487,10 @@
 
             try {
                 const res = await fetch(`/api/projects/title/${title}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                    }
                 });
                 const data = await res.json();
                 if (data.success) {

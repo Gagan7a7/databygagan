@@ -315,7 +315,10 @@
                     // Add new project
                     fetch(backendUrl, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                        },
                         body: JSON.stringify(proj)
                     })
                         .then(res => res.json())

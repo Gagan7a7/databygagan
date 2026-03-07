@@ -45,7 +45,52 @@ app.use((req, res, next) => {
     }
 });
 
+import crypto from 'crypto';
+
 const sql = neon(); // uses NETLIFY_DATABASE_URL automatically
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_local_secret_databygagan_2026';
+
+// Secure Authorization Middleware
+function verifyToken(token) {
+    try {
+        const parts = token.split('.');
+        if (parts.length !== 3) return false;
+        const [header, body, signature] = parts;
+        const expectedSignature = crypto.createHmac('sha256', JWT_SECRET).update(`${header}.${body}`).digest('base64url');
+
+        if (expectedSignature !== signature) return false;
+
+        const payload = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
+        if (payload.exp && Date.now() / 1000 > payload.exp) return false; // Check expiration
+
+        return payload.role === 'admin';
+    } catch (e) {
+        return false;
+    }
+}
+
+const requireAuth = (req, res, next) => {
+    // Only protect modifying routes (POST, PUT, DELETE)
+    if (req.method === 'GET' || req.method === 'OPTIONS') {
+        return next();
+    }
+
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.warn('Unauthorized access attempt: No Token');
+        return res.status(401).json({ success: false, error: 'Unauthorized: No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    if (!verifyToken(token)) {
+        console.warn('Unauthorized access attempt: Invalid Token');
+        return res.status(401).json({ success: false, error: 'Unauthorized: Invalid or expired token' });
+    }
+
+    next();
+};
+
+app.use(requireAuth);
 
 // Explicit handler for Netlify POST /api/projects/set-featured
 app.post("/api/projects/set-featured", async (req, res) => {

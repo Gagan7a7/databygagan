@@ -21,7 +21,7 @@
 
     <!-- Your CSS file - same as addproject.html -->
     <link href="css/style.css" rel="stylesheet">
-        <style>
+    <style>
         .sidebar {
             position: fixed;
             top: 0;
@@ -32,59 +32,68 @@
             padding: 15px 0;
             overflow-y: auto;
         }
+
         .content {
             margin-left: 250px;
             min-height: 100vh;
             background: #151821;
         }
+
         .bg-secondary {
             background-color: #191C24 !important;
         }
+
         .form-control {
             background-color: #2A2D3A;
             border-color: #3E4651;
             color: #fff;
         }
+
         .form-control:focus {
             background-color: #2A2D3A;
             border-color: #007BFF;
             color: #fff;
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
+
         .form-control::placeholder {
             color: #adb5bd;
         }
+
         body {
             background-color: #151821;
             color: #fff;
         }
+
         .chart-container {
             position: relative;
             height: 300px;
             width: 100%;
         }
-        .hidden { 
-            display: none !important; 
+
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 
 <body>
     <script>
-    // Check login status when page loads
-    if (!localStorage.getItem('admin_token')) {
-        document.getElementById('dashboard-section').classList.add('hidden');
-        document.getElementById('login-section').classList.remove('hidden');
-    } else {
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('dashboard-section').classList.remove('hidden');
-        // Will load projects after DOM content loaded
-    }
+        // Check login status when page loads
+        if (!localStorage.getItem('admin_token')) {
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+        } else {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            // Will load projects after DOM content loaded
+        }
     </script>
 
     <!-- Login Section -->
     <div id="login-section">
-        <div style="max-width: 400px; margin: 100px auto; padding: 40px; background: #191C24; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <div
+            style="max-width: 400px; margin: 100px auto; padding: 40px; background: #191C24; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <h2 class="text-center mb-4">Admin Login</h2>
             <form id="login-form" onsubmit="login(event)">
                 <div class="mb-3">
@@ -108,8 +117,11 @@
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
-                            <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo" style="width: 40px; height: 40px;">
-                            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                            <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo"
+                                style="width: 40px; height: 40px;">
+                            <div
+                                class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                            </div>
                         </div>
                         <div class="ms-3">
                             <h6 class="mb-0">Gagan</h6>
@@ -117,11 +129,16 @@
                         </div>
                     </div>
                     <div class="navbar-nav w-100">
-                        <a href="dashboard.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                        <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
-                        <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                        <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add Testimonial</a>
-                        <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View Testimonials</a>
+                        <a href="dashboard.html" class="nav-item nav-link active"><i
+                                class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                        <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add
+                            Project</a>
+                        <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View
+                            Projects</a>
+                        <a href="addtestimonial.html" class="nav-item nav-link"><i
+                                class="fa fa-quote-right me-2"></i>Add Testimonial</a>
+                        <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View
+                            Testimonials</a>
                     </div>
                 </nav>
             </div>
@@ -198,12 +215,14 @@
                                     <div>
                                         <!-- Search Bar -->
                                         <div class="input-group me-3" style="width: 300px; display: inline-flex;">
-                                            <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search projects..." onkeyup="searchProjects()">
+                                            <input type="text" class="form-control form-control-sm" id="searchInput"
+                                                placeholder="Search projects..." onkeyup="searchProjects()">
                                             <span class="input-group-text">
                                                 <i class="fa fa-search"></i>
                                             </span>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-primary me-2" onclick="loadProjects()">
+                                        <button type="button" class="btn btn-sm btn-primary me-2"
+                                            onclick="loadProjects()">
                                             <i class="fa fa-refresh me-1"></i>Refresh
                                         </button>
                                         <button type="button" class="btn btn-sm btn-info" onclick="exportProjects()">
@@ -232,7 +251,8 @@
 
                                 <div id="no-projects" class="text-center py-4 hidden">
                                     <i class="bi bi-folder-x fa-3x text-muted mb-3"></i>
-                                    <p class="text-muted">No projects found. <a href="addproject.html">Add your first project</a></p>
+                                    <p class="text-muted">No projects found. <a href="addproject.html">Add your first
+                                            project</a></p>
                                 </div>
                             </div>
                         </div>
@@ -283,7 +303,8 @@
     </div>
 
     <!-- Edit Project Modal -->
-    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -324,7 +345,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="edit-tech" class="form-label">Tech Tags</label>
-                                <input type="text" class="form-control" id="edit-tech" placeholder="comma separated" required>
+                                <input type="text" class="form-control" id="edit-tech" placeholder="comma separated"
+                                    required>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -381,7 +403,7 @@
                 const title = rows[i].cells[2].textContent.toLowerCase();
                 const category = rows[i].cells[3].textContent.toLowerCase();
                 const tech = rows[i].cells[4].textContent.toLowerCase();
-                
+
                 if (title.includes(searchTerm) || category.includes(searchTerm) || tech.includes(searchTerm)) {
                     rows[i].style.display = '';
                 } else {
@@ -519,26 +541,30 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password: input })
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    // Store auth token
-                    localStorage.setItem('admin_token', data.token || 'authenticated');
-                    document.getElementById('login-section').classList.add('hidden');
-                    document.getElementById('dashboard-section').classList.remove('hidden');
-                    loadProjects();
-                } else {
-                    document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
-                }
-            })
-            .catch(err => {
-                document.getElementById('login-error').textContent = 'Login error: ' + err.message;
-            });
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        // Store auth token
+                        localStorage.setItem('admin_token', data.token || 'authenticated');
+                        document.getElementById('login-section').classList.add('hidden');
+                        document.getElementById('dashboard-section').classList.remove('hidden');
+                        loadProjects();
+                    } else {
+                        document.getElementById('login-error').textContent = data.error || 'Incorrect password.';
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('login-error').textContent = 'Login error: ' + err.message;
+                });
         }
 
         // Load projects from backend API
         function loadProjects() {
-            fetch('/api/projects')
+            fetch('/api/projects', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                }
+            })
                 .then(res => {
                     if (!res.ok) throw new Error('Failed to fetch projects from server');
                     return res.json();
@@ -660,25 +686,25 @@
 
                 fetch(`/api/projects/title/${editTitle}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') },
                     body: JSON.stringify(proj)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        projects[idx] = proj;
-                        renderProjects();
-                        updateDashboardStats();
-                        createCharts();
-                        bootstrap.Modal.getInstance(document.getElementById('editProjectModal')).hide();
-                        showNotification('Project updated successfully!', 'success');
-                    } else {
-                        showNotification('Error updating project: ' + (data.error || 'Unknown error'), 'error');
-                    }
-                })
-                .catch(err => {
-                    showNotification('Error updating project: ' + err.message, 'error');
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            projects[idx] = proj;
+                            renderProjects();
+                            updateDashboardStats();
+                            createCharts();
+                            bootstrap.Modal.getInstance(document.getElementById('editProjectModal')).hide();
+                            showNotification('Project updated successfully!', 'success');
+                        } else {
+                            showNotification('Error updating project: ' + (data.error || 'Unknown error'), 'error');
+                        }
+                    })
+                    .catch(err => {
+                        showNotification('Error updating project: ' + err.message, 'error');
+                    });
             }
 
             if (imageFile) {
@@ -689,17 +715,17 @@
                     method: 'POST',
                     body: formData
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success && data.imagePath) {
-                        saveProjectWithImage(data.imagePath);
-                    } else {
-                        showNotification('Image upload failed: ' + (data.error || 'Unknown error'), 'error');
-                    }
-                })
-                .catch(err => {
-                    showNotification('Image upload error: ' + err.message, 'error');
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success && data.imagePath) {
+                            saveProjectWithImage(data.imagePath);
+                        } else {
+                            showNotification('Image upload failed: ' + (data.error || 'Unknown error'), 'error');
+                        }
+                    })
+                    .catch(err => {
+                        showNotification('Image upload error: ' + err.message, 'error');
+                    });
             } else {
                 saveProjectWithImage(projects[idx].image || '');
             }
@@ -713,21 +739,21 @@
                 fetch(backendUrl, {
                     method: 'DELETE'
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        projects = projects.filter(p => encodeURIComponent(p.title) !== title);
-                        renderProjects();
-                        updateDashboardStats();
-                        createCharts();
-                        showNotification('Project deleted successfully!', 'success');
-                    } else {
-                        showNotification('Error deleting project: ' + (data.error || 'Unknown error'), 'error');
-                    }
-                })
-                .catch(err => {
-                    showNotification('Error deleting project: ' + err.message, 'error');
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            projects = projects.filter(p => encodeURIComponent(p.title) !== title);
+                            renderProjects();
+                            updateDashboardStats();
+                            createCharts();
+                            showNotification('Project deleted successfully!', 'success');
+                        } else {
+                            showNotification('Error deleting project: ' + (data.error || 'Unknown error'), 'error');
+                        }
+                    })
+                    .catch(err => {
+                        showNotification('Error deleting project: ' + err.message, 'error');
+                    });
             }
         }
 
@@ -757,16 +783,17 @@
         }
 
         // Enter key login
-        document.getElementById('admin-password').addEventListener('keypress', function(e) {
+        document.getElementById('admin-password').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 login();
             }
         });
 
         // Focus password field on load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('admin-password').focus();
         });
     </script>
 </body>
+
 </html>
