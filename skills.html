@@ -289,6 +289,30 @@
                 }
             }
         }
+
+        /* Desktop permanent hover prompt at bottom of cards */
+        .hover-affordance {
+            display: none;
+        }
+
+        @media (min-width: 992px) {
+            .hover-affordance {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #4a90e2;
+                font-size: 0.85rem;
+                font-weight: 500;
+                margin-top: 15px;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .skill-category.card:hover .hover-affordance {
+                opacity: 0;
+                /* hides when hovering since the popup appears anyway */
+            }
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -579,6 +603,9 @@
                                     <span class="skill-tag" itemprop="knowsAbout">Pivot Tables</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Conditional Formatting</span>
                                 </div>
+                                <div class="hover-affordance">
+                                    <i class="fas fa-mouse-pointer"></i> Hover to view details
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -609,6 +636,9 @@
                                     <span class="skill-tag" itemprop="knowsAbout">VS Code</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Git &amp; GitHub</span>
                                     <span class="skill-tag" itemprop="knowsAbout">HTML &amp; CSS</span>
+                                </div>
+                                <div class="hover-affordance">
+                                    <i class="fas fa-mouse-pointer"></i> Hover to view details
                                 </div>
                             </div>
                         </div>
@@ -642,6 +672,9 @@
                                     <span class="skill-tag" itemprop="knowsAbout">Matplotlib</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Seaborn</span>
                                 </div>
+                                <div class="hover-affordance">
+                                    <i class="fas fa-mouse-pointer"></i> Hover to view details
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -667,6 +700,9 @@
                                     <span class="skill-tag" itemprop="knowsAbout">Scikit-learn</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Train-Test Split</span>
                                     <span class="skill-tag" itemprop="knowsAbout">Accuracy / Confusion Matrix</span>
+                                </div>
+                                <div class="hover-affordance">
+                                    <i class="fas fa-mouse-pointer"></i> Hover to view details
                                 </div>
                             </div>
                         </div>
@@ -695,7 +731,9 @@
                                     <span class="skill-tag" itemprop="knowsAbout">AI Chatbots</span>
                                     <span class="skill-tag" itemprop="knowsAbout">LLM Implementation</span>
 
-
+                                </div>
+                                <div class="hover-affordance">
+                                    <i class="fas fa-mouse-pointer"></i> Hover to view details
                                 </div>
                             </div>
                         </div>
