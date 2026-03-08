@@ -348,8 +348,7 @@
                             <input type="text" name="_gotcha" style="display: none" tabindex="-1" autocomplete="off">
                             <div class="form-group">
                                 <label for="name">Your Name <span class="required">*</span></label>
-                                <input type="text" id="name" name="name" required title="Enter a valid name"
-                                    itemprop="name">
+                                <input type="text" id="name" name="name" required itemprop="name">
                                 <span id="name-warning" style="
                                     color: #f44336;
                                     display: none;
@@ -361,9 +360,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Your Email <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" required
-                                    title="Only Gmail, Yahoo, Outlook, Hotmail, ProtonMail, or iCloud emails are allowed."
+                                <input type="email" id="email" name="email" required aria-describedby="email-hint"
                                     itemprop="email">
+                                <small id="email-hint"
+                                    style="color: #6c757d; font-size: 0.8rem; margin-top: 4px; display: block;">
+                                    Only trusted domains like Gmail, Yahoo, Outlook, etc. are allowed.
+                                </small>
                                 <span id="email-warning" style="
                                     color: #f44336;
                                     display: none;

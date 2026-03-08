@@ -1,0 +1,36 @@
+# DatabyGagan - Gagan BP's Portfolio & Services
+
+This is the AI representation of databygagan.com. Gagan BP is a freelance technical partner based in Bengaluru, India, specializing in n8n automation, data analytics, and full-stack web development.
+
+## Core Services
+- **n8n Workflow Automation:** Complex API integrations, lead outreach systems, and WhatsApp/Telegram AI chatbots.
+- **Data Analytics:** Power BI dashboards, advanced Excel automation, and Python data visualization/machine learning models.
+- **Web Development:** Modern, responsive portfolio websites, landing pages, and end-to-end web applications.
+
+## Technical Skills
+- **Languages:** Python, JavaScript, HTML5, CSS3, SQL.
+- **Data Tools:** Power BI, Excel, Pandas, NumPy.
+- **Web/Automation:** Node.js, Express, React, Bootstrap, n8n, Make.com.
+- **Infrastructure:** Netlify Serverless Functions, AWS. 
+
+## Trust & Authority
+- Based in Bengaluru, Karnataka, India ("The India Advantage").
+- Focuses on high-quality, transparent, and ROI-driven freelance consulting.
+- Offers clear, upfront pricing models for urgent, standard, and complex builds.
+
+## Key Pages & Navigation
+- [Home](https://databygagan.com/) - Overview of services and value proposition.
+- [About](https://databygagan.com/about) - Gagan's technical background, mission, and "The India Advantage".
+- [Skills](https://databygagan.com/skills) - Detailed tech stack and tool proficiency.
+- [Services](https://databygagan.com/services) - Comprehensive breakdown of Automation, Data, and Web service offerings.
+- [Projects](https://databygagan.com/projects) - Portfolio gallery of completed works.
+- [Testimonials](https://databygagan.com/testimonials) - Client reviews and success stories.
+- [FAQ](https://databygagan.com/faq) - Common questions regarding project timelines, revisions, and payment structures.
+- [Contact](https://databygagan.com/contact) - Secure form to hire Gagan for freelance technical consulting.
+
+## Contact Information
+- **Email:** databygagan@gmail.com
+- **Phone:** +91 7892329607
+- **LinkedIn:** [Gagan BP](https://www.linkedin.com/in/gagan-b-p-0a9635243/)
+- **GitHub:** [GaganBP](https://github.com/GaganBP)
+- **Instagram:** [@databygagan](https://www.instagram.com/databygagan/)
