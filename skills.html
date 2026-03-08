@@ -338,6 +338,29 @@
                 transition: none;
             }
         }
+
+        @keyframes blink-suggest {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: scale(0.85);
+            }
+        }
+
+        .skill-info-icon {
+            animation: blink-suggest 1.5s ease-in-out infinite;
+        }
+
+        .skill-info-icon.clicked {
+            animation: none;
+            opacity: 1;
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
@@ -1010,6 +1033,11 @@
         document.querySelectorAll('.skill-category').forEach(card => {
             card.addEventListener('mouseenter', function () { this.style.transform = 'translateY(-5px)'; });
             card.addEventListener('mouseleave', function () { this.style.transform = 'translateY(0)'; });
+        });
+        document.querySelectorAll('.skill-info-icon').forEach(function (icon, index) {
+            icon.addEventListener('click', function () {
+                this.classList.add('clicked');
+            });
         });
     </script>
 </body>
