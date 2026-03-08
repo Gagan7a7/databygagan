@@ -799,12 +799,12 @@ main {
     }
 
     .data-shape {
-        width: 50px !important;
-        height: 50px !important;
+        width: clamp(35px, 7vw, 50px) !important;
+        height: clamp(35px, 7vw, 50px) !important;
         pointer-events: auto !important;
         animation-duration: 40s !important;
         z-index: 1 !important;
-        opacity: 0.6 !important
+        opacity: 0.4 !important
     }
 
     .data-shape i {
@@ -818,7 +818,7 @@ main {
     }
 
     .database-shape {
-        top: 15% !important;
+        top: 5% !important;
         right: 2% !important
     }
 
@@ -833,7 +833,7 @@ main {
     }
 
     .python-shape {
-        top: 50% !important;
+        top: 40% !important;
         right: 1% !important
     }
 
