@@ -801,9 +801,6 @@
                 var count = buttons.length;
                 var hasOverflow = count > getThreshold();
 
-                var canScrollLeft = track.scrollLeft > 2;
-                var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
-
                 /* ── overflow mode vs centred mode ──────────────────
                    • No overflow  → remove is-overflow so flex:0 1 auto + wrapper
                                     justify-content:center centres the buttons.
@@ -811,6 +808,13 @@
                                     and scroll works naturally.
                    ─────────────────────────────────────────────────── */
                 track.classList.toggle('is-overflow', hasOverflow);
+
+                /* Force reflow so scroll measurements are accurate AFTER
+                   is-overflow changes the track's flex width */
+                void track.offsetWidth;
+
+                var canScrollLeft = track.scrollLeft > 2;
+                var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
 
                 /* Arrows only appear when count exceeds threshold */
                 btnL.classList.toggle('visible', hasOverflow && canScrollLeft);
