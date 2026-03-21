@@ -301,6 +301,8 @@
                         so centering via the wrapper works correctly ── */
             flex: 0 1 auto;
             max-width: 100%;
+            /* ── Snap scrolling so half-buttons never show on mobile ── */
+            scroll-snap-type: x mandatory;
         }
 
         #category-buttons::-webkit-scrollbar {
@@ -334,6 +336,8 @@
             cursor: pointer;
             transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
             outline: none;
+            /* ── Snap align so buttons land cleanly on scroll ── */
+            scroll-snap-align: start;
         }
 
         .category-scroll-btn:hover,
@@ -771,8 +775,8 @@
 
     <!-- ═══════════════════════════════════════════════════════
          CATEGORY SCROLL STRIP CONTROLLER
-         Watches #category-buttons for buttons injected by scripts.js.
-         Shows/hides arrows only when overflow actually exists.
+         Count-based threshold: desktop > 3 buttons, mobile > 2 buttons.
+         Shows/hides arrows based on count, not scroll overflow.
          Centres buttons when they fit; switches to scroll mode when they don't.
          scripts.js is completely untouched.
          ═══════════════════════════════════════════════════════ -->
@@ -786,21 +790,29 @@
 
             var SCROLL_STEP = 180; // px per arrow click
 
+            /* ── COUNT-BASED threshold (not scroll-overflow based) ── */
+            function getThreshold() {
+                return window.innerWidth <= 768 ? 2 : 3;
+            }
+
             /* ── Update arrow visibility + centering + fade edges ── */
             function updateArrows() {
-                var hasOverflow = track.scrollWidth > track.clientWidth + 4;
+                var buttons = track.querySelectorAll('.category-scroll-btn');
+                var count = buttons.length;
+                var hasOverflow = count > getThreshold();
+
                 var canScrollLeft = track.scrollLeft > 2;
                 var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
 
-                /* ── KEY FIX: overflow mode vs centred mode ──────────────────
+                /* ── overflow mode vs centred mode ──────────────────
                    • No overflow  → remove is-overflow so flex:0 1 auto + wrapper
                                     justify-content:center centres the buttons.
                    • Has overflow → add is-overflow so flex:1 fills the track
                                     and scroll works naturally.
-                   ─────────────────────────────────────────────────────────── */
+                   ─────────────────────────────────────────────────── */
                 track.classList.toggle('is-overflow', hasOverflow);
 
-                /* Arrows only appear when there is real overflow */
+                /* Arrows only appear when count exceeds threshold */
                 btnL.classList.toggle('visible', hasOverflow && canScrollLeft);
                 btnR.classList.toggle('visible', hasOverflow && canScrollRight);
 
