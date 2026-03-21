@@ -282,7 +282,6 @@
         }
 
         /* Scrollable inner track — hides scrollbar visually */
-        /* ── TASK 2: track is the grid's middle column; minmax(0,1fr) constrains it ── */
         #category-buttons {
             display: flex;
             flex-direction: row;
@@ -290,7 +289,6 @@
             overflow-x: auto;
             gap: 0.5rem;
             scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -302,18 +300,10 @@
             display: none;
         }
 
-        /* ── Category buttons themselves ── */
-        /* ── FIX 4: compact size so ~4 fit comfortably on desktop;
-                     responsive so they never look oversized on mobile ── */
+        /* ── Category buttons — natural intrinsic widths ── */
         .category-scroll-btn {
-            /* ── TASK 2: exactly 3 buttons visible on desktop ── */
-            flex: 0 0 calc((100% - 2 * 0.5rem) / 3);
-            min-width: 0;
-            scroll-snap-align: start;
+            flex-shrink: 0;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
             background: linear-gradient(90deg, #4a90e2 60%, #00bcd4 100%);
             color: #fff;
             border: none;
@@ -339,11 +329,9 @@
             box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5), 0 4px 14px rgba(44, 62, 80, 0.18);
         }
 
-        /* ── FIX 5: mobile — slightly smaller so more fit before overflow ── */
-        /* ── TASK 2 (mobile): exactly 2 buttons visible ── */
+        /* Mobile — slightly smaller buttons */
         @media (max-width: 480px) {
             .category-scroll-btn {
-                flex: 0 0 calc((100% - 0.5rem) / 2);
                 padding: 0.28rem 0.75rem;
                 font-size: 0.78rem;
             }
