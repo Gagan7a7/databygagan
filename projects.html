@@ -840,19 +840,19 @@
                 wrapper.classList.toggle('fade-right', hasOverflow && canScrollRight);
             }
 
-            /* Arrow click handlers — scroll by exact button width so no half-cuts */
+            /* Arrow click handlers — scrollTo exact offsetLeft of target button,
+               so it always lands pixel-perfect with no half-cuts ever */
             btnL.addEventListener('click', function () {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
                 var idx = getFirstVisibleIndex(buttons);
                 var prevIdx = Math.max(0, idx - 1);
-                var scrollAmt = buttons[prevIdx].offsetWidth + GAP;
-                track.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
+                track.scrollTo({ left: buttons[prevIdx].offsetLeft, behavior: 'smooth' });
             });
             btnR.addEventListener('click', function () {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
                 var idx = getFirstVisibleIndex(buttons);
-                var scrollAmt = buttons[idx].offsetWidth + GAP;
-                track.scrollBy({ left: scrollAmt, behavior: 'smooth' });
+                var nextIdx = Math.min(buttons.length - 1, idx + 1);
+                track.scrollTo({ left: buttons[nextIdx].offsetLeft, behavior: 'smooth' });
             });
 
             /* Re-check on scroll within track */
