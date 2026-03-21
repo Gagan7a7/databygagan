@@ -790,10 +790,20 @@
             var btnR = document.getElementById('cat-arrow-right');
             if (!track || !btnL || !btnR) return;
 
-            var SCROLL_STEP = 180; // px per arrow click
+            var GAP = 8; /* matches CSS gap: 0.5rem */
 
             function getThreshold() {
                 return window.innerWidth <= 768 ? 2 : 3;
+            }
+
+            /* Returns index of the button whose left edge is at or past scrollLeft */
+            function getFirstVisibleIndex(buttons) {
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].offsetLeft + buttons[i].offsetWidth > track.scrollLeft + 2) {
+                        return i;
+                    }
+                }
+                return 0;
             }
 
             function updateArrows() {
@@ -806,10 +816,9 @@
                     /* Measure combined width of first `threshold` buttons.
                        Setting max-width to this forces remaining buttons to
                        overflow — creating real scrollWidth > clientWidth. */
-                    var gap = 8; /* 0.5rem gap in px */
                     var visibleWidth = 0;
                     for (var i = 0; i < threshold; i++) {
-                        visibleWidth += buttons[i].offsetWidth + gap;
+                        visibleWidth += buttons[i].offsetWidth + GAP;
                     }
                     track.style.maxWidth = visibleWidth + 'px';
                     track.classList.add('is-overflow');
@@ -831,12 +840,19 @@
                 wrapper.classList.toggle('fade-right', hasOverflow && canScrollRight);
             }
 
-            /* Arrow click handlers */
+            /* Arrow click handlers — scroll by exact button width so no half-cuts */
             btnL.addEventListener('click', function () {
-                track.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+                var buttons = track.querySelectorAll('.category-scroll-btn');
+                var idx = getFirstVisibleIndex(buttons);
+                var prevIdx = Math.max(0, idx - 1);
+                var scrollAmt = buttons[prevIdx].offsetWidth + GAP;
+                track.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
             });
             btnR.addEventListener('click', function () {
-                track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+                var buttons = track.querySelectorAll('.category-scroll-btn');
+                var idx = getFirstVisibleIndex(buttons);
+                var scrollAmt = buttons[idx].offsetWidth + GAP;
+                track.scrollBy({ left: scrollAmt, behavior: 'smooth' });
             });
 
             /* Re-check on scroll within track */
