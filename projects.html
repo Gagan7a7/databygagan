@@ -301,7 +301,7 @@
                         so centering via the wrapper works correctly ── */
             flex: 0 1 auto;
             max-width: 100%;
-            /* ── Snap scrolling so half-buttons never show on mobile ── */
+            /* ── Snap so half-buttons never show on mobile ── */
             scroll-snap-type: x mandatory;
         }
 
@@ -336,7 +336,7 @@
             cursor: pointer;
             transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
             outline: none;
-            /* ── Snap align so buttons land cleanly on scroll ── */
+            /* ── Snap align so buttons land cleanly ── */
             scroll-snap-align: start;
         }
 
@@ -775,9 +775,11 @@
 
     <!-- ═══════════════════════════════════════════════════════
          CATEGORY SCROLL STRIP CONTROLLER
-         Count-based threshold: desktop > 3 buttons, mobile > 2 buttons.
-         Shows/hides arrows based on count, not scroll overflow.
-         Centres buttons when they fit; switches to scroll mode when they don't.
+         Watches #category-buttons for buttons injected by scripts.js.
+         Count-based threshold: > 3 on desktop, > 2 on mobile.
+         Constrains track max-width to first N buttons so real scroll
+         overflow is forced — arrows appear and work correctly.
+         Centering preserved via wrapper justify-content:center.
          scripts.js is completely untouched.
          ═══════════════════════════════════════════════════════ -->
     <script>
@@ -790,33 +792,38 @@
 
             var SCROLL_STEP = 180; // px per arrow click
 
-            /* ── COUNT-BASED threshold (not scroll-overflow based) ── */
             function getThreshold() {
                 return window.innerWidth <= 768 ? 2 : 3;
             }
 
-            /* ── Update arrow visibility + centering + fade edges ── */
             function updateArrows() {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
                 var count = buttons.length;
-                var hasOverflow = count > getThreshold();
+                var threshold = getThreshold();
+                var hasOverflow = count > threshold;
 
-                /* ── overflow mode vs centred mode ──────────────────
-                   • No overflow  → remove is-overflow so flex:0 1 auto + wrapper
-                                    justify-content:center centres the buttons.
-                   • Has overflow → add is-overflow so flex:1 fills the track
-                                    and scroll works naturally.
-                   ─────────────────────────────────────────────────── */
-                track.classList.toggle('is-overflow', hasOverflow);
+                if (hasOverflow) {
+                    /* Measure combined width of first `threshold` buttons.
+                       Setting max-width to this forces remaining buttons to
+                       overflow — creating real scrollWidth > clientWidth. */
+                    var gap = 8; /* 0.5rem gap in px */
+                    var visibleWidth = 0;
+                    for (var i = 0; i < threshold; i++) {
+                        visibleWidth += buttons[i].offsetWidth + gap;
+                    }
+                    track.style.maxWidth = visibleWidth + 'px';
+                    track.classList.add('is-overflow');
+                } else {
+                    track.style.maxWidth = '';
+                    track.classList.remove('is-overflow');
+                }
 
-                /* Force reflow so scroll measurements are accurate AFTER
-                   is-overflow changes the track's flex width */
+                /* Force reflow so scroll measurements reflect new max-width */
                 void track.offsetWidth;
 
                 var canScrollLeft = track.scrollLeft > 2;
                 var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
 
-                /* Arrows only appear when count exceeds threshold */
                 btnL.classList.toggle('visible', hasOverflow && canScrollLeft);
                 btnR.classList.toggle('visible', hasOverflow && canScrollRight);
 
