@@ -791,19 +791,10 @@
             if (!track || !btnL || !btnR) return;
 
             var GAP = 8; /* matches CSS gap: 0.5rem */
+            var currentIndex = 0; /* index of the first visible button */
 
             function getThreshold() {
                 return window.innerWidth <= 768 ? 2 : 3;
-            }
-
-            /* Returns index of the button whose left edge is at or past scrollLeft */
-            function getFirstVisibleIndex(buttons) {
-                for (var i = 0; i < buttons.length; i++) {
-                    if (buttons[i].offsetLeft + buttons[i].offsetWidth > track.scrollLeft + 2) {
-                        return i;
-                    }
-                }
-                return 0;
             }
 
             function updateArrows() {
@@ -813,9 +804,8 @@
                 var hasOverflow = count > threshold;
 
                 if (hasOverflow) {
-                    /* Measure combined width of first `threshold` buttons.
-                       Setting max-width to this forces remaining buttons to
-                       overflow — creating real scrollWidth > clientWidth. */
+                    /* Set max-width to exactly the first `threshold` buttons wide
+                       so the remaining buttons create real scroll overflow */
                     var visibleWidth = 0;
                     for (var i = 0; i < threshold; i++) {
                         visibleWidth += buttons[i].offsetWidth + GAP;
@@ -825,46 +815,57 @@
                 } else {
                     track.style.maxWidth = '';
                     track.classList.remove('is-overflow');
+                    currentIndex = 0;
                 }
 
-                /* Force reflow so scroll measurements reflect new max-width */
+                /* Force reflow so layout is settled */
                 void track.offsetWidth;
 
-                var canScrollLeft = track.scrollLeft > 2;
-                var canScrollRight = track.scrollLeft + track.clientWidth < track.scrollWidth - 2;
+                /* Arrow visibility purely based on index — no scroll measurement */
+                var canGoLeft = hasOverflow && currentIndex > 0;
+                var canGoRight = hasOverflow && currentIndex < count - threshold;
 
-                btnL.classList.toggle('visible', hasOverflow && canScrollLeft);
-                btnR.classList.toggle('visible', hasOverflow && canScrollRight);
-
-                wrapper.classList.toggle('fade-left', hasOverflow && canScrollLeft);
-                wrapper.classList.toggle('fade-right', hasOverflow && canScrollRight);
+                btnL.classList.toggle('visible', canGoLeft);
+                btnR.classList.toggle('visible', canGoRight);
+                wrapper.classList.toggle('fade-left', canGoLeft);
+                wrapper.classList.toggle('fade-right', canGoRight);
             }
 
-            /* Arrow click handlers — scrollTo exact offsetLeft of target button,
-               so it always lands pixel-perfect with no half-cuts ever */
-            btnL.addEventListener('click', function () {
-                var buttons = track.querySelectorAll('.category-scroll-btn');
-                var idx = getFirstVisibleIndex(buttons);
-                var prevIdx = Math.max(0, idx - 1);
-                track.scrollTo({ left: buttons[prevIdx].offsetLeft, behavior: 'smooth' });
-            });
+            /* Right arrow — slide window forward by 1, hide leftmost button */
             btnR.addEventListener('click', function () {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
-                var idx = getFirstVisibleIndex(buttons);
-                var nextIdx = Math.min(buttons.length - 1, idx + 1);
-                track.scrollTo({ left: buttons[nextIdx].offsetLeft, behavior: 'smooth' });
+                var threshold = getThreshold();
+                if (currentIndex < buttons.length - threshold) {
+                    currentIndex++;
+                    track.scrollTo({ left: buttons[currentIndex].offsetLeft, behavior: 'smooth' });
+                    updateArrows();
+                }
             });
 
-            /* Re-check on scroll within track */
-            track.addEventListener('scroll', updateArrows, { passive: true });
+            /* Left arrow — slide window back by 1, hide rightmost visible button */
+            btnL.addEventListener('click', function () {
+                var buttons = track.querySelectorAll('.category-scroll-btn');
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    track.scrollTo({ left: buttons[currentIndex].offsetLeft, behavior: 'smooth' });
+                    updateArrows();
+                }
+            });
 
-            /* Re-check on window resize */
-            window.addEventListener('resize', updateArrows, { passive: true });
+            /* Reset index on resize in case threshold changes */
+            window.addEventListener('resize', function () {
+                currentIndex = 0;
+                track.scrollTo({ left: 0, behavior: 'auto' });
+                updateArrows();
+            }, { passive: true });
 
             /* ── MutationObserver: fires when scripts.js injects buttons ── */
             var mo = new MutationObserver(function () {
                 /* Small delay so layout settles after injection */
-                setTimeout(updateArrows, 60);
+                setTimeout(function () {
+                    currentIndex = 0;
+                    updateArrows();
+                }, 60);
             });
             mo.observe(track, { childList: true });
 
