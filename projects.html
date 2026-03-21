@@ -282,53 +282,26 @@
             transform: scale(0.96);
         }
 
-        /* Scrollable inner track — hides scrollbar visually */
+        /* Category button track — display:none carousel, no scrolling */
         #category-buttons {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            /* single row, NEVER wraps */
-            overflow-x: auto;
             gap: 0.5rem;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            /* Firefox */
-            -ms-overflow-style: none;
-            /* IE/Edge */
             padding: 4px 2px;
-            /* ── FIX 2: don't use flex:1 — let it shrink to content width
-                        so centering via the wrapper works correctly ── */
             flex: 0 1 auto;
             max-width: 100%;
-            /* ── Snap so half-buttons never show on mobile ── */
-            scroll-snap-type: x mandatory;
+            overflow: visible;
         }
 
-        #category-buttons::-webkit-scrollbar {
-            display: none;
-            /* Chrome/Safari */
-        }
-
-        /* ── FIX 3: when buttons overflow, switch to scroll mode ── */
-        #category-buttons.is-overflow {
-            flex: 1;
-            /* take full remaining width */
-            justify-content: flex-start;
-        }
-
-        /* ── Category buttons themselves ── */
-        /* ── FIX 4: compact size so ~4 fit comfortably on desktop;
-                     responsive so they never look oversized on mobile ── */
+        /* Category buttons */
         .category-scroll-btn {
             flex-shrink: 0;
-            /* never shrink — key to single-row */
             white-space: nowrap;
             background: linear-gradient(90deg, #4a90e2 60%, #00bcd4 100%);
             color: #fff;
             border: none;
             border-radius: 20px;
-            /* Compact default — fits ~4 on most desktops */
             padding: 0.32rem 0.95rem;
             font-size: 0.85rem;
             font-weight: 500;
@@ -336,8 +309,6 @@
             cursor: pointer;
             transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
             outline: none;
-            /* ── Snap align so buttons land cleanly ── */
-            scroll-snap-align: start;
         }
 
         .category-scroll-btn:hover,
@@ -790,40 +761,48 @@
             var btnR = document.getElementById('cat-arrow-right');
             if (!track || !btnL || !btnR) return;
 
-            var GAP = 8; /* matches CSS gap: 0.5rem */
-            var currentIndex = 0; /* index of the first visible button */
+            var currentIndex = 0;
 
             function getThreshold() {
                 return window.innerWidth <= 768 ? 2 : 3;
             }
 
-            function updateArrows() {
+            function render() {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
                 var count = buttons.length;
                 var threshold = getThreshold();
                 var hasOverflow = count > threshold;
 
-                if (hasOverflow) {
-                    /* Set max-width to exactly the first `threshold` buttons wide
-                       so the remaining buttons create real scroll overflow */
-                    var visibleWidth = 0;
-                    for (var i = 0; i < threshold; i++) {
-                        visibleWidth += buttons[i].offsetWidth + GAP;
+                if (!hasOverflow) {
+                    /* ≤ threshold buttons — show all, centered, no arrows */
+                    for (var i = 0; i < count; i++) {
+                        buttons[i].style.display = '';
                     }
-                    track.style.maxWidth = visibleWidth + 'px';
-                    track.classList.add('is-overflow');
-                } else {
                     track.style.maxWidth = '';
                     track.classList.remove('is-overflow');
-                    currentIndex = 0;
+                    btnL.classList.remove('visible');
+                    btnR.classList.remove('visible');
+                    wrapper.classList.remove('fade-left');
+                    wrapper.classList.remove('fade-right');
+                    return;
                 }
 
-                /* Force reflow so layout is settled */
-                void track.offsetWidth;
+                /* > threshold — show only buttons[currentIndex … currentIndex+threshold-1] */
+                for (var i = 0; i < count; i++) {
+                    if (i >= currentIndex && i < currentIndex + threshold) {
+                        buttons[i].style.display = '';
+                    } else {
+                        buttons[i].style.display = 'none';
+                    }
+                }
 
-                /* Arrow visibility purely based on index — no scroll measurement */
-                var canGoLeft = hasOverflow && currentIndex > 0;
-                var canGoRight = hasOverflow && currentIndex < count - threshold;
+                /* No maxWidth or scroll needed — hidden buttons take no space,
+                   wrapper justify-content:center handles centering automatically */
+                track.style.maxWidth = '';
+                track.classList.remove('is-overflow');
+
+                var canGoLeft = currentIndex > 0;
+                var canGoRight = currentIndex < count - threshold;
 
                 btnL.classList.toggle('visible', canGoLeft);
                 btnR.classList.toggle('visible', canGoRight);
@@ -831,46 +810,37 @@
                 wrapper.classList.toggle('fade-right', canGoRight);
             }
 
-            /* Right arrow — slide window forward by 1, hide leftmost button */
             btnR.addEventListener('click', function () {
                 var buttons = track.querySelectorAll('.category-scroll-btn');
                 var threshold = getThreshold();
                 if (currentIndex < buttons.length - threshold) {
                     currentIndex++;
-                    track.scrollTo({ left: buttons[currentIndex].offsetLeft, behavior: 'smooth' });
-                    updateArrows();
+                    render();
                 }
             });
 
-            /* Left arrow — slide window back by 1, hide rightmost visible button */
             btnL.addEventListener('click', function () {
-                var buttons = track.querySelectorAll('.category-scroll-btn');
                 if (currentIndex > 0) {
                     currentIndex--;
-                    track.scrollTo({ left: buttons[currentIndex].offsetLeft, behavior: 'smooth' });
-                    updateArrows();
+                    render();
                 }
             });
 
-            /* Reset index on resize in case threshold changes */
             window.addEventListener('resize', function () {
                 currentIndex = 0;
-                track.scrollTo({ left: 0, behavior: 'auto' });
-                updateArrows();
+                render();
             }, { passive: true });
 
             /* ── MutationObserver: fires when scripts.js injects buttons ── */
             var mo = new MutationObserver(function () {
-                /* Small delay so layout settles after injection */
                 setTimeout(function () {
                     currentIndex = 0;
-                    updateArrows();
+                    render();
                 }, 60);
             });
             mo.observe(track, { childList: true });
 
-            /* Initial check (buttons may already exist) */
-            updateArrows();
+            render();
         })();
     </script>
 
