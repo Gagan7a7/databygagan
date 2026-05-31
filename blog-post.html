@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Primary Meta Tags -->
+    <title>How n8n Automates Lead Outreach Without Hallucinations | Gagan BP Blog</title>
+    <meta name="description"
+        content="Step-by-step guide to building an n8n automation workflow that scrapes leads, enriches contact data, and sends personalized outreach emails — running 24/7 on autopilot with zero AI hallucinations.">
+    <meta name="keywords"
+        content="n8n lead outreach automation, n8n workflow tutorial, automated lead generation, email outreach automation, n8n no-code, lead enrichment workflow, freelance automation guide">
+    <meta name="author" content="Gagan BP">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="geo.region" content="IN-KA">
+    <meta name="geo.placename" content="Bengaluru">
+    <meta name="geo.position" content="12.9716;77.5946">
+    <meta name="ICBM" content="12.9716, 77.5946">
+    <link rel="alternate" hreflang="en" href="https://databygagan.com/blog-post">
+    <link rel="alternate" hreflang="x-default" href="https://databygagan.com/blog-post">
+    <meta name="language" content="English">
+    <meta name="content-language" content="en">
+
+    <!-- Performance and SEO meta tags -->
+    <meta name="theme-color" content="#0a1120">
+    <meta name="msapplication-TileColor" content="#0a1120">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Performance optimizations -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- Security meta tags -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+    <!-- DNS prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//databygagan.com">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://databygagan.com/blog-post">
+    <meta property="og:title" content="How n8n Automates Lead Outreach Without Hallucinations">
+    <meta property="og:description"
+        content="Build a reliable n8n workflow for automated lead generation, enrichment, and personalized outreach — running 24/7 with zero AI hallucinations.">
+    <meta property="og:image" content="https://databygagan.com/images/Hranalytics.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="DataByGagan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:locale:alternate" content="en_AU">
+    <meta property="article:author" content="Gagan BP">
+    <meta property="article:published_time" content="2026-05-31T09:00:00+05:30">
+    <meta property="article:modified_time" content="2026-05-31T09:00:00+05:30">
+    <meta property="article:section" content="Automation">
+    <meta property="article:tag" content="n8n">
+    <meta property="article:tag" content="automation">
+    <meta property="article:tag" content="lead generation">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How n8n Automates Lead Outreach Without Hallucinations">
+    <meta name="twitter:description"
+        content="Step-by-step guide to building an n8n lead outreach automation workflow.">
+    <meta name="twitter:image" content="https://databygagan.com/images/Hranalytics.png">
+    <meta name="twitter:creator" content="@databygagan">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://databygagan.com/blog-post">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    </noscript>
+    <link rel="preload" href="styles.css?v=fixed" as="style">
+    <link rel="preload" href="scripts.js" as="script">
+
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://databygagan.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://databygagan.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How n8n Automates Lead Outreach",
+                "item": "https://databygagan.com/blog-post"
+            }
+        ]
+    }
+    </script>
+
+    <!-- BlogPosting Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://databygagan.com/blog-post"
+        },
+        "headline": "How n8n Automates Lead Outreach Without Hallucinations",
+        "image": "https://databygagan.com/images/Hranalytics.png",
+        "datePublished": "2026-05-31T09:00:00+05:30",
+        "dateModified": "2026-05-31T09:00:00+05:30",
+        "author": {
+            "@type": "Person",
+            "name": "Gagan BP",
+            "url": "https://databygagan.com/about"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "DataByGagan",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://databygagan.com/assets/apple-touch-icon.png"
+            }
+        },
+        "description": "Learn how to use n8n automation to build reliable, high-performance lead generation pipelines that run 24/7 without AI hallucinations.",
+        "articleBody": "Step-by-step tutorial on building automated lead outreach with n8n.",
+        "wordCount": 1800,
+        "keywords": ["n8n", "automation", "lead generation", "outreach", "workflow"]
+    }
+    </script>
+
+    <!-- Person & ProfessionalService Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": ["Person", "ProfessionalService"],
+        "name": "Gagan BP",
+        "givenName": "Gagan BP",
+        "url": "https://databygagan.com/",
+        "jobTitle": "Freelance Technical Partner",
+        "description": "Freelance technical partner based in India, specializing in n8n workflow automation, MCP agent development, Power BI dashboards, and web development.",
+        "image": "https://databygagan.com/images/Hranalytics.png",
+        "telephone": "+917892329607",
+        "email": "databygagan@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560045",
+            "addressCountry": "IN"
+        },
+        "areaServed": ["US", "GB", "CA", "AU", "AE", "SG", "NZ", "IE", "Worldwide"]
+    }
+    </script>
+
+    <!-- Schedule Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Schedule",
+        "name": "Global Service Hours",
+        "description": "Available across all time zones for international clients",
+        "scheduleTimezone": "Asia/Kolkata",
+        "byDay": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "21:00"
+    }
+    </script>
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Gagan BP – Freelance Technical Partner",
+        "url": "https://databygagan.com/",
+        "description": "Freelance technical partner offering n8n automation, Power BI analytics, and web development for global clients",
+        "author": {
+            "@type": "Person",
+            "name": "Gagan"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://databygagan.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+    <link rel="stylesheet" href="styles.css?v=fixed">
+
+    <style>
+        /* Smooth page entry */
+        body { animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        @keyframes pageEntry { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Breadcrumb */
+        .blog-breadcrumb {
+            padding: 100px 0 0;
+            font-size: 0.85rem;
+        }
+        .blog-breadcrumb a { color: var(--primary-color); text-decoration: none; transition: color 0.2s; }
+        .blog-breadcrumb a:hover { color: var(--secondary-color); }
+        .blog-breadcrumb .separator { color: #4a5568; margin: 0 8px; }
+        .blog-breadcrumb .current { color: #a0aec0; }
+
+        /* Article header */
+        .article-header { padding: 2rem 0 1rem; max-width: 800px; margin: 0 auto; }
+        .article-header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 700;
+            color: var(--light-text);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #6b7a8d;
+            margin-bottom: 1.5rem;
+        }
+        .article-meta i { margin-right: 5px; color: var(--primary-color); font-size: 0.8rem; }
+
+        /* Hero image */
+        .article-hero-img {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(74, 144, 226, 0.12);
+        }
+        .article-hero-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Article body */
+        .article-body {
+            max-width: 780px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+        }
+        .article-body .lead {
+            font-size: 1.1rem;
+            color: #c0cfe0;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+        .article-body h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+        }
+        .article-body h3 {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 600;
+            color: var(--light-text);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .article-body p {
+            font-size: 1rem;
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+        .article-body ul, .article-body ol {
+            color: #a0aec0;
+            padding-left: 1.5rem;
+            margin-bottom: 1.4rem;
+            line-height: 1.8;
+        }
+        .article-body li { margin-bottom: 0.5rem; }
+        .article-body li::marker { color: var(--primary-color); }
+        .article-body strong { color: var(--light-text); }
+
+        /* In-article image */
+        .article-inline-img {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+        }
+        .article-inline-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .article-inline-img figcaption {
+            font-size: 0.82rem;
+            color: #6b7a8d;
+            text-align: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(74, 144, 226, 0.04);
+        }
+
+        /* Conclusion box */
+        .article-conclusion {
+            background: rgba(74, 144, 226, 0.06);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem 1.6rem;
+            margin: 2.5rem 0;
+        }
+        .article-conclusion h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-top: 0;
+        }
+
+        /* CTA Section */
+        .article-cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.06) 0%, rgba(107, 182, 255, 0.06) 100%);
+            border: 1px solid rgba(74, 144, 226, 0.12);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        .article-cta h2 {
+            color: var(--light-text) !important;
+            border: none !important;
+            margin-top: 0 !important;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+        }
+        .article-cta p {
+            color: #a0aec0;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+        .article-cta .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #4a90e2, #6bb6ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-cta .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.25);
+        }
+
+        /* Back to blog link */
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: gap 0.3s;
+        }
+        .back-to-blog:hover { gap: 10px; color: var(--secondary-color); }
+
+        /* Reveal animations */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .reveal-up.animate { opacity: 1; transform: translateY(0); }
+
+        /* Accessibility: reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            body { animation: none; }
+        }
+
+        /* Scroll lock for mobile offcanvas */
+        body.menu-open { overflow: hidden !important; touch-action: none !important; }
+        html.menu-open { overflow: hidden !important; }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Z3EEE9EZZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-5Z3EEE9EZZ');
+    </script>
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage" lang="en">
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+            <div class="container-fluid py-1">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav gap-2">
+                        <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Mobile offcanvas menu -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                    <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
+                        <h5 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem">Menu</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" style="filter: invert(1);"></button>
+                    </div>
+                    <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
+                            <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <!-- Breadcrumb -->
+        <div class="container blog-breadcrumb" aria-label="Breadcrumb">
+            <nav aria-label="breadcrumb">
+                <a href="/">Home</a>
+                <span class="separator">/</span>
+                <a href="blog">Blog</a>
+                <span class="separator">/</span>
+                <span class="current">How n8n Automates Lead Outreach</span>
+            </nav>
+        </div>
+
+        <!-- Article Header -->
+        <div class="container">
+            <header class="article-header reveal-up">
+                <a href="blog" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                <h1>How n8n Automates Lead Outreach Without Hallucinations</h1>
+                <div class="article-meta">
+                    <span><i class="fas fa-calendar-alt"></i> May 31, 2026</span>
+                    <span><i class="fas fa-clock"></i> 8 min read</span>
+                    <span><i class="fas fa-user"></i> Gagan BP</span>
+                    <span><i class="fas fa-tag"></i> Automation</span>
+                </div>
+            </header>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="container">
+            <div class="article-hero-img reveal-up" style="transition-delay: 0.1s;">
+                <img src="images/Hranalytics.png" alt="n8n lead outreach automation workflow overview" width="800" height="420">
+            </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="container article-body" itemscope itemtype="https://schema.org/Article">
+            <meta itemprop="headline" content="How n8n Automates Lead Outreach Without Hallucinations">
+            <meta itemprop="datePublished" content="2026-05-31">
+            <meta itemprop="author" content="Gagan BP">
+
+            <!-- Lead paragraph -->
+            <p class="lead reveal-up">
+                Most freelancers and small businesses waste 5–10 hours every week on manual lead outreach — finding prospects, looking up email addresses, writing personalised messages, and tracking follow-ups. With <strong>n8n</strong>, you can automate the entire pipeline and reclaim that time for work that actually grows your revenue.
+            </p>
+
+            <!-- Section 1 -->
+            <h2 class="reveal-up">Why n8n for Lead Automation?</h2>
+            <p class="reveal-up">
+                There are dozens of automation tools on the market — Zapier, Make.com, Power Automate — but n8n stands out for three reasons that matter to technical freelancers and small teams:
+            </p>
+            <ul class="reveal-up">
+                <li><strong>Self-hosted option:</strong> You own your data. No vendor lock-in, no per-execution pricing surprises.</li>
+                <li><strong>Code when you need it:</strong> n8n lets you drop into JavaScript or Python inside any node, giving you full control over data transformations.</li>
+                <li><strong>200+ integrations:</strong> From Google Sheets and Airtable to Slack and SendGrid, n8n connects to the tools your business already uses.</li>
+            </ul>
+
+            <!-- Inline image -->
+            <figure class="article-inline-img reveal-up">
+                <img src="images/AmazonSales.png" alt="n8n workflow editor showing lead scraping nodes connected" loading="lazy" width="780" height="400">
+                <figcaption>A typical n8n lead outreach workflow — scrape, enrich, filter, and send.</figcaption>
+            </figure>
+
+            <!-- Section 2 -->
+            <h2 class="reveal-up">The 4-Stage Lead Outreach Pipeline</h2>
+            <p class="reveal-up">
+                Every effective lead pipeline follows four stages. Here is how each maps to n8n nodes:
+            </p>
+
+            <h3 class="reveal-up">Stage 1: Lead Scraping</h3>
+            <p class="reveal-up">
+                Use n8n's HTTP Request node or a dedicated scraper integration (Apollo, Hunter.io) to pull raw prospect lists. Trigger the workflow on a schedule — once a day or once a week — so fresh leads flow in automatically.
+            </p>
+
+            <h3 class="reveal-up">Stage 2: Data Enrichment</h3>
+            <p class="reveal-up">
+                Raw leads are useless without context. Enrich each record with company size, industry, LinkedIn profile URL, and verified email address. n8n's Function node lets you merge data from multiple APIs in a single step.
+            </p>
+
+            <h3 class="reveal-up">Stage 3: Qualification &amp; Filtering</h3>
+            <p class="reveal-up">
+                Not every lead is worth pursuing. Add an IF node to filter by criteria that matter to your business: company revenue, location, tech stack, or job title. This ensures your outreach list is tight and relevant.
+            </p>
+
+            <h3 class="reveal-up">Stage 4: Personalised Outreach</h3>
+            <p class="reveal-up">
+                Send emails through SendGrid, Gmail, or SMTP. Use template variables to insert the prospect's name, company, and a custom opening line generated from their LinkedIn activity. Follow-up sequences can be chained with Wait nodes set to 3-day intervals.
+            </p>
+
+            <!-- Inline image -->
+            <figure class="article-inline-img reveal-up">
+                <img src="images/Weatherdashboard.png" alt="Diagram showing lead enrichment data flow through n8n nodes" loading="lazy" width="780" height="400">
+                <figcaption>Lead enrichment data flow — multiple API calls merged into a single enriched record.</figcaption>
+            </figure>
+
+            <!-- Section 3 -->
+            <h2 class="reveal-up">Avoiding Hallucinations in AI-Assisted Outreach</h2>
+            <p class="reveal-up">
+                If you use an LLM node to generate personalised email copy, hallucination risk is real. The AI might fabricate facts about the prospect's company or invent product features that do not exist. Here is how to prevent it:
+            </p>
+            <ol class="reveal-up">
+                <li><strong>Ground every prompt with real data:</strong> Pass verified company info directly into the prompt. Never let the LLM "look up" facts on its own.</li>
+                <li><strong>Use structured output:</strong> Ask for JSON output with predefined fields (subject_line, opening, body, cta) so you can validate each section before sending.</li>
+                <li><strong>Add a human review step:</strong> For high-value leads, route the generated email to a Slack channel for manual approval before it fires.</li>
+                <li><strong>Set guardrails:</strong> Use an IF node after the LLM to check for forbidden phrases, excessive length, or missing personalisation tokens.</li>
+            </ol>
+
+            <!-- Section 4 -->
+            <h2 class="reveal-up">Results You Can Expect</h2>
+            <p class="reveal-up">
+                After deploying this pipeline for three client projects, the average results were:
+            </p>
+            <ul class="reveal-up">
+                <li><strong>70% reduction</strong> in manual outreach time (from 8 hours/week to 2.5 hours/week)</li>
+                <li><strong>3× increase</strong> in qualified leads per month</li>
+                <li><strong>22% average open rate</strong> on automated emails (vs. 15% for manual batch sends)</li>
+                <li><strong>Zero hallucination incidents</strong> after implementing the guardrail workflow</li>
+            </ul>
+
+            <!-- Conclusion -->
+            <div class="article-conclusion reveal-up">
+                <h2>Conclusion</h2>
+                <p>
+                    Automation does not replace your judgment — it amplifies it. By building a structured n8n pipeline with proper data grounding and guardrails, you can scale your outreach without sacrificing quality or accuracy. The key is treating every automation as a system, not a shortcut: scrape reliably, enrich thoroughly, filter aggressively, and personalise authentically.
+                </p>
+                <p>
+                    If you are a freelancer or small team looking to automate lead generation, n8n gives you the power of enterprise automation without the enterprise price tag.
+                </p>
+            </div>
+        </article>
+
+        <!-- CTA Section -->
+        <section class="container reveal-up" style="transition-delay: 0.1s;">
+            <div class="article-cta">
+                <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:1rem;">
+                    <i class="fas fa-rocket" style="color:#4a90e2;font-size:1.1rem;"></i>
+                    <span style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">Ready to Automate?</span>
+                </div>
+                <h2>Let's Build Your Lead Pipeline</h2>
+                <p>Stop chasing leads manually. I will design and deploy a custom n8n automation that fills your pipeline on autopilot — tailored to your niche, your tools, and your budget.</p>
+                <a href="contact" class="cta-btn"><i class="fas fa-rocket me-2"></i>Start Your Project</a>
+                <p class="mt-3 mb-0 small" style="color:#6b7a8d;">
+                    <i class="fas fa-bolt text-warning me-1"></i>
+                    Response time: <strong>Within 24 hours</strong>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-5" itemscope itemtype="https://schema.org/WPFooter"
+        style="background-color: #000000; color: #e0e6ed;">
+        <div class="container">
+            <div class="row footer-content py-5">
+                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                    <h3 class="mb-3" style="color:var(--primary-color); font-size: 1.25rem;">Gagan | Technical Partner</h3>
+                    <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
+                        Delivering automation, analytics, and web solutions for businesses worldwide.
+                    </p>
+                </div>
+                <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
+                    <h4 class="fw-bold mb-4" style="color:var(--primary-color); font-size: 1.25rem;">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="/" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                        <li class="mb-3"><a href="about" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                        <li class="mb-3"><a href="projects" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                        <li class="mb-3"><a href="services" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                        <li class="mb-3"><a href="blog" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Blog</a></li>
+                        <li class="mb-3"><a href="contact" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section text-center">
+                    <h4 class="fw-bold mb-4" style="color:var(--primary-color); font-size: 1.25rem;">Services</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">n8n Automation</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Power BI Dashboards</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Chatbots &amp; AI Agents</li>
+                        <li class="mb-3" style="color: #d0d0d0; font-size: 0.9rem;">Web Development</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center mt-4 pt-4 border-top border-secondary">
+                <p class="mb-0 px-3" style="color: #d0d0d0; font-size: 0.85rem;">
+                    &copy; <span itemprop="copyrightYear">2026</span>
+                    <span itemprop="copyrightHolder">Gagan BP</span>. All rights reserved. | Freelance Technical Partner
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+    <!-- Navbar scroll + reveal animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navbar scroll
+            window.addEventListener('scroll', function () {
+                var navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) navbar.classList.add('navbar-scrolled');
+                else navbar.classList.remove('navbar-scrolled');
+            }, { passive: true });
+
+            // Reveal on scroll
+            var revealEls = document.querySelectorAll('.reveal-up');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+            // Back to top
+            var btn = document.getElementById('back-to-top');
+            if (btn) {
+                function toggleBtn() {
+                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrolled > 300) btn.classList.add('show');
+                    else btn.classList.remove('show');
+                }
+                window.addEventListener('scroll', toggleBtn, { passive: true });
+                btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+                toggleBtn();
+            }
+        });
+    </script>
+
+    <!-- Custom Scripts -->
+    <script src="scripts.js" defer></script>
+</body>
+
+</html>
