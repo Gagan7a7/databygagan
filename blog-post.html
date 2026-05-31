@@ -246,8 +246,6 @@
         .blog-breadcrumb {
             padding: 100px 0 0;
             font-size: 0.85rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .blog-breadcrumb a {
@@ -511,7 +509,7 @@
         }
 
         /* Mobile responsive overrides */
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
             .blog-breadcrumb {
                 padding-top: 80px;
             }
@@ -519,8 +517,20 @@
                 padding: 1.5rem 0 1rem;
             }
             .article-cta {
-                padding: 2rem 1.25rem;
+                padding: 2rem 1.5rem;
                 margin-bottom: 2rem;
+            }
+            .article-cta h2 {
+                font-size: 1.2rem !important;
+            }
+            .article-cta p {
+                font-size: 0.9rem !important;
+            }
+            .article-cta .cta-btn {
+                width: 100%;
+                text-align: center;
+                padding: 12px 28px;
+                font-size: 0.95rem;
             }
         }
     </style>

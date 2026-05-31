@@ -252,8 +252,6 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            max-width: 420px;
-            margin: 0 auto;
         }
         .blog-card:hover {
             transform: translateY(-8px);
@@ -351,7 +349,14 @@
         html.menu-open { overflow: hidden !important; }
 
         /* Mobile responsive overrides */
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
+            .blog-card {
+                max-width: 380px;
+                margin: 0 auto;
+            }
+            .blog-card-body {
+                padding: 1.2rem;
+            }
             .blog-filters {
                 padding: 0 10px;
                 gap: 10px;
