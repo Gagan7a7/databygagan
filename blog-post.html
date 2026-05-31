@@ -68,8 +68,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How n8n Automates Lead Outreach Without Hallucinations">
-    <meta name="twitter:description"
-        content="Step-by-step guide to building an n8n lead outreach automation workflow.">
+    <meta name="twitter:description" content="Step-by-step guide to building an n8n lead outreach automation workflow.">
     <meta name="twitter:image" content="https://databygagan.com/images/Hranalytics.png">
     <meta name="twitter:creator" content="@databygagan">
 
@@ -227,21 +226,54 @@
 
     <style>
         /* Smooth page entry */
-        body { animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        @keyframes pageEntry { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        body {
+            animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes pageEntry {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Breadcrumb */
         .blog-breadcrumb {
             padding: 100px 0 0;
             font-size: 0.85rem;
         }
-        .blog-breadcrumb a { color: var(--primary-color); text-decoration: none; transition: color 0.2s; }
-        .blog-breadcrumb a:hover { color: var(--secondary-color); }
-        .blog-breadcrumb .separator { color: #4a5568; margin: 0 8px; }
-        .blog-breadcrumb .current { color: #a0aec0; }
+
+        .blog-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .blog-breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .blog-breadcrumb .separator {
+            color: #4a5568;
+            margin: 0 8px;
+        }
+
+        .blog-breadcrumb .current {
+            color: #a0aec0;
+        }
 
         /* Article header */
-        .article-header { padding: 2rem 0 1rem; max-width: 800px; margin: 0 auto; }
+        .article-header {
+            padding: 2rem 0 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .article-header h1 {
             font-size: clamp(1.6rem, 4vw, 2.4rem);
             font-weight: 700;
@@ -249,6 +281,7 @@
             line-height: 1.3;
             margin-bottom: 1rem;
         }
+
         .article-meta {
             display: flex;
             align-items: center;
@@ -258,7 +291,12 @@
             color: #6b7a8d;
             margin-bottom: 1.5rem;
         }
-        .article-meta i { margin-right: 5px; color: var(--primary-color); font-size: 0.8rem; }
+
+        .article-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
 
         /* Hero image */
         .article-hero-img {
@@ -269,6 +307,7 @@
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.12);
         }
+
         .article-hero-img img {
             width: 100%;
             height: auto;
@@ -282,6 +321,7 @@
             margin: 0 auto;
             padding-bottom: 3rem;
         }
+
         .article-body .lead {
             font-size: 1.1rem;
             color: #c0cfe0;
@@ -290,6 +330,7 @@
             border-left: 3px solid var(--primary-color);
             padding-left: 1rem;
         }
+
         .article-body h2 {
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             font-weight: 700;
@@ -299,6 +340,7 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid rgba(74, 144, 226, 0.1);
         }
+
         .article-body h3 {
             font-size: clamp(1rem, 2vw, 1.25rem);
             font-weight: 600;
@@ -306,21 +348,33 @@
             margin-top: 1.8rem;
             margin-bottom: 0.8rem;
         }
+
         .article-body p {
             font-size: 1rem;
             color: #a0aec0;
             line-height: 1.8;
             margin-bottom: 1.2rem;
         }
-        .article-body ul, .article-body ol {
+
+        .article-body ul,
+        .article-body ol {
             color: #a0aec0;
             padding-left: 1.5rem;
             margin-bottom: 1.4rem;
             line-height: 1.8;
         }
-        .article-body li { margin-bottom: 0.5rem; }
-        .article-body li::marker { color: var(--primary-color); }
-        .article-body strong { color: var(--light-text); }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-body li::marker {
+            color: var(--primary-color);
+        }
+
+        .article-body strong {
+            color: var(--light-text);
+        }
 
         /* In-article image */
         .article-inline-img {
@@ -329,11 +383,13 @@
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.1);
         }
+
         .article-inline-img img {
             width: 100%;
             height: auto;
             display: block;
         }
+
         .article-inline-img figcaption {
             font-size: 0.82rem;
             color: #6b7a8d;
@@ -350,6 +406,7 @@
             padding: 1.5rem 1.6rem;
             margin: 2.5rem 0;
         }
+
         .article-conclusion h2 {
             border-bottom: none;
             padding-bottom: 0;
@@ -366,17 +423,20 @@
             max-width: 800px;
             margin: 0 auto 3rem;
         }
+
         .article-cta h2 {
             color: var(--light-text) !important;
             border: none !important;
             margin-top: 0 !important;
             font-size: clamp(1.2rem, 3vw, 1.6rem);
         }
+
         .article-cta p {
             color: #a0aec0;
             max-width: 500px;
             margin: 0 auto 1.5rem;
         }
+
         .article-cta .cta-btn {
             display: inline-block;
             padding: 14px 36px;
@@ -388,6 +448,7 @@
             letter-spacing: 0.4px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .article-cta .cta-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 24px rgba(74, 144, 226, 0.25);
@@ -404,21 +465,48 @@
             margin-bottom: 1rem;
             transition: gap 0.3s;
         }
-        .back-to-blog:hover { gap: 10px; color: var(--secondary-color); }
+
+        .back-to-blog:hover {
+            gap: 10px;
+            color: var(--secondary-color);
+        }
 
         /* Reveal animations */
-        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-        .reveal-up.animate { opacity: 1; transform: translateY(0); }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* Accessibility: reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            body { animation: none; }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body {
+                animation: none;
+            }
         }
 
         /* Scroll lock for mobile offcanvas */
-        body.menu-open { overflow: hidden !important; touch-action: none !important; }
-        html.menu-open { overflow: hidden !important; }
+        body.menu-open {
+            overflow: hidden !important;
+            touch-action: none !important;
+        }
+
+        html.menu-open {
+            overflow: hidden !important;
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
@@ -446,32 +534,49 @@
                     <ul class="navbar-nav gap-2">
                         <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i>
+                                Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i>
+                                Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i>
+                                Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i>
+                                FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i>
+                                Contact</a></li>
                     </ul>
                 </div>
                 <!-- Mobile offcanvas menu -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
+                    aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
                         <h5 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem">Menu</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" style="filter: invert(1);"></button>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close" style="filter: invert(1);"></button>
                     </div>
                     <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
                         <ul class="navbar-nav gap-2">
                             <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                            <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i>
+                                    Skills</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects"><i
+                                        class="fas fa-project-diagram"></i> Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i>
+                                    Services</a></li>
+                            <li class="nav-item"><a class="nav-link" href="testimonials"><i
+                                        class="fas fa-quote-right"></i> Testimonials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i>
+                                    FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i>
+                                    Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i>
+                                    Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -481,7 +586,7 @@
 
     <main id="main">
         <!-- Breadcrumb -->
-        <div class="container blog-breadcrumb" aria-label="Breadcrumb">
+        <div class="container blog-breadcrumb">
             <nav aria-label="breadcrumb">
                 <a href="/">Home</a>
                 <span class="separator">/</span>
@@ -508,35 +613,44 @@
         <!-- Hero Image -->
         <div class="container">
             <div class="article-hero-img reveal-up" style="transition-delay: 0.1s;">
-                <img src="images/Hranalytics.png" alt="n8n lead outreach automation workflow overview" width="800" height="420">
+                <img src="images/Hranalytics.png" alt="n8n lead outreach automation workflow overview" width="800"
+                    height="420">
             </div>
         </div>
 
         <!-- Article Body -->
         <article class="container article-body" itemscope itemtype="https://schema.org/Article">
-            <meta itemprop="headline" content="How n8n Automates Lead Outreach Without Hallucinations">
-            <meta itemprop="datePublished" content="2026-05-31">
-            <meta itemprop="author" content="Gagan BP">
+            <span itemprop="headline" content="How n8n Automates Lead Outreach Without Hallucinations"></span>
+            <span itemprop="datePublished" content="2026-05-31"></span>
+            <span itemprop="author" content="Gagan BP"></span>
 
             <!-- Lead paragraph -->
             <p class="lead reveal-up">
-                Most freelancers and small businesses waste 5–10 hours every week on manual lead outreach — finding prospects, looking up email addresses, writing personalised messages, and tracking follow-ups. With <strong>n8n</strong>, you can automate the entire pipeline and reclaim that time for work that actually grows your revenue.
+                Most freelancers and small businesses waste 5–10 hours every week on manual lead outreach — finding
+                prospects, looking up email addresses, writing personalised messages, and tracking follow-ups. With
+                <strong>n8n</strong>, you can automate the entire pipeline and reclaim that time for work that actually
+                grows your revenue.
             </p>
 
             <!-- Section 1 -->
             <h2 class="reveal-up">Why n8n for Lead Automation?</h2>
             <p class="reveal-up">
-                There are dozens of automation tools on the market — Zapier, Make.com, Power Automate — but n8n stands out for three reasons that matter to technical freelancers and small teams:
+                There are dozens of automation tools on the market — Zapier, Make.com, Power Automate — but n8n stands
+                out for three reasons that matter to technical freelancers and small teams:
             </p>
             <ul class="reveal-up">
-                <li><strong>Self-hosted option:</strong> You own your data. No vendor lock-in, no per-execution pricing surprises.</li>
-                <li><strong>Code when you need it:</strong> n8n lets you drop into JavaScript or Python inside any node, giving you full control over data transformations.</li>
-                <li><strong>200+ integrations:</strong> From Google Sheets and Airtable to Slack and SendGrid, n8n connects to the tools your business already uses.</li>
+                <li><strong>Self-hosted option:</strong> You own your data. No vendor lock-in, no per-execution pricing
+                    surprises.</li>
+                <li><strong>Code when you need it:</strong> n8n lets you drop into JavaScript or Python inside any node,
+                    giving you full control over data transformations.</li>
+                <li><strong>200+ integrations:</strong> From Google Sheets and Airtable to Slack and SendGrid, n8n
+                    connects to the tools your business already uses.</li>
             </ul>
 
             <!-- Inline image -->
             <figure class="article-inline-img reveal-up">
-                <img src="images/AmazonSales.png" alt="n8n workflow editor showing lead scraping nodes connected" loading="lazy" width="780" height="400">
+                <img src="images/AmazonSales.png" alt="n8n workflow editor showing lead scraping nodes connected"
+                    loading="lazy" width="780" height="400">
                 <figcaption>A typical n8n lead outreach workflow — scrape, enrich, filter, and send.</figcaption>
             </figure>
 
@@ -548,40 +662,56 @@
 
             <h3 class="reveal-up">Stage 1: Lead Scraping</h3>
             <p class="reveal-up">
-                Use n8n's HTTP Request node or a dedicated scraper integration (Apollo, Hunter.io) to pull raw prospect lists. Trigger the workflow on a schedule — once a day or once a week — so fresh leads flow in automatically.
+                Use n8n's HTTP Request node or a dedicated scraper integration (Apollo, Hunter.io) to pull raw prospect
+                lists. Trigger the workflow on a schedule — once a day or once a week — so fresh leads flow in
+                automatically.
             </p>
 
             <h3 class="reveal-up">Stage 2: Data Enrichment</h3>
             <p class="reveal-up">
-                Raw leads are useless without context. Enrich each record with company size, industry, LinkedIn profile URL, and verified email address. n8n's Function node lets you merge data from multiple APIs in a single step.
+                Raw leads are useless without context. Enrich each record with company size, industry, LinkedIn profile
+                URL, and verified email address. n8n's Function node lets you merge data from multiple APIs in a single
+                step.
             </p>
 
             <h3 class="reveal-up">Stage 3: Qualification &amp; Filtering</h3>
             <p class="reveal-up">
-                Not every lead is worth pursuing. Add an IF node to filter by criteria that matter to your business: company revenue, location, tech stack, or job title. This ensures your outreach list is tight and relevant.
+                Not every lead is worth pursuing. Add an IF node to filter by criteria that matter to your business:
+                company revenue, location, tech stack, or job title. This ensures your outreach list is tight and
+                relevant.
             </p>
 
             <h3 class="reveal-up">Stage 4: Personalised Outreach</h3>
             <p class="reveal-up">
-                Send emails through SendGrid, Gmail, or SMTP. Use template variables to insert the prospect's name, company, and a custom opening line generated from their LinkedIn activity. Follow-up sequences can be chained with Wait nodes set to 3-day intervals.
+                Send emails through SendGrid, Gmail, or SMTP. Use template variables to insert the prospect's name,
+                company, and a custom opening line generated from their LinkedIn activity. Follow-up sequences can be
+                chained with Wait nodes set to 3-day intervals.
             </p>
 
             <!-- Inline image -->
             <figure class="article-inline-img reveal-up">
-                <img src="images/Weatherdashboard.png" alt="Diagram showing lead enrichment data flow through n8n nodes" loading="lazy" width="780" height="400">
-                <figcaption>Lead enrichment data flow — multiple API calls merged into a single enriched record.</figcaption>
+                <img src="images/Weatherdashboard.png" alt="Diagram showing lead enrichment data flow through n8n nodes"
+                    loading="lazy" width="780" height="400">
+                <figcaption>Lead enrichment data flow — multiple API calls merged into a single enriched record.
+                </figcaption>
             </figure>
 
             <!-- Section 3 -->
             <h2 class="reveal-up">Avoiding Hallucinations in AI-Assisted Outreach</h2>
             <p class="reveal-up">
-                If you use an LLM node to generate personalised email copy, hallucination risk is real. The AI might fabricate facts about the prospect's company or invent product features that do not exist. Here is how to prevent it:
+                If you use an LLM node to generate personalised email copy, hallucination risk is real. The AI might
+                fabricate facts about the prospect's company or invent product features that do not exist. Here is how
+                to prevent it:
             </p>
             <ol class="reveal-up">
-                <li><strong>Ground every prompt with real data:</strong> Pass verified company info directly into the prompt. Never let the LLM "look up" facts on its own.</li>
-                <li><strong>Use structured output:</strong> Ask for JSON output with predefined fields (subject_line, opening, body, cta) so you can validate each section before sending.</li>
-                <li><strong>Add a human review step:</strong> For high-value leads, route the generated email to a Slack channel for manual approval before it fires.</li>
-                <li><strong>Set guardrails:</strong> Use an IF node after the LLM to check for forbidden phrases, excessive length, or missing personalisation tokens.</li>
+                <li><strong>Ground every prompt with real data:</strong> Pass verified company info directly into the
+                    prompt. Never let the LLM "look up" facts on its own.</li>
+                <li><strong>Use structured output:</strong> Ask for JSON output with predefined fields (subject_line,
+                    opening, body, cta) so you can validate each section before sending.</li>
+                <li><strong>Add a human review step:</strong> For high-value leads, route the generated email to a Slack
+                    channel for manual approval before it fires.</li>
+                <li><strong>Set guardrails:</strong> Use an IF node after the LLM to check for forbidden phrases,
+                    excessive length, or missing personalisation tokens.</li>
             </ol>
 
             <!-- Section 4 -->
@@ -600,10 +730,14 @@
             <div class="article-conclusion reveal-up">
                 <h2>Conclusion</h2>
                 <p>
-                    Automation does not replace your judgment — it amplifies it. By building a structured n8n pipeline with proper data grounding and guardrails, you can scale your outreach without sacrificing quality or accuracy. The key is treating every automation as a system, not a shortcut: scrape reliably, enrich thoroughly, filter aggressively, and personalise authentically.
+                    Automation does not replace your judgment — it amplifies it. By building a structured n8n pipeline
+                    with proper data grounding and guardrails, you can scale your outreach without sacrificing quality
+                    or accuracy. The key is treating every automation as a system, not a shortcut: scrape reliably,
+                    enrich thoroughly, filter aggressively, and personalise authentically.
                 </p>
                 <p>
-                    If you are a freelancer or small team looking to automate lead generation, n8n gives you the power of enterprise automation without the enterprise price tag.
+                    If you are a freelancer or small team looking to automate lead generation, n8n gives you the power
+                    of enterprise automation without the enterprise price tag.
                 </p>
             </div>
         </article>
@@ -613,10 +747,13 @@
             <div class="article-cta">
                 <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:1rem;">
                     <i class="fas fa-rocket" style="color:#4a90e2;font-size:1.1rem;"></i>
-                    <span style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">Ready to Automate?</span>
+                    <span
+                        style="color:#4a90e2;font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;">Ready
+                        to Automate?</span>
                 </div>
                 <h2>Let's Build Your Lead Pipeline</h2>
-                <p>Stop chasing leads manually. I will design and deploy a custom n8n automation that fills your pipeline on autopilot — tailored to your niche, your tools, and your budget.</p>
+                <p>Stop chasing leads manually. I will design and deploy a custom n8n automation that fills your
+                    pipeline on autopilot — tailored to your niche, your tools, and your budget.</p>
                 <a href="contact" class="cta-btn"><i class="fas fa-rocket me-2"></i>Start Your Project</a>
                 <p class="mt-3 mb-0 small" style="color:#6b7a8d;">
                     <i class="fas fa-bolt text-warning me-1"></i>
@@ -632,7 +769,8 @@
         <div class="container">
             <div class="row footer-content py-5">
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h3 class="mb-3" style="color:var(--primary-color); font-size: 1.25rem;">Gagan | Technical Partner</h3>
+                    <h3 class="mb-3" style="color:var(--primary-color); font-size: 1.25rem;">Gagan | Technical Partner
+                    </h3>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                         Delivering automation, analytics, and web solutions for businesses worldwide.
                     </p>
@@ -640,12 +778,18 @@
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
                     <h4 class="fw-bold mb-4" style="color:var(--primary-color); font-size: 1.25rem;">Quick Links</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-3"><a href="/" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
-                        <li class="mb-3"><a href="about" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
-                        <li class="mb-3"><a href="projects" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
-                        <li class="mb-3"><a href="services" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
-                        <li class="mb-3"><a href="blog" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Blog</a></li>
-                        <li class="mb-3"><a href="contact" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
+                        <li class="mb-3"><a href="/" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                        <li class="mb-3"><a href="about" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                        <li class="mb-3"><a href="projects" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                        <li class="mb-3"><a href="services" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                        <li class="mb-3"><a href="blog" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Blog</a></li>
+                        <li class="mb-3"><a href="contact" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 footer-section text-center">
