@@ -210,16 +210,54 @@
 
     <style>
         /* Smooth page entry */
-        body { animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        @keyframes pageEntry { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        body {
+            animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes pageEntry {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Blog hero */
-        .blog-hero { padding: 120px 0 40px; text-align: center; position: relative; }
-        .blog-hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: var(--primary-color); margin-bottom: 1rem; }
-        .blog-hero p { color: #95bbeb; font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+        .blog-hero {
+            padding: 120px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .blog-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .blog-hero p {
+            color: #95bbeb;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
 
         /* Filters */
-        .blog-filters { max-width: 700px; margin: 0 auto 2.5rem; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .blog-filters {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .blog-filters input,
         .blog-filters select {
             background: rgba(74, 144, 226, 0.06);
@@ -232,15 +270,31 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
             outline: none;
         }
-        .blog-filters input { flex: 1; min-width: 220px; }
-        .blog-filters select { min-width: 180px; cursor: pointer; }
-        .blog-filters input::placeholder { color: #6b7a8d; }
+
+        .blog-filters input {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .blog-filters select {
+            min-width: 180px;
+            cursor: pointer;
+        }
+
+        .blog-filters input::placeholder {
+            color: #6b7a8d;
+        }
+
         .blog-filters input:focus,
         .blog-filters select:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
         }
-        .blog-filters select option { background: #0f1419; color: var(--light-text); }
+
+        .blog-filters select option {
+            background: #0f1419;
+            color: var(--light-text);
+        }
 
         /* Blog cards */
         .blog-card {
@@ -253,34 +307,75 @@
             flex-direction: column;
             height: 100%;
         }
+
         .blog-card:hover {
             transform: translateY(-8px);
             border-color: rgba(74, 144, 226, 0.3);
             box-shadow: 0 16px 48px rgba(74, 144, 226, 0.12);
         }
-        .blog-card-img {
+
+        /* FIX: Image wrap must clip overflow and have a fixed height */
+        .blog-card-img-wrap {
+            overflow: hidden;
+            position: relative;
             width: 100%;
             height: 200px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            background: #0d1826;
         }
-        .blog-card:hover .blog-card-img { transform: scale(1.04); }
-        .blog-card-img-wrap { overflow: hidden; position: relative; }
+
         .blog-card-img-wrap::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; right: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             height: 60px;
             background: linear-gradient(transparent, rgba(10, 17, 32, 0.7));
             pointer-events: none;
+            z-index: 1;
         }
+
+        /* FIX: Image must fill its wrapper and not overflow */
+        .blog-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.04);
+        }
+
+        /* FIX: Fallback placeholder shown when image truly fails */
+        .blog-card-img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(74, 144, 226, 0.06);
+            color: rgba(74, 144, 226, 0.4);
+            font-size: 0.85rem;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .blog-card-img-placeholder i {
+            font-size: 2rem;
+            opacity: 0.4;
+        }
+
         .blog-card-body {
             padding: 1.4rem 1.3rem 1.3rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+
         .blog-card-category {
             display: inline-block;
             font-size: 0.72rem;
@@ -290,6 +385,7 @@
             color: var(--primary-color);
             margin-bottom: 0.6rem;
         }
+
         .blog-card-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -297,6 +393,7 @@
             margin-bottom: 0.6rem;
             line-height: 1.45;
         }
+
         .blog-card-excerpt {
             font-size: 0.88rem;
             color: #a0aec0;
@@ -309,6 +406,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .blog-card-link {
             display: inline-flex;
             align-items: center;
@@ -319,9 +417,20 @@
             text-decoration: none;
             transition: gap 0.3s ease, color 0.3s ease;
         }
-        .blog-card-link:hover { gap: 10px; color: var(--secondary-color); }
-        .blog-card-link i { transition: transform 0.3s ease; font-size: 0.78rem; }
-        .blog-card-link:hover i { transform: translateX(3px); }
+
+        .blog-card-link:hover {
+            gap: 10px;
+            color: var(--secondary-color);
+        }
+
+        .blog-card-link i {
+            transition: transform 0.3s ease;
+            font-size: 0.78rem;
+        }
+
+        .blog-card-link:hover i {
+            transform: translateX(3px);
+        }
 
         /* No results message */
         .blog-no-results {
@@ -331,32 +440,66 @@
             color: #6b7a8d;
             font-size: 1.05rem;
         }
-        .blog-no-results.show { display: block; }
-        .blog-no-results i { font-size: 2.5rem; margin-bottom: 1rem; display: block; color: rgba(74, 144, 226, 0.3); }
+
+        .blog-no-results.show {
+            display: block;
+        }
+
+        .blog-no-results i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: rgba(74, 144, 226, 0.3);
+        }
 
         /* Reveal animations */
-        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-        .reveal-up.animate { opacity: 1; transform: translateY(0); }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* Accessibility: reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            body { animation: none; }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body {
+                animation: none;
+            }
         }
 
         /* Scroll lock for mobile offcanvas */
-        body.menu-open { overflow: hidden !important; touch-action: none !important; }
-        html.menu-open { overflow: hidden !important; }
+        body.menu-open {
+            overflow: hidden !important;
+            touch-action: none !important;
+        }
+
+        html.menu-open {
+            overflow: hidden !important;
+        }
 
         /* Mobile responsive overrides */
         @media (max-width: 768px) {
             .blog-card {
-                max-width: 380px;
+                max-width: 420px;
                 margin: 0 auto;
             }
+
             .blog-card-body {
                 padding: 1.2rem;
             }
+
             .blog-card-excerpt {
                 font-size: 0.85rem;
                 text-align: justify;
@@ -365,10 +508,12 @@
                 letter-spacing: 0.01em;
                 line-height: 1.7;
             }
+
             .blog-filters {
                 padding: 0 10px;
                 gap: 10px;
             }
+
             .blog-filters input,
             .blog-filters select {
                 width: 100%;
@@ -402,32 +547,49 @@
                     <ul class="navbar-nav gap-2">
                         <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i>
+                                Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i>
+                                Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i>
+                                Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i>
+                                FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i>
+                                Contact</a></li>
                     </ul>
                 </div>
                 <!-- Mobile offcanvas menu -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas"
+                    aria-labelledby="mobileOffcanvasLabel">
                     <div class="offcanvas-header" style="background: #0a1120; color: #e0e6ed;">
                         <h5 class="offcanvas-title" id="mobileOffcanvasLabel" style="font-size:1.1rem">Menu</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" style="filter: invert(1);"></button>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close" style="filter: invert(1);"></button>
                     </div>
                     <div class="offcanvas-body" style="background: #0a1120; color: #e0e6ed;">
                         <ul class="navbar-nav gap-2">
                             <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i> Skills</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i> Services</a></li>
-                            <li class="nav-item"><a class="nav-link" href="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a></li>
-                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i> Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about"><i class="fas fa-user"></i> About</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="skills"><i class="fas fa-cogs"></i>
+                                    Skills</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects"><i
+                                        class="fas fa-project-diagram"></i> Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="services"><i class="fas fa-briefcase"></i>
+                                    Services</a></li>
+                            <li class="nav-item"><a class="nav-link" href="testimonials"><i
+                                        class="fas fa-quote-right"></i> Testimonials</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq"><i class="fas fa-question-circle"></i>
+                                    FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="blog"><i class="fas fa-blog"></i>
+                                    Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact"><i class="fas fa-envelope"></i>
+                                    Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -448,7 +610,8 @@
             </div>
             <div class="container position-relative" style="z-index: 2;">
                 <h1 id="blog-heading" class="reveal-title">Insights &amp; Guides</h1>
-                <p class="reveal-up" style="transition-delay: 0.15s;">Practical articles on n8n automation, Power BI dashboards, data analytics, and web development — written from real project experience.</p>
+                <p class="reveal-up" style="transition-delay: 0.15s;">Practical articles on n8n automation, Power BI
+                    dashboards, data analytics, and web development — written from real project experience.</p>
             </div>
         </section>
 
@@ -487,7 +650,8 @@
         <div class="container">
             <div class="row footer-content py-5">
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
-                    <h3 class="mb-3" style="color:var(--primary-color); font-size: 1.25rem;">Gagan | Technical Partner</h3>
+                    <h3 class="mb-3" style="color:var(--primary-color); font-size: 1.25rem;">Gagan | Technical Partner
+                    </h3>
                     <p class="px-3" style="color: #d0d0d0; line-height: 1.6; font-size: 0.9rem;">
                         Delivering automation, analytics, and web solutions for businesses worldwide.
                     </p>
@@ -495,12 +659,18 @@
                 <div class="col-md-4 footer-section mb-4 mb-md-0 text-center">
                     <h4 class="fw-bold mb-4" style="color:var(--primary-color); font-size: 1.25rem;">Quick Links</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-3"><a href="/" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
-                        <li class="mb-3"><a href="about" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
-                        <li class="mb-3"><a href="projects" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
-                        <li class="mb-3"><a href="services" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
-                        <li class="mb-3"><a href="blog" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Blog</a></li>
-                        <li class="mb-3"><a href="contact" class="text-decoration-none" style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
+                        <li class="mb-3"><a href="/" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Home</a></li>
+                        <li class="mb-3"><a href="about" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">About</a></li>
+                        <li class="mb-3"><a href="projects" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Projects</a></li>
+                        <li class="mb-3"><a href="services" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Services</a></li>
+                        <li class="mb-3"><a href="blog" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Blog</a></li>
+                        <li class="mb-3"><a href="contact" class="text-decoration-none"
+                                style="color: #d0d0d0; font-size: 0.9rem;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 footer-section text-center">
@@ -553,11 +723,11 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
             revealEls.forEach(function (el) { revealObserver.observe(el); });
 
-            // Blog search and category filter
+            // Blog search and category filter — use 'let' so it can be reassigned after dynamic load
             var searchInput = document.getElementById('blog-search');
             var categorySelect = document.getElementById('blog-category');
-            var blogItems = document.querySelectorAll('.blog-item');
             var noResults = document.getElementById('blog-no-results');
+            let blogItems = [];
 
             function filterBlog() {
                 var query = searchInput.value.toLowerCase().trim();
@@ -565,8 +735,10 @@
                 var visibleCount = 0;
 
                 blogItems.forEach(function (item) {
-                    var title = item.querySelector('.blog-card-title').textContent.toLowerCase();
-                    var excerpt = item.querySelector('.blog-card-excerpt').textContent.toLowerCase();
+                    var titleEl = item.querySelector('.blog-card-title');
+                    var excerptEl = item.querySelector('.blog-card-excerpt');
+                    var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+                    var excerpt = excerptEl ? excerptEl.textContent.toLowerCase() : '';
                     var itemCat = item.getAttribute('data-category');
                     var matchesSearch = !query || title.indexOf(query) !== -1 || excerpt.indexOf(query) !== -1;
                     var matchesCategory = category === 'all' || itemCat === category;
@@ -586,9 +758,22 @@
             searchInput.addEventListener('input', filterBlog);
             categorySelect.addEventListener('change', filterBlog);
 
+            // ─── Helper: attach onerror via JS (avoids innerHTML quote-escaping bugs) ───
+            function attachImgFallback(imgEl) {
+                imgEl.addEventListener('error', function () {
+                    // Replace the broken img with a styled placeholder div
+                    var wrap = imgEl.parentNode;
+                    if (!wrap) return;
+                    var placeholder = document.createElement('div');
+                    placeholder.className = 'blog-card-img-placeholder';
+                    placeholder.innerHTML = '<i class="fas fa-image"></i><span>Image unavailable</span>';
+                    wrap.replaceChild(placeholder, imgEl);
+                });
+            }
+
             // Load blogs dynamically from Neon Database
             const blogGrid = document.getElementById('blog-grid');
-            
+
             async function fetchAndRenderBlogs() {
                 try {
                     // Show a subtle loading indicator
@@ -604,36 +789,74 @@
                     const res = await fetch('/api/blogs');
                     if (!res.ok) throw new Error('Failed to fetch blogs');
                     const blogs = await res.json();
-                    
+
                     blogGrid.innerHTML = ''; // clear loading indicator
-                    
+
                     if (blogs && blogs.length > 0) {
-                        blogs.forEach((blog, idx) => {
-                            const col = document.createElement('div');
+                        blogs.forEach(function (blog, idx) {
+                            // ── Build column wrapper ──
+                            var col = document.createElement('div');
                             col.className = 'col-12 col-md-6 col-lg-4 blog-item reveal-up';
                             col.setAttribute('data-category', blog.category);
-                            col.style.transitionDelay = `${(idx % 3) * 0.1}s`;
-                            
-                            col.innerHTML = `
-                                <article class="blog-card">
-                                    <div class="blog-card-img-wrap">
-                                        <img src="${blog.image}" alt="${blog.alt || ''}" class="blog-card-img" loading="lazy" width="400" height="200" onerror="this.src='data:image/svg+xml,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"400\\" height=\\"200\\"><rect width=\\"400\\" height=\\"200\\" fill=\\"%230a1120\\"/><text x=\\"50%\\" y=\\"50%\\" text-anchor=\\"middle\\" dy=\\".3em\\" font-family=\\"Arial\\" font-size=\\"14\\" fill=\\"%234a90e2\\">Image Not Found</text></svg>'">
-                                    </div>
-                                    <div class="blog-card-body">
-                                        <span class="blog-card-category">${getCategoryLabel(blog.category)}</span>
-                                        <h3 class="blog-card-title">${blog.title}</h3>
-                                        <p class="blog-card-excerpt">${blog.excerpt}</p>
-                                        <a href="blog-post?slug=${blog.slug}" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                                    </div>
-                                </article>
-                            `;
+                            col.style.transitionDelay = ((idx % 3) * 0.1) + 's';
+
+                            // ── Build article ──
+                            var article = document.createElement('article');
+                            article.className = 'blog-card';
+
+                            // ── Image wrapper ──
+                            var imgWrap = document.createElement('div');
+                            imgWrap.className = 'blog-card-img-wrap';
+
+                            // ── Image element (NO inline onerror string) ──
+                            var img = document.createElement('img');
+                            img.src = blog.image || '';
+                            img.alt = blog.alt || blog.title || '';
+                            img.className = 'blog-card-img';
+                            img.loading = 'lazy';
+                            img.width = 400;
+                            img.height = 200;
+                            // Attach fallback safely via addEventListener
+                            attachImgFallback(img);
+
+                            imgWrap.appendChild(img);
+
+                            // ── Card body ──
+                            var body = document.createElement('div');
+                            body.className = 'blog-card-body';
+
+                            var cat = document.createElement('span');
+                            cat.className = 'blog-card-category';
+                            cat.textContent = getCategoryLabel(blog.category);
+
+                            var titleEl = document.createElement('h3');
+                            titleEl.className = 'blog-card-title';
+                            titleEl.textContent = blog.title;
+
+                            var excerpt = document.createElement('p');
+                            excerpt.className = 'blog-card-excerpt';
+                            excerpt.textContent = blog.excerpt;
+
+                            var link = document.createElement('a');
+                            link.href = 'blog-post?slug=' + encodeURIComponent(blog.slug);
+                            link.className = 'blog-card-link';
+                            link.innerHTML = 'Learn More <i class="fas fa-arrow-right"></i>';
+
+                            body.appendChild(cat);
+                            body.appendChild(titleEl);
+                            body.appendChild(excerpt);
+                            body.appendChild(link);
+
+                            article.appendChild(imgWrap);
+                            article.appendChild(body);
+                            col.appendChild(article);
                             blogGrid.appendChild(col);
                         });
-                        
-                        // Re-bind items for the search/filtering functions
-                        blogItems = document.querySelectorAll('.blog-item');
-                        
-                        // Trigger anim for visible ones
+
+                        // Re-collect items for filter
+                        blogItems = Array.from(document.querySelectorAll('.blog-item'));
+
+                        // Trigger reveal animations for new cards
                         var dynamicRevealEls = blogGrid.querySelectorAll('.reveal-up');
                         dynamicRevealEls.forEach(function (el) {
                             revealObserver.observe(el);
@@ -651,7 +874,7 @@
             }
 
             function getCategoryLabel(cat) {
-                switch(cat) {
+                switch (cat) {
                     case 'automation': return 'Automation';
                     case 'analytics': return 'Data Analytics';
                     case 'web-dev': return 'Web Development';
