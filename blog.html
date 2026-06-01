@@ -470,97 +470,7 @@
         <!-- Blog Card Grid -->
         <section class="container" style="padding-bottom: 4rem;">
             <div class="row g-4 justify-content-center" id="blog-grid">
-
-                <!-- Card 1 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="automation" style="transition-delay: 0.1s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/Hranalytics.png" alt="n8n workflow automation pipeline diagram" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">Automation</span>
-                            <h3 class="blog-card-title">How n8n Automates Lead Outreach Without Hallucinations</h3>
-                            <p class="blog-card-excerpt">Learn how to build an n8n workflow that scrapes leads, enriches data, and sends personalized outreach emails — all running on autopilot with zero AI hallucinations.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="analytics" style="transition-delay: 0.2s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/AmazonSales.png" alt="Power BI dashboard showing sales KPIs" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">Data Analytics</span>
-                            <h3 class="blog-card-title">5 DAX Formulas Every Power BI Beginner Should Master</h3>
-                            <p class="blog-card-excerpt">Stop struggling with calculated columns. These five DAX patterns — from CALCULATE to SUMX — will transform how you build dashboards and make data-driven decisions.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="web-dev" style="transition-delay: 0.3s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/Weatherdashboard.png" alt="Modern responsive portfolio website screenshot" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">Web Development</span>
-                            <h3 class="blog-card-title">Building a Portfolio That Actually Gets You Hired</h3>
-                            <p class="blog-card-excerpt">Your portfolio is your pitch. This guide covers layout strategy, performance optimization, SEO essentials, and the specific sections that convert visitors into clients.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="ai" style="transition-delay: 0.15s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/heartdisease.png" alt="MCP agent architecture diagram" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">AI &amp; Agents</span>
-                            <h3 class="blog-card-title">What Is an MCP Agent and Why Your Business Needs One</h3>
-                            <p class="blog-card-excerpt">Model Context Protocol agents follow your exact rules — no hallucinations, no rogue outputs. Here is how they work and why they outperform generic AI chatbots for business tasks.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="analytics" style="transition-delay: 0.25s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/Suicide.png" alt="Python data cleaning workflow in Jupyter notebook" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">Data Analytics</span>
-                            <h3 class="blog-card-title">Data Cleaning in Python: A Practical Step-by-Step Guide</h3>
-                            <p class="blog-card-excerpt">Messy data wastes hours. This hands-on walkthrough shows you how to handle missing values, duplicates, and outliers using Pandas — with real dataset examples.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="col-12 col-md-6 col-lg-4 blog-item reveal-up" data-category="career" style="transition-delay: 0.35s;">
-                    <article class="blog-card">
-                        <div class="blog-card-img-wrap">
-                            <img src="images/Netflix.png" alt="Freelancer workspace with laptop and coffee" class="blog-card-img" loading="lazy" width="400" height="200">
-                        </div>
-                        <div class="blog-card-body">
-                            <span class="blog-card-category">Career &amp; Freelancing</span>
-                            <h3 class="blog-card-title">How I Landed My First International Client as a Freelancer from India</h3>
-                            <p class="blog-card-excerpt">Breaking into the global freelance market from India is not easy. Here is the exact strategy I used — from portfolio positioning to pricing and communication tips.</p>
-                            <a href="blog-post" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
+                <!-- Blog cards loaded dynamically from database -->
             </div>
 
             <!-- No results message -->
@@ -681,13 +591,23 @@
             
             async function fetchAndRenderBlogs() {
                 try {
+                    // Show a subtle loading indicator
+                    blogGrid.innerHTML = `
+                        <div class="col-12 text-center py-5" id="blog-loader">
+                            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-3 text-muted">Loading article insights...</p>
+                        </div>
+                    `;
+
                     const res = await fetch('/api/blogs');
                     if (!res.ok) throw new Error('Failed to fetch blogs');
                     const blogs = await res.json();
                     
+                    blogGrid.innerHTML = ''; // clear loading indicator
+                    
                     if (blogs && blogs.length > 0) {
-                        blogGrid.innerHTML = ''; // clear static placeholders
-                        
                         blogs.forEach((blog, idx) => {
                             const col = document.createElement('div');
                             col.className = 'col-12 col-md-6 col-lg-4 blog-item reveal-up';
@@ -718,9 +638,15 @@
                         dynamicRevealEls.forEach(function (el) {
                             revealObserver.observe(el);
                         });
+                    } else {
+                        noResults.classList.add('show');
+                        noResults.innerHTML = '<i class="fas fa-search"></i>No articles found. Check back later!';
                     }
                 } catch (err) {
                     console.error('Error loading dynamic blogs:', err);
+                    blogGrid.innerHTML = '';
+                    noResults.classList.add('show');
+                    noResults.innerHTML = '<i class="fas fa-exclamation-triangle text-danger"></i> Failed to load articles. Please try again later.';
                 }
             }
 
