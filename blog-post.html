@@ -634,7 +634,7 @@
                 <span class="separator">/</span>
                 <a href="blog">Blog</a>
                 <span class="separator">/</span>
-                <span class="current">How n8n Automates Lead Outreach</span>
+                <span class="current" id="breadcrumb-current">How n8n Automates Lead Outreach</span>
             </nav>
         </div>
 
@@ -642,8 +642,8 @@
         <div class="container">
             <header class="article-header reveal-up">
                 <a href="blog" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
-                <h1>How n8n Automates Lead Outreach Without Hallucinations</h1>
-                <div class="article-meta">
+                <h1 id="post-title">How n8n Automates Lead Outreach Without Hallucinations</h1>
+                <div class="article-meta" id="post-meta">
                     <span><i class="fas fa-calendar-alt"></i> May 31, 2026</span>
                     <span><i class="fas fa-clock"></i> 8 min read</span>
                     <span><i class="fas fa-user"></i> Gagan BP</span>
@@ -655,132 +655,134 @@
         <!-- Hero Image -->
         <div class="container">
             <div class="article-hero-img reveal-up" style="transition-delay: 0.1s;">
-                <img src="images/Hranalytics.png" alt="n8n lead outreach automation workflow overview" width="800"
+                <img id="post-hero-img" src="images/Hranalytics.png" alt="n8n lead outreach automation workflow overview" width="800"
                     height="420">
             </div>
         </div>
 
         <!-- Article Body -->
         <article class="container article-body" itemscope itemtype="https://schema.org/Article">
-            <span itemprop="headline" content="How n8n Automates Lead Outreach Without Hallucinations"></span>
-            <span itemprop="datePublished" content="2026-05-31"></span>
-            <span itemprop="author" content="Gagan BP"></span>
+            <span itemprop="headline" id="micro-headline" content="How n8n Automates Lead Outreach Without Hallucinations"></span>
+            <span itemprop="datePublished" id="micro-date" content="2026-05-31"></span>
+            <span itemprop="author" id="micro-author" content="Gagan BP"></span>
 
-            <!-- Lead paragraph -->
-            <p class="lead reveal-up">
-                Most freelancers and small businesses waste 5–10 hours every week on manual lead outreach — finding
-                prospects, looking up email addresses, writing personalised messages, and tracking follow-ups. With
-                <strong>n8n</strong>, you can automate the entire pipeline and reclaim that time for work that actually
-                grows your revenue.
-            </p>
-
-            <!-- Section 1 -->
-            <h2 class="reveal-up">Why n8n for Lead Automation?</h2>
-            <p class="reveal-up">
-                There are dozens of automation tools on the market — Zapier, Make.com, Power Automate — but n8n stands
-                out for three reasons that matter to technical freelancers and small teams:
-            </p>
-            <ul class="reveal-up">
-                <li><strong>Self-hosted option:</strong> You own your data. No vendor lock-in, no per-execution pricing
-                    surprises.</li>
-                <li><strong>Code when you need it:</strong> n8n lets you drop into JavaScript or Python inside any node,
-                    giving you full control over data transformations.</li>
-                <li><strong>200+ integrations:</strong> From Google Sheets and Airtable to Slack and SendGrid, n8n
-                    connects to the tools your business already uses.</li>
-            </ul>
-
-            <!-- Inline image -->
-            <figure class="article-inline-img reveal-up">
-                <img src="images/AmazonSales.png" alt="n8n workflow editor showing lead scraping nodes connected"
-                    loading="lazy" width="780" height="400">
-                <figcaption>A typical n8n lead outreach workflow — scrape, enrich, filter, and send.</figcaption>
-            </figure>
-
-            <!-- Section 2 -->
-            <h2 class="reveal-up">The 4-Stage Lead Outreach Pipeline</h2>
-            <p class="reveal-up">
-                Every effective lead pipeline follows four stages. Here is how each maps to n8n nodes:
-            </p>
-
-            <h3 class="reveal-up">Stage 1: Lead Scraping</h3>
-            <p class="reveal-up">
-                Use n8n's HTTP Request node or a dedicated scraper integration (Apollo, Hunter.io) to pull raw prospect
-                lists. Trigger the workflow on a schedule — once a day or once a week — so fresh leads flow in
-                automatically.
-            </p>
-
-            <h3 class="reveal-up">Stage 2: Data Enrichment</h3>
-            <p class="reveal-up">
-                Raw leads are useless without context. Enrich each record with company size, industry, LinkedIn profile
-                URL, and verified email address. n8n's Function node lets you merge data from multiple APIs in a single
-                step.
-            </p>
-
-            <h3 class="reveal-up">Stage 3: Qualification &amp; Filtering</h3>
-            <p class="reveal-up">
-                Not every lead is worth pursuing. Add an IF node to filter by criteria that matter to your business:
-                company revenue, location, tech stack, or job title. This ensures your outreach list is tight and
-                relevant.
-            </p>
-
-            <h3 class="reveal-up">Stage 4: Personalised Outreach</h3>
-            <p class="reveal-up">
-                Send emails through SendGrid, Gmail, or SMTP. Use template variables to insert the prospect's name,
-                company, and a custom opening line generated from their LinkedIn activity. Follow-up sequences can be
-                chained with Wait nodes set to 3-day intervals.
-            </p>
-
-            <!-- Inline image -->
-            <figure class="article-inline-img reveal-up">
-                <img src="images/Weatherdashboard.png" alt="Diagram showing lead enrichment data flow through n8n nodes"
-                    loading="lazy" width="780" height="400">
-                <figcaption>Lead enrichment data flow — multiple API calls merged into a single enriched record.
-                </figcaption>
-            </figure>
-
-            <!-- Section 3 -->
-            <h2 class="reveal-up">Avoiding Hallucinations in AI-Assisted Outreach</h2>
-            <p class="reveal-up">
-                If you use an LLM node to generate personalised email copy, hallucination risk is real. The AI might
-                fabricate facts about the prospect's company or invent product features that do not exist. Here is how
-                to prevent it:
-            </p>
-            <ol class="reveal-up">
-                <li><strong>Ground every prompt with real data:</strong> Pass verified company info directly into the
-                    prompt. Never let the LLM "look up" facts on its own.</li>
-                <li><strong>Use structured output:</strong> Ask for JSON output with predefined fields (subject_line,
-                    opening, body, cta) so you can validate each section before sending.</li>
-                <li><strong>Add a human review step:</strong> For high-value leads, route the generated email to a Slack
-                    channel for manual approval before it fires.</li>
-                <li><strong>Set guardrails:</strong> Use an IF node after the LLM to check for forbidden phrases,
-                    excessive length, or missing personalisation tokens.</li>
-            </ol>
-
-            <!-- Section 4 -->
-            <h2 class="reveal-up">Results You Can Expect</h2>
-            <p class="reveal-up">
-                After deploying this pipeline for three client projects, the average results were:
-            </p>
-            <ul class="reveal-up">
-                <li><strong>70% reduction</strong> in manual outreach time (from 8 hours/week to 2.5 hours/week)</li>
-                <li><strong>3× increase</strong> in qualified leads per month</li>
-                <li><strong>22% average open rate</strong> on automated emails (vs. 15% for manual batch sends)</li>
-                <li><strong>Zero hallucination incidents</strong> after implementing the guardrail workflow</li>
-            </ul>
-
-            <!-- Conclusion -->
-            <div class="article-conclusion reveal-up">
-                <h2>Conclusion</h2>
-                <p>
-                    Automation does not replace your judgment — it amplifies it. By building a structured n8n pipeline
-                    with proper data grounding and guardrails, you can scale your outreach without sacrificing quality
-                    or accuracy. The key is treating every automation as a system, not a shortcut: scrape reliably,
-                    enrich thoroughly, filter aggressively, and personalise authentically.
+            <div id="post-content-container">
+                <!-- Lead paragraph -->
+                <p class="lead reveal-up">
+                    Most freelancers and small businesses waste 5–10 hours every week on manual lead outreach — finding
+                    prospects, looking up email addresses, writing personalised messages, and tracking follow-ups. With
+                    <strong>n8n</strong>, you can automate the entire pipeline and reclaim that time for work that actually
+                    grows your revenue.
                 </p>
-                <p>
-                    If you are a freelancer or small team looking to automate lead generation, n8n gives you the power
-                    of enterprise automation without the enterprise price tag.
+
+                <!-- Section 1 -->
+                <h2 class="reveal-up">Why n8n for Lead Automation?</h2>
+                <p class="reveal-up">
+                    There are dozens of automation tools on the market — Zapier, Make.com, Power Automate — but n8n stands
+                    out for three reasons that matter to technical freelancers and small teams:
                 </p>
+                <ul class="reveal-up">
+                    <li><strong>Self-hosted option:</strong> You own your data. No vendor lock-in, no per-execution pricing
+                        surprises.</li>
+                    <li><strong>Code when you need it:</strong> n8n lets you drop into JavaScript or Python inside any node,
+                        giving you full control over data transformations.</li>
+                    <li><strong>200+ integrations:</strong> From Google Sheets and Airtable to Slack and SendGrid, n8n
+                        connects to the tools your business already uses.</li>
+                </ul>
+
+                <!-- Inline image -->
+                <figure class="article-inline-img reveal-up">
+                    <img src="images/AmazonSales.png" alt="n8n workflow editor showing lead scraping nodes connected"
+                        loading="lazy" width="780" height="400">
+                    <figcaption>A typical n8n lead outreach workflow — scrape, enrich, filter, and send.</figcaption>
+                </figure>
+
+                <!-- Section 2 -->
+                <h2 class="reveal-up">The 4-Stage Lead Outreach Pipeline</h2>
+                <p class="reveal-up">
+                    Every effective lead pipeline follows four stages. Here is how each maps to n8n nodes:
+                </p>
+
+                <h3 class="reveal-up">Stage 1: Lead Scraping</h3>
+                <p class="reveal-up">
+                    Use n8n's HTTP Request node or a dedicated scraper integration (Apollo, Hunter.io) to pull raw prospect
+                    lists. Trigger the workflow on a schedule — once a day or once a week — so fresh leads flow in
+                    automatically.
+                </p>
+
+                <h3 class="reveal-up">Stage 2: Data Enrichment</h3>
+                <p class="reveal-up">
+                    Raw leads are useless without context. Enrich each record with company size, industry, LinkedIn profile
+                    URL, and verified email address. n8n's Function node lets you merge data from multiple APIs in a single
+                    step.
+                </p>
+
+                <h3 class="reveal-up">Stage 3: Qualification &amp; Filtering</h3>
+                <p class="reveal-up">
+                    Not every lead is worth pursuing. Add an IF node to filter by criteria that matter to your business:
+                    company revenue, location, tech stack, or job title. This ensures your outreach list is tight and
+                    relevant.
+                </p>
+
+                <h3 class="reveal-up">Stage 4: Personalised Outreach</h3>
+                <p class="reveal-up">
+                    Send emails through SendGrid, Gmail, or SMTP. Use template variables to insert the prospect's name,
+                    company, and a custom opening line generated from their LinkedIn activity. Follow-up sequences can be
+                    chained with Wait nodes set to 3-day intervals.
+                </p>
+
+                <!-- Inline image -->
+                <figure class="article-inline-img reveal-up">
+                    <img src="images/Weatherdashboard.png" alt="Diagram showing lead enrichment data flow through n8n nodes"
+                        loading="lazy" width="780" height="400">
+                    <figcaption>Lead enrichment data flow — multiple API calls merged into a single enriched record.
+                    </figcaption>
+                </figure>
+
+                <!-- Section 3 -->
+                <h2 class="reveal-up">Avoiding Hallucinations in AI-Assisted Outreach</h2>
+                <p class="reveal-up">
+                    If you use an LLM node to generate personalised email copy, hallucination risk is real. The AI might
+                    fabricate facts about the prospect's company or invent product features that do not exist. Here is how
+                    to prevent it:
+                </p>
+                <ol class="reveal-up">
+                    <li><strong>Ground every prompt with real data:</strong> Pass verified company info directly into the
+                        prompt. Never let the LLM "look up" facts on its own.</li>
+                    <li><strong>Use structured output:</strong> Ask for JSON output with predefined fields (subject_line,
+                        opening, body, cta) so you can validate each section before sending.</li>
+                    <li><strong>Add a human review step:</strong> For high-value leads, route the generated email to a Slack
+                        channel for manual approval before it fires.</li>
+                    <li><strong>Set guardrails:</strong> Use an IF node after the LLM to check for forbidden phrases,
+                        excessive length, or missing personalisation tokens.</li>
+                </ol>
+
+                <!-- Section 4 -->
+                <h2 class="reveal-up">Results You Can Expect</h2>
+                <p class="reveal-up">
+                    After deploying this pipeline for three client projects, the average results were:
+                </p>
+                <ul class="reveal-up">
+                    <li><strong>70% reduction</strong> in manual outreach time (from 8 hours/week to 2.5 hours/week)</li>
+                    <li><strong>3× increase</strong> in qualified leads per month</li>
+                    <li><strong>22% average open rate</strong> on automated emails (vs. 15% for manual batch sends)</li>
+                    <li><strong>Zero hallucination incidents</strong> after implementing the guardrail workflow</li>
+                </ul>
+
+                <!-- Conclusion -->
+                <div class="article-conclusion reveal-up">
+                    <h2>Conclusion</h2>
+                    <p>
+                        Automation does not replace your judgment — it amplifies it. By building a structured n8n pipeline
+                        with proper data grounding and guardrails, you can scale your outreach without sacrificing quality
+                        or accuracy. The key is treating every automation as a system, not a shortcut: scrape reliably,
+                        enrich thoroughly, filter aggressively, and personalise authentically.
+                    </p>
+                    <p>
+                        If you are a freelancer or small team looking to automate lead generation, n8n gives you the power
+                        of enterprise automation without the enterprise price tag.
+                    </p>
+                </div>
             </div>
         </article>
 
@@ -862,7 +864,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
-    <!-- Navbar scroll + reveal animations -->
+    <!-- Navbar scroll + reveal animations + Dynamic fetch -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Navbar scroll
@@ -883,6 +885,160 @@
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
             revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+            // Dynamic Blog Loading Logic
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+
+            async function loadDynamicBlogPost() {
+                if (!slug) {
+                    // No slug parameter: let SEO crawlers or normal visitors view the static placeholder post
+                    return;
+                }
+
+                try {
+                    // Check if logged in to show drafts as well
+                    const token = localStorage.getItem('admin_token');
+                    const headers = {};
+                    if (token) {
+                        headers['Authorization'] = 'Bearer ' + token;
+                    }
+
+                    const res = await fetch(`/api/blogs/${slug}`, { headers });
+                    if (!res.ok) {
+                        if (res.status === 404 || res.status === 403) {
+                            console.error('Blog post not found or access denied');
+                            window.location.href = 'blog';
+                            return;
+                        }
+                        throw new Error('Failed to load blog post');
+                    }
+                    const blog = await res.json();
+                    
+                    // 1. Update titles & breadcrumbs
+                    document.getElementById('breadcrumb-current').textContent = blog.title;
+                    document.getElementById('post-title').textContent = blog.title;
+                    document.title = `${blog.title} | Gagan BP Blog`;
+
+                    // 2. Update SEO metadata
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) metaDesc.setAttribute('content', blog.meta_description || blog.excerpt);
+                    
+                    const metaKeywords = document.querySelector('meta[name="keywords"]');
+                    if (metaKeywords) metaKeywords.setAttribute('content', blog.meta_keywords || '');
+
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle) ogTitle.setAttribute('content', blog.title);
+                    
+                    const ogDesc = document.querySelector('meta[property="og:description"]');
+                    if (ogDesc) ogDesc.setAttribute('content', blog.meta_description || blog.excerpt);
+                    
+                    const ogImg = document.querySelector('meta[property="og:image"]');
+                    if (ogImg) ogImg.setAttribute('content', blog.image);
+
+                    const canonicalLink = document.querySelector('link[rel="canonical"]');
+                    if (canonicalLink) canonicalLink.setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
+
+                    // Update Microdata spans
+                    document.getElementById('micro-headline').setAttribute('content', blog.title);
+                    document.getElementById('micro-date').setAttribute('content', blog.date_published.split('T')[0]);
+                    document.getElementById('micro-author').setAttribute('content', blog.author || 'Gagan BP');
+
+                    // 3. Update Meta info
+                    const formattedDate = new Date(blog.date_published).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    
+                    const postMeta = document.getElementById('post-meta');
+                    postMeta.innerHTML = `
+                        <span><i class="fas fa-calendar-alt"></i> ${formattedDate}</span>
+                        <span><i class="fas fa-clock"></i> ${blog.read_time || '8 min read'}</span>
+                        <span><i class="fas fa-user"></i> ${blog.author || 'Gagan BP'}</span>
+                        <span><i class="fas fa-tag"></i> ${getCategoryLabel(blog.category)}</span>
+                    `;
+
+                    // 4. Update Hero Cover Image
+                    const heroImg = document.getElementById('post-hero-img');
+                    heroImg.src = blog.image;
+                    heroImg.alt = blog.alt || blog.title;
+
+                    // 5. Render Content Blocks
+                    const contentContainer = document.getElementById('post-content-container');
+                    contentContainer.innerHTML = ''; // clear static content
+
+                    if (Array.isArray(blog.content)) {
+                        blog.content.forEach((block) => {
+                            if (block.type === 'paragraph') {
+                                const p = document.createElement('p');
+                                p.className = 'reveal-up';
+                                p.innerHTML = block.value;
+                                contentContainer.appendChild(p);
+                            } else if (block.type === 'heading-h2') {
+                                const h2 = document.createElement('h2');
+                                h2.className = 'reveal-up';
+                                h2.textContent = block.value;
+                                contentContainer.appendChild(h2);
+                            } else if (block.type === 'heading-h3') {
+                                const h3 = document.createElement('h3');
+                                h3.className = 'reveal-up';
+                                h3.textContent = block.value;
+                                contentContainer.appendChild(h3);
+                            } else if (block.type === 'bullet-list') {
+                                const ul = document.createElement('ul');
+                                ul.className = 'reveal-up';
+                                if (Array.isArray(block.value)) {
+                                    block.value.forEach(item => {
+                                        const li = document.createElement('li');
+                                        li.innerHTML = item;
+                                        ul.appendChild(li);
+                                    });
+                                }
+                                contentContainer.appendChild(ul);
+                            } else if (block.type === 'image') {
+                                const figure = document.createElement('figure');
+                                figure.className = 'article-inline-img reveal-up';
+                                figure.innerHTML = `
+                                    <img src="${block.value}" alt="${block.caption || ''}" loading="lazy" width="780" height="400" onerror="this.src='data:image/svg+xml,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"780\\" height=\\"400\\"><rect width=\\"780\\" height=\\"400\\" fill=\\"%230a1120\\"/><text x=\\"50%\\" y=\\"50%\\" text-anchor=\\"middle\\" dy=\\".3em\\" font-family=\\"Arial\\" font-size=\\"16\\" fill=\\"%234a90e2\\">Image Not Found</text></svg>'">
+                                    ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
+                                `;
+                                contentContainer.appendChild(figure);
+                            } else if (block.type === 'conclusion') {
+                                const div = document.createElement('div');
+                                div.className = 'article-conclusion reveal-up';
+                                div.innerHTML = `
+                                    <h2>Conclusion</h2>
+                                    <p>${block.value}</p>
+                                `;
+                                contentContainer.appendChild(div);
+                            }
+                        });
+                    }
+
+                    // 6. Observe newly rendered dynamic elements for scroll reveal anims
+                    var dynamicRevealEls = contentContainer.querySelectorAll('.reveal-up');
+                    dynamicRevealEls.forEach(function (el) {
+                        revealObserver.observe(el);
+                    });
+
+                } catch (err) {
+                    console.error('Error loading dynamic post:', err);
+                }
+            }
+
+            function getCategoryLabel(cat) {
+                switch(cat) {
+                    case 'automation': return 'Automation';
+                    case 'analytics': return 'Data Analytics';
+                    case 'web-dev': return 'Web Development';
+                    case 'ai': return 'AI & Agents';
+                    case 'career': return 'Career & Freelancing';
+                    default: return cat;
+                }
+            }
+
+            loadDynamicBlogPost();
 
             // Back to top
             var btn = document.getElementById('back-to-top');

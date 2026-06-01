@@ -202,6 +202,28 @@ async function ensureTable() {
             console.error('Error adding show_date column:', e);
         }
     }
+
+    // Create blogs table
+    await sql`CREATE TABLE IF NOT EXISTS blogs (
+        slug TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        category TEXT NOT NULL,
+        image TEXT,
+        alt TEXT,
+        excerpt TEXT NOT NULL,
+        read_time TEXT,
+        author TEXT DEFAULT 'Gagan BP',
+        date_published DATE NOT NULL,
+        meta_description TEXT,
+        meta_keywords TEXT,
+        status TEXT DEFAULT 'draft',
+        content JSONB NOT NULL
+    )`;
+
+    // Ensure status column exists (alteration check)
+    try {
+        await sql`ALTER TABLE blogs ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'draft'`;
+    } catch (e) {}
 }
 
 // Helper to run ensureTable before each request
@@ -527,6 +549,199 @@ app.post("/api/testimonials/set-featured", async (req, res) => {
         return res.json({ success: true, featured: ids });
     } catch (e) {
         return res.status(500).json({ error: "Failed to set featured testimonials" });
+    }
+});
+
+// === BLOGS CRUD OPERATIONS ===
+
+// Get all blogs (only published blogs return to public, all return to authorized admin with ?all=true)
+app.get("/api/blogs", async (req, res) => {
+    const showAll = req.query.all === 'true';
+    let tokenValid = false;
+    if (showAll) {
+        const authHeader = req.headers.authorization;
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            const token = authHeader.split(' ')[1];
+            tokenValid = verifyToken(token);
+        }
+    }
+
+    try {
+        let blogs;
+        if (showAll && tokenValid) {
+            blogs = await sql`SELECT * FROM blogs ORDER BY date_published DESC`;
+        } else {
+            blogs = await sql`SELECT * FROM blogs WHERE status = 'published' ORDER BY date_published DESC`;
+        }
+        const result = blogs.map(b => ({
+            slug: b.slug,
+            title: b.title,
+            category: b.category,
+            image: b.image,
+            alt: b.alt,
+            excerpt: b.excerpt,
+            read_time: b.read_time,
+            author: b.author,
+            date_published: b.date_published,
+            meta_description: b.meta_description,
+            meta_keywords: b.meta_keywords,
+            status: b.status,
+            content: b.content
+        }));
+        res.json(result);
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch blogs" });
+    }
+});
+
+// Get a single blog post by slug
+app.get("/api/blogs/:slug", async (req, res) => {
+    const slug = req.params.slug;
+    try {
+        const blog = await sql`SELECT * FROM blogs WHERE slug = ${slug}`;
+        if (blog.length === 0) {
+            return res.status(404).json({ error: "Blog post not found" });
+        }
+        const b = blog[0];
+        
+        // If the post is not published, check authorization
+        if (b.status !== 'published') {
+            const authHeader = req.headers.authorization;
+            let tokenValid = false;
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                const token = authHeader.split(' ')[1];
+                tokenValid = verifyToken(token);
+            }
+            if (!tokenValid) {
+                return res.status(403).json({ error: "Access denied" });
+            }
+        }
+
+        res.json({
+            slug: b.slug,
+            title: b.title,
+            category: b.category,
+            image: b.image,
+            alt: b.alt,
+            excerpt: b.excerpt,
+            read_time: b.read_time,
+            author: b.author,
+            date_published: b.date_published,
+            meta_description: b.meta_description,
+            meta_keywords: b.meta_keywords,
+            status: b.status,
+            content: b.content
+        });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch blog post" });
+    }
+});
+
+// Add a new blog post (protected via global requireAuth)
+app.post("/api/blogs", async (req, res) => {
+    let b = req.body || {};
+    if (!b.title || !b.slug || !b.content) {
+        return res.status(400).json({ error: "Missing required fields (title, slug, and content are required)" });
+    }
+    try {
+        const result = await sql`
+            INSERT INTO blogs (
+                slug, title, category, image, alt, excerpt, read_time, author, date_published, meta_description, meta_keywords, status, content
+            ) VALUES (
+                ${b.slug},
+                ${b.title},
+                ${b.category},
+                ${b.image || null},
+                ${b.alt || null},
+                ${b.excerpt || ''},
+                ${b.read_time || null},
+                ${b.author || 'Gagan BP'},
+                ${b.date_published || new Date().toISOString().split('T')[0]},
+                ${b.meta_description || null},
+                ${b.meta_keywords || null},
+                ${b.status || 'draft'},
+                ${JSON.stringify(b.content || [])}
+            )
+            ON CONFLICT (slug) DO NOTHING
+            RETURNING *
+        `;
+        if (result.length === 0) {
+            return res.status(400).json({ error: "Blog post with this slug already exists" });
+        }
+        res.json({ success: true, blog: result[0] });
+    } catch (e) {
+        console.error('Database error:', e);
+        res.status(500).json({ error: "Failed to add blog post", details: e.message });
+    }
+});
+
+// Update a blog post by slug (protected via global requireAuth)
+app.put("/api/blogs/:slug", async (req, res) => {
+    const slug = req.params.slug;
+    const b = req.body;
+    if (!b.title || !b.content) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+    try {
+        const result = await sql`
+            UPDATE blogs SET
+                title = ${b.title},
+                category = ${b.category},
+                image = ${b.image || null},
+                alt = ${b.alt || null},
+                excerpt = ${b.excerpt || ''},
+                read_time = ${b.read_time || null},
+                author = ${b.author || 'Gagan BP'},
+                date_published = ${b.date_published || new Date().toISOString().split('T')[0]},
+                meta_description = ${b.meta_description || null},
+                meta_keywords = ${b.meta_keywords || null},
+                status = ${b.status || 'draft'},
+                content = ${JSON.stringify(b.content || [])}
+            WHERE slug = ${slug}
+            RETURNING *
+        `;
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Blog post not found" });
+        }
+        res.json({ success: true, blog: result[0] });
+    } catch (e) {
+        console.error('Database error:', e);
+        res.status(500).json({ error: "Failed to update blog post", details: e.message });
+    }
+});
+
+// Delete a blog post by slug (protected via global requireAuth)
+app.delete("/api/blogs/:slug", async (req, res) => {
+    const slug = req.params.slug;
+    try {
+        const blog = await sql`SELECT image FROM blogs WHERE slug = ${slug}`;
+        if (blog.length === 0) return res.status(404).json({ error: "Blog post not found" });
+        let imageUrl = blog[0]?.image;
+
+        const result = await sql`DELETE FROM blogs WHERE slug = ${slug} RETURNING *`;
+
+        // Destroy image in Cloudinary if it's a Cloudinary image URL
+        let cloudinaryResult = null;
+        if (imageUrl && imageUrl.startsWith('http') && imageUrl.includes('cloudinary.com')) {
+            try {
+                const matches = imageUrl.match(/\/portfolio_uploads\/([^\.]+)\.[a-zA-Z0-9]+$/);
+                let publicId = matches ? `portfolio_uploads/${matches[1]}` : null;
+                if (publicId) {
+                    const cloudinary = require('cloudinary').v2;
+                    cloudinary.config({
+                        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+                        api_key: process.env.CLOUDINARY_API_KEY,
+                        api_secret: process.env.CLOUDINARY_API_SECRET
+                    });
+                    cloudinaryResult = await cloudinary.uploader.destroy(publicId);
+                }
+            } catch (err) {
+                console.error('Cloudinary image delete error:', err);
+            }
+        }
+        res.json({ success: true, cloudinary: cloudinaryResult });
+    } catch (e) {
+        res.status(500).json({ error: "Failed to delete blog post" });
     }
 });
 

@@ -676,6 +676,67 @@
             searchInput.addEventListener('input', filterBlog);
             categorySelect.addEventListener('change', filterBlog);
 
+            // Load blogs dynamically from Neon Database
+            const blogGrid = document.getElementById('blog-grid');
+            
+            async function fetchAndRenderBlogs() {
+                try {
+                    const res = await fetch('/api/blogs');
+                    if (!res.ok) throw new Error('Failed to fetch blogs');
+                    const blogs = await res.json();
+                    
+                    if (blogs && blogs.length > 0) {
+                        blogGrid.innerHTML = ''; // clear static placeholders
+                        
+                        blogs.forEach((blog, idx) => {
+                            const col = document.createElement('div');
+                            col.className = 'col-12 col-md-6 col-lg-4 blog-item reveal-up';
+                            col.setAttribute('data-category', blog.category);
+                            col.style.transitionDelay = `${(idx % 3) * 0.1}s`;
+                            
+                            col.innerHTML = `
+                                <article class="blog-card">
+                                    <div class="blog-card-img-wrap">
+                                        <img src="${blog.image}" alt="${blog.alt || ''}" class="blog-card-img" loading="lazy" width="400" height="200" onerror="this.src='data:image/svg+xml,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"400\\" height=\\"200\\"><rect width=\\"400\\" height=\\"200\\" fill=\\"%230a1120\\"/><text x=\\"50%\\" y=\\"50%\\" text-anchor=\\"middle\\" dy=\\".3em\\" font-family=\\"Arial\\" font-size=\\"14\\" fill=\\"%234a90e2\\">Image Not Found</text></svg>'">
+                                    </div>
+                                    <div class="blog-card-body">
+                                        <span class="blog-card-category">${getCategoryLabel(blog.category)}</span>
+                                        <h3 class="blog-card-title">${blog.title}</h3>
+                                        <p class="blog-card-excerpt">${blog.excerpt}</p>
+                                        <a href="blog-post?slug=${blog.slug}" class="blog-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                </article>
+                            `;
+                            blogGrid.appendChild(col);
+                        });
+                        
+                        // Re-bind items for the search/filtering functions
+                        blogItems = document.querySelectorAll('.blog-item');
+                        
+                        // Trigger anim for visible ones
+                        var dynamicRevealEls = blogGrid.querySelectorAll('.reveal-up');
+                        dynamicRevealEls.forEach(function (el) {
+                            revealObserver.observe(el);
+                        });
+                    }
+                } catch (err) {
+                    console.error('Error loading dynamic blogs:', err);
+                }
+            }
+
+            function getCategoryLabel(cat) {
+                switch(cat) {
+                    case 'automation': return 'Automation';
+                    case 'analytics': return 'Data Analytics';
+                    case 'web-dev': return 'Web Development';
+                    case 'ai': return 'AI & Agents';
+                    case 'career': return 'Career & Freelancing';
+                    default: return cat;
+                }
+            }
+
+            fetchAndRenderBlogs();
+
             // Back to top
             var btn = document.getElementById('back-to-top');
             if (btn) {
