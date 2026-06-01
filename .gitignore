@@ -1,5 +1,7 @@
 
-admin/
+admin/.agent/
+!admin/addblog.html
+!admin/viewblog.html
 node_modules/
 .env
 *.log
