@@ -314,33 +314,28 @@
             box-shadow: 0 16px 48px rgba(74, 144, 226, 0.12);
         }
 
-        /* FIX: Image wrap must clip overflow and have a fixed height */
+        /* Blog card image wrapper — 16/10 aspect ratio matching project cards */
         .blog-card-img-wrap {
             overflow: hidden;
             position: relative;
             width: 100%;
-            height: 200px;
+            aspect-ratio: 16/10;
             flex-shrink: 0;
             background: #0d1826;
         }
 
-        .blog-card-img-wrap::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(transparent, rgba(10, 17, 32, 0.7));
-            pointer-events: none;
-            z-index: 1;
+        /* picture must fill the wrapper fully */
+        .blog-card-img-wrap picture {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
-        /* FIX: Image must fill its wrapper and not overflow */
+        /* Image fits within wrapper without cropping — same as project cards */
         .blog-card-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             display: block;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -762,13 +757,26 @@
             function attachImgFallback(imgEl) {
                 imgEl.addEventListener('error', function () {
                     // Replace the broken img with a styled placeholder div
-                    var wrap = imgEl.parentNode;
+                    var wrap = imgEl.closest('.blog-card-img-wrap');
                     if (!wrap) return;
+                    wrap.innerHTML = '';
                     var placeholder = document.createElement('div');
                     placeholder.className = 'blog-card-img-placeholder';
                     placeholder.innerHTML = '<i class="fas fa-image"></i><span>Image unavailable</span>';
-                    wrap.replaceChild(placeholder, imgEl);
+                    wrap.appendChild(placeholder);
                 });
+            }
+
+            // ─── Helper: Build Cloudinary AVIF URL ───
+            function toCloudinaryAvif(url) {
+                if (!url || !url.includes('cloudinary.com')) return null;
+                return url.replace('/upload/', '/upload/f_avif,q_auto/');
+            }
+
+            // ─── Helper: Build Cloudinary WebP URL ───
+            function toCloudinaryWebp(url) {
+                if (!url || !url.includes('cloudinary.com')) return null;
+                return url.replace('/upload/', '/upload/f_webp,q_auto/');
             }
 
             // Load blogs dynamically from Neon Database
@@ -808,18 +816,40 @@
                             var imgWrap = document.createElement('div');
                             imgWrap.className = 'blog-card-img-wrap';
 
-                            // ── Image element (NO inline onerror string) ──
+                            // ── Picture element with AVIF/WebP sources (16/10 ratio) ──
+                            var picture = document.createElement('picture');
+
+                            // AVIF source — Cloudinary on-the-fly transform
+                            var avifUrl = toCloudinaryAvif(blog.image);
+                            if (avifUrl) {
+                                var srcAvif = document.createElement('source');
+                                srcAvif.srcset = avifUrl;
+                                srcAvif.type = 'image/avif';
+                                picture.appendChild(srcAvif);
+                            }
+
+                            // WebP source — Cloudinary on-the-fly transform
+                            var webpUrl = toCloudinaryWebp(blog.image);
+                            if (webpUrl) {
+                                var srcWebp = document.createElement('source');
+                                srcWebp.srcset = webpUrl;
+                                srcWebp.type = 'image/webp';
+                                picture.appendChild(srcWebp);
+                            }
+
+                            // Fallback img — width/height match 16/10 aspect ratio
                             var img = document.createElement('img');
                             img.src = blog.image || '';
                             img.alt = blog.alt || blog.title || '';
                             img.className = 'blog-card-img';
                             img.loading = 'lazy';
                             img.width = 400;
-                            img.height = 200;
+                            img.height = 250;
                             // Attach fallback safely via addEventListener
                             attachImgFallback(img);
 
-                            imgWrap.appendChild(img);
+                            picture.appendChild(img);
+                            imgWrap.appendChild(picture);
 
                             // ── Card body ──
                             var body = document.createElement('div');
