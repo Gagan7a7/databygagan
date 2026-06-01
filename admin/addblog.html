@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -250,7 +250,7 @@
                                 <div class="border border-secondary rounded p-3 mb-4 bg-dark">
                                     <h5 class="text-primary mb-3"><i class="fa fa-cubes me-2"></i>Content Section Builder</h5>
                                     <p class="text-muted small">Construct the layout of your article by adding and reordering content blocks below.</p>
-                                    
+
                                     <div id="blocks-container">
                                         <!-- Dynamic block items will be added here -->
                                     </div>
@@ -334,14 +334,14 @@
             blockCount++;
             const container = document.getElementById('blocks-container');
             const blockId = `block-${blockCount}`;
-            
+
             const div = document.createElement('div');
             div.className = 'block-item';
             div.id = blockId;
             div.setAttribute('data-type', type);
 
             let contentHtml = '';
-            
+
             if (type === 'paragraph') {
                 contentHtml = `
                     <div class="form-floating mb-2">
@@ -408,7 +408,7 @@
                     ${contentHtml}
                 </div>
             `;
-            
+
             container.appendChild(div);
         }
 
@@ -531,7 +531,7 @@
                 if (heroImageFile) {
                     const coverFormData = new FormData();
                     coverFormData.append('image', heroImageFile);
-                    
+
                     const imgRes = await fetch('/.netlify/functions/upload-image', {
                         method: 'POST',
                         body: coverFormData
@@ -569,7 +569,7 @@
                             // Upload inline block image
                             const blockImgFormData = new FormData();
                             blockImgFormData.append('image', file);
-                            
+
                             const inlineImgRes = await fetch('/.netlify/functions/upload-image', {
                                 method: 'POST',
                                 body: blockImgFormData
