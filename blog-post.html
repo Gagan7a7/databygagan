@@ -936,8 +936,7 @@
                                 const figure = document.createElement('figure');
                                 figure.className = 'article-inline-img reveal-up';
                                 figure.innerHTML = `
-                                    <img src="${block.value}" alt="${block.caption || ''}" loading="lazy">
-                                    ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
+                                    <img src="${block.value}" alt="Blog Image" loading="lazy">
                                 `;
                                 contentContainer.appendChild(figure);
                             } else if (block.type === 'conclusion') {

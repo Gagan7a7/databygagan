@@ -513,10 +513,6 @@
                         <input type="file" class="form-control inline-image-input" accept="image/*" ${existingImg ? '' : 'required'}>
                         <input type="hidden" class="existing-image-path" value="${existingImg}">
                     </div>
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control image-caption-input" placeholder="Image Caption Text" value="${initialData.caption || ''}" required>
-                        <label>Image Caption Text</label>
-                    </div>
                 `;
             }
 
@@ -644,7 +640,6 @@
             blockElements.forEach(function (el) {
                 const type = el.getAttribute('data-type');
                 let blockVal = '';
-                let blockCap = '';
 
                 if (type === 'paragraph' || type === 'conclusion') {
                     blockVal = el.querySelector('textarea').value;
@@ -653,12 +648,10 @@
                 } else if (type === 'bullet-list') {
                     blockVal = el.querySelector('textarea').value.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l; });
                 } else if (type === 'image') {
-                    blockCap = el.querySelector('.image-caption-input').value;
                     blockVal = el.querySelector('.existing-image-path').value;
                 }
 
                 const block = { type: type, value: blockVal };
-                if (type === 'image') { block.caption = blockCap; }
                 contentBlocks.push(block);
             });
 
