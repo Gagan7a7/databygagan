@@ -306,13 +306,20 @@
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.12);
+            /* Auto-fit setup: never zoom, never crop */
+            aspect-ratio: 16 / 9;
+            background: #070e1c;
+            position: relative;
         }
 
         .article-hero-img img {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center center;
         }
 
         /* Article body */
@@ -382,12 +389,20 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.1);
+            /* Auto-fit setup: never zoom, never crop */
+            aspect-ratio: 16 / 9;
+            background: #070e1c;
+            position: relative;
         }
 
         .article-inline-img img {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
+            object-fit: contain;
+            object-position: center center;
         }
 
         .article-inline-img figcaption {
