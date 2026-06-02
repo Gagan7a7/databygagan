@@ -38,13 +38,15 @@
             background-color: #191C24 !important;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             background-color: #2A2D3A;
             border-color: #3E4651;
             color: #fff;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             background-color: #2A2D3A;
             border-color: #007BFF;
             color: #fff;
@@ -101,12 +103,35 @@
             border-radius: 4px;
         }
 
-        .badge-paragraph { background-color: #007BFF; color: #fff; }
-        .badge-heading-h2 { background-color: #28a745; color: #fff; }
-        .badge-heading-h3 { background-color: #fd7e14; color: #fff; }
-        .badge-image { background-color: #6f42c1; color: #fff; }
-        .badge-bullet-list { background-color: #17a2b8; color: #fff; }
-        .badge-conclusion { background-color: #e83e8c; color: #fff; }
+        .badge-paragraph {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .badge-heading-h2 {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-heading-h3 {
+            background-color: #fd7e14;
+            color: #fff;
+        }
+
+        .badge-image {
+            background-color: #6f42c1;
+            color: #fff;
+        }
+
+        .badge-bullet-list {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .badge-conclusion {
+            background-color: #e83e8c;
+            color: #fff;
+        }
 
         .block-actions .btn {
             padding: 2px 6px;
@@ -127,7 +152,9 @@
                     <div class="position-relative">
                         <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo"
                             style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Gagan</h6>
@@ -135,14 +162,20 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.html" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
-                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View Projects</a>
-                    <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add Testimonial</a>
-                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View Testimonials</a>
-                    <a href="addblog.html" class="nav-item nav-link active"><i class="fa fa-pencil-alt me-2"></i>Add Blog</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View
+                        Projects</a>
+                    <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add
+                        Testimonial</a>
+                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View
+                        Testimonials</a>
+                    <a href="addblog.html" class="nav-item nav-link active"><i class="fa fa-pencil-alt me-2"></i>Add
+                        Blog</a>
                     <a href="viewblog.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>View Blogs</a>
-                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i
+                            class="fa fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -162,25 +195,44 @@
 
                             <!-- How-to Guide -->
                             <div class="mb-4">
-                                <button type="button" class="btn btn-outline-info btn-sm w-100 text-start" data-bs-toggle="collapse" data-bs-target="#howToGuide" aria-expanded="false">
-                                    <i class="fa fa-question-circle me-2"></i><strong>How to fill this form?</strong> <span class="text-muted small ms-1">(click to expand)</span>
+                                <button type="button" class="btn btn-outline-info btn-sm w-100 text-start"
+                                    data-bs-toggle="collapse" data-bs-target="#howToGuide" aria-expanded="false">
+                                    <i class="fa fa-question-circle me-2"></i><strong>How to fill this form?</strong>
+                                    <span class="text-muted small ms-1">(click to expand)</span>
                                 </button>
                                 <div class="collapse" id="howToGuide">
                                     <div class="border border-info rounded p-3 mt-2" style="background:#1a2035;">
-                                        <p class="text-info mb-2 fw-bold"><i class="fa fa-list-ol me-2"></i>Fill the form in this order:</p>
+                                        <p class="text-info mb-2 fw-bold"><i class="fa fa-list-ol me-2"></i>Fill the
+                                            form in this order:</p>
                                         <ol class="text-light small mb-0" style="line-height:2;">
-                                            <li><strong>Blog Title</strong> — The full headline of your blog post. The URL slug is auto-generated from this.</li>
-                                            <li><strong>URL Slug</strong> — Auto-filled from the title. Only edit if you want a custom URL (e.g. <code>my-n8n-guide</code>).</li>
-                                            <li><strong>Category</strong> — Pick the topic area that best fits your post.</li>
-                                            <li><strong>Status</strong> — <em>Draft</em> = saved but not visible on the public blog. <em>Published</em> = live on your site.</li>
-                                            <li><strong>Publish Date</strong> — Auto-set to today. Change if you want a different displayed date.</li>
-                                            <li><strong>Author Name</strong> — Pre-filled as "Gagan BP". Leave as-is or change.</li>
-                                            <li><strong>Hero Image Alt Text</strong> — A short description of the cover image for accessibility &amp; SEO (e.g. "Screenshot of n8n workflow").</li>
-                                            <li><strong>Hero Image Upload</strong> — Upload the main cover/thumbnail image for this blog post.</li>
-                                            <li><strong>Excerpt / Card Summary</strong> — 1–2 sentence summary shown on the blog listing card. Keep it under 160 characters.</li>
-                                            <li><strong>SEO Meta Description</strong> — Shown in Google search results. Aim for 120–160 characters.</li>
-                                            <li><strong>SEO Keywords</strong> — Comma-separated keywords for this post (e.g. <code>n8n, automation, email outreach</code>).</li>
-                                            <li><strong>Content Section Builder</strong> — Build the article body using blocks: add Headings (H2/H3) for sections, Paragraphs for body text, Bullet Lists for key points, Inline Images inside the article, and Conclusion for the closing box. Use ↑↓ to reorder blocks and 🗑 to delete one.</li>
+                                            <li><strong>Blog Title</strong> — The full headline of your blog post. The
+                                                URL slug is auto-generated from this.</li>
+                                            <li><strong>URL Slug</strong> — Auto-filled from the title. Only edit if you
+                                                want a custom URL (e.g. <code>my-n8n-guide</code>).</li>
+                                            <li><strong>Category</strong> — Pick the topic area that best fits your
+                                                post.</li>
+                                            <li><strong>Status</strong> — <em>Draft</em> = saved but not visible on the
+                                                public blog. <em>Published</em> = live on your site.</li>
+                                            <li><strong>Publish Date</strong> — Auto-set to today. Change if you want a
+                                                different displayed date.</li>
+                                            <li><strong>Author Name</strong> — Pre-filled as "Gagan BP". Leave as-is or
+                                                change.</li>
+                                            <li><strong>Hero Image Alt Text</strong> — A short description of the cover
+                                                image for accessibility &amp; SEO (e.g. "Screenshot of n8n workflow").
+                                            </li>
+                                            <li><strong>Hero Image Upload</strong> — Upload the main cover/thumbnail
+                                                image for this blog post.</li>
+                                            <li><strong>Excerpt / Card Summary</strong> — 1–2 sentence summary shown on
+                                                the blog listing card. Keep it under 160 characters.</li>
+                                            <li><strong>SEO Meta Description</strong> — Shown in Google search results.
+                                                Aim for 120–160 characters.</li>
+                                            <li><strong>SEO Keywords</strong> — Comma-separated keywords for this post
+                                                (e.g. <code>n8n, automation, email outreach</code>).</li>
+                                            <li><strong>Content Section Builder</strong> — Build the article body using
+                                                blocks: add Headings (H2/H3) for sections, Paragraphs for body text,
+                                                Bullet Lists for key points, Inline Images inside the article, and
+                                                Conclusion for the closing box. Use ↑↓ to reorder blocks and 🗑 to
+                                                delete one.</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -192,17 +244,21 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-1">
-                                            <input type="text" class="form-control" id="title" placeholder="Post Title" required>
+                                            <input type="text" class="form-control" id="title" placeholder="Post Title"
+                                                required>
                                             <label for="title">① Blog Post Title</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">The full headline of your post. Slug is auto-generated from this.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">The full headline of your
+                                            post. Slug is auto-generated from this.</div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-1">
-                                            <input type="text" class="form-control" id="slug" placeholder="Post Slug (auto-generated)" required>
+                                            <input type="text" class="form-control" id="slug"
+                                                placeholder="Post Slug (auto-generated)" required>
                                             <label for="slug">② URL Slug (auto-filled)</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-generated from title. Edit only if you need a custom URL path.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-generated from title.
+                                            Edit only if you need a custom URL path.</div>
                                     </div>
                                 </div>
 
@@ -218,7 +274,8 @@
                                             </select>
                                             <label for="category">③ Category</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Pick the topic area that best fits this post.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Pick the topic area that best
+                                            fits this post.</div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-1">
@@ -228,31 +285,38 @@
                                             </select>
                                             <label for="status">④ Status</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;"><strong>Draft</strong> = hidden from public. <strong>Published</strong> = live on site.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;"><strong>Draft</strong> =
+                                            hidden from public. <strong>Published</strong> = live on site.</div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-1">
                                             <input type="date" class="form-control" id="date_published" required>
                                             <label for="date_published">⑤ Publish Date</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-set to today. Change for a custom displayed date.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-set to today. Change for
+                                            a custom displayed date.</div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-1">
-                                            <input type="text" class="form-control" id="author" placeholder="Author" value="Gagan BP" required>
+                                            <input type="text" class="form-control" id="author" placeholder="Author"
+                                                value="Gagan BP" required>
                                             <label for="author">⑥ Author Name</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Pre-filled as "Gagan BP". Change only if guest author.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Pre-filled as "Gagan BP".
+                                            Change only if guest author.</div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-1">
-                                            <input type="text" class="form-control" id="alt" placeholder="e.g. Screenshot of n8n workflow dashboard" required>
+                                            <input type="text" class="form-control" id="alt"
+                                                placeholder="e.g. Screenshot of n8n workflow dashboard" required>
                                             <label for="alt">⑦ Hero Image Alt Text</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Short description of the cover image for SEO &amp; accessibility (e.g. "n8n workflow screenshot").</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Short description of the
+                                            cover image for SEO &amp; accessibility (e.g. "n8n workflow screenshot").
+                                        </div>
                                     </div>
                                 </div>
 
@@ -262,52 +326,77 @@
                                     </label>
                                     <input class="form-control" type="file" id="imageUpload" accept="image/*">
                                 </div>
-                                <div class="form-text mb-3" style="color:#adb5bd;" id="image-hint">Upload the main thumbnail/cover image shown on the blog card and at the top of the post. JPG/PNG/WebP recommended.</div>
+                                <div class="form-text mb-3" style="color:#adb5bd;" id="image-hint">Upload the main
+                                    thumbnail/cover image shown on the blog card and at the top of the post.
+                                    JPG/PNG/WebP recommended.</div>
 
                                 <div class="form-floating mb-1">
-                                    <textarea class="form-control" id="excerpt" placeholder="Brief excerpt/meta summary" style="height: 80px" required></textarea>
+                                    <textarea class="form-control" id="excerpt" placeholder="Brief excerpt/meta summary"
+                                        style="height: 80px" required></textarea>
                                     <label for="excerpt">⑨ Excerpt / Card Summary</label>
                                 </div>
-                                <div class="form-text mb-3" style="color:#adb5bd;">1–2 sentences shown on the blog listing card. Keep under 160 characters.</div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">1–2 sentences shown on the blog
+                                    listing card. Keep under 160 characters.</div>
 
                                 <div class="form-floating mb-1">
-                                    <textarea class="form-control" id="meta_description" placeholder="SEO Meta Description (120–160 chars)" style="height: 80px" required></textarea>
+                                    <textarea class="form-control" id="meta_description"
+                                        placeholder="SEO Meta Description (120–160 chars)" style="height: 80px"
+                                        required></textarea>
                                     <label for="meta_description">⑩ SEO Meta Description</label>
                                 </div>
-                                <div class="form-text mb-3" style="color:#adb5bd;">Shown in Google search results. Aim for 120–160 characters. Can be same as excerpt or more detailed.</div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">Shown in Google search results. Aim
+                                    for 120–160 characters. Can be same as excerpt or more detailed.</div>
 
                                 <div class="form-floating mb-1">
-                                    <input type="text" class="form-control" id="meta_keywords" placeholder="n8n, automation, email outreach">
+                                    <input type="text" class="form-control" id="meta_keywords"
+                                        placeholder="n8n, automation, email outreach">
                                     <label for="meta_keywords">⑪ SEO Keywords (comma separated)</label>
                                 </div>
-                                <div class="form-text mb-3" style="color:#adb5bd;">e.g. <code>n8n, automation, email outreach, make.com</code> — helps with SEO discoverability.</div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">e.g.
+                                    <code>n8n, automation, email outreach, make.com</code> — helps with SEO
+                                    discoverability.</div>
 
                                 <!-- Content Block Builder -->
                                 <div class="border border-secondary rounded p-3 mb-4 bg-dark">
-                                    <h5 class="text-primary mb-3"><i class="fa fa-cubes me-2"></i>⑫ Content Section Builder</h5>
-                                    <p class="text-muted small">Build the article body by adding blocks in order. Use <strong>H2</strong> for main section headings, <strong>H3</strong> for sub-sections, <strong>Paragraph</strong> for body text, <strong>Bullet List</strong> for key points (one item per line), <strong>Inline Image</strong> to embed an image mid-article, and <strong>Conclusion</strong> for the closing highlighted box. Use <i class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> to reorder, <i class="fa fa-trash text-danger"></i> to delete a block.</p>
+                                    <h5 class="text-primary mb-3"><i class="fa fa-cubes me-2"></i>⑫ Content Section
+                                        Builder</h5>
+                                    <p class="text-muted small">Build the article body by adding blocks in order. Use
+                                        <strong>H2</strong> for main section headings, <strong>H3</strong> for
+                                        sub-sections, <strong>Paragraph</strong> for body text, <strong>Bullet
+                                            List</strong> for key points (one item per line), <strong>Inline
+                                            Image</strong> to embed an image mid-article, and
+                                        <strong>Conclusion</strong> for the closing highlighted box. Use <i
+                                            class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> to reorder, <i
+                                            class="fa fa-trash text-danger"></i> to delete a block.</p>
 
                                     <div id="blocks-container">
                                         <!-- Dynamic block items will be added here -->
                                     </div>
 
-                                    <div class="d-flex flex-wrap gap-2 justify-content-center mt-3 pt-3 border-top border-secondary">
-                                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="addBlock('paragraph')">
+                                    <div
+                                        class="d-flex flex-wrap gap-2 justify-content-center mt-3 pt-3 border-top border-secondary">
+                                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                            onclick="addBlock('paragraph')">
                                             <i class="fa fa-paragraph me-1"></i>+ Paragraph
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-success" onclick="addBlock('heading-h2')">
+                                        <button type="button" class="btn btn-sm btn-outline-success"
+                                            onclick="addBlock('heading-h2')">
                                             <i class="fa fa-heading me-1"></i>+ Heading H2
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-warning" onclick="addBlock('heading-h3')">
+                                        <button type="button" class="btn btn-sm btn-outline-warning"
+                                            onclick="addBlock('heading-h3')">
                                             <i class="fa fa-heading me-1"></i>+ Heading H3
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-info" onclick="addBlock('bullet-list')">
+                                        <button type="button" class="btn btn-sm btn-outline-info"
+                                            onclick="addBlock('bullet-list')">
                                             <i class="fa fa-list-ul me-1"></i>+ Bullet List
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-light" onclick="addBlock('image')">
+                                        <button type="button" class="btn btn-sm btn-outline-light"
+                                            onclick="addBlock('image')">
                                             <i class="fa fa-file-image me-1"></i>+ Inline Image
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="addBlock('conclusion')">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="addBlock('conclusion')">
                                             <i class="fa fa-quote-left me-1"></i>+ Conclusion / Quote
                                         </button>
                                     </div>
@@ -344,7 +433,7 @@
         }
 
         // Auto Slug Generation from title
-        document.getElementById('title').addEventListener('input', function(e) {
+        document.getElementById('title').addEventListener('input', function (e) {
             const titleValue = e.target.value;
             const isEditing = !!document.getElementById('edit-slug').value;
             if (!isEditing) {
@@ -523,7 +612,7 @@
                         document.getElementById('meta_keywords').value = data.meta_keywords || '';
 
                         if (data.image) {
-                            document.getElementById('image-hint').innerHTML = `Current cover: <a href="${data.image}" target="_blank">${data.image.substring(data.image.lastIndexOf('/')+1)}</a>`;
+                            document.getElementById('image-hint').innerHTML = `Current cover: <a href="${data.image}" target="_blank">${data.image.substring(data.image.lastIndexOf('/') + 1)}</a>`;
                         }
 
                         // Load Content Blocks
@@ -552,7 +641,7 @@
             const blockElements = document.querySelectorAll('.block-item');
             const contentBlocks = [];
 
-            blockElements.forEach(function(el) {
+            blockElements.forEach(function (el) {
                 const type = el.getAttribute('data-type');
                 let blockVal = '';
                 let blockCap = '';
@@ -562,7 +651,7 @@
                 } else if (type === 'heading-h2' || type === 'heading-h3') {
                     blockVal = el.querySelector('input').value;
                 } else if (type === 'bullet-list') {
-                    blockVal = el.querySelector('textarea').value.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l; });
+                    blockVal = el.querySelector('textarea').value.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l; });
                 } else if (type === 'image') {
                     blockCap = el.querySelector('.image-caption-input').value;
                     blockVal = el.querySelector('.existing-image-path').value;
@@ -575,12 +664,12 @@
 
             // Calculate read time (200 wpm)
             let wordCount = 0;
-            contentBlocks.forEach(function(b) {
+            contentBlocks.forEach(function (b) {
                 if (typeof b.value === 'string') {
-                    wordCount += b.value.split(/\s+/).filter(function(w) { return w; }).length;
+                    wordCount += b.value.split(/\s+/).filter(function (w) { return w; }).length;
                 } else if (Array.isArray(b.value)) {
-                    b.value.forEach(function(item) {
-                        wordCount += item.split(/\s+/).filter(function(w) { return w; }).length;
+                    b.value.forEach(function (item) {
+                        wordCount += item.split(/\s+/).filter(function (w) { return w; }).length;
                     });
                 }
             });
@@ -616,31 +705,49 @@
                 },
                 body: JSON.stringify(blogData)
             })
-                .then(function(res) { return res.text(); })
-                .then(function(text) {
+                .then(function (res) { return res.text(); })
+                .then(function (text) {
                     const data = safeParseJson(text, '');
                     if (data.success) {
                         showNotification(editSlug ? 'Blog post updated successfully!' : 'Blog post added successfully!', 'success');
                         if (!editSlug) {
                             resetForm();
                         } else {
-                            setTimeout(function() { window.location.href = 'viewblog.html'; }, 1000);
+                            setTimeout(function () { window.location.href = 'viewblog.html'; }, 1000);
                         }
                     } else {
                         showNotification('Error saving blog: ' + (data.error || 'Unknown error'), 'error');
                     }
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     showNotification('Error saving blog: ' + err.message, 'error');
                 })
-                .finally(function() {
+                .finally(function () {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalBtnText;
                 });
         }
 
         // Form submission — same structure as addproject.html
-        document.getElementById('blog-form').onsubmit = function(e) {
+        // Helper to upload a single file
+        async function uploadSingleFile(file) {
+            const formData = new FormData();
+            formData.append('image', file);
+            const res = await fetch('/.netlify/functions/upload-image', {
+                method: 'POST',
+                body: formData
+            });
+            const text = await res.text();
+            const data = safeParseJson(text, '');
+            if (data.success && data.imagePath) {
+                return data.imagePath;
+            } else {
+                throw new Error(data.error || 'Upload failed');
+            }
+        }
+
+        // Form submission — updated to properly upload inline images
+        document.getElementById('blog-form').onsubmit = async function (e) {
             e.preventDefault();
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -649,56 +756,48 @@
             submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving Blog...';
 
             const editSlug = document.getElementById('edit-slug').value;
-            const heroImageFile = document.getElementById('imageUpload').files[0];
 
-            if (heroImageFile) {
-                // Upload hero image first, then save — exactly like addproject.html
-                const formData = new FormData();
-                formData.append('image', heroImageFile);
-
-                fetch('/.netlify/functions/upload-image', {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(function(res) { return res.text(); })
-                    .then(function(text) {
-                        const data = safeParseJson(text, '');
-                        if (data.success && data.imagePath) {
-                            const blogData = collectBlogData(data.imagePath);
-                            saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
-                        } else {
-                            showNotification('Image upload failed: ' + (data.error || 'Unknown error'), 'error');
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = originalBtnText;
-                        }
-                    })
-                    .catch(function(err) {
-                        showNotification('Image upload error: ' + err.message, 'error');
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnText;
-                    });
-            } else {
-                // No new image — get existing image URL if editing, then save
-                let existingImageUrl = '';
-                if (editSlug) {
-                    fetch('/api/blogs/' + editSlug, {
+            try {
+                // 1. Resolve Hero Image URL
+                let finalHeroUrl = '';
+                const heroImageFile = document.getElementById('imageUpload').files[0];
+                
+                if (heroImageFile) {
+                    finalHeroUrl = await uploadSingleFile(heroImageFile);
+                } else if (editSlug) {
+                    // Fetch existing hero URL if no new file
+                    const res = await fetch('/api/blogs/' + editSlug, {
                         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') }
-                    })
-                        .then(function(res) { return res.text(); })
-                        .then(function(text) {
-                            const data = safeParseJson(text, '');
-                            existingImageUrl = data.image || '';
-                            const blogData = collectBlogData(existingImageUrl);
-                            saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
-                        })
-                        .catch(function() {
-                            const blogData = collectBlogData('');
-                            saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
-                        });
-                } else {
-                    const blogData = collectBlogData('');
-                    saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
+                    });
+                    const text = await res.text();
+                    const data = safeParseJson(text, '');
+                    finalHeroUrl = data.image || '';
                 }
+
+                // 2. Upload any new inline images sequentially
+                const blockElements = document.querySelectorAll('.block-item');
+                for (let i = 0; i < blockElements.length; i++) {
+                    const el = blockElements[i];
+                    if (el.getAttribute('data-type') === 'image') {
+                        const fileInput = el.querySelector('.inline-image-input');
+                        if (fileInput && fileInput.files.length > 0) {
+                            submitBtn.innerHTML = `<i class="fa fa-spinner fa-spin me-1"></i>Uploading Image...`;
+                            const inlineUrl = await uploadSingleFile(fileInput.files[0]);
+                            // Set the hidden field to the new URL so collectBlogData picks it up
+                            el.querySelector('.existing-image-path').value = inlineUrl;
+                        }
+                    }
+                }
+
+                // 3. Collect form data and save to API
+                submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving Content...';
+                const blogData = collectBlogData(finalHeroUrl);
+                saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
+
+            } catch (err) {
+                showNotification('Error: ' + err.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             }
         };
 
