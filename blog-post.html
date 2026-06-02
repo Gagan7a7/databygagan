@@ -936,7 +936,7 @@
                                 const figure = document.createElement('figure');
                                 figure.className = 'article-inline-img reveal-up';
                                 figure.innerHTML = `
-                                    <img src="${block.value}" alt="${block.caption || ''}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 780 400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230a1120%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%234a90e2%22>Image Not Found</text></svg>'">
+                                    <img src="${block.value}" alt="${block.caption || ''}" loading="lazy">
                                     ${block.caption ? `<figcaption>${block.caption}</figcaption>` : ''}
                                 `;
                                 contentContainer.appendChild(figure);
