@@ -322,6 +322,8 @@
             aspect-ratio: 16/10;
             flex-shrink: 0;
             background: #0d1826;
+            border-radius: 14px 14px 0 0;
+            /* clip corners so scale doesn't bleed past card */
         }
 
         /* picture must fill the wrapper fully */
@@ -329,20 +331,30 @@
             display: block;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+            /* belt-and-suspenders: clip the scale inside picture too */
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Image fits within wrapper without cropping — same as project cards */
+        /* Image fills wrapper edge-to-edge — no letterbox gaps */
         .blog-card-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            /* was: contain — this eliminated the top/bottom space */
             object-position: center;
             display: block;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .blog-card:hover .blog-card-img {
+        .blog-card:hover .blog-card-img-wrap picture {
             transform: scale(1.04);
+            /* scale on picture, not img — overflow:hidden on wrap clips it */
+        }
+
+        .blog-card:hover .blog-card-img {
+            transform: none;
+            /* remove the img-level scale to avoid double transform */
         }
 
         /* FIX: Fallback placeholder shown when image truly fails */
