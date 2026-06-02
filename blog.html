@@ -298,20 +298,72 @@
 
         /* Blog cards */
         .blog-card {
-            background: rgba(74, 144, 226, 0.04);
-            border: 1px solid rgba(74, 144, 226, 0.12);
-            border-radius: 14px;
+            background: rgba(10, 17, 32, 0.6);
+            border: 1px solid rgba(74, 144, 226, 0.14);
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+            transition:
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                background 0.35s ease,
+                backdrop-filter 0.35s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
+            will-change: transform;
+            isolation: isolate;
+        }
+
+        /* Glassmorphism top border glow line */
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(
+                135deg,
+                rgba(74, 144, 226, 0) 0%,
+                rgba(74, 144, 226, 0) 100%
+            );
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease, background 0.4s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .blog-card:hover::before {
+            background: linear-gradient(
+                135deg,
+                rgba(74, 144, 226, 0.9) 0%,
+                rgba(100, 200, 255, 0.4) 50%,
+                rgba(74, 144, 226, 0.1) 100%
+            );
+            opacity: 1;
         }
 
         .blog-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(74, 144, 226, 0.3);
-            box-shadow: 0 16px 48px rgba(74, 144, 226, 0.12);
+            transform: translateY(-10px) scale(1.012);
+            border-color: rgba(74, 144, 226, 0.45);
+            background: rgba(10, 22, 48, 0.72);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            box-shadow:
+                0 24px 64px rgba(74, 144, 226, 0.22),
+                0 8px 24px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(74, 144, 226, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                inset 0 0 40px rgba(74, 144, 226, 0.04);
         }
 
         /* Blog card image wrapper — 16/10 aspect ratio matching project cards */
@@ -322,6 +374,27 @@
             aspect-ratio: 16/10;
             flex-shrink: 0;
             background: #0d1826;
+            border-radius: 16px 16px 0 0;
+        }
+
+        /* Subtle image overlay shimmer on hover */
+        .blog-card-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(74, 144, 226, 0.08) 0%,
+                rgba(10, 17, 32, 0.15) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .blog-card:hover .blog-card-img-wrap::after {
+            opacity: 1;
         }
 
         /* picture must fill the wrapper fully */
@@ -332,18 +405,21 @@
             overflow: hidden;
         }
 
-        /* Image fits within wrapper without cropping — same as project cards */
+        /* Image: NO zoom on hover — replaced with brightness lift only */
         .blog-card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
             display: block;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: filter 0.45s ease, transform 0.45s ease;
+            transform: scale(1);
         }
 
+        /* Removed scale zoom — only a very slight pan + brightness for premium feel */
         .blog-card:hover .blog-card-img {
-            transform: scale(1.04);
+            filter: brightness(1.06) contrast(1.02);
+            transform: scale(1.0);
         }
 
         /* FIX: Fallback placeholder shown when image truly fails */
@@ -370,6 +446,8 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            position: relative;
+            z-index: 3;
         }
 
         .blog-card-category {
