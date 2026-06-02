@@ -306,16 +306,12 @@
             border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.12);
-            background: #070e1c;
         }
 
         .article-hero-img img {
             width: 100%;
-            height: auto; /* Naturally scales to image ratio without letterboxing */
-            max-height: 60vh; /* Prevents portrait images from being too tall */
+            height: auto !important; /* Forces perfect shrink-wrap to image's true ratio */
             display: block;
-            object-fit: contain;
-            object-position: center center;
         }
 
         /* Article body */
@@ -385,16 +381,12 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(74, 144, 226, 0.1);
-            background: #070e1c;
         }
 
         .article-inline-img img {
             width: 100%;
-            height: auto; /* Naturally scales to image ratio without letterboxing */
-            max-height: 500px; /* Limits extreme heights */
+            height: auto !important;
             display: block;
-            object-fit: contain;
-            object-position: center center;
         }
 
         .article-inline-img figcaption {
