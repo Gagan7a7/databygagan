@@ -296,18 +296,23 @@
             color: var(--light-text);
         }
 
+        /* ── Blog item column: must allow overflow so card lift is visible ── */
+        .blog-item {
+            overflow: visible !important;
+        }
+
         /* Blog cards */
         .blog-card {
             background: rgba(10, 17, 32, 0.6);
             border: 1px solid rgba(74, 144, 226, 0.14);
             border-radius: 16px;
-            overflow: hidden;
+            /* NO overflow:hidden on the card — shadows & glows must paint outside */
+            overflow: visible;
             transition:
                 transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.35s ease,
-                background 0.35s ease,
-                backdrop-filter 0.35s ease;
+                background 0.35s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -352,26 +357,26 @@
             opacity: 1;
         }
 
+        /* Hover: translateY ONLY — no scale() to prevent column clipping */
         .blog-card:hover {
-            transform: translateY(-10px) scale(1.012);
-            border-color: rgba(74, 144, 226, 0.45);
-            background: rgba(10, 22, 48, 0.72);
-            backdrop-filter: blur(18px) saturate(180%);
-            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            transform: translateY(-10px);
+            border-color: rgba(74, 144, 226, 0.5);
+            background: rgba(10, 22, 48, 0.75);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
             box-shadow:
-                0 24px 64px rgba(74, 144, 226, 0.22),
-                0 8px 24px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(74, 144, 226, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.07),
-                inset 0 0 40px rgba(74, 144, 226, 0.04);
+                0 24px 60px rgba(74, 144, 226, 0.20),
+                0 8px 24px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(74, 144, 226, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07);
         }
 
-        /* Blog card image wrapper — 16/10 aspect ratio matching project cards */
+        /* ── Image wrapper: THIS is the only element that clips its child img ── */
         .blog-card-img-wrap {
-            overflow: hidden;
+            overflow: hidden;          /* clips the img — correct */
             position: relative;
             width: 100%;
-            aspect-ratio: 16/10;
+            aspect-ratio: 16 / 10;    /* fixed proportional height */
             flex-shrink: 0;
             background: #0d1826;
             border-radius: 16px 16px 0 0;
@@ -384,8 +389,8 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(74, 144, 226, 0.08) 0%,
-                rgba(10, 17, 32, 0.15) 100%
+                rgba(74, 144, 226, 0.10) 0%,
+                rgba(10, 17, 32, 0.20) 100%
             );
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -397,29 +402,27 @@
             opacity: 1;
         }
 
-        /* picture must fill the wrapper fully */
+        /* ── picture: must NOT have height:100% — it would fight aspect-ratio ── */
         .blog-card-img-wrap picture {
             display: block;
             width: 100%;
-            height: 100%;
-            overflow: hidden;
+            /* height intentionally NOT set — aspect-ratio on wrapper handles it */
         }
 
-        /* Image: NO zoom on hover — replaced with brightness lift only */
+        /* ── img fills the wrapper using aspect-ratio + object-fit, no height:100% ── */
         .blog-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
             display: block;
-            transition: filter 0.45s ease, transform 0.45s ease;
-            transform: scale(1);
+            width: 100%;
+            height: 100%;              /* fills wrapper height set by aspect-ratio */
+            object-fit: cover;
+            object-position: center center;
+            transition: filter 0.4s ease;
+            /* NO transform at all — prevents any scale/zoom artifacts */
         }
 
-        /* Removed scale zoom — only a very slight pan + brightness for premium feel */
+        /* Hover: brightness lift only, zero zoom */
         .blog-card:hover .blog-card-img {
-            filter: brightness(1.06) contrast(1.02);
-            transform: scale(1.0);
+            filter: brightness(1.07);
         }
 
         /* FIX: Fallback placeholder shown when image truly fails */
@@ -916,14 +919,14 @@
                                 picture.appendChild(srcWebp);
                             }
 
-                            // Fallback img — width/height match 16/10 aspect ratio
+                            // Fallback img — width hint for preload scanner (no height attr — CSS controls it)
                             var img = document.createElement('img');
                             img.src = blog.image || '';
                             img.alt = blog.alt || blog.title || '';
                             img.className = 'blog-card-img';
                             img.loading = 'lazy';
                             img.width = 400;
-                            img.height = 250;
+                            // NOTE: intentionally no img.height — CSS aspect-ratio on wrapper controls height
                             // Attach fallback safely via addEventListener
                             attachImgFallback(img);
 
