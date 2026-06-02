@@ -379,14 +379,18 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.07);
         }
 
-        /* ── Image wrapper: THIS is the only element that clips its child img ── */
+        /* ── Image wrapper ──
+           16:9 ratio matches most dashboard & screenshot images.
+           overflow:hidden still clips the picture; background fills
+           any letterbox bars that appear when image isn't exactly 16:9. */
         .blog-card-img-wrap {
-            overflow: hidden;          /* clips the img — correct */
+            overflow: hidden;
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 10;    /* fixed proportional height */
+            aspect-ratio: 16 / 9;
             flex-shrink: 0;
-            background: #0d1826;
+            /* Dark background shows in letterbox areas — looks intentional */
+            background: #070e1c;
             border-radius: 16px 16px 0 0;
         }
 
@@ -419,15 +423,15 @@
             display: block;
         }
 
-        /* ── img fills the wrapper using aspect-ratio + object-fit, no height:100% ── */
+        /* ── img: contain = full image always visible, zero zoom, zero crop ── */
+        /* Works automatically for any image ratio on any screen size.     */
         .blog-card-img {
             display: block;
             width: 100%;
-            height: 100%;              /* fills wrapper height set by aspect-ratio */
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;       /* full image, never zoomed or cropped */
             object-position: center center;
             transition: filter 0.4s ease;
-            /* NO transform at all — prevents any scale/zoom artifacts */
         }
 
         /* Hover: brightness lift only, zero zoom */
