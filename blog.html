@@ -296,9 +296,17 @@
             color: var(--light-text);
         }
 
-        /* ── Blog item column: must allow overflow so card lift is visible ── */
+        /* ── Blog item column: allow overflow for card lift animation ── */
         .blog-item {
             overflow: visible !important;
+        }
+
+        /* ── Blog grid row: must be visible so hover lift isn't clipped ── */
+        /* styles.css sets overflow-x:hidden on .row which forces overflow-y:auto  */
+        /* This clips any card that translates above the row boundary on hover.    */
+        #blog-grid {
+            overflow: visible !important;
+            padding-top: 12px; /* breathing room for the 10px hover lift */
         }
 
         /* Blog cards */
@@ -402,11 +410,13 @@
             opacity: 1;
         }
 
-        /* ── picture: must NOT have height:100% — it would fight aspect-ratio ── */
+        /* ── picture: absolutely fills the wrapper — fixes the gap below image ── */
+        /* When picture has no height, img{height:100%} resolves to intrinsic size  */
+        /* which can be taller than the wrapper, leaving a gap. Absolute fill fixes. */
         .blog-card-img-wrap picture {
+            position: absolute;
+            inset: 0;
             display: block;
-            width: 100%;
-            /* height intentionally NOT set — aspect-ratio on wrapper handles it */
         }
 
         /* ── img fills the wrapper using aspect-ratio + object-fit, no height:100% ── */
