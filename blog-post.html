@@ -4,10 +4,8 @@
 <head>
     <!-- Primary Meta Tags -->
     <title>Blog Post | Gagan BP Blog</title>
-    <meta name="description"
-        content="Read expert articles on n8n automation, analytics, and web development.">
-    <meta name="keywords"
-        content="blog post, n8n automation, web development, data analytics">
+    <meta name="description" content="Read expert articles on n8n automation, analytics, and web development.">
+    <meta name="keywords" content="blog post, n8n automation, web development, data analytics">
     <meta name="author" content="Gagan BP">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta charset="UTF-8">
@@ -48,8 +46,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://databygagan.com/blog-post">
     <meta property="og:title" content="Blog Post">
-    <meta property="og:description"
-        content="Read expert articles on n8n automation, analytics, and web development.">
+    <meta property="og:description" content="Read expert articles on n8n automation, analytics, and web development.">
     <meta property="og:image" content="https://databygagan.com/images/Hranalytics.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -67,8 +64,9 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How n8n Automates Lead Outreach Without Hallucinations">
-    <meta name="twitter:description" content="Step-by-step guide to building an n8n lead outreach automation workflow.">
+    <meta name="twitter:title" content="Blog Post | Gagan BP">
+    <meta name="twitter:description"
+        content="Practical guides on n8n automation, Power BI, SQL, and data analytics — real-world research and business solutions by Gagan BP, freelance technical partner.">
     <meta name="twitter:image" content="https://databygagan.com/images/Hranalytics.png">
     <meta name="twitter:creator" content="@databygagan">
 
@@ -310,7 +308,7 @@
 
         .article-hero-img img {
             width: 100%;
-            height: auto !important; /* Forces perfect shrink-wrap to image's true ratio */
+            height: auto !important;
             display: block;
         }
 
@@ -512,25 +510,31 @@
             .blog-breadcrumb {
                 padding-top: 80px;
             }
+
             .article-header {
                 padding: 1.5rem 0 1rem;
             }
+
             .article-cta {
                 padding: 2rem 1.5rem;
                 margin-bottom: 2rem;
             }
+
             .article-cta h2 {
                 font-size: 1.2rem !important;
             }
+
             .article-cta p {
                 font-size: 0.9rem !important;
             }
+
             .article-cta .cta-btn {
                 width: 100%;
                 text-align: center;
                 padding: 12px 28px;
                 font-size: 0.95rem;
             }
+
             .article-body p {
                 font-size: 0.95rem;
                 text-align: justify;
@@ -539,6 +543,7 @@
                 letter-spacing: 0.01em;
                 line-height: 1.7;
             }
+
             .article-body .lead {
                 font-size: 1.05rem;
                 text-align: justify;
@@ -651,8 +656,9 @@
         <!-- Hero Image -->
         <div class="container">
             <div class="article-hero-img reveal-up" style="transition-delay: 0.1s;">
-                <img id="post-hero-img" src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 420%22></svg>" alt="" width="800"
-                    height="420">
+                <img id="post-hero-img"
+                    src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 420%22></svg>"
+                    alt="" width="800" height="420">
             </div>
         </div>
 
@@ -796,7 +802,7 @@
                         throw new Error('Failed to load blog post');
                     }
                     const blog = await res.json();
-                    
+
                     // 1. Update titles & breadcrumbs
                     document.getElementById('breadcrumb-current').textContent = blog.title;
                     document.getElementById('post-title').textContent = blog.title;
@@ -805,30 +811,64 @@
                     // 2. Update SEO metadata
                     const metaDesc = document.querySelector('meta[name="description"]');
                     if (metaDesc) metaDesc.setAttribute('content', blog.meta_description || blog.excerpt);
-                    
+
                     const metaKeywords = document.querySelector('meta[name="keywords"]');
                     if (metaKeywords) metaKeywords.setAttribute('content', blog.meta_keywords || '');
 
                     const ogTitle = document.querySelector('meta[property="og:title"]');
                     if (ogTitle) ogTitle.setAttribute('content', blog.title);
-                    
+
                     const ogDesc = document.querySelector('meta[property="og:description"]');
                     if (ogDesc) ogDesc.setAttribute('content', blog.meta_description || blog.excerpt);
-                    
+
                     const ogImg = document.querySelector('meta[property="og:image"]');
                     if (ogImg) ogImg.setAttribute('content', blog.image);
 
                     const twitterTitle = document.querySelector('meta[name="twitter:title"]');
                     if (twitterTitle) twitterTitle.setAttribute('content', blog.title);
-                    
+
                     const twitterDesc = document.querySelector('meta[name="twitter:description"]');
                     if (twitterDesc) twitterDesc.setAttribute('content', blog.meta_description || blog.excerpt);
-                    
+
                     const twitterImg = document.querySelector('meta[name="twitter:image"]');
                     if (twitterImg) twitterImg.setAttribute('content', blog.image);
 
                     const canonicalLink = document.querySelector('link[rel="canonical"]');
                     if (canonicalLink) canonicalLink.setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
+
+                    // Fix 3: Update hreflang links to match canonical slug URL
+                    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function (link) {
+                        link.setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
+                    });
+
+                    // Fix 2: Update article:* OG meta tags from live API data
+                    const articlePublished = document.querySelector('meta[property="article:published_time"]');
+                    if (articlePublished) articlePublished.setAttribute('content', blog.date_published);
+
+                    const articleModified = document.querySelector('meta[property="article:modified_time"]');
+                    if (articleModified) articleModified.setAttribute('content', blog.date_published);
+
+                    const sectionMap = {
+                        'automation': 'Automation',
+                        'analytics': 'Data Analytics',
+                        'web-dev': 'Web Development',
+                        'ai': 'AI & Agents',
+                        'career': 'Career & Freelancing'
+                    };
+                    const articleSection = document.querySelector('meta[property="article:section"]');
+                    if (articleSection) articleSection.setAttribute('content', sectionMap[blog.category] || blog.category);
+
+                    // Remove old hardcoded article:tag metas and inject fresh ones from meta_keywords
+                    document.querySelectorAll('meta[property="article:tag"]').forEach(function (el) { el.remove(); });
+                    if (blog.meta_keywords) {
+                        const tags = blog.meta_keywords.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+                        tags.forEach(function (tag) {
+                            const meta = document.createElement('meta');
+                            meta.setAttribute('property', 'article:tag');
+                            meta.setAttribute('content', tag);
+                            document.head.appendChild(meta);
+                        });
+                    }
 
                     // Update Microdata spans
                     document.getElementById('micro-headline').setAttribute('content', blog.title);
@@ -859,7 +899,7 @@
                             blogpostData.dateModified = blog.date_published;
                             blogpostData.author.name = blog.author || 'Gagan BP';
                             blogpostData.description = blog.meta_description || blog.excerpt;
-                            
+
                             // Extract text content from blocks for articleBody
                             let plainTextBody = '';
                             if (Array.isArray(blog.content)) {
@@ -870,7 +910,7 @@
                             }
                             blogpostData.articleBody = plainTextBody.substring(0, 5000);
                             blogpostData.wordCount = plainTextBody.split(/\s+/).filter(Boolean).length;
-                            
+
                             if (blog.meta_keywords) {
                                 blogpostData.keywords = blog.meta_keywords.split(',').map(k => k.trim());
                             } else {
@@ -886,7 +926,7 @@
                         month: 'short',
                         day: 'numeric'
                     });
-                    
+
                     const postMeta = document.getElementById('post-meta');
                     postMeta.innerHTML = `
                         <span><i class="fas fa-calendar-alt"></i> ${formattedDate}</span>
@@ -970,7 +1010,7 @@
             }
 
             function getCategoryLabel(cat) {
-                switch(cat) {
+                switch (cat) {
                     case 'automation': return 'Automation';
                     case 'analytics': return 'Data Analytics';
                     case 'web-dev': return 'Web Development';
