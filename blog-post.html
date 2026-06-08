@@ -15,8 +15,9 @@
     <meta name="geo.placename" content="Bengaluru">
     <meta name="geo.position" content="12.9716;77.5946">
     <meta name="ICBM" content="12.9716, 77.5946">
-    <link rel="alternate" hreflang="en" href="https://databygagan.com/blog-post">
-    <link rel="alternate" hreflang="x-default" href="https://databygagan.com/blog-post">
+    <!-- hreflang: intentionally empty — JS sets correct slug URL after fetch -->
+    <link rel="alternate" hreflang="en" href="">
+    <link rel="alternate" hreflang="x-default" href="">
     <meta name="language" content="English">
     <meta name="content-language" content="en">
 
@@ -43,8 +44,9 @@
     <link rel="dns-prefetch" href="//databygagan.com">
 
     <!-- Open Graph / Facebook -->
+    <!-- og:url intentionally empty — JS sets correct slug URL after fetch -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://databygagan.com/blog-post">
+    <meta property="og:url" content="">
     <meta property="og:title" content="Blog Post">
     <meta property="og:description" content="Read expert articles on n8n automation, analytics, and web development.">
     <meta property="og:image" content="https://databygagan.com/images/Hranalytics.png">
@@ -55,12 +57,9 @@
     <meta property="og:locale:alternate" content="en_GB">
     <meta property="og:locale:alternate" content="en_AU">
     <meta property="article:author" content="Gagan BP">
-    <meta property="article:published_time" content="2026-05-31T09:00:00+05:30">
-    <meta property="article:modified_time" content="2026-05-31T09:00:00+05:30">
-    <meta property="article:section" content="Automation">
-    <meta property="article:tag" content="n8n">
-    <meta property="article:tag" content="automation">
-    <meta property="article:tag" content="lead generation">
+    <meta property="article:published_time" content="">
+    <meta property="article:modified_time" content="">
+    <meta property="article:section" content="">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -75,8 +74,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="assets/site.webmanifest">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://databygagan.com/blog-post">
+    <!-- Canonical URL: intentionally empty — JS sets correct slug URL after fetch -->
+    <!-- Google's own guidance: omit canonical from static HTML when JS will set it -->
+    <link rel="canonical" href="">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -92,7 +92,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Breadcrumb Schema -->
+    <!-- Breadcrumb Schema: item 3 intentionally omitted — JS adds post-specific entry after fetch -->
     <script type="application/ld+json" id="schema-breadcrumb">
     {
         "@context": "https://schema.org",
@@ -109,49 +109,13 @@
                 "position": 2,
                 "name": "Blog",
                 "item": "https://databygagan.com/blog"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "How n8n Automates Lead Outreach",
-                "item": "https://databygagan.com/blog-post"
             }
         ]
     }
     </script>
 
-    <!-- BlogPosting Schema -->
-    <script type="application/ld+json" id="schema-blogpost">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://databygagan.com/blog-post"
-        },
-        "headline": "How n8n Automates Lead Outreach Without Hallucinations",
-        "image": "https://databygagan.com/images/Hranalytics.png",
-        "datePublished": "2026-05-31T09:00:00+05:30",
-        "dateModified": "2026-05-31T09:00:00+05:30",
-        "author": {
-            "@type": "Person",
-            "name": "Gagan BP",
-            "url": "https://databygagan.com/about"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "DataByGagan",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://databygagan.com/assets/apple-touch-icon.png"
-            }
-        },
-        "description": "Learn how to use n8n automation to build reliable, high-performance lead generation pipelines that run 24/7 without AI hallucinations.",
-        "articleBody": "Step-by-step tutorial on building automated lead outreach with n8n.",
-        "wordCount": 1800,
-        "keywords": ["n8n", "automation", "lead generation", "outreach", "workflow"]
-    }
-    </script>
+    <!-- BlogPosting Schema: empty shell — JS populates fully after fetch -->
+    <script type="application/ld+json" id="schema-blogpost">{}</script>
 
     <!-- Person & ProfessionalService Schema -->
     <script type="application/ld+json">
@@ -796,13 +760,11 @@
 
             async function loadDynamicBlogPost() {
                 if (!slug) {
-                    // Redirect to blog listing if no slug is provided
                     window.location.href = 'blog';
                     return;
                 }
 
                 try {
-                    // Check if logged in to show drafts as well
                     const token = localStorage.getItem('admin_token');
                     const headers = {};
                     if (token) {
@@ -812,7 +774,6 @@
                     const res = await fetch(`/api/blogs/${slug}`, { headers });
                     if (!res.ok) {
                         if (res.status === 404 || res.status === 403) {
-                            console.error('Blog post not found or access denied');
                             window.location.href = 'blog';
                             return;
                         }
@@ -820,66 +781,48 @@
                     }
                     const blog = await res.json();
 
-                    // 1. Update titles & breadcrumbs
+                    // 1. Update title & breadcrumb
                     document.getElementById('breadcrumb-current').textContent = blog.title;
                     document.getElementById('post-title').textContent = blog.title;
                     document.title = `${blog.title} | Gagan BP Blog`;
 
-                    // 2. Update SEO metadata
-                    const metaDesc = document.querySelector('meta[name="description"]');
-                    if (metaDesc) metaDesc.setAttribute('content', blog.meta_description || blog.excerpt);
+                    // 2. Update all SEO meta tags
+                    document.querySelector('meta[name="description"]').setAttribute('content', blog.meta_description || blog.excerpt);
+                    document.querySelector('meta[name="keywords"]').setAttribute('content', blog.meta_keywords || '');
 
-                    const metaKeywords = document.querySelector('meta[name="keywords"]');
-                    if (metaKeywords) metaKeywords.setAttribute('content', blog.meta_keywords || '');
+                    // Canonical — set to exact slug URL
+                    document.querySelector('link[rel="canonical"]').setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
 
-                    const ogTitle = document.querySelector('meta[property="og:title"]');
-                    if (ogTitle) ogTitle.setAttribute('content', blog.title);
-
-                    const ogDesc = document.querySelector('meta[property="og:description"]');
-                    if (ogDesc) ogDesc.setAttribute('content', blog.meta_description || blog.excerpt);
-
-                    const ogImg = document.querySelector('meta[property="og:image"]');
-                    if (ogImg) ogImg.setAttribute('content', blog.image);
-
-                    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-                    if (twitterTitle) twitterTitle.setAttribute('content', blog.title);
-
-                    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-                    if (twitterDesc) twitterDesc.setAttribute('content', blog.meta_description || blog.excerpt);
-
-                    const twitterImg = document.querySelector('meta[name="twitter:image"]');
-                    if (twitterImg) twitterImg.setAttribute('content', blog.image);
-
-                    const canonicalLink = document.querySelector('link[rel="canonical"]');
-                    if (canonicalLink) canonicalLink.setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
-
-                    // Fix 3: Update hreflang links to match canonical slug URL
+                    // hreflang — set to exact slug URL
                     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function (link) {
                         link.setAttribute('href', `https://databygagan.com/blog-post?slug=${blog.slug}`);
                     });
 
-                    // Fix 2: Update article:* OG meta tags from live API data
-                    const articlePublished = document.querySelector('meta[property="article:published_time"]');
-                    if (articlePublished) articlePublished.setAttribute('content', blog.date_published);
+                    // OG tags
+                    document.querySelector('meta[property="og:url"]').setAttribute('content', `https://databygagan.com/blog-post?slug=${blog.slug}`);
+                    document.querySelector('meta[property="og:title"]').setAttribute('content', blog.title);
+                    document.querySelector('meta[property="og:description"]').setAttribute('content', blog.meta_description || blog.excerpt);
+                    document.querySelector('meta[property="og:image"]').setAttribute('content', blog.image);
 
-                    const articleModified = document.querySelector('meta[property="article:modified_time"]');
-                    if (articleModified) articleModified.setAttribute('content', blog.date_published);
+                    // Twitter tags
+                    document.querySelector('meta[name="twitter:title"]').setAttribute('content', blog.title);
+                    document.querySelector('meta[name="twitter:description"]').setAttribute('content', blog.meta_description || blog.excerpt);
+                    document.querySelector('meta[name="twitter:image"]').setAttribute('content', blog.image);
+
+                    // Article OG tags
+                    document.querySelector('meta[property="article:published_time"]').setAttribute('content', blog.date_published);
+                    document.querySelector('meta[property="article:modified_time"]').setAttribute('content', blog.date_published);
 
                     const sectionMap = {
-                        'automation': 'Automation',
-                        'analytics': 'Data Analytics',
-                        'web-dev': 'Web Development',
-                        'ai': 'AI & Agents',
-                        'career': 'Career & Freelancing'
+                        'automation': 'Automation', 'analytics': 'Data Analytics',
+                        'web-dev': 'Web Development', 'ai': 'AI & Agents', 'career': 'Career & Freelancing'
                     };
-                    const articleSection = document.querySelector('meta[property="article:section"]');
-                    if (articleSection) articleSection.setAttribute('content', sectionMap[blog.category] || blog.category);
+                    document.querySelector('meta[property="article:section"]').setAttribute('content', sectionMap[blog.category] || blog.category);
 
-                    // Remove old hardcoded article:tag metas and inject fresh ones from meta_keywords
+                    // Article tags — remove old, inject fresh from keywords
                     document.querySelectorAll('meta[property="article:tag"]').forEach(function (el) { el.remove(); });
                     if (blog.meta_keywords) {
-                        const tags = blog.meta_keywords.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
-                        tags.forEach(function (tag) {
+                        blog.meta_keywords.split(',').map(t => t.trim()).filter(Boolean).forEach(function (tag) {
                             const meta = document.createElement('meta');
                             meta.setAttribute('property', 'article:tag');
                             meta.setAttribute('content', tag);
@@ -887,79 +830,83 @@
                         });
                     }
 
-                    // Update Microdata spans
+                    // Microdata spans
                     document.getElementById('micro-headline').setAttribute('content', blog.title);
                     document.getElementById('micro-date').setAttribute('content', blog.date_published.split('T')[0]);
                     document.getElementById('micro-author').setAttribute('content', blog.author || 'Gagan BP');
 
-                    // 2b. Update JSON-LD Structured Schema Tags dynamically
+                    // 3. Update Breadcrumb JSON-LD — inject item 3 with correct post data
                     try {
                         const breadcrumbScript = document.getElementById('schema-breadcrumb');
-                        if (breadcrumbScript) {
-                            const breadcrumbData = JSON.parse(breadcrumbScript.textContent);
-                            if (breadcrumbData.itemListElement && breadcrumbData.itemListElement[2]) {
-                                breadcrumbData.itemListElement[2].name = blog.title;
-                                breadcrumbData.itemListElement[2].item = `https://databygagan.com/blog-post?slug=${blog.slug}`;
-                                breadcrumbScript.textContent = JSON.stringify(breadcrumbData, null, 4);
-                            }
-                        }
-                    } catch (e) { console.error('Error updating breadcrumb schema:', e); }
+                        const breadcrumbData = JSON.parse(breadcrumbScript.textContent);
+                        breadcrumbData.itemListElement.push({
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": blog.title,
+                            "item": `https://databygagan.com/blog-post?slug=${blog.slug}`
+                        });
+                        breadcrumbScript.textContent = JSON.stringify(breadcrumbData, null, 4);
+                    } catch (e) { console.error('Breadcrumb schema error:', e); }
 
+                    // 4. Populate BlogPosting JSON-LD from scratch
                     try {
-                        const blogpostScript = document.getElementById('schema-blogpost');
-                        if (blogpostScript) {
-                            const blogpostData = JSON.parse(blogpostScript.textContent);
-                            blogpostData.mainEntityOfPage.id = `https://databygagan.com/blog-post?slug=${blog.slug}`;
-                            blogpostData.headline = blog.title;
-                            blogpostData.image = blog.image;
-                            blogpostData.datePublished = blog.date_published;
-                            blogpostData.dateModified = blog.date_published;
-                            blogpostData.author.name = blog.author || 'Gagan BP';
-                            blogpostData.description = blog.meta_description || blog.excerpt;
-
-                            // Extract text content from blocks for articleBody
-                            let plainTextBody = '';
-                            if (Array.isArray(blog.content)) {
-                                plainTextBody = blog.content
-                                    .filter(block => ['paragraph', 'conclusion'].includes(block.type) || block.type.startsWith('heading'))
-                                    .map(block => block.value)
-                                    .join(' ');
-                            }
-                            blogpostData.articleBody = plainTextBody.substring(0, 5000);
-                            blogpostData.wordCount = plainTextBody.split(/\s+/).filter(Boolean).length;
-
-                            if (blog.meta_keywords) {
-                                blogpostData.keywords = blog.meta_keywords.split(',').map(k => k.trim());
-                            } else {
-                                blogpostData.keywords = [];
-                            }
-                            blogpostScript.textContent = JSON.stringify(blogpostData, null, 4);
+                        let plainTextBody = '';
+                        if (Array.isArray(blog.content)) {
+                            plainTextBody = blog.content
+                                .filter(b => ['paragraph', 'conclusion'].includes(b.type) || b.type.startsWith('heading'))
+                                .map(b => b.value).join(' ');
                         }
-                    } catch (e) { console.error('Error updating blogpost schema:', e); }
+                        const blogpostData = {
+                            "@context": "https://schema.org",
+                            "@type": "BlogPosting",
+                            "mainEntityOfPage": {
+                                "@type": "WebPage",
+                                "@id": `https://databygagan.com/blog-post?slug=${blog.slug}`
+                            },
+                            "headline": blog.title,
+                            "image": blog.image,
+                            "datePublished": blog.date_published,
+                            "dateModified": blog.date_published,
+                            "author": {
+                                "@type": "Person",
+                                "name": blog.author || 'Gagan BP',
+                                "url": "https://databygagan.com/about"
+                            },
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "DataByGagan",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": "https://databygagan.com/assets/apple-touch-icon.png"
+                                }
+                            },
+                            "description": blog.meta_description || blog.excerpt,
+                            "articleBody": plainTextBody.substring(0, 5000),
+                            "wordCount": plainTextBody.split(/\s+/).filter(Boolean).length,
+                            "keywords": blog.meta_keywords ? blog.meta_keywords.split(',').map(k => k.trim()) : []
+                        };
+                        document.getElementById('schema-blogpost').textContent = JSON.stringify(blogpostData, null, 4);
+                    } catch (e) { console.error('BlogPosting schema error:', e); }
 
-                    // 3. Update Meta info
+                    // 5. Article meta bar
                     const formattedDate = new Date(blog.date_published).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
+                        year: 'numeric', month: 'short', day: 'numeric'
                     });
-
-                    const postMeta = document.getElementById('post-meta');
-                    postMeta.innerHTML = `
+                    document.getElementById('post-meta').innerHTML = `
                         <span><i class="fas fa-calendar-alt"></i> ${formattedDate}</span>
                         <span><i class="fas fa-clock"></i> ${blog.read_time || '8 min read'}</span>
                         <span><i class="fas fa-user"></i> ${blog.author || 'Gagan BP'}</span>
-                        <span><i class="fas fa-tag"></i> ${getCategoryLabel(blog.category)}</span>
+                        <span><i class="fas fa-tag"></i> ${sectionMap[blog.category] || blog.category}</span>
                     `;
 
-                    // 4. Update Hero Cover Image
+                    // 6. Hero image
                     const heroImg = document.getElementById('post-hero-img');
                     heroImg.src = blog.image;
                     heroImg.alt = blog.alt || blog.title;
 
-                    // 5. Render Content Blocks
+                    // 7. Render content blocks
                     const contentContainer = document.getElementById('post-content-container');
-                    contentContainer.innerHTML = ''; // clear static content
+                    contentContainer.innerHTML = '';
 
                     if (Array.isArray(blog.content)) {
                         blog.content.forEach((block) => {
@@ -992,25 +939,19 @@
                             } else if (block.type === 'image') {
                                 const figure = document.createElement('figure');
                                 figure.className = 'article-inline-img reveal-up';
-                                figure.innerHTML = `
-                                    <img src="${block.value}" alt="Blog Image" loading="lazy">
-                                `;
+                                figure.innerHTML = `<img src="${block.value}" alt="Blog Image" loading="lazy">`;
                                 contentContainer.appendChild(figure);
                             } else if (block.type === 'conclusion') {
                                 const div = document.createElement('div');
                                 div.className = 'article-conclusion reveal-up';
-                                div.innerHTML = `
-                                    <h2>Conclusion</h2>
-                                    <p>${block.value}</p>
-                                `;
+                                div.innerHTML = `<h2>Conclusion</h2><p>${block.value}</p>`;
                                 contentContainer.appendChild(div);
                             }
                         });
                     }
 
-                    // 6. Observe newly rendered dynamic elements for scroll reveal anims
-                    var dynamicRevealEls = contentContainer.querySelectorAll('.reveal-up');
-                    dynamicRevealEls.forEach(function (el) {
+                    // 8. Observe new elements for reveal animations
+                    contentContainer.querySelectorAll('.reveal-up').forEach(function (el) {
                         revealObserver.observe(el);
                     });
 
