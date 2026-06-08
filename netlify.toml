@@ -10,6 +10,13 @@
 
 # ─── Redirects ────────────────────────────────────────────────────────────────
 
+# Dynamic sitemap: serve from serverless function
+[[redirects]]
+  from   = "/sitemap.xml"
+  to     = "/.netlify/functions/sitemap"
+  status = 200
+  force  = true
+
 # Clean URLs: strip .html
 [[redirects]]
   from = "/faq.html"
