@@ -712,11 +712,7 @@
                 <input type="text" id="blog-search" placeholder="Search articles..." aria-label="Search blog articles">
                 <select id="blog-category" aria-label="Filter by category">
                     <option value="all">All Categories</option>
-                    <option value="automation">Automation</option>
-                    <option value="analytics">Data Analytics</option>
-                    <option value="web-dev">Web Development</option>
-                    <option value="ai">AI &amp; Agents</option>
-                    <option value="career">Career &amp; Freelancing</option>
+                    <!-- Categories populated dynamically from blog data -->
                 </select>
             </div>
         </section>
@@ -982,6 +978,21 @@
                         // Re-collect items for filter
                         blogItems = Array.from(document.querySelectorAll('.blog-item'));
 
+                        // Dynamically populate category filter from actual blog data
+                        var uniqueCats = [];
+                        blogs.forEach(function (b) {
+                            if (b.category && uniqueCats.indexOf(b.category) === -1) {
+                                uniqueCats.push(b.category);
+                            }
+                        });
+                        uniqueCats.sort();
+                        uniqueCats.forEach(function (c) {
+                            var opt = document.createElement('option');
+                            opt.value = c;
+                            opt.textContent = getCategoryLabel(c);
+                            categorySelect.appendChild(opt);
+                        });
+
                         // Trigger reveal animations for new cards
                         var dynamicRevealEls = blogGrid.querySelectorAll('.reveal-up');
                         dynamicRevealEls.forEach(function (el) {
@@ -1000,14 +1011,16 @@
             }
 
             function getCategoryLabel(cat) {
-                switch (cat) {
-                    case 'automation': return 'Automation';
-                    case 'analytics': return 'Data Analytics';
-                    case 'web-dev': return 'Web Development';
-                    case 'ai': return 'AI & Agents';
-                    case 'career': return 'Career & Freelancing';
-                    default: return cat;
-                }
+                var known = {
+                    'automation': 'Automation',
+                    'analytics': 'Data Analytics',
+                    'web-dev': 'Web Development',
+                    'ai': 'AI & Agents',
+                    'career': 'Career & Freelancing'
+                };
+                if (known[cat]) return known[cat];
+                // Custom categories: capitalize first letter of each word
+                return cat.replace(/-/g, ' ').replace(/\b\w/g, function (l) { return l.toUpperCase(); });
             }
 
             fetchAndRenderBlogs();

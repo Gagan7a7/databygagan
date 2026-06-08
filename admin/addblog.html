@@ -265,17 +265,19 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-floating mb-1">
-                                            <select class="form-select" id="category" required>
-                                                <option value="automation">Automation</option>
-                                                <option value="analytics">Data Analytics</option>
-                                                <option value="web-dev">Web Development</option>
-                                                <option value="ai">AI &amp; Agents</option>
-                                                <option value="career">Career &amp; Freelancing</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="category" list="category-options"
+                                                placeholder="Category" required autocomplete="off">
+                                            <datalist id="category-options">
+                                                <option value="automation">
+                                                <option value="analytics">
+                                                <option value="web-dev">
+                                                <option value="ai">
+                                                <option value="career">
+                                            </datalist>
                                             <label for="category">③ Category</label>
                                         </div>
-                                        <div class="form-text mb-3" style="color:#adb5bd;">Pick the topic area that best
-                                            fits this post.</div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Pick a suggestion or type your
+                                            own custom category.</div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-1">
