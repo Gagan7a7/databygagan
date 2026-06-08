@@ -712,7 +712,7 @@
                 <input type="text" id="blog-search" placeholder="Search articles..." aria-label="Search blog articles">
                 <select id="blog-category" aria-label="Filter by category">
                     <option value="all">All Categories</option>
-                    <!-- Categories populated dynamically from blog data -->
+                    <!-- Options populated dynamically from database -->
                 </select>
             </div>
         </section>
@@ -979,17 +979,17 @@
                         blogItems = Array.from(document.querySelectorAll('.blog-item'));
 
                         // Dynamically populate category filter from actual blog data
-                        var uniqueCats = [];
-                        blogs.forEach(function (b) {
-                            if (b.category && uniqueCats.indexOf(b.category) === -1) {
-                                uniqueCats.push(b.category);
+                        var uniqueCategories = [];
+                        blogs.forEach(function (blog) {
+                            if (blog.category && uniqueCategories.indexOf(blog.category) === -1) {
+                                uniqueCategories.push(blog.category);
                             }
                         });
-                        uniqueCats.sort();
-                        uniqueCats.forEach(function (c) {
+                        uniqueCategories.sort();
+                        uniqueCategories.forEach(function (cat) {
                             var opt = document.createElement('option');
-                            opt.value = c;
-                            opt.textContent = getCategoryLabel(c);
+                            opt.value = cat;
+                            opt.textContent = getCategoryLabel(cat);
                             categorySelect.appendChild(opt);
                         });
 
@@ -1011,16 +1011,9 @@
             }
 
             function getCategoryLabel(cat) {
-                var known = {
-                    'automation': 'Automation',
-                    'analytics': 'Data Analytics',
-                    'web-dev': 'Web Development',
-                    'ai': 'AI & Agents',
-                    'career': 'Career & Freelancing'
-                };
-                if (known[cat]) return known[cat];
-                // Custom categories: capitalize first letter of each word
-                return cat.replace(/-/g, ' ').replace(/\b\w/g, function (l) { return l.toUpperCase(); });
+                if (!cat) return '';
+                // Capitalize first letter of each word for display
+                return cat.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
             }
 
             fetchAndRenderBlogs();
