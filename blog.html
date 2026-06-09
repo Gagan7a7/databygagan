@@ -1019,26 +1019,18 @@
             fetchAndRenderBlogs();
 
             // Back to top
-            var btn = document.getElementById('back-to-top');
-            if (btn) {
+            (function () {
+                var btn = document.getElementById('back-to-top');
+                if (!btn) return;
                 function toggleBtn() {
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scrolled > 300) {
-                        btn.classList.remove('d-none');
-                        btn.classList.add('show');
-                    } else {
-                        btn.classList.remove('show');
-                        setTimeout(() => {
-                            if (!btn.classList.contains('show')) {
-                                btn.classList.add('d-none');
-                            }
-                        }, 300);
-                    }
+                    if (scrolled > 300) btn.classList.add('show');
+                    else btn.classList.remove('show');
                 }
                 window.addEventListener('scroll', toggleBtn, { passive: true });
                 btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
                 toggleBtn();
-            }
+            })();
         });
     </script>
 
