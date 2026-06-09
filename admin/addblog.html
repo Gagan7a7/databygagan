@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Add Blog - Admin Dashboard</title>
+    <script>
+        // Check if user is logged in by verifying admin token
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: #191C24;
+            padding: 15px 0;
+            overflow-y: auto;
+        }
+
+        .content {
+            margin-left: 250px;
+            min-height: 100vh;
+            background: #151821;
+        }
+
+        .bg-secondary {
+            background-color: #191C24 !important;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #2A2D3A;
+            border-color: #3E4651;
+            color: #fff;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #2A2D3A;
+            border-color: #007BFF;
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        body {
+            background-color: #151821;
+            color: #fff;
+        }
+
+        .alert {
+            margin-top: 1rem;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        /* Block builder styling */
+        .block-item {
+            background: #232631;
+            border: 1px solid #3E4651;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .block-type-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .badge-paragraph {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .badge-heading-h2 {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-heading-h3 {
+            background-color: #fd7e14;
+            color: #fff;
+        }
+
+        .badge-image {
+            background-color: #6f42c1;
+            color: #fff;
+        }
+
+        .badge-bullet-list {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .badge-conclusion {
+            background-color: #e83e8c;
+            color: #fff;
+        }
+
+        .block-actions .btn {
+            padding: 2px 6px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Sidebar -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="dashboard.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DatabyGagan</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="../assets/favicon-192x192.png" alt="Gagan Logo"
+                            style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Gagan</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="dashboard.html" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="addproject.html" class="nav-item nav-link"><i class="fa fa-plus me-2"></i>Add Project</a>
+                    <a href="viewproject.html" class="nav-item nav-link"><i class="fa fa-list me-2"></i>View
+                        Projects</a>
+                    <a href="addtestimonial.html" class="nav-item nav-link"><i class="fa fa-quote-right me-2"></i>Add
+                        Testimonial</a>
+                    <a href="viewtestimonial.html" class="nav-item nav-link"><i class="fa fa-comments me-2"></i>View
+                        Testimonials</a>
+                    <a href="addblog.html" class="nav-item nav-link active"><i class="fa fa-pencil-alt me-2"></i>Add
+                        Blog</a>
+                    <a href="viewblog.html" class="nav-item nav-link"><i class="fa fa-book me-2"></i>View Blogs</a>
+                    <a href="#" onclick="logout()" class="nav-item nav-link mt-3"><i
+                            class="fa fa-sign-out-alt me-2"></i>Logout</a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="text-primary mb-0" id="form-title">Add New Blog Post</h3>
+                                <a href="viewblog.html" class="btn btn-info">
+                                    <i class="fa fa-book me-1"></i>View All Blogs
+                                </a>
+                            </div>
+
+                            <!-- How-to Guide -->
+                            <div class="mb-4">
+                                <button type="button" class="btn btn-outline-info btn-sm w-100 text-start"
+                                    data-bs-toggle="collapse" data-bs-target="#howToGuide" aria-expanded="false">
+                                    <i class="fa fa-question-circle me-2"></i><strong>How to fill this form?</strong>
+                                    <span class="text-muted small ms-1">(click to expand)</span>
+                                </button>
+                                <div class="collapse" id="howToGuide">
+                                    <div class="border border-info rounded p-3 mt-2" style="background:#1a2035;">
+                                        <p class="text-info mb-2 fw-bold"><i class="fa fa-list-ol me-2"></i>Fill the
+                                            form in this order:</p>
+                                        <ol class="text-light small mb-0" style="line-height:2;">
+                                            <li><strong>Blog Title</strong> — The full headline of your blog post. The
+                                                URL slug is auto-generated from this.</li>
+                                            <li><strong>URL Slug</strong> — Auto-filled from the title. Only edit if you
+                                                want a custom URL (e.g. <code>my-n8n-guide</code>).</li>
+                                            <li><strong>Category</strong> — Pick the topic area that best fits your
+                                                post.</li>
+                                            <li><strong>Status</strong> — <em>Draft</em> = saved but not visible on the
+                                                public blog. <em>Published</em> = live on your site.</li>
+                                            <li><strong>Publish Date</strong> — Auto-set to today. Change if you want a
+                                                different displayed date.</li>
+                                            <li><strong>Author Name</strong> — Pre-filled as "Gagan BP". Leave as-is or
+                                                change.</li>
+                                            <li><strong>Hero Image Alt Text</strong> — A short description of the cover
+                                                image for accessibility &amp; SEO (e.g. "Screenshot of n8n workflow").
+                                            </li>
+                                            <li><strong>Hero Image Upload</strong> — Upload the main cover/thumbnail
+                                                image for this blog post.</li>
+                                            <li><strong>Excerpt / Card Summary</strong> — 1–2 sentence summary shown on
+                                                the blog listing card. Keep it under 160 characters.</li>
+                                            <li><strong>SEO Meta Description</strong> — Shown in Google search results.
+                                                Aim for 120–160 characters.</li>
+                                            <li><strong>SEO Keywords</strong> — Comma-separated keywords for this post
+                                                (e.g. <code>n8n, automation, email outreach</code>).</li>
+                                            <li><strong>Content Section Builder</strong> — Build the article body using
+                                                blocks: add Headings (H2/H3) for sections, Paragraphs for body text,
+                                                Bullet Lists for key points, Inline Images inside the article, and
+                                                Conclusion for the closing box. Use ↑↓ to reorder blocks and 🗑 to
+                                                delete one.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="edit-slug">
+
+                            <form id="blog-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" class="form-control" id="title" placeholder="Post Title"
+                                                required>
+                                            <label for="title">① Blog Post Title</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">The full headline of your
+                                            post. Slug is auto-generated from this.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" class="form-control" id="slug"
+                                                placeholder="Post Slug (auto-generated)" required>
+                                            <label for="slug">② URL Slug (auto-filled)</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-generated from title.
+                                            Edit only if you need a custom URL path.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" class="form-control" id="category" required
+                                                placeholder="e.g. Automation, Data Analytics, AI">
+                                            <label for="category">③ Category</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Type the category name
+                                            (e.g. Automation, AI, Web Development). It will appear as a filter on the blog page.</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-1">
+                                            <select class="form-select" id="status" required>
+                                                <option value="draft">Draft</option>
+                                                <option value="published">Published</option>
+                                            </select>
+                                            <label for="status">④ Status</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;"><strong>Draft</strong> =
+                                            hidden from public. <strong>Published</strong> = live on site.</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-1">
+                                            <input type="date" class="form-control" id="date_published" required>
+                                            <label for="date_published">⑤ Publish Date</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Auto-set to today. Change for
+                                            a custom displayed date.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" class="form-control" id="author" placeholder="Author"
+                                                value="Gagan BP" required>
+                                            <label for="author">⑥ Author Name</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Pre-filled as "Gagan BP".
+                                            Change only if guest author.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" class="form-control" id="alt"
+                                                placeholder="e.g. Screenshot of n8n workflow dashboard" required>
+                                            <label for="alt">⑦ Hero Image Alt Text</label>
+                                        </div>
+                                        <div class="form-text mb-3" style="color:#adb5bd;">Short description of the
+                                            cover image for SEO &amp; accessibility (e.g. "n8n workflow screenshot").
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-1">
+                                    <label for="imageUpload" class="form-label">
+                                        <i class="fa fa-image me-1"></i>⑧ Hero / Cover Image Upload
+                                    </label>
+                                    <input class="form-control" type="file" id="imageUpload" accept="image/*">
+                                </div>
+                                <div class="form-text mb-3" style="color:#adb5bd;" id="image-hint">Upload the main
+                                    thumbnail/cover image shown on the blog card and at the top of the post.
+                                    JPG/PNG/WebP recommended.</div>
+
+                                <div class="form-floating mb-1">
+                                    <textarea class="form-control" id="excerpt" placeholder="Brief excerpt/meta summary"
+                                        style="height: 80px" required></textarea>
+                                    <label for="excerpt">⑨ Excerpt / Card Summary</label>
+                                </div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">1–2 sentences shown on the blog
+                                    listing card. Keep under 160 characters.</div>
+
+                                <div class="form-floating mb-1">
+                                    <textarea class="form-control" id="meta_description"
+                                        placeholder="SEO Meta Description (120–160 chars)" style="height: 80px"
+                                        required></textarea>
+                                    <label for="meta_description">⑩ SEO Meta Description</label>
+                                </div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">Shown in Google search results. Aim
+                                    for 120–160 characters. Can be same as excerpt or more detailed.</div>
+
+                                <div class="form-floating mb-1">
+                                    <input type="text" class="form-control" id="meta_keywords"
+                                        placeholder="n8n, automation, email outreach">
+                                    <label for="meta_keywords">⑪ SEO Keywords (comma separated)</label>
+                                </div>
+                                <div class="form-text mb-3" style="color:#adb5bd;">e.g.
+                                    <code>n8n, automation, email outreach, make.com</code> — helps with SEO
+                                    discoverability.</div>
+
+                                <!-- Content Block Builder -->
+                                <div class="border border-secondary rounded p-3 mb-4 bg-dark">
+                                    <h5 class="text-primary mb-3"><i class="fa fa-cubes me-2"></i>⑫ Content Section
+                                        Builder</h5>
+                                    <p class="text-muted small">Build the article body by adding blocks in order. Use
+                                        <strong>H2</strong> for main section headings, <strong>H3</strong> for
+                                        sub-sections, <strong>Paragraph</strong> for body text, <strong>Bullet
+                                            List</strong> for key points (one item per line), <strong>Inline
+                                            Image</strong> to embed an image mid-article, and
+                                        <strong>Conclusion</strong> for the closing highlighted box. Use <i
+                                            class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> to reorder, <i
+                                            class="fa fa-trash text-danger"></i> to delete a block.</p>
+
+                                    <div id="blocks-container">
+                                        <!-- Dynamic block items will be added here -->
+                                    </div>
+
+                                    <div
+                                        class="d-flex flex-wrap gap-2 justify-content-center mt-3 pt-3 border-top border-secondary">
+                                        <button type="button" class="btn btn-sm btn-outline-primary"
+                                            onclick="addBlock('paragraph')">
+                                            <i class="fa fa-paragraph me-1"></i>+ Paragraph
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-success"
+                                            onclick="addBlock('heading-h2')">
+                                            <i class="fa fa-heading me-1"></i>+ Heading H2
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-warning"
+                                            onclick="addBlock('heading-h3')">
+                                            <i class="fa fa-heading me-1"></i>+ Heading H3
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-info"
+                                            onclick="addBlock('bullet-list')">
+                                            <i class="fa fa-list-ul me-1"></i>+ Bullet List
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-light"
+                                            onclick="addBlock('image')">
+                                            <i class="fa fa-file-image me-1"></i>+ Inline Image
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="addBlock('conclusion')">
+                                            <i class="fa fa-quote-left me-1"></i>+ Conclusion / Quote
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-success px-4">
+                                        <i class="fa fa-save me-1"></i>Save Blog Post
+                                    </button>
+                                    <button type="button" class="btn btn-secondary px-4" onclick="resetForm()">
+                                        <i class="fa fa-refresh me-1"></i>Reset
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div id="notification-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('admin_token');
+                window.location.href = '/index.html';
+            }
+        }
+
+        // Auto Slug Generation from title
+        document.getElementById('title').addEventListener('input', function (e) {
+            const titleValue = e.target.value;
+            const isEditing = !!document.getElementById('edit-slug').value;
+            if (!isEditing) {
+                document.getElementById('slug').value = generateSlug(titleValue);
+            }
+        });
+
+        function generateSlug(text) {
+            return text
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-')         // collapse whitespace and replace by -
+                .replace(/-+/g, '-');         // collapse dashes
+        }
+
+        // Default Date to today
+        document.getElementById('date_published').value = new Date().toISOString().split('T')[0];
+
+        // Content Block Builder logic
+        let blockCount = 0;
+
+        function addBlock(type, initialData = {}) {
+            blockCount++;
+            const container = document.getElementById('blocks-container');
+            const blockId = `block-${blockCount}`;
+
+            const div = document.createElement('div');
+            div.className = 'block-item';
+            div.id = blockId;
+            div.setAttribute('data-type', type);
+
+            let contentHtml = '';
+
+            if (type === 'paragraph') {
+                contentHtml = `
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" placeholder="Type paragraph content..." style="height: 100px" required>${initialData.value || ''}</textarea>
+                        <label>Paragraph Content</label>
+                    </div>
+                `;
+            } else if (type === 'heading-h2') {
+                contentHtml = `
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" placeholder="H2 Heading Text" value="${initialData.value || ''}" required>
+                        <label>H2 Section Heading</label>
+                    </div>
+                `;
+            } else if (type === 'heading-h3') {
+                contentHtml = `
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" placeholder="H3 Subheading Text" value="${initialData.value || ''}" required>
+                        <label>H3 Sub-heading</label>
+                    </div>
+                `;
+            } else if (type === 'bullet-list') {
+                const listVal = Array.isArray(initialData.value) ? initialData.value.join('\n') : (initialData.value || '');
+                contentHtml = `
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" placeholder="Item 1\nItem 2..." style="height: 100px" required>${listVal}</textarea>
+                        <label>List Items (One per line)</label>
+                    </div>
+                `;
+            } else if (type === 'conclusion') {
+                contentHtml = `
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" placeholder="Type conclusion or summary box text..." style="height: 100px" required>${initialData.value || ''}</textarea>
+                        <label>Conclusion Box text</label>
+                    </div>
+                `;
+            } else if (type === 'image') {
+                const existingImg = initialData.value || '';
+                const displayImg = existingImg ? `<img src="${existingImg}" style="max-height:100px; display:block; margin-bottom:10px; border-radius:4px;" />` : '';
+                contentHtml = `
+                    <div class="mb-2">
+                        ${displayImg}
+                        <label class="form-label small">Inline Image Upload</label>
+                        <input type="file" class="form-control inline-image-input" accept="image/*" ${existingImg ? '' : 'required'}>
+                        <input type="hidden" class="existing-image-path" value="${existingImg}">
+                    </div>
+                `;
+            }
+
+            div.innerHTML = `
+                <div class="block-header">
+                    <span class="block-type-badge badge-${type}">${type.replace('-', ' ')}</span>
+                    <div class="block-actions">
+                        <button type="button" class="btn btn-dark" onclick="moveBlockUp('${blockId}')"><i class="fa fa-arrow-up"></i></button>
+                        <button type="button" class="btn btn-dark" onclick="moveBlockDown('${blockId}')"><i class="fa fa-arrow-down"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="removeBlock('${blockId}')"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="block-content-inputs">
+                    ${contentHtml}
+                </div>
+            `;
+
+            container.appendChild(div);
+        }
+
+        function removeBlock(id) {
+            if (confirm('Are you sure you want to remove this section block?')) {
+                document.getElementById(id).remove();
+            }
+        }
+
+        function moveBlockUp(id) {
+            const block = document.getElementById(id);
+            const prev = block.previousElementSibling;
+            if (prev) {
+                block.parentNode.insertBefore(block, prev);
+            }
+        }
+
+        function moveBlockDown(id) {
+            const block = document.getElementById(id);
+            const next = block.nextElementSibling;
+            if (next) {
+                block.parentNode.insertBefore(next, block);
+            }
+        }
+
+        // Notifications
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            container.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fa ${iconClass} me-2"></i>${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const alert = container.querySelector('.alert');
+                if (alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            }, 6000);
+        }
+
+        // Edit mode checking
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editSlug = urlParams.get('id');
+
+            if (editSlug) {
+                document.getElementById('form-title').textContent = 'Edit Blog Post';
+                document.querySelector('button[type="submit"]').innerHTML = '<i class="fa fa-save me-1"></i>Update Blog Post';
+                document.getElementById('slug').readOnly = true;
+
+                fetch(`/api/blogs/${editSlug}`, {
+                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') }
+                })
+                    .then(res => {
+                        if (!res.ok) throw new Error('Blog not found');
+                        return res.json();
+                    })
+                    .then(data => {
+                        document.getElementById('edit-slug').value = data.slug;
+                        document.getElementById('title').value = data.title;
+                        document.getElementById('slug').value = data.slug;
+                        document.getElementById('category').value = data.category;
+                        document.getElementById('status').value = data.status || 'draft';
+                        document.getElementById('date_published').value = data.date_published ? data.date_published.split('T')[0] : '';
+                        document.getElementById('author').value = data.author || 'Gagan BP';
+                        document.getElementById('alt').value = data.alt || '';
+                        document.getElementById('excerpt').value = data.excerpt || '';
+                        document.getElementById('meta_description').value = data.meta_description || '';
+                        document.getElementById('meta_keywords').value = data.meta_keywords || '';
+
+                        if (data.image) {
+                            document.getElementById('image-hint').innerHTML = `Current cover: <a href="${data.image}" target="_blank">${data.image.substring(data.image.lastIndexOf('/') + 1)}</a>`;
+                        }
+
+                        // Load Content Blocks
+                        const container = document.getElementById('blocks-container');
+                        container.innerHTML = '';
+                        if (Array.isArray(data.content)) {
+                            data.content.forEach(block => {
+                                addBlock(block.type, block);
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        showNotification('Error loading blog: ' + err.message, 'error');
+                    });
+            }
+        });
+
+        // Safe JSON fetch: never crashes on non-JSON responses (e.g. Netlify 500 HTML pages)
+        function safeParseJson(text, status) {
+            try { return JSON.parse(text); }
+            catch (e) { return { success: false, error: 'Server error (' + status + '): ' + text.substring(0, 120) }; }
+        }
+
+        // Collect all form data and content blocks (sync — no async needed)
+        function collectBlogData(heroImageUrl) {
+            const blockElements = document.querySelectorAll('.block-item');
+            const contentBlocks = [];
+
+            blockElements.forEach(function (el) {
+                const type = el.getAttribute('data-type');
+                let blockVal = '';
+
+                if (type === 'paragraph' || type === 'conclusion') {
+                    blockVal = el.querySelector('textarea').value;
+                } else if (type === 'heading-h2' || type === 'heading-h3') {
+                    blockVal = el.querySelector('input').value;
+                } else if (type === 'bullet-list') {
+                    blockVal = el.querySelector('textarea').value.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l; });
+                } else if (type === 'image') {
+                    blockVal = el.querySelector('.existing-image-path').value;
+                }
+
+                const block = { type: type, value: blockVal };
+                contentBlocks.push(block);
+            });
+
+            // Calculate read time (200 wpm)
+            let wordCount = 0;
+            contentBlocks.forEach(function (b) {
+                if (typeof b.value === 'string') {
+                    wordCount += b.value.split(/\s+/).filter(function (w) { return w; }).length;
+                } else if (Array.isArray(b.value)) {
+                    b.value.forEach(function (item) {
+                        wordCount += item.split(/\s+/).filter(function (w) { return w; }).length;
+                    });
+                }
+            });
+            const minutes = Math.max(1, Math.ceil(wordCount / 200));
+
+            return {
+                title: document.getElementById('title').value,
+                slug: document.getElementById('slug').value,
+                category: document.getElementById('category').value,
+                status: document.getElementById('status').value,
+                date_published: document.getElementById('date_published').value,
+                author: document.getElementById('author').value,
+                image: heroImageUrl,
+                alt: document.getElementById('alt').value,
+                excerpt: document.getElementById('excerpt').value,
+                meta_description: document.getElementById('meta_description').value,
+                meta_keywords: document.getElementById('meta_keywords').value,
+                read_time: minutes + ' min read',
+                content: contentBlocks
+            };
+        }
+
+        // Save blog to API — same pattern as addproject.html
+        function saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText) {
+            const url = editSlug ? '/api/blogs/' + editSlug : '/api/blogs';
+            const method = editSlug ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('admin_token')
+                },
+                body: JSON.stringify(blogData)
+            })
+                .then(function (res) { return res.text(); })
+                .then(function (text) {
+                    const data = safeParseJson(text, '');
+                    if (data.success) {
+                        showNotification(editSlug ? 'Blog post updated successfully!' : 'Blog post added successfully!', 'success');
+                        if (!editSlug) {
+                            resetForm();
+                        } else {
+                            setTimeout(function () { window.location.href = 'viewblog.html'; }, 1000);
+                        }
+                    } else {
+                        showNotification('Error saving blog: ' + (data.error || 'Unknown error'), 'error');
+                    }
+                })
+                .catch(function (err) {
+                    showNotification('Error saving blog: ' + err.message, 'error');
+                })
+                .finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+        }
+
+        // Form submission — same structure as addproject.html
+        // Helper to upload a single file
+        async function uploadSingleFile(file) {
+            const formData = new FormData();
+            formData.append('image', file);
+            const res = await fetch('/.netlify/functions/upload-image', {
+                method: 'POST',
+                body: formData
+            });
+            const text = await res.text();
+            const data = safeParseJson(text, '');
+            if (data.success && data.imagePath) {
+                return data.imagePath;
+            } else {
+                throw new Error(data.error || 'Upload failed');
+            }
+        }
+
+        // Form submission — updated to properly upload inline images
+        document.getElementById('blog-form').onsubmit = async function (e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving Blog...';
+
+            const editSlug = document.getElementById('edit-slug').value;
+
+            try {
+                // 1. Resolve Hero Image URL
+                let finalHeroUrl = '';
+                const heroImageFile = document.getElementById('imageUpload').files[0];
+                
+                if (heroImageFile) {
+                    finalHeroUrl = await uploadSingleFile(heroImageFile);
+                } else if (editSlug) {
+                    // Fetch existing hero URL if no new file
+                    const res = await fetch('/api/blogs/' + editSlug, {
+                        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') }
+                    });
+                    const text = await res.text();
+                    const data = safeParseJson(text, '');
+                    finalHeroUrl = data.image || '';
+                }
+
+                // 2. Upload any new inline images sequentially
+                const blockElements = document.querySelectorAll('.block-item');
+                for (let i = 0; i < blockElements.length; i++) {
+                    const el = blockElements[i];
+                    if (el.getAttribute('data-type') === 'image') {
+                        const fileInput = el.querySelector('.inline-image-input');
+                        if (fileInput && fileInput.files.length > 0) {
+                            submitBtn.innerHTML = `<i class="fa fa-spinner fa-spin me-1"></i>Uploading Image...`;
+                            const inlineUrl = await uploadSingleFile(fileInput.files[0]);
+                            // Set the hidden field to the new URL so collectBlogData picks it up
+                            el.querySelector('.existing-image-path').value = inlineUrl;
+                        }
+                    }
+                }
+
+                // 3. Collect form data and save to API
+                submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i>Saving Content...';
+                const blogData = collectBlogData(finalHeroUrl);
+                saveBlogToApi(blogData, editSlug, submitBtn, originalBtnText);
+
+            } catch (err) {
+                showNotification('Error: ' + err.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        };
+
+        // Reset form
+        function resetForm() {
+            document.getElementById('edit-slug').value = '';
+            document.getElementById('slug').readOnly = false;
+            document.getElementById('blog-form').reset();
+            document.getElementById('date_published').value = new Date().toISOString().split('T')[0];
+            document.getElementById('blocks-container').innerHTML = '';
+            document.getElementById('image-hint').textContent = 'Upload the main cover image for this blog post.';
+        }
+    </script>
+</body>
+
+</html>
