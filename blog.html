@@ -780,7 +780,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button type="button" class="btn btn-primary rounded-circle shadow-lg d-none" id="back-to-top" aria-label="Back to top">
+    <button type="button" id="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -1019,9 +1019,8 @@
             fetchAndRenderBlogs();
 
             // Back to top
-            (function () {
-                var btn = document.getElementById('back-to-top');
-                if (!btn) return;
+            var btn = document.getElementById('back-to-top');
+            if (btn) {
                 function toggleBtn() {
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
                     if (scrolled > 300) btn.classList.add('show');
@@ -1030,7 +1029,7 @@
                 window.addEventListener('scroll', toggleBtn, { passive: true });
                 btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
                 toggleBtn();
-            })();
+            }
         });
     </script>
 
