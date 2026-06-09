@@ -517,6 +517,11 @@
                 line-height: 1.7;
             }
         }
+        /* Fix mini scrollbar flash on reload — clip does NOT create a scroll container */
+        main .container,
+        main .row {
+            overflow-x: clip;
+        }
     </style>
 
     <!-- Google tag (gtag.js) -->
