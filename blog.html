@@ -209,11 +209,6 @@
     <link rel="stylesheet" href="styles.css?v=fixed">
 
     <style>
-        /* Prevent extra scrollbar flash during page-entry animation */
-        html {
-            overflow-y: hidden;
-        }
-
         /* Smooth page entry */
         body {
             animation: pageEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -796,13 +791,6 @@
     <!-- Navbar scroll effect -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Restore scroll after page-entry animation finishes
-            document.body.addEventListener('animationend', function handler(e) {
-                if (e.animationName === 'pageEntry') {
-                    document.documentElement.style.overflowY = '';
-                    document.body.removeEventListener('animationend', handler);
-                }
-            });
 
             // Navbar scroll
             window.addEventListener('scroll', function () {
