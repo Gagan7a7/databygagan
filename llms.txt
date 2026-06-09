@@ -25,6 +25,7 @@ This is the AI representation of databygagan.com. Gagan BP is a freelance techni
 - [Services](https://databygagan.com/services) - Comprehensive breakdown of Automation, Data, and Web service offerings.
 - [Projects](https://databygagan.com/projects) - Portfolio gallery of completed works.
 - [Testimonials](https://databygagan.com/testimonials) - Client reviews and success stories.
+- [Blog](https://databygagan.com/blog) - Technical articles, guides, and insights on automation, data analytics, and web development.
 - [FAQ](https://databygagan.com/faq) - Common questions regarding project timelines, revisions, and payment structures.
 - [Contact](https://databygagan.com/contact) - Secure form to hire Gagan for freelance technical consulting.
 
