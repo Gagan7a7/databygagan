@@ -67,8 +67,8 @@
     <meta name="twitter:creator" content="@databygagan">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon 32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href=" assets/apple-touchicon.png">
     <link rel="manifest" href="assets/site.webmanifest">
 
     <!-- Canonical URL -->
@@ -306,7 +306,8 @@
         /* This clips any card that translates above the row boundary on hover.    */
         #blog-grid {
             overflow: visible !important;
-            padding-top: 12px; /* breathing room for the 10px hover lift */
+            padding-top: 12px;
+            /* breathing room for the 10px hover lift */
         }
 
         /* Blog cards */
@@ -336,11 +337,9 @@
             inset: 0;
             border-radius: 16px;
             padding: 1px;
-            background: linear-gradient(
-                135deg,
-                rgba(74, 144, 226, 0) 0%,
-                rgba(74, 144, 226, 0) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(74, 144, 226, 0) 0%,
+                    rgba(74, 144, 226, 0) 100%);
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
                 linear-gradient(#fff 0 0);
@@ -356,12 +355,10 @@
         }
 
         .blog-card:hover::before {
-            background: linear-gradient(
-                135deg,
-                rgba(74, 144, 226, 0.9) 0%,
-                rgba(100, 200, 255, 0.4) 50%,
-                rgba(74, 144, 226, 0.1) 100%
-            );
+            background: linear-gradient(135deg,
+                    rgba(74, 144, 226, 0.9) 0%,
+                    rgba(100, 200, 255, 0.4) 50%,
+                    rgba(74, 144, 226, 0.1) 100%);
             opacity: 1;
         }
 
@@ -399,11 +396,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(74, 144, 226, 0.10) 0%,
-                rgba(10, 17, 32, 0.20) 100%
-            );
+            background: linear-gradient(to bottom,
+                    rgba(74, 144, 226, 0.10) 0%,
+                    rgba(10, 17, 32, 0.20) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
@@ -429,7 +424,8 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: contain;       /* full image, never zoomed or cropped */
+            object-fit: contain;
+            /* full image, never zoomed or cropped */
             object-position: center center;
             transition: filter 0.4s ease;
         }
@@ -611,6 +607,7 @@
                 min-width: 100%;
             }
         }
+
         /* Fix mini scrollbar flash on reload — clip does NOT create a scroll container */
         main .container,
         main .row {
@@ -706,8 +703,8 @@
             </div>
             <div class="container position-relative" style="z-index: 2;">
                 <h1 id="blog-heading" class="reveal-title">Insights &amp; Guides</h1>
-                <p class="reveal-up" style="transition-delay: 0.15s;">Practical articles on n8n automation, Power BI
-                    dashboards, data analytics, and web development — written from real project experience.</p>
+                <p class="reveal-up" style="transition-delay: 0.15s;">Journey through Systems, Workflows, Data, and Web
+                    Development.</p>
             </div>
         </section>
 
