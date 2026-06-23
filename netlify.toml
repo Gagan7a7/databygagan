@@ -2,6 +2,10 @@
   functions = "netlify/functions"
   publish = "."
 
+  [[edge_functions]]
+  path = "/blog-post"
+  function = "blog-post"
+
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "CLOUDINARY_CLOUD_NAME"
 
